@@ -4221,12 +4221,32 @@ layer_2/name = "Towns"
 layer_2/tile_data = PackedInt32Array()
 
 [node name="Controls PanelContainer" type="PanelContainer" parent="Control/PanelContainer"]
-custom_minimum_size = Vector2(0, 165)
+custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="Image toggle" type="CheckButton" parent="Control/PanelContainer/Controls PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/Controls PanelContainer"]
+layout_mode = 2
+
+[node name="Image toggle" type="CheckButton" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+button_pressed = true
+text = "Show Towns"
+script = ExtResource("5_5sk12")
+
+[node name="Image toggle2" type="CheckButton" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+button_pressed = true
+text = "Show Mines"
+script = ExtResource("5_5sk12")
+
+[node name="Image toggle3" type="CheckButton" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 0
 button_pressed = true
@@ -4292,7 +4312,9 @@ text = "Update Order
 [node name="File Loader" type="Node" parent="."]
 script = ExtResource("1_70b50")
 
-[connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/Image toggle" to="Control/PanelContainer/Controls PanelContainer/Image toggle" method="_on_toggled"]
+[connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle" method="_on_toggled" binds= [2]]
+[connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle2" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle2" method="_on_toggled" binds= [1]]
+[connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle3" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle3" method="_on_toggled" binds= [0]]
 [connection signal="pressed" from="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Plus" to="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_plus_pressed"]
 [connection signal="text_submitted" from="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Number" to="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_number_text_submitted"]
 [connection signal="pressed" from="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Minus" to="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_minus_pressed"]
