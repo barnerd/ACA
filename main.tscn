@@ -1,12 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://cixyvm26uk3uc"]
+[gd_scene load_steps=21 format=3 uid="uid://cixyvm26uk3uc"]
 
 [ext_resource type="Script" path="res://File Loader.gd" id="1_70b50"]
 [ext_resource type="PackedScene" uid="uid://dma57v67lqap6" path="res://order_side_popup.tscn" id="2_0jwh1"]
 [ext_resource type="PackedScene" uid="uid://dididv7xdkapi" path="res://update_map_edit_popup.tscn" id="4_uilq3"]
 [ext_resource type="Script" path="res://ImageToggle.gd" id="5_5sk12"]
+[ext_resource type="Texture2D" uid="uid://c6wk0vm4udsts" path="res://images/town0.png" id="6_0ma1q"]
 [ext_resource type="Script" path="res://MapZoom.gd" id="6_r1k04"]
-[ext_resource type="Texture2D" uid="uid://coq8ywol3qmue" path="res://tileColor.jpg" id="16_cmi7w"]
-[ext_resource type="Texture2D" uid="uid://dn4nuaarx2fb7" path="res://agonia-sprite.png" id="16_sl5wh"]
+[ext_resource type="Texture2D" uid="uid://l6ax2s4p0f33" path="res://images/mines/coppermine.png" id="7_d6vx0"]
+[ext_resource type="Texture2D" uid="uid://f3472at1176l" path="res://images/mines/ironmine.png" id="8_80611"]
+[ext_resource type="Texture2D" uid="uid://c7584bt5wndlw" path="res://images/mines/tinmine.png" id="9_rsuk6"]
+[ext_resource type="Texture2D" uid="uid://dt120j8ttkgsb" path="res://images/mines/titaniummine.png" id="10_qveor"]
+[ext_resource type="Texture2D" uid="uid://coq8ywol3qmue" path="res://images/tileColor.jpg" id="16_cmi7w"]
+[ext_resource type="Texture2D" uid="uid://dn4nuaarx2fb7" path="res://images/agonia-sprite.png" id="16_sl5wh"]
 [ext_resource type="Script" path="res://TerrainColors.gd" id="17_2gmiw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8pft2"]
@@ -4114,11 +4119,41 @@ texture_region_size = Vector2i(24, 24)
 0:24/0 = 0
 0:24/0/custom_data_0 = 14
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ed2qx"]
+texture = ExtResource("6_0ma1q")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_20uw8"]
+texture = ExtResource("7_d6vx0")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oy2da"]
+texture = ExtResource("8_80611")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d0w1v"]
+texture = ExtResource("9_rsuk6")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_so8j6"]
+texture = ExtResource("10_qveor")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_6qotd"]
 tile_size = Vector2i(24, 24)
 custom_data_layer_0/name = "terrain_id"
 custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_8pft2")
+sources/2 = SubResource("TileSetAtlasSource_ed2qx")
+sources/3 = SubResource("TileSetAtlasSource_20uw8")
+sources/4 = SubResource("TileSetAtlasSource_oy2da")
+sources/5 = SubResource("TileSetAtlasSource_d0w1v")
+sources/6 = SubResource("TileSetAtlasSource_so8j6")
 
 [node name="Node2D" type="Node2D"]
 
@@ -4179,6 +4214,11 @@ script = ExtResource("17_2gmiw")
 [node name="MapImages" type="TileMap" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer"]
 tile_set = SubResource("TileSet_6qotd")
 format = 2
+layer_0/name = "Map"
+layer_1/name = "Mines"
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Towns"
+layer_2/tile_data = PackedInt32Array()
 
 [node name="Controls PanelContainer" type="PanelContainer" parent="Control/PanelContainer"]
 custom_minimum_size = Vector2(0, 165)

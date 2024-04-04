@@ -17,10 +17,21 @@ preload("res://Terrain Types/wastes.tres"),
 preload("res://Terrain Types/water.tres")]
 var terrains_by_id: Dictionary = {} # terrain_id -> TerrainType
 
-var map_tiles : Dictionary = {} # Vector3i -> MapTiles
+var map_tiles: Dictionary = {} # Vector3i -> MapTiles
+
+var mines_locations_permanent: Dictionary = {} # Mine_type -> [Vector3i]
+var mines_locations_temporary: Dictionary = {} # Mine_type -> [Vector3i]
+
+var groups_by_id: Dictionary = {} # group_id: int -> GroupDetails
+var towns_by_location: Dictionary = {} # Vector3i -> TownDetails
 
 # TileMap Layers
-var map_image_layer: int = 0
+enum TileMap_Layers {MAP_IMAGE = 0, MINES = 1, TOWNS = 2}
+
+# TileMap Sources
+enum TileMap_Sources {NONE = -1, SPRITE_SHEET = 0, TOWN = 2, COPPER = 3, IRON = 4, TIN = 5, TITANIUM = 6}
+var mine_type_to_tilemap_source: Array[int] = [TileMap_Sources.TIN, TileMap_Sources.COPPER, TileMap_Sources.IRON, TileMap_Sources.TITANIUM]
+var mine_string_to_mine_type: Array[String] = ["tin", "copper", "iron", "titanium"]
 
 var have_changes_to_save: bool
 
@@ -38,22 +49,71 @@ func _init() -> void:
 
 
 func save():
-	var tile_details: Array = []
+	# save tile data
+	var save_tile_details: Array = []
 	for tile in map_tiles.values():
-		tile_details.append({
-			"x": tile.location_x,
-			"y": tile.location_y,
-			"z": tile.location_z,
+		save_tile_details.append({
+			"x": tile.location.x,
+			"y": tile.location.y,
+			"z": tile.location.z,
 			"map": tile.tile_image_id,
 			"t": tile.terrain_id,
 			"e": tile.encounter_table_id
+		})
+	
+	# save mines data
+	var save_mines_permanent: Array = []
+	for type in mines_locations_permanent:
+		for mine_loc in mines_locations_permanent[type]:
+			save_mines_permanent.append({
+				"x": mine_loc.x,
+				"y": mine_loc.y,
+				"z": mine_loc.z,
+				"t": type
+			})
+	
+	var save_mines_temporary: Array = []
+	for type in mines_locations_temporary:
+		for mine_loc in mines_locations_temporary[type]:
+			save_mines_temporary.append({
+				"x": mine_loc.x,
+				"y": mine_loc.y,
+				"z": mine_loc.z,
+				"t": type
+			})
+	
+	# save group details
+	var save_group_details: Array = []
+	for id in groups_by_id:
+		save_group_details.append({
+			"g_id": id,
+			"n": groups_by_id[id].group_name,
+			"f": groups_by_id[id].group_faction
+		})
+	
+	var save_town_details: Array = []
+	for town_loc in towns_by_location:
+		save_town_details.append({
+			"g_id": towns_by_location[town_loc].group_id,
+			"t_id": towns_by_location[town_loc].town_id,
+			"n": towns_by_location[town_loc].town_name,
+			"x": towns_by_location[town_loc].location.x,
+			"y": towns_by_location[town_loc].location.y,
+			"z": towns_by_location[town_loc].location.z,
+			"w": towns_by_location[town_loc].watchtower_view,
+			"d": towns_by_location[town_loc].dwelling_size,
+			"b": towns_by_location[town_loc].buildings_bitmask
 		})
 	
 	var save_dict = {
 		"node_path": self.get_path(),
 		"filename" : get_scene_file_path(),
 		"parent" : get_parent().get_path(),
-		"tiles" : tile_details
+		"tiles" : save_tile_details,
+		"mines_p" : save_mines_permanent, 
+		"mines_t": save_mines_temporary,
+		"groups" : save_group_details,
+		"towns" : save_town_details
 	}
 	
 	have_changes_to_save = false
@@ -63,11 +123,33 @@ func save():
 
 func load(_data):
 	print("loading map details")
-	map_tiles = {}
+	map_tiles = {} # Vector3i -> MapTiles
 	
+	# load map tile data
 	for tile in _data["tiles"]:
-		var l:Vector3i = Vector3i(tile["x"], tile["y"], tile["z"])
+		var l: Vector3i = Vector3i(tile["x"], tile["y"], tile["z"])
 		update_location(l, tile["t"], tile["map"], tile["e"])
+	
+	# TODO: add loading mines and towns here
+	# load mine data
+	mines_locations_permanent = {} # Mine_type -> [Vector3i]
+	for mine in _data["mines_p"]:
+		var l: Vector3i = Vector3i(mine["x"], mine["y"], mine["z"])
+		add_mine_location(mine["t"], l,  true)
+	
+	mines_locations_temporary = {} # Mine_type -> [Vector3i]
+	for mine in _data["mines_t"]:
+		var l: Vector3i = Vector3i(mine["x"], mine["y"], mine["z"])
+		add_mine_location(mine["t"], l)
+	
+	groups_by_id = {} # group_id: int -> GroupDetails
+	for group in _data["groups"]:
+		update_group(group["g_id"], group["n"], group["f"])
+	
+	towns_by_location = {} # Vector3i -> TownDetails
+	for town in _data["towns"]:
+		var l: Vector3i = Vector3i(town["x"], town["y"], town["z"])
+		update_town(town["t_id"], town["n"], town["g_id"], l, town["w"], town["d"], town["b"])
 
 
 func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encounter_id: int = -1):
@@ -86,27 +168,146 @@ func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encou
 	# Update TileMap Image Display
 	if _map_id == -1:
 		# turn off tile in TileMap
-		tile_map_display.set_cell(map_image_layer, Vector2i(_loc.x, _loc.y), -1)
+		tile_map_display.set_cell(TileMap_Layers.MAP_IMAGE, Vector2i(_loc.x, _loc.y), TileMap_Sources.NONE)
 	else:
-		tile_map_display.set_cell(map_image_layer, Vector2i(_loc.x, _loc.y), 0, Vector2i(_map_id % 76, floor(_map_id/76)))
+		tile_map_display.set_cell(TileMap_Layers.MAP_IMAGE, Vector2i(_loc.x, _loc.y), TileMap_Sources.SPRITE_SHEET, Vector2i(_map_id % 76, floor(_map_id/76)))
+
+
+func add_mine_location(_type: MineLocation.Mine_Types, _loc: Vector3i, _perm: bool = false):
+	if _perm:
+		if not mines_locations_permanent.has(_type):
+			mines_locations_permanent[_type] = []
+		
+		if not mines_locations_permanent[_type].has(_loc):
+			mines_locations_permanent[_type].append(_loc)
+			have_changes_to_save = true
+	else:
+		if not mines_locations_temporary.has(_type):
+			mines_locations_temporary[_type] = []
+
+		if not mines_locations_temporary[_type].has(_loc):
+			mines_locations_temporary[_type].append(_loc)
+			have_changes_to_save = true
+	
+	# update display
+	tile_map_display.set_cell(TileMap_Layers.MINES, Vector2i(_loc.x, _loc.y), mine_type_to_tilemap_source[_type], Vector2i.ZERO)
+
+
+func update_group(_id: int, _name: String, _faction: GroupDetails.Factions):
+	if groups_by_id.has(_id):
+		groups_by_id[_id].group_name = _name
+		groups_by_id[_id].group_faction = _faction
+		have_changes_to_save = true
+	else:
+		groups_by_id[_id] = GroupDetails.new(_id, _name, _faction)
+
+
+func update_town(_town_id: int, _name: String, _group_id: int, _loc: Vector3i, _watchtower: int = -1, _dwelling: TownDetails.Dwelling_Sizes = TownDetails.Dwelling_Sizes.UNKNOWN, _buildings: int = -1):
+	if towns_by_location.has(_loc):
+		towns_by_location[_loc].town_id = _town_id
+		towns_by_location[_loc].town_name = _name
+		towns_by_location[_loc].group_id = _group_id
+		towns_by_location[_loc].watchtower_view = _watchtower
+		towns_by_location[_loc].dwelling_size = _dwelling
+		towns_by_location[_loc].buildings_bitmask = _buildings
+		have_changes_to_save = true
+	else:
+		var new_town = TownDetails.new(_town_id, _name, _group_id, _loc, _watchtower, _dwelling, _buildings)
+	
+		towns_by_location[_loc] = new_town
+		
+		if _group_id != -1:
+			groups_by_id[_group_id].towns.append(new_town)
+	
+	# update display
+	tile_map_display.set_cell(TileMap_Layers.TOWNS, Vector2i(_loc.x, _loc.y), TileMap_Sources.TOWN, Vector2i.ZERO)
 
 
 class MapTile:
+	
+	var location: Vector3i
 
-	var location_x: int
-	var location_y: int
-	var location_z: int
 	var tile_image_id: int
 	var terrain_id: int
 	var terrain_details: TerrainType
 	var encounter_table_id: int
-
-
-	func _init(_location = Vector3i.ZERO, _tile_image_id = -1, _terrain_id = -1, _encounter_table_id = -1):
-		location_x = _location.x
-		location_y = _location.y
-		location_z = _location.z
 	
+	
+	func _init(_loc = Vector3i.ZERO, _tile_image_id = -1, _terrain_id = -1, _encounter_table_id = -1):
+		location = _loc
+		
 		tile_image_id = _tile_image_id
 		terrain_id = _terrain_id
 		encounter_table_id = _encounter_table_id
+
+
+class MineLocation:
+	
+	enum Mine_Types {TIN = 0, COPPER = 1, IRON = 2, TITANIUM = 3}
+	
+	var location: Vector3i
+	var type: Mine_Types
+	
+	
+	func _init(_type: Mine_Types, _loc = Vector3i.ZERO):
+		location = _loc
+		
+		type = _type
+
+
+class GroupDetails:
+	
+	enum Factions {ORDER, FORSAKEN, FREE_FOLK}
+	
+	var group_id: int
+	var group_name: String
+	var group_faction: Factions
+	
+	var towns: Array[TownDetails] = []
+	
+	
+	func _init(_id: int, _name: String, _faction: Factions):
+		group_id = _id
+		group_name = _name
+		group_faction = _faction
+	
+	
+	func add_town(_town: TownDetails):
+		towns.append(_town)
+
+
+class TownDetails:
+	
+	enum Dwelling_Sizes {UNKNOWN, NONE, HUNDRED, FIVE_HUNDRED}
+	enum Buildings {BLACKSMITH = 1, WORKSHOP = 2, ALCHEMICAL_LAB = 4, WONDERS = 8}
+	
+	var town_id: int
+	var town_name: String
+	
+	var group_id: int
+	
+	var location: Vector3i
+	
+	var watchtower_view: int # [-1, 4]
+	var dwelling_size: Dwelling_Sizes
+	
+	# binary bitmask for buildings
+	# setting: bitmask = bitmask ^ BLACKSMITH
+	# checking: if bitmask & FLAG_C:
+	var buildings_bitmask: int 
+	
+	
+	func _init(_town_id: int, _name: String, _group_id: int, _loc: Vector3i, _watchtower: int = -1, _dwelling: Dwelling_Sizes = Dwelling_Sizes.UNKNOWN, _buildings: int = -1):
+		town_id = _town_id
+		town_name = _name
+		group_id = _group_id
+		
+		location = _loc
+		
+		watchtower_view = _watchtower
+		dwelling_size = _dwelling
+		buildings_bitmask = _buildings
+		
+		# limit watchtower value
+		if watchtower_view > 4 || watchtower_view < 0:
+			watchtower_view = -1

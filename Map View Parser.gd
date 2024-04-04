@@ -8,6 +8,8 @@ var map_table_data: String
 
 var counts: Dictionary = {}
 var pending_changes: Array = []
+var pending_mines: Array = []
+var pending_towns: Array = []
 
 
 func _init() -> void:
@@ -17,6 +19,9 @@ func _init() -> void:
 func _on_parse_button_pressed() -> void:
 	counts = {}
 	pending_changes = []
+	pending_mines = []
+	pending_towns = []
+	
 	status_textbox.text = "Parsing..."
 	
 	# check for <table> tag, and anything else
@@ -36,12 +41,20 @@ func _on_parse_button_pressed() -> void:
 
 func _on_cancel_button_pressed() -> void:
 	pending_changes = []
+	pending_mines = []
+	pending_towns = []
 
 
 func _on_accept_button_pressed() -> void:
 	for change in pending_changes:
 		MapDetailsSingleton.update_location(Vector3i(change["x"], change["y"], change["z"]), change["terrain_id"], change["map_id"])
 	MapDetailsSingleton.terrain_colors_display.apply_image()
+	
+	for mine in pending_mines:
+		MapDetailsSingleton.add_mine_location(mine["type"], Vector3i(mine["x"], mine["y"], mine["z"]))
+	
+	for town in pending_towns:
+		MapDetailsSingleton.update_town(-1, "", -1, Vector3i(town["x"], town["y"], town["z"]))
 
 
 # <td class="map-84" data-x="222" data-y="130" style="width:24px; height:24px; display: inline-block"></td>
@@ -138,6 +151,10 @@ func parse_map_table(_data: String):
 					if result:
 						#print("found a " + result.get_string(1) + " mine")
 						found_identified = true
+						pending_mines.append({"type": MapDetailsSingleton.mine_string_to_mine_type.find(result.get_string(1)),
+						"x": tile_details["location"].x,
+						"y": tile_details["location"].y,
+						"z": tile_details["location"].z})
 						_increment_counts("mines")
 						update_results()
 					
@@ -148,6 +165,9 @@ func parse_map_table(_data: String):
 					if result:
 						#print("found a town")
 						found_identified = true
+						pending_towns.append({"x": tile_details["location"].x,
+						"y": tile_details["location"].y,
+						"z": tile_details["location"].z})
 						_increment_counts("towns")
 						update_results()
 					
