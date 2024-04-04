@@ -26,6 +26,7 @@ var groups_by_id: Dictionary = {} # group_id: int -> GroupDetails
 var towns_by_location: Dictionary = {} # Vector3i -> TownDetails
 
 # TileMap Layers
+# these values are hard coded in the layer_trigger UI
 enum TileMap_Layers {MAP_IMAGE = 0, MINES = 1, TOWNS = 2}
 
 # TileMap Sources
@@ -158,7 +159,6 @@ func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encou
 		map_tiles[_loc].terrain_details = terrains_by_id[_terrain_id]
 		map_tiles[_loc].tile_image_id = _map_id
 		map_tiles[_loc].encounter_table_id = _encounter_id
-		have_changes_to_save = true
 	else:
 		map_tiles[_loc] = MapTile.new(_loc, _map_id, _terrain_id, _encounter_id)
 	
@@ -180,14 +180,12 @@ func add_mine_location(_type: MineLocation.Mine_Types, _loc: Vector3i, _perm: bo
 		
 		if not mines_locations_permanent[_type].has(_loc):
 			mines_locations_permanent[_type].append(_loc)
-			have_changes_to_save = true
 	else:
 		if not mines_locations_temporary.has(_type):
 			mines_locations_temporary[_type] = []
 
 		if not mines_locations_temporary[_type].has(_loc):
 			mines_locations_temporary[_type].append(_loc)
-			have_changes_to_save = true
 	
 	# update display
 	tile_map_display.set_cell(TileMap_Layers.MINES, Vector2i(_loc.x, _loc.y), mine_type_to_tilemap_source[_type], Vector2i.ZERO)
@@ -197,7 +195,6 @@ func update_group(_id: int, _name: String, _faction: GroupDetails.Factions):
 	if groups_by_id.has(_id):
 		groups_by_id[_id].group_name = _name
 		groups_by_id[_id].group_faction = _faction
-		have_changes_to_save = true
 	else:
 		groups_by_id[_id] = GroupDetails.new(_id, _name, _faction)
 
@@ -210,7 +207,6 @@ func update_town(_town_id: int, _name: String, _group_id: int, _loc: Vector3i, _
 		towns_by_location[_loc].watchtower_view = _watchtower
 		towns_by_location[_loc].dwelling_size = _dwelling
 		towns_by_location[_loc].buildings_bitmask = _buildings
-		have_changes_to_save = true
 	else:
 		var new_town = TownDetails.new(_town_id, _name, _group_id, _loc, _watchtower, _dwelling, _buildings)
 	

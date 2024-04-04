@@ -11,6 +11,9 @@ var pending_changes: Array = []
 var pending_mines: Array = []
 var pending_towns: Array = []
 
+var terrain_from_internal_to_apf: Array[int] = [5, 14, 4, 11, 7, 8, 9, 2, 1, 6, 12, 13, 0, 3, 10]
+var terrain_from_apf_to_internal: Array[int] = [12, 8, 7, 13, 2, 0, 9, 4, 5, 6, 14, 3, 10, 11, 1]
+
 
 func _init() -> void:
 	regex = RegEx.new()
@@ -55,6 +58,9 @@ func _on_accept_button_pressed() -> void:
 	
 	for town in pending_towns:
 		MapDetailsSingleton.update_town(-1, "", -1, Vector3i(town["x"], town["y"], town["z"]))
+	
+	if pending_changes.size() > 0 || pending_mines.size() > 0 || pending_towns.size() > 0:
+		MapDetailsSingleton.have_changes_to_save = true
 
 
 # <td class="map-84" data-x="222" data-y="130" style="width:24px; height:24px; display: inline-block"></td>
@@ -114,7 +120,7 @@ func parse_map_table(_data: String):
 						_increment_counts("terrains")
 						update_results()
 						var td_terrain_id = int(result.get_string(1))
-						td_terrain_id = _convert_internal_to_apf(td_terrain_id)
+						td_terrain_id = terrain_from_internal_to_apf[td_terrain_id]
 						if td_terrain_id != tile_details["terrain_id"]:
 							print("Terrains don't match!!!")
 							print("Map id: map-" + str(tile_details["map_id"]))
@@ -196,28 +202,6 @@ func parse_map_table(_data: String):
 					"map_id": tile_details["map_id"],
 					"terrain_id": tile_details["terrain_id"]})
 					_increment_counts("pending")
-
-
-func _convert_internal_to_apf(_internal: int):
-	var apf: int
-	match _internal:
-		0: apf = 5
-		1: apf = 14
-		2: apf = 4
-		3: apf = 11
-		4: apf = 7
-		5: apf = 8
-		6: apf = 9
-		7: apf = 2
-		8: apf = 1
-		9: apf = 6
-		10: apf = 12
-		11: apf = 13
-		12: apf = 0
-		13: apf = 3
-		14: apf = 10
-	
-	return apf
 
 
 func _increment_counts(_key: String):
