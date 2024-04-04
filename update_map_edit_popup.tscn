@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://dididv7xdkapi"]
+
+[ext_resource type="Script" path="res://Update Map Text Input PopupPanel.gd" id="1_61rjw"]
+[ext_resource type="Script" path="res://Map View Parser.gd" id="2_3fjra"]
+[ext_resource type="Script" path="res://Update Map Results PopupPanel.gd" id="2_do63u"]
+
+[node name="Update Map Text Input PopupPanel" type="PopupPanel"]
+title = "Update Map"
+initial_position = 1
+size = Vector2i(500, 400)
+visible = true
+script = ExtResource("1_61rjw")
+
+[node name="Map View Parser" type="Node" parent="."]
+script = ExtResource("2_3fjra")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 496.0
+offset_bottom = 396.0
+grow_horizontal = 2
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 350)
+layout_mode = 2
+placeholder_text = "Enter HTML <table> tag for map here..."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Status" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Ready"
+
+[node name="Parse Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Parse Text"
+
+[node name="Update Map Results PopupPanel" type="PopupPanel" parent="."]
+title = "Update Map"
+initial_position = 1
+size = Vector2i(500, 400)
+script = ExtResource("2_do63u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Update Map Results PopupPanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 496.0
+offset_bottom = 396.0
+
+[node name="Results" type="RichTextLabel" parent="Update Map Results PopupPanel/VBoxContainer"]
+custom_minimum_size = Vector2(400, 350)
+layout_mode = 2
+text = "Nodes found..."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Update Map Results PopupPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Status" type="RichTextLabel" parent="Update Map Results PopupPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+text = "Parsing..."
+
+[node name="Cancel Button" type="Button" parent="Update Map Results PopupPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="Accept Button" type="Button" parent="Update Map Results PopupPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Accept"
+
+[connection signal="text_changed" from="VBoxContainer/TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Parse Button" to="." method="_on_parse_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Parse Button" to="Update Map Results PopupPanel" method="_on_parse_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Parse Button" to="Map View Parser" method="_on_parse_button_pressed"]
+[connection signal="pressed" from="Update Map Results PopupPanel/VBoxContainer/HBoxContainer/Cancel Button" to="Update Map Results PopupPanel" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="Update Map Results PopupPanel/VBoxContainer/HBoxContainer/Cancel Button" to="Map View Parser" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="Update Map Results PopupPanel/VBoxContainer/HBoxContainer/Accept Button" to="Update Map Results PopupPanel" method="_on_accept_button_pressed"]
+[connection signal="pressed" from="Update Map Results PopupPanel/VBoxContainer/HBoxContainer/Accept Button" to="Map View Parser" method="_on_accept_button_pressed"]

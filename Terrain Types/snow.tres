@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=2 format=3 uid="uid://dbbg0akcyhoh"]
+
+[ext_resource type="Script" path="res://Terrain Types/terrain_type.gd" id="1_q8kit"]
+
+[resource]
+script = ExtResource("1_q8kit")
+terrain_name = "Snow"
+terrain_id = 6
+terrain_color_default = Color(1, 0.980392, 0.980392, 1)
+terrain_color_custom = Color(1, 0.980392, 0.980392, 1)
+dwarr_mvp = 35
+leafborn_mvp = 35
+lightfoot_mvp = 33
+mythos_mvp = 35
+norsk_mvp = 27
+giant_mvp = 32
+kiith_mvp = 38
+nuruk_mvp = 31

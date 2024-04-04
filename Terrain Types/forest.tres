@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=2 format=3 uid="uid://rt4xi6pysob6"]
+
+[ext_resource type="Script" path="res://Terrain Types/terrain_type.gd" id="1_afkff"]
+
+[resource]
+script = ExtResource("1_afkff")
+terrain_name = "Forest"
+terrain_id = 4
+terrain_color_default = Color(0.133333, 0.545098, 0.133333, 1)
+terrain_color_custom = Color(0.133333, 0.545098, 0.133333, 1)
+dwarr_mvp = 31
+leafborn_mvp = 18
+lightfoot_mvp = 22
+mythos_mvp = 27
+norsk_mvp = 26
+giant_mvp = 38
+kiith_mvp = 22
+nuruk_mvp = 22

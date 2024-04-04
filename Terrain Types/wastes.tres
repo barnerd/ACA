@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=2 format=3 uid="uid://bdnqa46f3ry4w"]
+
+[ext_resource type="Script" path="res://Terrain Types/terrain_type.gd" id="1_1y80t"]
+
+[resource]
+script = ExtResource("1_1y80t")
+terrain_name = "Wastes"
+terrain_id = 3
+terrain_color_default = Color(0.545098, 0.270588, 0.0745098, 1)
+terrain_color_custom = Color(0.545098, 0.270588, 0.0745098, 1)
+dwarr_mvp = 22
+leafborn_mvp = 24
+lightfoot_mvp = 22
+mythos_mvp = 22
+norsk_mvp = 23
+giant_mvp = 20
+kiith_mvp = 19
+nuruk_mvp = 18

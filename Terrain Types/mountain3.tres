@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=2 format=3 uid="uid://d0tud2iby05sg"]
+
+[ext_resource type="Script" path="res://Terrain Types/terrain_type.gd" id="1_6t0q1"]
+
+[resource]
+script = ExtResource("1_6t0q1")
+terrain_name = "Mountain L3"
+terrain_id = 9
+terrain_color_default = Color(0.960784, 0.960784, 0.960784, 1)
+terrain_color_custom = Color(0.960784, 0.960784, 0.960784, 1)
+dwarr_mvp = -1
+leafborn_mvp = -1
+lightfoot_mvp = -1
+mythos_mvp = -1
+norsk_mvp = -1
+giant_mvp = -1
+kiith_mvp = -1
+nuruk_mvp = -1

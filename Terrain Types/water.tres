@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=2 format=3 uid="uid://c1s78girmm60j"]
+
+[ext_resource type="Script" path="res://Terrain Types/terrain_type.gd" id="1_c0qlh"]
+
+[resource]
+script = ExtResource("1_c0qlh")
+terrain_name = "Water"
+terrain_id = 10
+terrain_color_default = Color(0, 0, 1, 1)
+terrain_color_custom = Color(0, 0, 1, 1)
+dwarr_mvp = -1
+leafborn_mvp = -1
+lightfoot_mvp = 200
+mythos_mvp = -1
+norsk_mvp = -1
+giant_mvp = -1
+kiith_mvp = -1
+nuruk_mvp = -1

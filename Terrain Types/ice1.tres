@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=2 format=3 uid="uid://b3bfl4k0epc70"]
+
+[ext_resource type="Script" path="res://Terrain Types/terrain_type.gd" id="1_fd2qu"]
+
+[resource]
+script = ExtResource("1_fd2qu")
+terrain_name = "Snowy Mountains"
+terrain_id = 12
+terrain_color_default = Color(0.4, 1, 1, 1)
+terrain_color_custom = Color(0.4, 1, 1, 1)
+dwarr_mvp = 137
+leafborn_mvp = 157
+lightfoot_mvp = -1
+mythos_mvp = 145
+norsk_mvp = 136
+giant_mvp = 141
+kiith_mvp = 155
+nuruk_mvp = 138

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=2 format=3 uid="uid://k0hvueshdau"]
+
+[ext_resource type="Script" path="res://Terrain Types/terrain_type.gd" id="1_weox8"]
+
+[resource]
+script = ExtResource("1_weox8")
+terrain_name = "Road"
+terrain_id = 1
+terrain_color_default = Color(0.956863, 0.643137, 0.376471, 1)
+terrain_color_custom = Color(0.956863, 0.643137, 0.376471, 1)
+dwarr_mvp = 13
+leafborn_mvp = 13
+lightfoot_mvp = 13
+mythos_mvp = 13
+norsk_mvp = 13
+giant_mvp = 13
+kiith_mvp = 13
+nuruk_mvp = 13

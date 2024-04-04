@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk5upj5kp4won"]
+
+[ext_resource type="Script" path="res://MapDetails.gd" id="1_hy48a"]
+
+[node name="MapDetails" type="Node" groups=["Persist"]]
+script = ExtResource("1_hy48a")

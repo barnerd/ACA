@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=2 format=3 uid="uid://dqruqrrdqlcho"]
+
+[ext_resource type="Script" path="res://Terrain Types/terrain_type.gd" id="1_mev56"]
+
+[resource]
+script = ExtResource("1_mev56")
+terrain_name = "Plains"
+terrain_id = 2
+terrain_color_default = Color(0.603922, 0.803922, 0.196078, 1)
+terrain_color_custom = Color(0.603922, 0.803922, 0.196078, 1)
+dwarr_mvp = 22
+leafborn_mvp = 20
+lightfoot_mvp = 21
+mythos_mvp = 18
+norsk_mvp = 20
+giant_mvp = 19
+kiith_mvp = 22
+nuruk_mvp = 18
