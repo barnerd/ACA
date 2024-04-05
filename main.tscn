@@ -1,5 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://cixyvm26uk3uc"]
+[gd_scene load_steps=22 format=3 uid="uid://cixyvm26uk3uc"]
 
+[ext_resource type="Script" path="res://input.gd" id="1_1knja"]
 [ext_resource type="Script" path="res://File Loader.gd" id="1_70b50"]
 [ext_resource type="PackedScene" uid="uid://dma57v67lqap6" path="res://order_side_popup.tscn" id="2_0jwh1"]
 [ext_resource type="PackedScene" uid="uid://dididv7xdkapi" path="res://update_map_edit_popup.tscn" id="4_uilq3"]
@@ -4188,6 +4189,7 @@ offset_bottom = 1300.0
 layout_mode = 2
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 2
+script = ExtResource("1_1knja")
 
 [node name="Control" type="Control" parent="Control/PanelContainer/ScrollContainer"]
 custom_minimum_size = Vector2(8400, 8400)
