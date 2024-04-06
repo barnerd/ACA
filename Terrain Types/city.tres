@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_e02pi")
-terrain_name = "City"
+terrain_name = "Capitol"
 terrain_id = 0
 terrain_color_default = Color(0.968627, 0.827451, 0.345098, 1)
 terrain_color_custom = Color(0.968627, 0.827451, 0.345098, 1)

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_1fdcn")
-terrain_name = "Mountain L1"
+terrain_name = "Mountains"
 terrain_id = 7
 terrain_color_default = Color(0.501961, 0.501961, 0.501961, 1)
 terrain_color_custom = Color(0.501961, 0.501961, 0.501961, 1)

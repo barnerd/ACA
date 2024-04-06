@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_xihvi")
-terrain_name = "Ice L2"
+terrain_name = "Snowy Peaks"
 terrain_id = 13
 terrain_color_default = Color(0.6, 1, 1, 1)
 terrain_color_custom = Color(0.6, 1, 1, 1)
