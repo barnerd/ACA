@@ -234,6 +234,7 @@ class MapTile:
 		
 		tile_image_id = _tile_image_id
 		terrain_id = _terrain_id
+		terrain_details = MapDetailsSingleton.terrains_by_id[_terrain_id]
 		encounter_table_id = _encounter_table_id
 
 
