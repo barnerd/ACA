@@ -4283,21 +4283,6 @@ custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 text = "-"
 
-[node name="Update Map Button" type="Button" parent="Control"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -149.0
-offset_top = -114.0
-offset_right = -46.0
-offset_bottom = -83.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Update Map"
-
 [node name="Order Side Button" type="Button" parent="Control"]
 visible = false
 layout_mode = 1
@@ -4354,6 +4339,10 @@ layout_mode = 2
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
+[node name="Update Map Button" type="Button" parent="Control/Details Container/Town Details"]
+layout_mode = 2
+text = "Update Map"
+
 [node name="File Loader" type="Node" parent="."]
 script = ExtResource("1_70b50")
 
@@ -4363,5 +4352,5 @@ script = ExtResource("1_70b50")
 [connection signal="pressed" from="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Plus" to="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_plus_pressed"]
 [connection signal="text_submitted" from="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Number" to="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_number_text_submitted"]
 [connection signal="pressed" from="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Minus" to="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_minus_pressed"]
-[connection signal="pressed" from="Control/Update Map Button" to="Control/Update Map Text Input PopupPanel" method="_on_update_map_button_pressed"]
 [connection signal="pressed" from="Control/Order Side Button" to="Control/Update Map Text Input PopupPanel2" method="_on_order_side_button_pressed"]
+[connection signal="pressed" from="Control/Details Container/Town Details/Update Map Button" to="Control/Update Map Text Input PopupPanel" method="_on_update_map_button_pressed"]
