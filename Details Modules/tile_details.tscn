@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://ybu3x4nqm24r"]
+
+[node name="Tile Details" type="VBoxContainer"]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
+custom_minimum_size = Vector2(135, 25)
+layout_mode = 2
+text = "Location Details"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Coords" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+text = "[x,y]"
+
+[node name="Terrain Type" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(60, 25)
+layout_mode = 2
+text = "Type"
+
+[node name="Movement" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(130, 25)
+layout_mode = 2
+text = "123 movement"
+
+[node name="Map id and Sprite" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Map id and Sprite"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+text = "map-1234"
+
+[node name="Sprite2D" type="Sprite2D" parent="Map id and Sprite"]
+visible = false
+
+[node name="Mines" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Mines"]
+visible = false
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "type"

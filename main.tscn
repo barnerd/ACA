@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cixyvm26uk3uc"]
+[gd_scene load_steps=26 format=3 uid="uid://cixyvm26uk3uc"]
 
 [ext_resource type="Script" path="res://input.gd" id="1_1knja"]
 [ext_resource type="Script" path="res://File Loader.gd" id="1_70b50"]
@@ -11,9 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://f3472at1176l" path="res://images/mines/ironmine.png" id="8_80611"]
 [ext_resource type="Texture2D" uid="uid://c7584bt5wndlw" path="res://images/mines/tinmine.png" id="9_rsuk6"]
 [ext_resource type="Texture2D" uid="uid://dt120j8ttkgsb" path="res://images/mines/titaniummine.png" id="10_qveor"]
+[ext_resource type="PackedScene" uid="uid://lk86ulb3sqsb" path="res://Details Modules/pathfinding.tscn" id="14_pfesv"]
+[ext_resource type="PackedScene" uid="uid://ybu3x4nqm24r" path="res://Details Modules/tile_details.tscn" id="15_724hc"]
 [ext_resource type="Texture2D" uid="uid://coq8ywol3qmue" path="res://images/tileColor.jpg" id="16_cmi7w"]
+[ext_resource type="PackedScene" uid="uid://c6wy6xvn5lvl1" path="res://Details Modules/encounter_details.tscn" id="16_f8o5m"]
 [ext_resource type="Texture2D" uid="uid://dn4nuaarx2fb7" path="res://images/agonia-sprite.png" id="16_sl5wh"]
 [ext_resource type="Script" path="res://TerrainColors.gd" id="17_2gmiw"]
+[ext_resource type="PackedScene" uid="uid://dbyo0eb8tgybn" path="res://Details Modules/town_details.tscn" id="17_rfvkl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8pft2"]
 resource_name = "Agonia Sprite Sheet"
@@ -4310,6 +4314,45 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Update Order
 "
+
+[node name="Details Container" type="HBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(1920, 320)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Pathfinding Details" parent="Control/Details Container" instance=ExtResource("14_pfesv")]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="VSeparator1" type="VSeparator" parent="Control/Details Container"]
+layout_mode = 2
+
+[node name="Tile Details" parent="Control/Details Container" instance=ExtResource("15_724hc")]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="Control/Details Container"]
+layout_mode = 2
+
+[node name="Encounter Details" parent="Control/Details Container" instance=ExtResource("16_f8o5m")]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="Control/Details Container"]
+layout_mode = 2
+
+[node name="Town Details" parent="Control/Details Container" instance=ExtResource("17_rfvkl")]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
 
 [node name="File Loader" type="Node" parent="."]
 script = ExtResource("1_70b50")

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://lk86ulb3sqsb"]
+
+[node name="Pathfinding Details" type="VBoxContainer"]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "Pathfinding"
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Left Column" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Start Point" type="HBoxContainer" parent="HBoxContainer/Left Column"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="HBoxContainer/Left Column/Start Point"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Start:"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="X" type="LineEdit" parent="HBoxContainer/Left Column/Start Point"]
+layout_mode = 2
+placeholder_text = "x"
+alignment = 2
+
+[node name="Y" type="LineEdit" parent="HBoxContainer/Left Column/Start Point"]
+layout_mode = 2
+placeholder_text = "y"
+alignment = 2
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Right Column" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Tribe Dropdown" type="OptionButton" parent="HBoxContainer/Right Column"]
+layout_mode = 2
+item_count = 10
+selected = 1
+popup/item_0/text = "The Order"
+popup/item_0/id = 8
+popup/item_0/disabled = true
+popup/item_0/separator = true
+popup/item_1/text = "Dwarr"
+popup/item_1/id = 0
+popup/item_2/text = "Leafborn"
+popup/item_2/id = 1
+popup/item_3/text = "Lightfoot"
+popup/item_3/id = 2
+popup/item_4/text = "Mythos"
+popup/item_4/id = 3
+popup/item_5/text = "The Forsaken"
+popup/item_5/id = 9
+popup/item_5/disabled = true
+popup/item_5/separator = true
+popup/item_6/text = "Norsk"
+popup/item_6/id = 4
+popup/item_7/text = "Giant"
+popup/item_7/id = 5
+popup/item_8/text = "Kiith"
+popup/item_8/id = 6
+popup/item_9/text = "Nuruk"
+popup/item_9/id = 7
