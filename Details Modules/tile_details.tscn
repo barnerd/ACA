@@ -24,7 +24,7 @@ bbcode_enabled = true
 text = "Terrain Type"
 
 [node name="Movement" type="RichTextLabel" parent="HBoxContainer"]
-custom_minimum_size = Vector2(130, 25)
+custom_minimum_size = Vector2(210, 25)
 layout_mode = 2
 text = "0 movement"
 

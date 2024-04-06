@@ -41,22 +41,29 @@ func _generate_terrain_type_label(_type: String, _color: Color) -> void:
 
 func _generate_movement_label() -> void:
 	movement_label.clear()
+	
+	var mvp: int = -1
 	match selected_tribe:
 		"Dwarr":
-			movement_label.append_text(str(selected_terrain.dwarr_mvp))
+			mvp = selected_terrain.dwarr_mvp
 		"Leafborn":
-			movement_label.append_text(str(selected_terrain.leafborn_mvp))
+			mvp = selected_terrain.leafborn_mvp
 		"Lightfoot":
-			movement_label.append_text(str(selected_terrain.lightfoot_mvp))
+			mvp = selected_terrain.lightfoot_mvp
 		"Mythos":
-			movement_label.append_text(str(selected_terrain.mythos_mvp))
+			mvp = selected_terrain.mythos_mvp
 		"Norsk":
-			movement_label.append_text(str(selected_terrain.norsk_mvp))
+			mvp = selected_terrain.norsk_mvp
 		"Giant":
-			movement_label.append_text(str(selected_terrain.giant_mvp))
+			mvp = selected_terrain.giant_mvp
 		"Kiith":
-			movement_label.append_text(str(selected_terrain.kiith_mvp))
+			mvp = selected_terrain.kiith_mvp
 		"Nuruk":
-			movement_label.append_text(str(selected_terrain.nuruk_mvp))
-	movement_label.append_text(" movement")
+			mvp = selected_terrain.nuruk_mvp
+	
+	if mvp == -1:
+		movement_label.append_text("you cannot move this way")
+	else:
+		movement_label.append_text(str(mvp))
+		movement_label.append_text(" movement")
 
