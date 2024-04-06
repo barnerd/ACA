@@ -1,33 +1,32 @@
-[gd_scene format=3 uid="uid://ybu3x4nqm24r"]
+[gd_scene load_steps=2 format=3 uid="uid://ybu3x4nqm24r"]
+
+[ext_resource type="Script" path="res://Details Modules/TileDetails.gd" id="1_oft8w"]
 
 [node name="Tile Details" type="VBoxContainer"]
+script = ExtResource("1_oft8w")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
-custom_minimum_size = Vector2(135, 25)
+custom_minimum_size = Vector2(210, 25)
 layout_mode = 2
-text = "Location Details"
+text = "Location Details [xxx, yyy]"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Coords" type="RichTextLabel" parent="HBoxContainer"]
-custom_minimum_size = Vector2(50, 25)
-layout_mode = 2
-text = "[x,y]"
-
 [node name="Terrain Type" type="RichTextLabel" parent="HBoxContainer"]
-custom_minimum_size = Vector2(60, 25)
+custom_minimum_size = Vector2(150, 25)
 layout_mode = 2
-text = "Type"
+bbcode_enabled = true
+text = "Terrain Type"
 
 [node name="Movement" type="RichTextLabel" parent="HBoxContainer"]
 custom_minimum_size = Vector2(130, 25)
 layout_mode = 2
-text = "123 movement"
+text = "0 movement"
 
 [node name="Map id and Sprite" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -35,7 +34,7 @@ layout_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="Map id and Sprite"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-text = "map-1234"
+text = "map-id"
 
 [node name="Sprite2D" type="Sprite2D" parent="Map id and Sprite"]
 visible = false

@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://lk86ulb3sqsb"]
+[gd_scene load_steps=3 format=3 uid="uid://lk86ulb3sqsb"]
+
+[ext_resource type="Script" path="res://Details Modules/PathfindingDetails.gd" id="1_nwedy"]
+[ext_resource type="Script" path="res://Details Modules/TribeDropdown.gd" id="2_kswkd"]
 
 [node name="Pathfinding Details" type="VBoxContainer"]
+script = ExtResource("1_nwedy")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(0, 40)
@@ -73,3 +77,6 @@ popup/item_8/text = "Kiith"
 popup/item_8/id = 6
 popup/item_9/text = "Nuruk"
 popup/item_9/id = 7
+script = ExtResource("2_kswkd")
+
+[connection signal="item_selected" from="HBoxContainer/Right Column/Tribe Dropdown" to="HBoxContainer/Right Column/Tribe Dropdown" method="_on_item_selected"]
