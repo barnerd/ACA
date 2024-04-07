@@ -5,7 +5,7 @@ class_name PathfindingDetails extends VBoxContainer
 
 
 func _ready() -> void:
-	SignalBus.connect_signal("tilemap_location_clicked", on_tilemap_location_clicked)
+	SignalBus.connect_to_signal("tilemap_location_clicked", on_tilemap_location_clicked)
 
 
 func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):

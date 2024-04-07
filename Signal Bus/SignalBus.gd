@@ -8,7 +8,7 @@ func register_signal(_name: String, _signal: Signal):
 		signal_list[_name] = _signal
 
 
-func connect_signal(_name: String, _callable: Callable):
+func connect_to_signal(_name: String, _callable: Callable):
 	if not signal_list[_name].is_connected(_callable):
 		signal_list[_name].connect(_callable)
 

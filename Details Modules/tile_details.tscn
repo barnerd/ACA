@@ -43,7 +43,6 @@ visible = false
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Mines"]
-visible = false
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 text = "type"

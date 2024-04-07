@@ -19,8 +19,8 @@ var terrains_by_id: Dictionary = {} # terrain_id -> TerrainType
 
 var map_tiles: Dictionary = {} # Vector3i -> MapTiles
 
-var mines_locations_permanent: Dictionary = {} # Mine_type -> [Vector3i]
-var mines_locations_temporary: Dictionary = {} # Mine_type -> [Vector3i]
+var mines_locations_permanent: Dictionary = {} # Mine_type -> Vector3i -> MineLocation
+var mines_locations_temporary: Dictionary = {} # Mine_type -> Vector3i -> MineLocation
 
 var groups_by_id: Dictionary = {} # group_id: int -> GroupDetails
 var towns_by_location: Dictionary = {} # Vector3i -> TownDetails
@@ -170,22 +170,26 @@ func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encou
 		# turn off tile in TileMap
 		tile_map_display.set_cell(TileMap_Layers.MAP_IMAGE, Vector2i(_loc.x, _loc.y), TileMap_Sources.NONE)
 	else:
-		tile_map_display.set_cell(TileMap_Layers.MAP_IMAGE, Vector2i(_loc.x, _loc.y), TileMap_Sources.SPRITE_SHEET, Vector2i(_map_id % 76, floor(_map_id/76)))
+		tile_map_display.set_cell(TileMap_Layers.MAP_IMAGE, Vector2i(_loc.x, _loc.y), TileMap_Sources.SPRITE_SHEET, Vector2i(_map_id % 76, floor(_map_id/76.0)))
 
 
 func add_mine_location(_type: MineLocation.Mine_Types, _loc: Vector3i, _perm: bool = false):
+	var new_mine = MineLocation.new(_type, _loc, _perm)
+	
 	if _perm:
 		if not mines_locations_permanent.has(_type):
-			mines_locations_permanent[_type] = []
+			mines_locations_permanent[_type] = {}
 		
 		if not mines_locations_permanent[_type].has(_loc):
-			mines_locations_permanent[_type].append(_loc)
+			mines_locations_permanent[_type][_loc] = new_mine
+			map_tiles[_loc].mines.append(new_mine)
 	else:
 		if not mines_locations_temporary.has(_type):
-			mines_locations_temporary[_type] = []
-
+			mines_locations_temporary[_type] = {}
+		
 		if not mines_locations_temporary[_type].has(_loc):
-			mines_locations_temporary[_type].append(_loc)
+			mines_locations_temporary[_type][_loc] = new_mine
+			map_tiles[_loc].mines.append(new_mine)
 	
 	# update display
 	tile_map_display.set_cell(TileMap_Layers.MINES, Vector2i(_loc.x, _loc.y), mine_type_to_tilemap_source[_type], Vector2i.ZERO)
@@ -211,6 +215,7 @@ func update_town(_town_id: int, _name: String, _group_id: int, _loc: Vector3i, _
 		var new_town = TownDetails.new(_town_id, _name, _group_id, _loc, _watchtower, _dwelling, _buildings)
 	
 		towns_by_location[_loc] = new_town
+		map_tiles[_loc].towns.append(new_town)
 		
 		if _group_id != -1:
 			groups_by_id[_group_id].towns.append(new_town)
@@ -228,6 +233,9 @@ class MapTile:
 	var terrain_details: TerrainType
 	var encounter_table_id: int
 	
+	var mines: Array[MineLocation] = []
+	var towns: Array[TownDetails] = []
+	
 	
 	func _init(_loc = Vector3i.ZERO, _tile_image_id = -1, _terrain_id = -1, _encounter_table_id = -1):
 		location = _loc
@@ -241,15 +249,21 @@ class MapTile:
 class MineLocation:
 	
 	enum Mine_Types {TIN = 0, COPPER = 1, IRON = 2, TITANIUM = 3}
+	var mine_names: Array[String] = ["Tin", "Copper", "Iron", "Titanium"]
 	
 	var location: Vector3i
 	var type: Mine_Types
+	var type_name: String
+	var is_permanent: bool
 	
 	
-	func _init(_type: Mine_Types, _loc = Vector3i.ZERO):
+	func _init(_type: Mine_Types, _loc = Vector3i.ZERO, _perm: bool = false):
 		location = _loc
 		
 		type = _type
+		type_name = mine_names[_type]
+		
+		is_permanent = _perm
 
 
 class GroupDetails:

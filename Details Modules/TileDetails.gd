@@ -4,14 +4,15 @@ class_name TileDetails extends VBoxContainer
 @onready var terrain_type_label = $"HBoxContainer/Terrain Type"
 @onready var movement_label = $HBoxContainer/Movement
 @onready var map_id_label = $"Map id and Sprite/RichTextLabel"
+@onready var mine_label = $Mines/RichTextLabel
 
 var selected_tribe: String = "Dwarr"
 var selected_terrain: TerrainType
 
 
 func _ready() -> void:
-	SignalBus.connect_signal("tilemap_location_clicked", on_tilemap_location_clicked)
-	SignalBus.connect_signal("tribe_selected", on_tribe_select)
+	SignalBus.connect_to_signal("tilemap_location_clicked", on_tilemap_location_clicked)
+	SignalBus.connect_to_signal("tribe_selected", on_tribe_select)
 
 
 func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
@@ -25,6 +26,14 @@ func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 		_generate_movement_label()
 		
 		map_id_label.text = "map-" + str(tile_details.tile_image_id)
+		
+		var mine_names: Array[String] = []
+		
+		for m in tile_details.mines:
+			mine_names.append(m.type_name)
+		mine_label.text = ", ".join(mine_names)
+		
+		var towns = tile_details.towns
 
 
 func on_tribe_select(_tribe: String):
