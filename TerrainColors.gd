@@ -10,6 +10,8 @@ func _ready() -> void:
 	
 	display_image.resize(8400, 8400, Image.INTERPOLATE_NEAREST)
 	display_image.fill_rect(Rect2i(0, 0, 8400, 8400), border_color)
+	
+	SignalBus.connect_to_signal("savefile_loaded", apply_image)
 
 
 func paint_tile(_position: Vector2i, _color: Color) -> void:

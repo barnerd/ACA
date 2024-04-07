@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dt120j8ttkgsb" path="res://images/mines/titaniummine.png" id="10_qveor"]
 [ext_resource type="PackedScene" uid="uid://lk86ulb3sqsb" path="res://Details Modules/pathfinding.tscn" id="14_pfesv"]
 [ext_resource type="PackedScene" uid="uid://ybu3x4nqm24r" path="res://Details Modules/tile_details.tscn" id="15_724hc"]
-[ext_resource type="Texture2D" uid="uid://coq8ywol3qmue" path="res://images/tileColor.jpg" id="16_cmi7w"]
+[ext_resource type="Texture2D" uid="uid://coq8ywol3qmue" path="res://images/tilecolor.jpg" id="16_cmi7w"]
 [ext_resource type="PackedScene" uid="uid://c6wy6xvn5lvl1" path="res://Details Modules/encounter_details.tscn" id="16_f8o5m"]
 [ext_resource type="Texture2D" uid="uid://dn4nuaarx2fb7" path="res://images/agonia-sprite.png" id="16_sl5wh"]
 [ext_resource type="Script" path="res://TerrainColors.gd" id="17_2gmiw"]
@@ -4347,6 +4347,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
 [node name="Update Map Button" type="Button" parent="Control/Details Container/Town Details"]
+visible = false
 layout_mode = 2
 text = "Update Map"
 
