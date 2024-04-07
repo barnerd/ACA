@@ -15,7 +15,7 @@ func _init() -> void:
 	SignalBus.register_signal("tilemap_location_clicked", tilemap_location_clicked)
 
 
-func _input(_event):
+func _unhandled_input(_event):
 	if _event is InputEventMouseMotion:
 		if is_dragging and (Time.get_ticks_msec() - time_left_mouse_pressed) > drag_pressed_duration_threshold:
 			#print("drag delta: " + str(_event.relative))

@@ -43,23 +43,24 @@ func _generate_movement_label() -> void:
 	movement_label.clear()
 	
 	var mvp: int = -1
-	match selected_tribe:
-		"Dwarr":
-			mvp = selected_terrain.dwarr_mvp
-		"Leafborn":
-			mvp = selected_terrain.leafborn_mvp
-		"Lightfoot":
-			mvp = selected_terrain.lightfoot_mvp
-		"Mythos":
-			mvp = selected_terrain.mythos_mvp
-		"Norsk":
-			mvp = selected_terrain.norsk_mvp
-		"Giant":
-			mvp = selected_terrain.giant_mvp
-		"Kiith":
-			mvp = selected_terrain.kiith_mvp
-		"Nuruk":
-			mvp = selected_terrain.nuruk_mvp
+	if selected_terrain:
+		match selected_tribe:
+			"Dwarr":
+				mvp = selected_terrain.dwarr_mvp
+			"Leafborn":
+				mvp = selected_terrain.leafborn_mvp
+			"Lightfoot":
+				mvp = selected_terrain.lightfoot_mvp
+			"Mythos":
+				mvp = selected_terrain.mythos_mvp
+			"Norsk":
+				mvp = selected_terrain.norsk_mvp
+			"Giant":
+				mvp = selected_terrain.giant_mvp
+			"Kiith":
+				mvp = selected_terrain.kiith_mvp
+			"Nuruk":
+				mvp = selected_terrain.nuruk_mvp
 	
 	if mvp == -1:
 		movement_label.append_text("you cannot move this way")
