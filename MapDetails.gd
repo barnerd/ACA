@@ -215,7 +215,7 @@ func update_town(_town_id: int, _name: String, _group_id: int, _loc: Vector3i, _
 		var new_town = TownDetails.new(_town_id, _name, _group_id, _loc, _watchtower, _dwelling, _buildings)
 	
 		towns_by_location[_loc] = new_town
-		map_tiles[_loc].towns.append(new_town)
+		map_tiles[_loc].town = new_town
 		
 		if _group_id != -1:
 			groups_by_id[_group_id].towns.append(new_town)
@@ -234,7 +234,7 @@ class MapTile:
 	var encounter_table_id: int
 	
 	var mines: Array[MineLocation] = []
-	var towns: Array[TownDetails] = []
+	var town: TownDetails
 	
 	
 	func _init(_loc = Vector3i.ZERO, _tile_image_id = -1, _terrain_id = -1, _encounter_table_id = -1):

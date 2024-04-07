@@ -1,4 +1,4 @@
-class_name TileDetails extends VBoxContainer
+class_name TileDetailsDisplay extends VBoxContainer
 
 @onready var section_header = $CenterContainer/RichTextLabel
 @onready var terrain_type_label = $"HBoxContainer/Terrain Type"
@@ -32,8 +32,6 @@ func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 		for m in tile_details.mines:
 			mine_names.append(m.type_name)
 		mine_label.text = ", ".join(mine_names)
-		
-		var towns = tile_details.towns
 
 
 func on_tribe_select(_tribe: String):
