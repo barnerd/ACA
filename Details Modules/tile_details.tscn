@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://ybu3x4nqm24r"]
+
+[ext_resource type="Script" path="res://Details Modules/TileDetailsDisplay.gd" id="1_mp40f"]
+
+[node name="Tile Details" type="VBoxContainer"]
+script = ExtResource("1_mp40f")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
+custom_minimum_size = Vector2(210, 25)
+layout_mode = 2
+text = "Location Details [xxx, yyy]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Terrain Type" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "Terrain Type"
+
+[node name="Movement" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(210, 25)
+layout_mode = 2
+text = "0 movement"
+
+[node name="Map id and Sprite" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Map id and Sprite"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+text = "map-id"
+
+[node name="Sprite2D" type="Sprite2D" parent="Map id and Sprite"]
+visible = false
+
+[node name="Mines" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Mines"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "type"

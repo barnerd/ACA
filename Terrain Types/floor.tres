@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TerrainType" load_steps=2 format=3 uid="uid://qa0q0k60ctai"]
+
+[ext_resource type="Script" path="res://Terrain Types/terrain_type.gd" id="1_v3v3b"]
+
+[resource]
+script = ExtResource("1_v3v3b")
+terrain_name = "Floor"
+terrain_id = 14
+terrain_color_default = Color(0.968627, 0.827451, 0.345098, 1)
+terrain_color_custom = Color(0.968627, 0.827451, 0.345098, 1)
+dwarr_mvp = 5
+leafborn_mvp = 5
+lightfoot_mvp = 5
+mythos_mvp = 5
+norsk_mvp = 5
+giant_mvp = 5
+kiith_mvp = 5
+nuruk_mvp = 5

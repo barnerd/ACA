@@ -8,6 +8,11 @@ var map_table_data: String
 
 var counts: Dictionary = {}
 var pending_changes: Array = []
+var pending_mines: Array = []
+var pending_towns: Array = []
+
+var terrain_from_internal_to_apf: Array[int] = [5, 14, 4, 11, 7, 8, 9, 2, 1, 6, 12, 13, 0, 3, 10]
+var terrain_from_apf_to_internal: Array[int] = [12, 8, 7, 13, 2, 0, 9, 4, 5, 6, 14, 3, 10, 11, 1]
 
 
 func _init() -> void:
@@ -17,6 +22,9 @@ func _init() -> void:
 func _on_parse_button_pressed() -> void:
 	counts = {}
 	pending_changes = []
+	pending_mines = []
+	pending_towns = []
+	
 	status_textbox.text = "Parsing..."
 	
 	# check for <table> tag, and anything else
@@ -36,12 +44,23 @@ func _on_parse_button_pressed() -> void:
 
 func _on_cancel_button_pressed() -> void:
 	pending_changes = []
+	pending_mines = []
+	pending_towns = []
 
 
 func _on_accept_button_pressed() -> void:
 	for change in pending_changes:
 		MapDetailsSingleton.update_location(Vector3i(change["x"], change["y"], change["z"]), change["terrain_id"], change["map_id"])
 	MapDetailsSingleton.terrain_colors_display.apply_image()
+	
+	for mine in pending_mines:
+		MapDetailsSingleton.add_mine_location(mine["type"], Vector3i(mine["x"], mine["y"], mine["z"]))
+	
+	for town in pending_towns:
+		MapDetailsSingleton.update_town(-1, "", -1, Vector3i(town["x"], town["y"], town["z"]))
+	
+	if pending_changes.size() > 0 || pending_mines.size() > 0 || pending_towns.size() > 0:
+		MapDetailsSingleton.have_changes_to_save = true
 
 
 # <td class="map-84" data-x="222" data-y="130" style="width:24px; height:24px; display: inline-block"></td>
@@ -101,7 +120,7 @@ func parse_map_table(_data: String):
 						_increment_counts("terrains")
 						update_results()
 						var td_terrain_id = int(result.get_string(1))
-						td_terrain_id = _convert_internal_to_apf(td_terrain_id)
+						td_terrain_id = terrain_from_internal_to_apf[td_terrain_id]
 						if td_terrain_id != tile_details["terrain_id"]:
 							print("Terrains don't match!!!")
 							print("Map id: map-" + str(tile_details["map_id"]))
@@ -138,6 +157,10 @@ func parse_map_table(_data: String):
 					if result:
 						#print("found a " + result.get_string(1) + " mine")
 						found_identified = true
+						pending_mines.append({"type": MapDetailsSingleton.mine_string_to_mine_type.find(result.get_string(1)),
+						"x": tile_details["location"].x,
+						"y": tile_details["location"].y,
+						"z": tile_details["location"].z})
 						_increment_counts("mines")
 						update_results()
 					
@@ -148,6 +171,9 @@ func parse_map_table(_data: String):
 					if result:
 						#print("found a town")
 						found_identified = true
+						pending_towns.append({"x": tile_details["location"].x,
+						"y": tile_details["location"].y,
+						"z": tile_details["location"].z})
 						_increment_counts("towns")
 						update_results()
 					
@@ -176,28 +202,6 @@ func parse_map_table(_data: String):
 					"map_id": tile_details["map_id"],
 					"terrain_id": tile_details["terrain_id"]})
 					_increment_counts("pending")
-
-
-func _convert_internal_to_apf(_internal: int):
-	var apf: int
-	match _internal:
-		0: apf = 5
-		1: apf = 14
-		2: apf = 4
-		3: apf = 11
-		4: apf = 7
-		5: apf = 8
-		6: apf = 9
-		7: apf = 2
-		8: apf = 1
-		9: apf = 6
-		10: apf = 12
-		11: apf = 13
-		12: apf = 0
-		13: apf = 3
-		14: apf = 10
-	
-	return apf
 
 
 func _increment_counts(_key: String):

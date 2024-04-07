@@ -2,13 +2,18 @@ extends Node
 
 var apf_flat_filename: String = "res://Flat Files/agoniaMap2.txt"
 
+signal savefile_loaded
+
+
+func _init() -> void:
+	SignalBus.register_signal("savefile_loaded", savefile_loaded)
 
 func _ready() -> void:
 	#var agoniaMap:String = load_file(apf_flat_filename)
 	#parse_map_file(agoniaMap)
 	load_game()
 	
-	$"../Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors".apply_image()
+	#$"../Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors".apply_image()
 	#tile_map_display.visible = false
 	
 	#var print_coords = Vector3i(275, 170, 0)
@@ -101,6 +106,8 @@ func load_game():
 		var loaded_object = get_node(node_data["node_path"])
 
 		loaded_object.load(node_data)
+	
+	savefile_loaded.emit()
 
 
 func parse_map_file(_map: String) -> void:

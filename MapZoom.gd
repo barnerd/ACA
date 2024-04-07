@@ -8,6 +8,13 @@ var zoom_current: int = 10
 @onready var map_to_scale = $"../../ScrollContainer/Control/HBoxContainer/PanelContainer"
 @onready var zoom_text = $"Zoom Number"
 
+signal on_map_zoom(zoom_factor: float)
+
+
+func _init() -> void:
+	SignalBus.register_signal("on_map_zoom", on_map_zoom)
+
+
 func _on_zoom_plus_pressed() -> void:
 	if zoom_current < zoom_max:
 		zoom_to(zoom_current + 1)
@@ -38,3 +45,5 @@ func zoom_to(_zoom_desired: int = 10):
 
 	map_to_zoom.custom_minimum_size = 8400 * Vector2.ONE * zoom_current/10.0
 	map_to_scale.scale = Vector2.ONE * zoom_current/10.0
+	
+	on_map_zoom.emit(zoom_current/10.0)

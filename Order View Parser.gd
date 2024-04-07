@@ -77,7 +77,7 @@ func add_coords(_data: String):
 						map_id = int(map_results.get_string(1))
 					
 						# query TileSet for terrain Id
-						var tileset_coords = Vector2i(map_id % 76, floor(map_id / 76))
+						var tileset_coords = Vector2i(map_id % 76, floor(map_id / 76.0))
 						var tileset_terrain_id = int(MapDetailsSingleton.tile_map_display.tile_set.get_source(0).get_tile_data(tileset_coords, 0).get_custom_data("terrain_id"))
 						
 						# query MapDetailsSingleton for terrain id

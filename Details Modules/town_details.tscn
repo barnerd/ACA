@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbyo0eb8tgybn"]
+
+[ext_resource type="Script" path="res://Details Modules/TownDetailsDisplay.gd" id="1_1o82u"]
+
+[node name="Town Details" type="VBoxContainer"]
+script = ExtResource("1_1o82u")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
+custom_minimum_size = Vector2(60, 25)
+layout_mode = 2
+text = "Towns"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
