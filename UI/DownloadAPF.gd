@@ -14,31 +14,7 @@ func _ready() -> void:
 
 
 func _on_pressed() -> void:
-	# put conversion code here for now
-	# terrain types need to change as well
-	for type in MapDetailsSingleton.terrain_details:
-		type.terrain_id = MapDetailsSingleton.terrain_id_from_apf_to_internal[type.terrain_id]
-
-	MapDetailsSingleton.terrain_details = []
-	for t in MapDetailsSingleton.terrain_details:
-		MapDetailsSingleton.terrains_by_id[t.terrain_id] = t
-
-	# run through all map tiles
-	for tile_coords in MapDetailsSingleton.map_tiles:
-		var tile = MapDetailsSingleton.map_tiles[tile_coords]
-		tile.terrain_id = MapDetailsSingleton.terrain_id_from_apf_to_internal[tile.terrain_id]
-		tile.terrain_details = MapDetailsSingleton.terrains_by_id[tile.terrain_id]
-
-	# run through all sprite tiles
-	var tile_set_source = MapDetailsSingleton.tile_map_display.tile_set.get_source(0)
-	for index in tile_set_source.get_tiles_count():
-		var tileset_coords = tile_set_source.get_tile_id(index)
-	
-		var old_terrain_id = tile_set_source.get_tile_data(tileset_coords, 0).get_custom_data("terrain_id")
-		var new_terrain_id = MapDetailsSingleton.terrain_id_from_apf_to_internal[old_terrain_id]
-		tile_set_source.get_tile_data(tileset_coords, 0).set_custom_data("terrain_id", new_terrain_id)
-	
-	MapDetailsSingleton.have_changes_to_save = true
+	pass
 	#download_file(file_to_download, "agoniaMap2")
 
 
