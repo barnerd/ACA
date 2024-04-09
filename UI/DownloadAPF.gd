@@ -15,10 +15,23 @@ func _ready() -> void:
 
 func _on_pressed() -> void:
 	# put conversion code here for now
-	# run through all map tiles
-	# run through all sprite tiles
 	# terrain types need to change as well
-	pass
+	for type in MapDetailsSingleton.terrain_details:
+		type.terrain_id = MapDetailsSingleton.terrain_id_from_apf_to_internal[type.terrain_id]
+
+	# run through all map tiles
+	for tile in MapDetailsSingleton.map_tiles:
+		tile.terrain_id = MapDetailsSingleton.terrain_id_from_apf_to_internal[tile.terrain_id]
+		tile.terrain_details = MapDetailsSingleton.terrains_by_id[tile.terrain_id]
+
+	# run through all sprite tiles
+	var tile_set_source = MapDetailsSingleton.tile_map_display.tile_set.get_source(0)
+	for index in tile_set_source.get_tiles_count():
+		var tileset_coords = tile_set_source.get_tile_id(index)
+	
+		var old_terrain_id = tile_set_source.get_tile_data(tileset_coords).get_custom_data("terrain_id")
+		var new_terrain_id = MapDetailsSingleton.terrain_id_from_apf_to_internal[old_terrain_id]
+		tile_set_source.get_tile_data(tileset_coords).set_custom_data("terrain_id", new_terrain_id)
 	#download_file(file_to_download, "agoniaMap2")
 
 

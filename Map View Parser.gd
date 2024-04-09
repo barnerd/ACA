@@ -11,9 +11,6 @@ var pending_changes: Array = []
 var pending_mines: Array = []
 var pending_towns: Array = []
 
-var terrain_from_internal_to_apf: Array[int] = [5, 14, 4, 11, 7, 8, 9, 2, 1, 6, 12, 13, 0, 3, 10]
-var terrain_from_apf_to_internal: Array[int] = [12, 8, 7, 13, 2, 0, 9, 4, 5, 6, 14, 3, 10, 11, 1]
-
 
 func _init() -> void:
 	regex = RegEx.new()
@@ -120,7 +117,8 @@ func parse_map_table(_data: String):
 						_increment_counts("terrains")
 						update_results()
 						var td_terrain_id = int(result.get_string(1))
-						td_terrain_id = terrain_from_internal_to_apf[td_terrain_id]
+						# TODO: remove this line once coversion is done
+						td_terrain_id = MapDetailsSingleton.terrain_id_from_internal_to_apf[td_terrain_id]
 						if td_terrain_id != tile_details["terrain_id"]:
 							print("Terrains don't match!!!")
 							print("Map id: map-" + str(tile_details["map_id"]))
