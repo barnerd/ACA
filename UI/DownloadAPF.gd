@@ -32,6 +32,8 @@ func _on_pressed() -> void:
 		var old_terrain_id = tile_set_source.get_tile_data(tileset_coords).get_custom_data("terrain_id")
 		var new_terrain_id = MapDetailsSingleton.terrain_id_from_apf_to_internal[old_terrain_id]
 		tile_set_source.get_tile_data(tileset_coords).set_custom_data("terrain_id", new_terrain_id)
+	
+	MapDetailsSingleton.have_changes_to_save = true
 	#download_file(file_to_download, "agoniaMap2")
 
 
