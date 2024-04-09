@@ -3,29 +3,45 @@ extends Button
 var tile_size:int = 24
 
 var thread: Thread = Thread.new()
+var need_to_stop: bool = false
+
 var image_to_download: Image = Image.new()
-@onready var portport = $/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/SubViewportContainer/SubViewport
+var is_preparing: bool = false
+
+signal downloadable_file_progress(progress: float)
 
 
 func _init() -> void:
-	self.disabled = true
+	self.text = "Prepare Map Image"
+	self.disabled = false
 
 
 func _ready() -> void:
-	pass
-	#thread.start(prepare_image, Thread.PRIORITY_LOW)
+	pass #SignalBus.connect_to_signal("savefile_loaded", prepare_image_on_thread)
 
 
 func _on_pressed() -> void:
-	image_to_download = portport.get_texture().get_image()
-	download_image(image_to_download, "agonia_map")
+	# for use with viewports
+	#image_to_download = portport.get_texture().get_image()
+	
+	if not is_preparing:
+		is_preparing = true
+		self.disabled = true
+		thread.start(prepare_image, Thread.PRIORITY_LOW)
+	else:
+		download_image(image_to_download, "agonia_map")
 
 
 func on_processing_done():
-	pass #self.disabled = false
+	self.disabled = false
+
+
+func prepare_image_on_thread() -> void:
+	thread.start(prepare_image, Thread.PRIORITY_LOW)
 
 
 func prepare_image() -> void:
+	print("preparing map image file")
 	# start with Terrain_Colors image
 	#image_to_download.resize(8400, 8400, Image.INTERPOLATE_NEAREST)
 	image_to_download.copy_from(MapDetailsSingleton.terrain_colors_display.texture.get_image())
@@ -40,25 +56,28 @@ func prepare_image() -> void:
 		atlas_texture[source] = AtlasTexture.new()
 		atlas_texture[source].atlas = tile_set.get_source(tile_set.get_source_id(source)).texture
 	
-	
-	
 	var sprite_texture: ImageTexture = ImageTexture.create_from_image(Image.create(tile_size, tile_size, false, Image.FORMAT_RGBA8))
 	
 	var cells_processed: int = 0
 	var total_cells: int = 0
 	for i in tile_map.get_layers_count():
-		if tile_map.is_layer_enabled(i) and not i == 0:
+		if tile_map.is_layer_enabled(i):
 			# Get active cells per layer of TileMap
 			total_cells += tile_map.get_used_cells(i).size()
 	
 	for i in tile_map.get_layers_count():
-		if tile_map.is_layer_enabled(i) and not i == 0:
+		if tile_map.is_layer_enabled(i):
 			# Get active cells per layer of TileMap
 			var used_cells = tile_map.get_used_cells(i)
 			
 			# from: https://www.reddit.com/r/godot/comments/15pv3lt/comment/k8ovwv7/?context=3
 			# for each cell, paint TileMap sprite on image
 			for cell_coords in used_cells:
+				if need_to_stop:
+					print("terminating thread")
+					call_deferred("quit_thread")
+					return
+				
 				# create atlas from source
 				var tile_source = tile_map.get_cell_source_id(i, cell_coords)
 				
@@ -75,17 +94,11 @@ func prepare_image() -> void:
 				image_to_download.blit_rect(sprite_texture.get_image(), Rect2i(Vector2i.ZERO, Vector2i.ONE * tile_size), cell_coords * tile_size)
 				
 				cells_processed += 1
-				print("progress: " + str(100.0 * cells_processed / total_cells) + "%")
+				#print("progress: " + str(100.0 * cells_processed / total_cells) + "%")
+				call_deferred("_on_downloadable_file_progress", 100.0 * cells_processed / total_cells)
 	
+	print("finished preparing map image file")
 	call_deferred("on_processing_done")
-
-
-func paint_tile(_position: Vector2i, _color: Color) -> void:
-	var rect_size = tile_size - 1
-	var tile: Rect2i = Rect2i(_position.x * tile_size, _position.y * tile_size, rect_size, rect_size)
-	
-	var display_image
-	display_image.fill_rect(tile, _color)
 
 
 func download_image(_img: Image, _filename: String):
@@ -95,4 +108,15 @@ func download_image(_img: Image, _filename: String):
 
 
 func _exit_tree():
+	if thread.is_started():
+		need_to_stop = true
+		#thread.wait_to_finish()
+
+
+func quit_thread():
 	thread.wait_to_finish()
+
+
+func _on_downloadable_file_progress(_progress: float) -> void:
+	#print("Preparing - %0.2f%%" % _progress)
+	self.text = "Preparing - %0.2f%%" % _progress

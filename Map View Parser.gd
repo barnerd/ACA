@@ -117,8 +117,6 @@ func parse_map_table(_data: String):
 						_increment_counts("terrains")
 						update_results()
 						var td_terrain_id = int(result.get_string(1))
-						# TODO: remove this line once coversion is done
-						td_terrain_id = MapDetailsSingleton.terrain_id_from_internal_to_apf[td_terrain_id]
 						if td_terrain_id != tile_details["terrain_id"]:
 							print("Terrains don't match!!!")
 							print("Map id: map-" + str(tile_details["map_id"]))

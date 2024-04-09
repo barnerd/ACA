@@ -160,14 +160,16 @@ func load(_data):
 func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encounter_id: int = -1):
 	if map_tiles.has(_loc):
 		map_tiles[_loc].terrain_id = _terrain_id
-		map_tiles[_loc].terrain_details = terrains_by_id[_terrain_id]
+		if not _terrain_id == -1:
+			map_tiles[_loc].terrain_details = terrains_by_id[_terrain_id]
 		map_tiles[_loc].tile_image_id = _map_id
 		map_tiles[_loc].encounter_table_id = _encounter_id
 	else:
 		map_tiles[_loc] = MapTile.new(_loc, _map_id, _terrain_id, _encounter_id)
 	
 	# Update Flat Color Display
-	terrain_colors_display.paint_tile(Vector2i(_loc.x, _loc.y), terrains_by_id[_terrain_id].terrain_color_default)
+	if not _terrain_id == -1:
+		terrain_colors_display.paint_tile(Vector2i(_loc.x, _loc.y), terrains_by_id[_terrain_id].terrain_color_default)
 	
 	# Update TileMap Image Display
 	if _map_id == -1:

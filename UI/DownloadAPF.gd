@@ -3,13 +3,15 @@ extends Button
 var thread: Thread = Thread.new()
 var file_to_download: String = ""
 
+signal downloadable_file_progress(progress: float)
+
 
 func _init() -> void:
 	self.disabled = true
 
 
 func _ready() -> void:
-	SignalBus.connect_to_signal("savefile_loaded", prepare_file_on_threat)
+	SignalBus.connect_to_signal("savefile_loaded", prepare_file_on_thread)
 
 
 func _on_pressed() -> void:
@@ -17,10 +19,11 @@ func _on_pressed() -> void:
 
 
 func on_processing_done() -> void:
+	self.text = "Download APF File"
 	self.disabled = false
 
 
-func prepare_file_on_threat() -> void:
+func prepare_file_on_thread() -> void:
 	thread.start(prepare_file, Thread.PRIORITY_LOW)
 
 
@@ -40,7 +43,8 @@ func prepare_file() -> void:
 
 			file_to_download += str(terrain_id)
 		file_to_download += "\r\n"
-		print("line %s is finished" % str(y))
+		#print("progress: " + str(100.0 * y / 350) + "%")
+		call_deferred("_on_downloadable_file_progress", 100.0 * y / 350)
 	
 	print("finished preparing apf file")
 	call_deferred("on_processing_done")
@@ -53,4 +57,10 @@ func download_file(_file: String, _filename: String):
 
 
 func _exit_tree():
-	thread.wait_to_finish()
+	if thread.is_started():
+		thread.wait_to_finish()
+
+
+func _on_downloadable_file_progress(_progress: float) -> void:
+	#print("Preparing - %0.2f%%" % _progress)
+	self.text = "Preparing - %0.2f%%" % _progress

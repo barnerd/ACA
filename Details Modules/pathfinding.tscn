@@ -101,5 +101,7 @@ text = "Download Map Image"
 script = ExtResource("4_qt7k1")
 
 [connection signal="item_selected" from="HBoxContainer/Right Column/Tribe Dropdown" to="HBoxContainer/Right Column/Tribe Dropdown" method="_on_item_selected"]
+[connection signal="downloadable_file_progress" from="HBoxContainer/Right Column/MarginContainer/Download APF txt" to="HBoxContainer/Right Column/MarginContainer/Download APF txt" method="_on_downloadable_file_progress"]
 [connection signal="pressed" from="HBoxContainer/Right Column/MarginContainer/Download APF txt" to="HBoxContainer/Right Column/MarginContainer/Download APF txt" method="_on_pressed"]
+[connection signal="downloadable_file_progress" from="HBoxContainer/Right Column/MarginContainer/Download Image" to="HBoxContainer/Right Column/MarginContainer/Download Image" method="_on_downloadable_file_progress"]
 [connection signal="pressed" from="HBoxContainer/Right Column/MarginContainer/Download Image" to="HBoxContainer/Right Column/MarginContainer/Download Image" method="_on_pressed"]
