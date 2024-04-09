@@ -19,6 +19,10 @@ func _on_pressed() -> void:
 	for type in MapDetailsSingleton.terrain_details:
 		type.terrain_id = MapDetailsSingleton.terrain_id_from_apf_to_internal[type.terrain_id]
 
+	MapDetailsSingleton.terrain_details = []
+	for t in MapDetailsSingleton.terrain_details:
+		MapDetailsSingleton.terrains_by_id[t.terrain_id] = t
+
 	# run through all map tiles
 	for tile in MapDetailsSingleton.map_tiles:
 		tile.terrain_id = MapDetailsSingleton.terrain_id_from_apf_to_internal[tile.terrain_id]
