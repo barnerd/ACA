@@ -8,6 +8,7 @@ signal savefile_loaded
 func _init() -> void:
 	SignalBus.register_signal("savefile_loaded", savefile_loaded)
 
+
 func _ready() -> void:
 	#var agoniaMap:String = load_file(apf_flat_filename)
 	#parse_map_file(agoniaMap)

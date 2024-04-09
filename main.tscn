@@ -4300,6 +4300,7 @@ mouse_filter = 2
 [node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer"]
 custom_minimum_size = Vector2(8400, 8400)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="TerrainColors" type="Sprite2D" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer"]
 texture = ExtResource("16_cmi7w")
