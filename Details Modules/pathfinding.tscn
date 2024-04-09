@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://lk86ulb3sqsb"]
+[gd_scene load_steps=5 format=3 uid="uid://lk86ulb3sqsb"]
 
 [ext_resource type="Script" path="res://Details Modules/PathfindingDetails.gd" id="1_nwedy"]
 [ext_resource type="Script" path="res://Details Modules/TribeDropdown.gd" id="2_kswkd"]
+[ext_resource type="Script" path="res://UI/DownloadAPF.gd" id="3_7n02g"]
+[ext_resource type="Script" path="res://UI/DownloadImage.gd" id="4_qt7k1"]
 
 [node name="Pathfinding Details" type="VBoxContainer"]
 script = ExtResource("1_nwedy")
@@ -79,4 +81,25 @@ popup/item_9/text = "Nuruk"
 popup/item_9/id = 7
 script = ExtResource("2_kswkd")
 
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right Column"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="Download APF txt" type="Button" parent="HBoxContainer/Right Column/MarginContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Download APF file"
+script = ExtResource("3_7n02g")
+
+[node name="Download Image" type="Button" parent="HBoxContainer/Right Column/MarginContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Download Map Image"
+script = ExtResource("4_qt7k1")
+
 [connection signal="item_selected" from="HBoxContainer/Right Column/Tribe Dropdown" to="HBoxContainer/Right Column/Tribe Dropdown" method="_on_item_selected"]
+[connection signal="pressed" from="HBoxContainer/Right Column/MarginContainer/Download APF txt" to="HBoxContainer/Right Column/MarginContainer/Download APF txt" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/Right Column/MarginContainer/Download Image" to="HBoxContainer/Right Column/MarginContainer/Download Image" method="_on_pressed"]

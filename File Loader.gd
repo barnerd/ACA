@@ -148,3 +148,13 @@ func _notification(what):
 		else:
 			print("no unsaved changes")
 		get_tree().quit() # default behavior
+
+
+# download APF file or map image file
+# OS.get_environment("USERPROFILE").plus_file("Downloads/")
+# OS.get_environment("HOME").plus_file("Downloads/")
+#
+
+func download_image(_img, _filename: String):
+	var buffer = _img.save_png_to_buffer()
+	JavaScriptBridge.download_buffer(buffer, "%s.png" % "my_filename", "image/png")

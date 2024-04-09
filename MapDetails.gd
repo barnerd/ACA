@@ -2,6 +2,7 @@ class_name MapDetails extends Node
 
 @export var terrain_details: Array[TerrainType] = [
 preload("res://Terrain Types/city.tres"),
+preload("res://Terrain Types/floor.tres"),
 preload("res://Terrain Types/desert.tres"),
 preload("res://Terrain Types/forest.tres"),
 preload("res://Terrain Types/ice1.tres"),
@@ -38,8 +39,8 @@ var have_changes_to_save: bool
 
 # displays
 # $"/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors
-@onready var terrain_colors_display: TerrainColors = $"/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors"
-@onready var tile_map_display: TileMap = $"/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/MapImages"
+@onready var terrain_colors_display: TerrainColors = $/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors
+@onready var tile_map_display: TileMap = $/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/MapImages
 
 
 func _init() -> void:
