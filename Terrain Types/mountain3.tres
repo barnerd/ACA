@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_6t0q1")
 terrain_name = "Mountain Peaks"
-terrain_id = 9
+terrain_id = 6
 terrain_color_default = Color(0.960784, 0.960784, 0.960784, 1)
 terrain_color_custom = Color(0.960784, 0.960784, 0.960784, 1)
 dwarr_mvp = -1

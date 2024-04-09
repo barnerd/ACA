@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_n3x18")
 terrain_name = "Desert"
-terrain_id = 5
+terrain_id = 0
 terrain_color_default = Color(0.941176, 0.901961, 0.54902, 1)
 terrain_color_custom = Color(0.941176, 0.901961, 0.54902, 1)
 dwarr_mvp = 23
