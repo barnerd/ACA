@@ -1,5 +1,7 @@
 class_name MonsterDetails extends Node
 
+@onready var encounter_layer: EncounterLayer = $/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/EncounterLayer
+
 var monsters_by_id: Dictionary = {} # int -> MonsterDetails
 var encounters_by_terrain_tier: Dictionary = {} # int -> String -> EncounterTable
 
@@ -132,7 +134,8 @@ class EncounterTable:
 	
 	var encounter_id: String # str(terrain_id) + "|" + tier
 	var terrain_id: int
-	var tier: String
+	var tier_name: String
+	var tier_number: int
 	var nickname: String
 	
 	var monsters: Array[int]
@@ -140,9 +143,11 @@ class EncounterTable:
 	
 	func _init(_id: int, _tier: String, _name: String = "", _mons: Array[int] = []):
 		terrain_id = _id
-		tier = _tier
+		tier_name = _tier
 		nickname = _name
 		
-		encounter_id = str(terrain_id) + "|" + tier
+		tier_number = int(tier_name.split(" ")[0].right(-1))
+		
+		encounter_id = str(terrain_id) + "|" + tier_name
 		
 		monsters = _mons

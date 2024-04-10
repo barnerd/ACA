@@ -83,6 +83,8 @@ func parse_map_table(_data: String):
 
 				var tileset_coords = Vector2i(tile_details["map_id"] % 76, floor(tile_details["map_id"] / 76))
 				var tileset_details = MapDetailsSingleton.tile_map_display.tile_set.get_source(0).get_tile_data(Vector2i(tileset_coords.x, tileset_coords.y), 0).get_custom_data("terrain_id")
+				if tileset_details == -1:
+					print("tileset Terrain id not set at %v" % tileset_coords)
 				#print(tileset_details)
 				tile_details["terrain_id"] = int(tileset_details)
 				
@@ -104,6 +106,7 @@ func parse_map_table(_data: String):
 					#<div class="town-map"><a href="map.php"><span class="map5-town">
 					#<u>Dr</u>
 					#</span></a></div>
+					
 					
 					# double check terrain
 					# <span class="map7-town">

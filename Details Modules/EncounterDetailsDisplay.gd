@@ -33,7 +33,7 @@ func update_encounter_details() -> void:
 	
 	if encounter_details:
 		terrain_label.text = "Terrain: %s" % MapDetailsSingleton.terrains_by_id[encounter_details.terrain_id].terrain_name
-		tier_label.text = "Tier: %s" % encounter_details.tier
+		tier_label.text = "Tier: %s" % encounter_details.tier_name
 		$"Edit Button".text = "Edit Encounter"
 		# Display nickname
 		if encounter_details.nickname:
@@ -74,6 +74,12 @@ func _prepare_set_encounter_window() -> void:
 		$"Edit Button/Window".show()
 
 
+func _update_tile_encounter_id(_tile, _id: String) -> void:
+	if _tile.encounter_table_id != _id:
+		_tile.encounter_table_id = _id
+	MapDetailsSingleton.have_changes_to_save = true
+
+
 func _on_set_encounter_window_accept() -> void:
 	var selection = terrain_options_button.get_selected_id()
 	var tier = terrain_options_button.get_item_text(selection)
@@ -82,15 +88,114 @@ func _on_set_encounter_window_accept() -> void:
 	
 	encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[terrain_id][tier]
 	
-	if tile_details.encounter_table_id != encounter_details.encounter_id:
-		tile_details.encounter_table_id = encounter_details.encounter_id
-		MapDetailsSingleton.have_changes_to_save = true
+	_update_tile_encounter_id(tile_details, encounter_details.encounter_id)
 	
+	MonsterDetailsSingleton.encounter_layer.update_labels([tile_details.location])
 	update_encounter_details()
 
 
 func _on_set_encounter_window_fill() -> void:
-	var selection = terrain_options_button.get_selected_id
-	var tier = terrain_options_button.get_item_text(selection)
+	var selection = terrain_options_button.get_selected_id()
+	var selection_tier = terrain_options_button.get_item_text(selection)
 	
-	print(tier)
+	var terrain_id = tile_details.terrain_id
+	var starting_encounter = MonsterDetailsSingleton.get_encounter_table_by_id(tile_details.encounter_table_id)
+	var starting_tier = -1
+	if starting_encounter:
+		starting_tier = starting_encounter.tier_number
+	var starting_coords = tile_details.location
+	
+	encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[terrain_id][selection_tier]
+	var terrain = encounter_details.terrain_id
+	var tier = encounter_details.tier_number
+	
+	# run fill algorithm for list of coords to change
+	var region_coords = _get_fill_locations(starting_coords, terrain, starting_tier, tier)
+	print("region size: %d" % region_coords.size())
+	
+	# run through list and change to encounter
+	for c in region_coords:
+		_update_tile_encounter_id(MapDetailsSingleton.map_tiles[c], encounter_details.encounter_id)
+	
+	# update encounter layer labels
+	MonsterDetailsSingleton.encounter_layer.update_labels(region_coords)
+	update_encounter_details()
+
+
+func _get_fill_locations(_start: Vector3i, _target_terrain: int, _start_tier: int, _target_tier: int, _check_diagonals: bool = false, _mountains_as_same: bool = false) -> Array[Vector3i]:
+	var mountain_terrains: Array[int] = [4,5]
+	var valid_terrains: Array[int] = [_target_terrain]
+	if _mountains_as_same and mountain_terrains.has(_target_terrain):
+		valid_terrains = mountain_terrains
+	
+	# create lists: tiles_to_check, tiles_checked, tiles_in_region
+	var tiles_to_check: Array[Vector3i] = []
+	var tiles_checked: Array[Vector3i] = []
+	var tiles_in_region: Array[Vector3i] = []
+	
+	# add _start to tiles_to_check
+	tiles_to_check.append(_start)
+	
+	# while tiles_to_check.size() > 0:
+	while tiles_to_check:
+		assert(tiles_to_check.size() > 0)
+		var current_tile_coords = tiles_to_check.pop_back()
+		var current_terrain = MapDetailsSingleton.map_tiles[current_tile_coords].terrain_id
+		var current_encounter_id = MapDetailsSingleton.map_tiles[current_tile_coords].encounter_table_id
+		var current_table = MonsterDetailsSingleton.get_encounter_table_by_id(current_encounter_id)
+		var current_tier
+		if current_table:
+			current_tier = current_table.tier_number
+		else:
+			current_tier = -1
+		
+		# check if current is valid tier and same terrain to be in region
+		if current_tier != _target_tier and current_tier == _start_tier and valid_terrains.has(current_terrain):
+			tiles_in_region.append(current_tile_coords)
+		
+			# add neighbors
+			var neighbor_coords
+			neighbor_coords = current_tile_coords + Vector3i.UP + Vector3i.LEFT
+			# TODO: Check map boundaries
+			if _check_diagonals and not tiles_checked.has(neighbor_coords) and not tiles_to_check.has(neighbor_coords):
+				tiles_to_check.append(neighbor_coords)
+			
+			neighbor_coords = current_tile_coords + Vector3i.UP
+			# TODO: Check map boundaries
+			if not tiles_checked.has(neighbor_coords) and not tiles_to_check.has(neighbor_coords):
+				tiles_to_check.append(neighbor_coords)
+			
+			neighbor_coords = current_tile_coords + Vector3i.UP + Vector3i.RIGHT
+			# TODO: Check map boundaries
+			if _check_diagonals and not tiles_checked.has(neighbor_coords) and not tiles_to_check.has(neighbor_coords):
+				tiles_to_check.append(neighbor_coords)
+			
+			neighbor_coords = current_tile_coords + Vector3i.LEFT
+			# TODO: Check map boundaries
+			if not tiles_checked.has(neighbor_coords) and not tiles_to_check.has(neighbor_coords):
+				tiles_to_check.append(neighbor_coords)
+			
+			neighbor_coords = current_tile_coords + Vector3i.RIGHT
+			# TODO: Check map boundaries
+			if not tiles_checked.has(neighbor_coords) and not tiles_to_check.has(neighbor_coords):
+				tiles_to_check.append(neighbor_coords)
+			
+			neighbor_coords = current_tile_coords + Vector3i.DOWN + Vector3i.LEFT
+			# TODO: Check map boundaries
+			if _check_diagonals and not tiles_checked.has(neighbor_coords) and not tiles_to_check.has(neighbor_coords):
+				tiles_to_check.append(neighbor_coords)
+			
+			neighbor_coords = current_tile_coords + Vector3i.DOWN
+			# TODO: Check map boundaries
+			if not tiles_checked.has(neighbor_coords) and not tiles_to_check.has(neighbor_coords):
+				tiles_to_check.append(neighbor_coords)
+			
+			neighbor_coords = current_tile_coords + Vector3i.DOWN + Vector3i.RIGHT
+			# TODO: Check map boundaries
+			if _check_diagonals and not tiles_checked.has(neighbor_coords) and not tiles_to_check.has(neighbor_coords):
+				tiles_to_check.append(neighbor_coords)
+		
+		# mark current as checked
+		tiles_checked.append(current_tile_coords)
+	
+	return tiles_in_region
