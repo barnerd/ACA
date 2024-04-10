@@ -67,7 +67,6 @@ func _prepare_set_encounter_window() -> void:
 		
 		if MonsterDetailsSingleton.encounters_by_terrain_tier.has(terrain_id):
 			var tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[terrain_id].keys()
-			print(tiers)
 			for t in tiers:
 				terrain_options_button.add_item(t)
 		
