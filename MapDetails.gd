@@ -135,7 +135,6 @@ func load(_data):
 		var l: Vector3i = Vector3i(tile["x"], tile["y"], tile["z"])
 		update_location(l, tile["t"], tile["map"], tile["e"])
 	
-	# TODO: add loading mines and towns here
 	# load mine data
 	mines_locations_permanent = {} # Mine_type -> [Vector3i]
 	for mine in _data["mines_p"]:
@@ -157,7 +156,7 @@ func load(_data):
 		update_town(town["t_id"], town["n"], town["g_id"], l, town["w"], town["d"], town["b"])
 
 
-func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encounter_id: int = -1):
+func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encounter_id: String = ""):
 	if map_tiles.has(_loc):
 		map_tiles[_loc].terrain_id = _terrain_id
 		if not _terrain_id == -1:
@@ -233,17 +232,17 @@ func update_town(_town_id: int, _name: String, _group_id: int, _loc: Vector3i, _
 class MapTile:
 	
 	var location: Vector3i
-
+	
 	var tile_image_id: int
 	var terrain_id: int
 	var terrain_details: TerrainType
-	var encounter_table_id: int
+	var encounter_table_id: String
 	
 	var mines: Array[MineLocation] = []
 	var town: TownDetails
 	
 	
-	func _init(_loc = Vector3i.ZERO, _tile_image_id = -1, _terrain_id = -1, _encounter_table_id = -1):
+	func _init(_loc: Vector3i = Vector3i.ZERO, _tile_image_id: int = -1, _terrain_id: int = -1, _encounter_table_id: String = ""):
 		location = _loc
 		
 		tile_image_id = _tile_image_id

@@ -158,19 +158,9 @@ func parse_map_file(_map: String) -> void:
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		print("quitting...")
-		if MapDetailsSingleton.have_changes_to_save:
+		if MapDetailsSingleton.have_changes_to_save || MonsterDetailsSingleton.have_changes_to_save:
 			print("changes pending")
 			save_game()
 		else:
 			print("no unsaved changes")
 		get_tree().quit() # default behavior
-
-
-# download APF file or map image file
-# OS.get_environment("USERPROFILE").plus_file("Downloads/")
-# OS.get_environment("HOME").plus_file("Downloads/")
-#
-
-func download_image(_img, _filename: String):
-	var buffer = _img.save_png_to_buffer()
-	JavaScriptBridge.download_buffer(buffer, "%s.png" % "my_filename", "image/png")
