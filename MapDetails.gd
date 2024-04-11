@@ -158,11 +158,16 @@ func load(_data):
 
 func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encounter_id: String = ""):
 	if map_tiles.has(_loc):
-		map_tiles[_loc].terrain_id = _terrain_id
+		if not map_tiles[_loc].terrain_id == _terrain_id:
+			map_tiles[_loc].terrain_id = _terrain_id
+			map_tiles[_loc].encounter_table_id = ""
 		if not _terrain_id == -1:
 			map_tiles[_loc].terrain_details = terrains_by_id[_terrain_id]
 		map_tiles[_loc].tile_image_id = _map_id
 		map_tiles[_loc].encounter_table_id = _encounter_id
+		
+		# Update Encounter Labels
+		MonsterDetailsSingleton.encounter_layer.update_labels([_loc])
 	else:
 		map_tiles[_loc] = MapTile.new(_loc, _map_id, _terrain_id, _encounter_id)
 	
@@ -176,6 +181,7 @@ func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encou
 		tile_map_display.set_cell(TileMap_Layers.MAP_IMAGE, Vector2i(_loc.x, _loc.y), TileMap_Sources.NONE)
 	else:
 		tile_map_display.set_cell(TileMap_Layers.MAP_IMAGE, Vector2i(_loc.x, _loc.y), TileMap_Sources.SPRITE_SHEET, Vector2i(_map_id % 76, floor(_map_id/76.0)))
+	
 
 
 func add_mine_location(_type: MineLocation.Mine_Types, _loc: Vector3i, _perm: bool = false):

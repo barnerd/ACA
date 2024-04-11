@@ -28,6 +28,14 @@ func _ready() -> void:
 	#print("encounter table: " + str(map_tiles[print_coords].encounter_table_id))
 
 
+func _input(event) -> void:
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_S:
+			if event.meta_pressed:
+				print("Cmd-S was pressed")
+				save_game()
+
+
 func load_file(_filename: String) -> String:
 	var content: String = ""
 	var file = FileAccess.open(_filename, FileAccess.READ)

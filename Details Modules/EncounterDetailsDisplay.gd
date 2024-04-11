@@ -11,6 +11,7 @@ var monster_display = preload("res://Details Modules/monster_details_display.tsc
 
 var encounter_details
 var tile_details
+var tier_options_current_terrain: int = -1
 
 
 func _ready() -> void:
@@ -64,15 +65,17 @@ func _prepare_set_encounter_window() -> void:
 		
 		set_encounter_window_terrain_label.text = tile_details.terrain_details.terrain_name + ":"
 		
-		terrain_options_button.clear()
-		
-		# if terrain_id is mountain L2, set to mountain L1
-		if terrain_id == 5:
-			terrain_id = 4
-		if MonsterDetailsSingleton.encounters_by_terrain_tier.has(terrain_id):
-			var tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[terrain_id].keys()
-			for t in tiers:
-				terrain_options_button.add_item(t)
+		if not tier_options_current_terrain == terrain_id:
+			tier_options_current_terrain = terrain_id
+			terrain_options_button.clear()
+			
+			# if terrain_id is mountain L2, set to mountain L1
+			if terrain_id == 5:
+				terrain_id = 4
+			if MonsterDetailsSingleton.encounters_by_terrain_tier.has(terrain_id):
+				var tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[terrain_id].keys()
+				for t in tiers:
+					terrain_options_button.add_item(t)
 		
 		$"Edit Button/SetEncounterWindow".show()
 
