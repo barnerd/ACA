@@ -8,7 +8,7 @@ var labels_by_coords: Dictionary = {}
 signal generate_encounter_labels_progress(progress: float)
 signal generate_encounter_labels_completed()
 
-var min_tier_to_display: int = 1
+var min_tier_to_display: int = 5
 
 
 func _init() -> void:
