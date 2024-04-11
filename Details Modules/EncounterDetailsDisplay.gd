@@ -80,18 +80,48 @@ func _prepare_set_encounter_window() -> void:
 			tier_options_current_terrain = terrain_id
 			terrain_options_button.clear()
 			
-			# if terrain_id is mountain L2, set to mountain L1
-			if terrain_id == 5:
-				terrain_id = 4
-			# if terrain is icy L1, set to snow
-			if terrain_id == 10:
-				terrain_id = 9
-			if MonsterDetailsSingleton.encounters_by_terrain_tier.has(terrain_id):
-				var tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[terrain_id].keys()
-				for t in tiers:
-					terrain_options_button.add_item(t)
+			var dropdown_terrain: int = terrain_id
+			var droptown_tiers: Array = []
+			
+			# if terrain_id is road, then use plains T1
+			if terrain_id == 8:
+				dropdown_terrain = 7
+				droptown_tiers = ["T1"]
+			# if terrain_id is wastes, include lava
+			elif terrain_id == 13:
+				# take wastes tiers and lava tiers and combine them
+				if MonsterDetailsSingleton.encounters_by_terrain_tier.has(3):
+					droptown_tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[3].keys()
+					for t in droptown_tiers.size():
+						droptown_tiers[t] += " - Lava"
+				if MonsterDetailsSingleton.encounters_by_terrain_tier.has(dropdown_terrain):
+					droptown_tiers += MonsterDetailsSingleton.encounters_by_terrain_tier[dropdown_terrain].keys()
+			else:
+				# if terrain_id is mountain L2, set to mountain L1
+				if terrain_id == 5:
+					dropdown_terrain = 4
+				# if terrain is icy L1, set to snow
+				if terrain_id == 10:
+					dropdown_terrain = 9
+				
+				if MonsterDetailsSingleton.encounters_by_terrain_tier.has(dropdown_terrain):
+					droptown_tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[dropdown_terrain].keys()
+			
+
+			droptown_tiers.sort_custom(sort_tier_dropdown)
+			for t in droptown_tiers:
+				terrain_options_button.add_item(t)
 		
 		$"Edit Button/SetEncounterWindow".show()
+
+
+func sort_tier_dropdown(a: String, b: String) -> bool:
+	var a_number = int(a.split(" ")[0].right(-1))
+	var b_number = int(b.split(" ")[0].right(-1))
+	if a_number == b_number:
+		return a < b
+	else:
+		return a_number < b_number
 
 
 func _update_tile_encounter_id(_tile, _encounter) -> void:
@@ -112,6 +142,15 @@ func on_set_encounter_window_accepted(_tier: String, _fill: bool, _mounts: bool,
 			encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[4][_tier]
 		elif tile_details.terrain_id == 10:
 			encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[9][_tier]
+		elif tile_details.terrain_id == 8:
+			encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[7][_tier]
+		elif tile_details.terrain_id == 13:
+			# if tier is lava, strip lava and use that
+			if _tier.right(4) == "Lava":
+				_tier = _tier.left(-7)
+				encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[3][_tier]
+			else:
+				encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[tile_details.terrain_id][_tier]
 		else:
 			encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[tile_details.terrain_id][_tier]
 	else:
