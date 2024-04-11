@@ -96,6 +96,7 @@ func on_set_encounter_window_accepted(_tier: String, _fill: bool, _mounts: bool,
 	var update_encounter_labels: Array[Vector3i] = []
 	
 	if _tier:
+		# use different terrain_id's tables
 		if tile_details.terrain_id == 5:
 			encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[4][_tier]
 		elif tile_details.terrain_id == 10:
