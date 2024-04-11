@@ -44,6 +44,8 @@ func update_encounter_details() -> void:
 		# Display monsters
 		if encounter_details.monsters:
 			monster_header.visible = true
+			# TODO: Sort encounter_details.monsters before displaying
+			encounter_details.monsters.sort_custom(sort_monsters_in_table)
 			for m_id in encounter_details.monsters:
 				var instance = monster_display.instantiate()
 				instance.update(MonsterDetailsSingleton.monsters_by_id[m_id])
@@ -57,6 +59,15 @@ func update_encounter_details() -> void:
 		tier_label.text = "Tier:"
 		$"Edit Button".text = "Add Encounter"
 
+
+func sort_monsters_in_table(a: int, b: int) -> bool:
+	var mon_a = MonsterDetailsSingleton.monsters_by_id[a]
+	var mon_b = MonsterDetailsSingleton.monsters_by_id[b]
+	
+	if mon_a.monster_category == mon_b.monster_category:
+		return mon_a.sorcery_requirement < mon_b.sorcery_requirement
+	else:
+		return mon_a.monster_category < mon_b.monster_category
 
 
 func _prepare_set_encounter_window() -> void:
