@@ -17,9 +17,9 @@ func _generate_labels() -> void: #_center: Vector3i = Vector3i(200, 200, 0)
 #	for y in range(150, 200):
 #		print("generating labels for %s" % y)
 #		for x in range(250, 300):
-	for y in range(100, 250):
+	for y in range(1, 250):
 		print("generating labels for %s" % y)
-		for x in range(200, 350):
+		for x in range(140, 350):
 			var tile = MapDetailsSingleton.map_tiles[Vector3i(x, y, 0)]
 			
 			var tier = "-1"

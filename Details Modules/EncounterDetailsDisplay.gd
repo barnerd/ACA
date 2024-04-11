@@ -6,8 +6,8 @@ var monster_display = preload("res://Details Modules/monster_details_display.tsc
 @onready var monster_header = $VBoxContainer/HBoxContainer
 @onready var terrain_label = $"HBoxContainer/Terrain Label"
 @onready var tier_label = $"HBoxContainer/Tier Label"
-@onready var set_encounter_window_terrain_label = $"Edit Button/Window/VBoxContainer/RichTextLabel"
-@onready var terrain_options_button = $"Edit Button/Window/VBoxContainer/OptionButton"
+@onready var set_encounter_window_terrain_label = $"Edit Button/SetEncounterWindow/VBoxContainer/RichTextLabel"
+@onready var terrain_options_button = $"Edit Button/SetEncounterWindow/VBoxContainer/OptionButton"
 
 var encounter_details
 var tile_details
@@ -15,6 +15,7 @@ var tile_details
 
 func _ready() -> void:
 	SignalBus.connect_to_signal("tilemap_location_clicked", on_tilemap_location_clicked)
+	SignalBus.connect_to_signal("set_encounter_window_accepted", on_set_encounter_window_accepted)
 
 
 func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
@@ -65,60 +66,73 @@ func _prepare_set_encounter_window() -> void:
 		
 		terrain_options_button.clear()
 		
+		# if terrain_id is mountain L2, set to mountain L1
+		if terrain_id == 5:
+			terrain_id = 4
 		if MonsterDetailsSingleton.encounters_by_terrain_tier.has(terrain_id):
 			var tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[terrain_id].keys()
 			for t in tiers:
 				terrain_options_button.add_item(t)
 		
-		$"Edit Button/Window".show()
+		$"Edit Button/SetEncounterWindow".show()
 
 
-func _update_tile_encounter_id(_tile, _id: String) -> void:
-	if _tile.encounter_table_id != _id:
-		_tile.encounter_table_id = _id
+func _update_tile_encounter_id(_tile, _encounter) -> void:
+	if _encounter:
+		if _tile.encounter_table_id != _encounter.encounter_id:
+			_tile.encounter_table_id = _encounter.encounter_id
+	else:
+		_tile.encounter_table_id = ""
 	MapDetailsSingleton.have_changes_to_save = true
 
 
-func _on_set_encounter_window_accept() -> void:
-	var selection = terrain_options_button.get_selected_id()
-	var tier = terrain_options_button.get_item_text(selection)
+func on_set_encounter_window_accepted(_tier: String, _fill: bool, _mounts: bool, _diagonals: bool) -> void:
+	var update_encounter_labels: Array[Vector3i] = []
 	
-	var terrain_id = tile_details.terrain_id
+	if _tier:
+		if tile_details.terrain_id == 5:
+			encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[4][_tier]
+		else:
+			encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[tile_details.terrain_id][_tier]
+	else:
+		encounter_details = null
 	
-	encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[terrain_id][tier]
+	if _fill:
+		update_encounter_labels = _set_encounter_for_current_region(tile_details.terrain_id, _diagonals, _mounts)
+	else:
+		update_encounter_labels = _set_encounter_for_current_tile(tile_details.terrain_id)
 	
-	_update_tile_encounter_id(tile_details, encounter_details.encounter_id)
-	
-	MonsterDetailsSingleton.encounter_layer.update_labels([tile_details.location])
+	# update encounter layer labels
+	MonsterDetailsSingleton.encounter_layer.update_labels(update_encounter_labels)
 	update_encounter_details()
 
 
-func _on_set_encounter_window_fill() -> void:
-	var selection = terrain_options_button.get_selected_id()
-	var selection_tier = terrain_options_button.get_item_text(selection)
+func _set_encounter_for_current_tile(_terrain_id: int) -> Array[Vector3i]:
+	_update_tile_encounter_id(tile_details, encounter_details)
 	
-	var terrain_id = tile_details.terrain_id
+	return [tile_details.location]
+
+
+func _set_encounter_for_current_region(_terrain_id: int, _check_diagonals: bool = false, _mountains_as_same: bool = false) -> Array[Vector3i]:
 	var starting_encounter = MonsterDetailsSingleton.get_encounter_table_by_id(tile_details.encounter_table_id)
 	var starting_tier = -1
 	if starting_encounter:
 		starting_tier = starting_encounter.tier_number
 	var starting_coords = tile_details.location
 	
-	encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[terrain_id][selection_tier]
-	var terrain = encounter_details.terrain_id
-	var tier = encounter_details.tier_number
+	var target_tier = -1
+	if encounter_details:
+		target_tier = encounter_details.tier_number
 	
 	# run fill algorithm for list of coords to change
-	var region_coords = _get_fill_locations(starting_coords, terrain, starting_tier, tier)
+	var region_coords = _get_fill_locations(starting_coords, _terrain_id, starting_tier, target_tier, _check_diagonals, _mountains_as_same)
 	print("region size: %d" % region_coords.size())
 	
 	# run through list and change to encounter
 	for c in region_coords:
-		_update_tile_encounter_id(MapDetailsSingleton.map_tiles[c], encounter_details.encounter_id)
+		_update_tile_encounter_id(MapDetailsSingleton.map_tiles[c], encounter_details)
 	
-	# update encounter layer labels
-	MonsterDetailsSingleton.encounter_layer.update_labels(region_coords)
-	update_encounter_details()
+	return region_coords
 
 
 func _get_fill_locations(_start: Vector3i, _target_terrain: int, _start_tier: int, _target_tier: int, _check_diagonals: bool = false, _mountains_as_same: bool = false) -> Array[Vector3i]:
