@@ -72,6 +72,9 @@ func _prepare_set_encounter_window() -> void:
 			# if terrain_id is mountain L2, set to mountain L1
 			if terrain_id == 5:
 				terrain_id = 4
+			# if terrain is icy L1, set to snow
+			if terrain_id == 10:
+				terrain_id = 9
 			if MonsterDetailsSingleton.encounters_by_terrain_tier.has(terrain_id):
 				var tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[terrain_id].keys()
 				for t in tiers:
@@ -95,6 +98,8 @@ func on_set_encounter_window_accepted(_tier: String, _fill: bool, _mounts: bool,
 	if _tier:
 		if tile_details.terrain_id == 5:
 			encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[4][_tier]
+		elif tile_details.terrain_id == 10:
+			encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[9][_tier]
 		else:
 			encounter_details = MonsterDetailsSingleton.encounters_by_terrain_tier[tile_details.terrain_id][_tier]
 	else:

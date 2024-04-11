@@ -3,4 +3,5 @@
 [node name="Encounter Label" type="RichTextLabel" groups=["Encounter_Layer"]]
 custom_minimum_size = Vector2(24, 24)
 mouse_filter = 1
+bbcode_enabled = true
 text = "e"
