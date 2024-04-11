@@ -4347,12 +4347,16 @@ mouse_filter = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/Controls PanelContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
+[node name="Min Encounter Tier" type="HBoxContainer" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier"]
+custom_minimum_size = Vector2(75, 30)
 layout_mode = 2
 text = "Min tier:"
 
-[node name="OptionButton" type="OptionButton" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier"]
+custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 disabled = true
 item_count = 11
@@ -4500,7 +4504,7 @@ text = "Update Map"
 [node name="File Loader" type="Node" parent="."]
 script = ExtResource("1_70b50")
 
-[connection signal="item_selected" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/OptionButton" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/OptionButton" method="_on_item_selected"]
+[connection signal="item_selected" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier/OptionButton" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier/OptionButton" method="_on_item_selected"]
 [connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Encounters Layer Toggle" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Encounters Layer Toggle" method="_on_toggled"]
 [connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle" method="_on_toggled" binds= [2]]
 [connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle2" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle2" method="_on_toggled" binds= [1]]
