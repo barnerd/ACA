@@ -17,6 +17,7 @@ func _init() -> void:
 func _ready() -> void:
 	SignalBus.connect_to_signal("savefile_loaded", _generate_labels)
 	SignalBus.connect_to_signal("show_encounter_layer_toggled", show_layer)
+	SignalBus.connect_to_signal("min_encounter_tier_selected", on_min_tier_selected)
 
 
 func show_layer(_on: bool) -> void:
@@ -24,6 +25,16 @@ func show_layer(_on: bool) -> void:
 		self.show()
 	else:
 		self.hide()
+
+
+func on_min_tier_selected(_tier: int) -> void:
+	for l in labels_by_coords.values():
+		var label_tier:int = int(l.text)
+		
+		if label_tier < _tier:
+			l.hide()
+		else:
+			l.show()
 
 
 func _generate_labels() -> void: #_center: Vector3i = Vector3i(200, 200, 0)
