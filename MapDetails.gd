@@ -167,7 +167,8 @@ func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encou
 		map_tiles[_loc].encounter_table_id = _encounter_id
 		
 		# Update Encounter Labels
-		MonsterDetailsSingleton.encounter_layer.update_labels([_loc])
+		var vector_array: Array[Vector3i] = [_loc]
+		MonsterDetailsSingleton.encounter_layer.update_labels(vector_array)
 	else:
 		map_tiles[_loc] = MapTile.new(_loc, _map_id, _terrain_id, _encounter_id)
 	

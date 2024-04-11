@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cixyvm26uk3uc"]
+[gd_scene load_steps=28 format=3 uid="uid://cixyvm26uk3uc"]
 
 [ext_resource type="Script" path="res://ScrollInput.gd" id="1_1knja"]
 [ext_resource type="Script" path="res://File Loader.gd" id="1_70b50"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c7584bt5wndlw" path="res://images/mines/tinmine.png" id="9_rsuk6"]
 [ext_resource type="Texture2D" uid="uid://dt120j8ttkgsb" path="res://images/mines/titaniummine.png" id="10_qveor"]
 [ext_resource type="Script" path="res://EncounterLayer.gd" id="12_b3yvo"]
+[ext_resource type="Script" path="res://UI/ShowEncounterLayerToggle.gd" id="13_kesto"]
 [ext_resource type="PackedScene" uid="uid://lk86ulb3sqsb" path="res://Details Modules/pathfinding.tscn" id="14_pfesv"]
 [ext_resource type="PackedScene" uid="uid://ybu3x4nqm24r" path="res://Details Modules/tile_details.tscn" id="15_724hc"]
 [ext_resource type="Texture2D" uid="uid://coq8ywol3qmue" path="res://images/tilecolor.jpg" id="16_cmi7w"]
@@ -4318,9 +4319,13 @@ layer_2/name = "Towns"
 layer_2/tile_data = PackedInt32Array()
 
 [node name="EncounterLayer" type="Container" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer"]
+visible = false
 custom_minimum_size = Vector2(8400, 8400)
 layout_mode = 2
 script = ExtResource("12_b3yvo")
+
+[node name="Timer" type="Timer" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/EncounterLayer"]
+wait_time = 0.06
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer"]
 visible = false
@@ -4345,8 +4350,9 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 0
-button_pressed = true
+disabled = true
 text = "Show Encounters"
+script = ExtResource("13_kesto")
 
 [node name="Image toggle" type="CheckButton" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 31)
@@ -4459,6 +4465,7 @@ text = "Update Map"
 [node name="File Loader" type="Node" parent="."]
 script = ExtResource("1_70b50")
 
+[connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle4" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle4" method="_on_toggled"]
 [connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle" method="_on_toggled" binds= [2]]
 [connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle2" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle2" method="_on_toggled" binds= [1]]
 [connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle3" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle3" method="_on_toggled" binds= [0]]

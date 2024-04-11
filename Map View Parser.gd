@@ -36,7 +36,7 @@ func _on_parse_button_pressed() -> void:
 		parse_map_table(map_table_data)
 	
 	status_textbox.text = "Done"
-	print("Tiles updates: " + str(pending_changes.size()))
+	print("Tiles updated: %d" % pending_changes.size())
 
 
 func _on_cancel_button_pressed() -> void:
