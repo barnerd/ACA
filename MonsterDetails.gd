@@ -19,6 +19,7 @@ func save():
 		save_monsters.append({
 			"id": m.monster_id,
 			"n": m.monster_name,
+			"c": m.monster_category,
 			"h": m.monster_health,
 			"exp": m.exp_per_hit,
 			"s": m.sorcery_requirement
@@ -54,7 +55,7 @@ func load(_data):
 	
 	# load monster data
 	for m in _data["monsters"]:
-		update_monster(m["id"], m["n"], m["s"], m["h"], m["exp"])
+		update_monster(m["id"], m["n"], m["s"], m["c"], m["h"], m["exp"]) 
 	
 	# load encounter data
 	encounters_by_terrain_tier = {} # int -> String -> EncounterTable
@@ -73,14 +74,15 @@ func _convert_array_float_to_int(_old_array) -> Array[int]:
 	return new_array
 
 
-func update_monster(_id: int, _name: String, _sorcery_req: int = -1, _health: int = -1, _expph: int = -1):
+func update_monster(_id: int, _name: String, _sorcery_req: int = -1, _monster_category: Monster.MonsterCategory = Monster.MonsterCategory.OTHER, _health: int = -1, _expph: int = -1):
 	if monsters_by_id.has(_id):
 		monsters_by_id[_id].monster_name = _name
+		monsters_by_id[_id].monster_category = _monster_category
 		monsters_by_id[_id].monster_health = _health
 		monsters_by_id[_id].exp_per_hit = _expph
 		monsters_by_id[_id].sorcery_requirement = _sorcery_req
 	else:
-		monsters_by_id[_id] = Monster.new(_id, _name, _sorcery_req, _health, _expph)
+		monsters_by_id[_id] = Monster.new(_id, _name, _sorcery_req, _monster_category, _health, _expph)
 
 
 func update_encounter(_terrain_id: int, _tier: String, _name: String = "", _mons: Array[int] = []):
@@ -108,10 +110,13 @@ func get_encounter_table_by_id(_id: String) -> EncounterTable:
 
 class Monster:
 	
+	enum MonsterCategory {EXP = 0, OTHER = 1, BOSS = 2}
+	
 	var monster_id: int
 	var monster_image_url: String
 	var monster_name: String
-	#var monster_type: MonsterType
+	var monster_category: MonsterCategory
+	#var monster_type: MonsterType # this is from the Game Guide
 	#var monster_group: ??
 	#var monster_description: String
 	var monster_health: int
@@ -121,10 +126,11 @@ class Monster:
 	# consider adding a reference back to Encounters
 	# var encounters: Array[EncounterTable]
 	
-	func _init(_id: int, _name: String, _sorcery_req: int = -1, _health: int = -1, _expph: int = -1):
+	func _init(_id: int, _name: String, _sorcery_req: int = -1, _monster_category: MonsterCategory = MonsterCategory.OTHER, _health: int = -1, _expph: int = -1):
 		monster_id = _id
 		monster_image_url = "https://www.agonialands.com/assets/images/monsters/agonia/monster_%d.png" % monster_id
 		monster_name = _name
+		monster_category = _monster_category
 		monster_health = _health
 		exp_per_hit = _expph
 		sorcery_requirement = _sorcery_req
