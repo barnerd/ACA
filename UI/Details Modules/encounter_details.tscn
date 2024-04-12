@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6wy6xvn5lvl1"]
 
-[ext_resource type="Script" path="res://Details Modules/EncounterDetailsDisplay.gd" id="1_ajyjh"]
-[ext_resource type="PackedScene" uid="uid://7rbtbqx0tkjc" path="res://UI/set_encounter_window.tscn" id="2_vyogx"]
+[ext_resource type="Script" path="res://UI/Details Modules/EncounterDetailsDisplay.gd" id="1_ajyjh"]
+[ext_resource type="PackedScene" uid="uid://7rbtbqx0tkjc" path="res://Tools/set_encounter_window.tscn" id="2_vyogx"]
 
 [node name="Encounter Details" type="VBoxContainer"]
 script = ExtResource("1_ajyjh")

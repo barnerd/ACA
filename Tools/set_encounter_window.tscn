@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://7rbtbqx0tkjc"]
 
-[ext_resource type="Script" path="res://UI/SetEncounterWindow.gd" id="1_rdvd6"]
+[ext_resource type="Script" path="res://Tools/SetEncounterWindow.gd" id="1_sbtkw"]
 
 [node name="SetEncounterWindow" type="Window"]
 title = "Set Encounter"
 initial_position = 1
 size = Vector2i(200, 225)
 visible = false
-script = ExtResource("1_rdvd6")
+script = ExtResource("1_sbtkw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_right = 40.0

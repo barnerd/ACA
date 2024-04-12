@@ -14,13 +14,13 @@
 [ext_resource type="Script" path="res://EncounterLayer.gd" id="12_b3yvo"]
 [ext_resource type="Script" path="res://UI/MinEncounterTierDropdown.gd" id="13_8if67"]
 [ext_resource type="Script" path="res://UI/ShowEncounterLayerToggle.gd" id="13_kesto"]
-[ext_resource type="PackedScene" uid="uid://lk86ulb3sqsb" path="res://Details Modules/pathfinding.tscn" id="14_pfesv"]
-[ext_resource type="PackedScene" uid="uid://ybu3x4nqm24r" path="res://Details Modules/tile_details.tscn" id="15_724hc"]
+[ext_resource type="PackedScene" uid="uid://lk86ulb3sqsb" path="res://UI/Details Modules/pathfinding.tscn" id="14_pfesv"]
+[ext_resource type="PackedScene" uid="uid://ybu3x4nqm24r" path="res://UI/Details Modules/tile_details.tscn" id="15_724hc"]
 [ext_resource type="Texture2D" uid="uid://coq8ywol3qmue" path="res://images/tilecolor.jpg" id="16_cmi7w"]
-[ext_resource type="PackedScene" uid="uid://c6wy6xvn5lvl1" path="res://Details Modules/encounter_details.tscn" id="16_f8o5m"]
+[ext_resource type="PackedScene" uid="uid://c6wy6xvn5lvl1" path="res://UI/Details Modules/encounter_details.tscn" id="16_f8o5m"]
 [ext_resource type="Texture2D" uid="uid://dn4nuaarx2fb7" path="res://images/agonia-sprite.png" id="16_sl5wh"]
 [ext_resource type="Script" path="res://TerrainColors.gd" id="17_2gmiw"]
-[ext_resource type="PackedScene" uid="uid://dbyo0eb8tgybn" path="res://Details Modules/town_details.tscn" id="17_rfvkl"]
+[ext_resource type="PackedScene" uid="uid://dbyo0eb8tgybn" path="res://UI/Details Modules/town_details.tscn" id="17_rfvkl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8pft2"]
 resource_name = "Agonia Sprite Sheet"

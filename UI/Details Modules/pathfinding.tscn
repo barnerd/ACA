@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://lk86ulb3sqsb"]
 
-[ext_resource type="Script" path="res://Details Modules/PathfindingDetails.gd" id="1_nwedy"]
-[ext_resource type="Script" path="res://Details Modules/TribeDropdown.gd" id="2_kswkd"]
+[ext_resource type="Script" path="res://UI/Details Modules/PathfindingDetails.gd" id="1_nwedy"]
+[ext_resource type="Script" path="res://UI/Details Modules/TribeDropdown.gd" id="2_kswkd"]
 [ext_resource type="Script" path="res://UI/DownloadAPF.gd" id="3_7n02g"]
 [ext_resource type="Script" path="res://UI/DownloadImage.gd" id="4_qt7k1"]
 
