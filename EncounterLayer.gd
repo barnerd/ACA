@@ -69,7 +69,8 @@ func _generate_labels() -> void: #_center: Vector3i = Vector3i(200, 200, 0)
 				_create_label(Vector3i(x, y, 0), tier, Color.BLACK if [0,9,10].has(tile_terrain) else Color.WHITE)
 		
 		generate_encounter_labels_progress.emit(100.0 * y / 350+1)
-		# yeild control and wait for short time
+		
+		# yield control and wait for short time
 		_timer.start()
 		await _timer.timeout
 	
@@ -95,7 +96,7 @@ func update_labels(_coords: Array[Vector3i]) -> void:
 		if labels_by_coords.has(c):
 			var tile = MapDetailsSingleton.map_tiles[c]
 			var terrain = tile.terrain_id
-			var color = Color.BLACK if [9, 10].has(terrain) else Color.WHITE
+			var color = Color.BLACK if [0,9,10].has(terrain) else Color.WHITE
 			var tier: int = -1
 			
 			if tile.encounter_table_id:

@@ -1,0 +1,107 @@
+[gd_scene load_steps=5 format=3 uid="uid://lk86ulb3sqsb"]
+
+[ext_resource type="Script" path="res://UI/Details Modules/PathfindingDetails.gd" id="1_nwedy"]
+[ext_resource type="Script" path="res://UI/Details Modules/TribeDropdown.gd" id="2_kswkd"]
+[ext_resource type="Script" path="res://UI/DownloadAPF.gd" id="3_7n02g"]
+[ext_resource type="Script" path="res://UI/DownloadImage.gd" id="4_qt7k1"]
+
+[node name="Pathfinding Details" type="VBoxContainer"]
+script = ExtResource("1_nwedy")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+bbcode_enabled = true
+text = "Pathfinding"
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Left Column" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Start Point" type="HBoxContainer" parent="HBoxContainer/Left Column"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="HBoxContainer/Left Column/Start Point"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Start:"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="X" type="LineEdit" parent="HBoxContainer/Left Column/Start Point"]
+layout_mode = 2
+placeholder_text = "x"
+alignment = 2
+
+[node name="Y" type="LineEdit" parent="HBoxContainer/Left Column/Start Point"]
+layout_mode = 2
+placeholder_text = "y"
+alignment = 2
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Right Column" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Tribe Dropdown" type="OptionButton" parent="HBoxContainer/Right Column"]
+layout_mode = 2
+item_count = 10
+selected = 1
+popup/item_0/text = "The Order"
+popup/item_0/id = 8
+popup/item_0/disabled = true
+popup/item_0/separator = true
+popup/item_1/text = "Dwarr"
+popup/item_1/id = 0
+popup/item_2/text = "Leafborn"
+popup/item_2/id = 1
+popup/item_3/text = "Lightfoot"
+popup/item_3/id = 2
+popup/item_4/text = "Mythos"
+popup/item_4/id = 3
+popup/item_5/text = "The Forsaken"
+popup/item_5/id = 9
+popup/item_5/disabled = true
+popup/item_5/separator = true
+popup/item_6/text = "Norsk"
+popup/item_6/id = 4
+popup/item_7/text = "Giant"
+popup/item_7/id = 5
+popup/item_8/text = "Kiith"
+popup/item_8/id = 6
+popup/item_9/text = "Nuruk"
+popup/item_9/id = 7
+script = ExtResource("2_kswkd")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right Column"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="Download APF txt" type="Button" parent="HBoxContainer/Right Column/MarginContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Download APF file"
+script = ExtResource("3_7n02g")
+
+[node name="Download Image" type="Button" parent="HBoxContainer/Right Column/MarginContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Download Map Image"
+script = ExtResource("4_qt7k1")
+
+[connection signal="item_selected" from="HBoxContainer/Right Column/Tribe Dropdown" to="HBoxContainer/Right Column/Tribe Dropdown" method="_on_item_selected"]
+[connection signal="downloadable_file_progress" from="HBoxContainer/Right Column/MarginContainer/Download APF txt" to="HBoxContainer/Right Column/MarginContainer/Download APF txt" method="_on_downloadable_file_progress"]
+[connection signal="pressed" from="HBoxContainer/Right Column/MarginContainer/Download APF txt" to="HBoxContainer/Right Column/MarginContainer/Download APF txt" method="_on_pressed"]
+[connection signal="downloadable_file_progress" from="HBoxContainer/Right Column/MarginContainer/Download Image" to="HBoxContainer/Right Column/MarginContainer/Download Image" method="_on_downloadable_file_progress"]
+[connection signal="pressed" from="HBoxContainer/Right Column/MarginContainer/Download Image" to="HBoxContainer/Right Column/MarginContainer/Download Image" method="_on_pressed"]
