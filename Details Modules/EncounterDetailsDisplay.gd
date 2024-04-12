@@ -3,7 +3,8 @@ class_name EncounterDetailsDisplay extends VBoxContainer
 var monster_display = preload("res://Details Modules/monster_details_display.tscn")
 
 @onready var section_header = $CenterContainer/RichTextLabel
-@onready var monster_header = $VBoxContainer/HBoxContainer
+@onready var monster_header = $ScrollContainer/VBoxContainer/HBoxContainer
+@onready var monster_section = $ScrollContainer/VBoxContainer
 @onready var terrain_label = $"HBoxContainer/Terrain Label"
 @onready var tier_label = $"HBoxContainer/Tier Label"
 @onready var set_encounter_window_terrain_label = $"Edit Button/SetEncounterWindow/VBoxContainer/RichTextLabel"
@@ -29,7 +30,7 @@ func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 
 func update_encounter_details() -> void:
 	# Clear monsters
-	for n in $VBoxContainer.get_children():
+	for n in monster_section.get_children():
 		if not n.scene_file_path.is_empty():
 			n.queue_free()
 	
@@ -49,7 +50,7 @@ func update_encounter_details() -> void:
 			for m_id in encounter_details.monsters:
 				var instance = monster_display.instantiate()
 				instance.update(MonsterDetailsSingleton.monsters_by_id[m_id])
-				$VBoxContainer.add_child(instance)
+				monster_section.add_child(instance)
 		else:
 			monster_header.visible = false
 	else:
@@ -157,7 +158,7 @@ func on_set_encounter_window_accepted(_tier: String, _fill: bool, _mounts: bool,
 		encounter_details = null
 	
 	if _fill:
-		update_encounter_labels = _set_encounter_for_current_region(tile_details.terrain_id, _diagonals, _mounts)
+		update_encounter_labels = _set_encounter_for_current_fill(tile_details.terrain_id, _diagonals, _mounts)
 	else:
 		update_encounter_labels = _set_encounter_for_current_tile(tile_details.terrain_id)
 	
@@ -172,7 +173,7 @@ func _set_encounter_for_current_tile(_terrain_id: int) -> Array[Vector3i]:
 	return [tile_details.location]
 
 
-func _set_encounter_for_current_region(_terrain_id: int, _check_diagonals: bool = false, _mountains_as_same: bool = false) -> Array[Vector3i]:
+func _set_encounter_for_current_fill(_terrain_id: int, _check_diagonals: bool = false, _mountains_as_same: bool = false) -> Array[Vector3i]:
 	var starting_encounter = MonsterDetailsSingleton.get_encounter_table_by_id(tile_details.encounter_table_id)
 	var starting_tier = -1
 	if starting_encounter:

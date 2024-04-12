@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Details Modules/MonsterDetailsDisplay.gd" id="1_wg4eq"]
 
 [node name="Monster Details" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
 script = ExtResource("1_wg4eq")
 
 [node name="Id Label" type="RichTextLabel" parent="."]

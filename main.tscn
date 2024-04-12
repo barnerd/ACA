@@ -4498,7 +4498,6 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
 [node name="Update Map Button" type="Button" parent="Control/Details Container/Town Details"]
-visible = false
 layout_mode = 2
 text = "Update Map"
 

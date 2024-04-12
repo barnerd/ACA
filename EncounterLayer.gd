@@ -95,7 +95,7 @@ func update_labels(_coords: Array[Vector3i]) -> void:
 		if labels_by_coords.has(c):
 			var tile = MapDetailsSingleton.map_tiles[c]
 			var terrain = tile.terrain_id
-			var color = Color.BLACK if [9, 10].has(terrain) else Color.WHITE
+			var color = Color.BLACK if [0,9,10].has(terrain) else Color.WHITE
 			var tier: int = -1
 			
 			if tile.encounter_table_id:

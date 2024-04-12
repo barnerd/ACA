@@ -31,35 +31,40 @@ text = "Tier: "
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 210)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Id Label" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+[node name="Id Label" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 25)
 layout_mode = 2
 text = "ID:"
 
-[node name="Name Label" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+[node name="Name Label" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 text = "Name:"
 
-[node name="Sorcery Label" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+[node name="Sorcery Label" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 text = "Spirit:"
 
-[node name="Health Label" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+[node name="Health Label" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 text = "Health:"
 
 [node name="Edit Button" type="Button" parent="."]
-visible = false
 layout_mode = 2
 text = "Edit Encounter"
 
