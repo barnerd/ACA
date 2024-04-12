@@ -130,7 +130,7 @@ func _update_tile_encounter_id(_tile, _encounter) -> void:
 	MapDetailsSingleton.have_changes_to_save = true
 
 
-func on_set_encounter_window_accepted(_tier: String, _fill: bool, _mounts: bool, _diagonals: bool) -> void:
+func on_set_encounter_window_accepted(_tier: String, _use_fill: bool, _use_rect: bool, _mounts: bool, _diagonals: bool, _region: Rect2i) -> void:
 	var update_encounter_labels: Array[Vector3i] = []
 	
 	if _tier:
@@ -153,10 +153,14 @@ func on_set_encounter_window_accepted(_tier: String, _fill: bool, _mounts: bool,
 	else:
 		encounter_details = null
 	
-	if _fill:
+	if _use_fill:
 		update_encounter_labels = _set_encounter_for_current_fill(tile_details.terrain_id, _diagonals, _mounts)
+	elif _use_rect:
+		update_encounter_labels = _set_encounter_for_current_region(tile_details.terrain_id, _region, _mounts)
 	else:
 		update_encounter_labels = _set_encounter_for_current_tile(tile_details.terrain_id)
+	
+	print("region size: %d" % update_encounter_labels.size())
 	
 	# update encounter layer labels
 	MonsterDetailsSingleton.encounter_layer.update_labels(update_encounter_labels)
@@ -182,11 +186,35 @@ func _set_encounter_for_current_fill(_terrain_id: int, _check_diagonals: bool = 
 	
 	# run fill algorithm for list of coords to change
 	var region_coords = _get_fill_locations(starting_coords, _terrain_id, starting_tier, target_tier, _check_diagonals, _mountains_as_same)
-	print("region size: %d" % region_coords.size())
 	
 	# run through list and change to encounter
 	for c in region_coords:
 		_update_tile_encounter_id(MapDetailsSingleton.map_tiles[c], encounter_details)
+	
+	return region_coords
+
+
+func _set_encounter_for_current_region(_terrain_id: int, _region: Rect2i, _mountains_as_same: bool = false) -> Array[Vector3i]:
+	var region_coords: Array[Vector3i] = []
+	
+	var mountain_terrains: Array[int] = [4,5]
+	var valid_terrains: Array[int] = [_terrain_id]
+	if _mountains_as_same and mountain_terrains.has(_terrain_id):
+		valid_terrains = mountain_terrains
+	
+	for y in _region.size.y+1:
+		for x in _region.size.x+1:
+			var point: Vector3i = Vector3i(_region.position.x + x, _region.position.y + y, 0)
+			
+			# TODO: Pass include mountains and check both terrain ids
+			# get terrain_id at point
+			var current_terrain = MapDetailsSingleton.map_tiles[point].terrain_id
+			
+			# if it matches _terrain_id, then update and add to list
+			if valid_terrains.has(current_terrain):
+				pass
+				region_coords.append(point)
+				_update_tile_encounter_id(MapDetailsSingleton.map_tiles[point], encounter_details)
 	
 	return region_coords
 
