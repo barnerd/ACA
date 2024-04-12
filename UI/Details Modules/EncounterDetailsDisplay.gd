@@ -7,8 +7,7 @@ var monster_display = preload("res://UI/Details Modules/monster_details_display.
 @onready var monster_section = $ScrollContainer/VBoxContainer
 @onready var terrain_label = $"HBoxContainer/Terrain Label"
 @onready var tier_label = $"HBoxContainer/Tier Label"
-@onready var set_encounter_window_terrain_label = $"Edit Button/SetEncounterWindow/VBoxContainer/RichTextLabel"
-@onready var terrain_options_button = $"Edit Button/SetEncounterWindow/VBoxContainer/OptionButton"
+@onready var set_encounter_window = $"Edit Button/SetEncounterWindow"
 
 var encounter_details
 var tile_details
@@ -74,29 +73,28 @@ func sort_monsters_in_table(a: int, b: int) -> bool:
 func _prepare_set_encounter_window() -> void:
 	if tile_details:
 		var terrain_id = tile_details.terrain_id
-		
-		set_encounter_window_terrain_label.text = tile_details.terrain_details.terrain_name + ":"
+		var dropdown_tiers: Array = []
+		var dropdown_update: bool = false
 		
 		if not tier_options_current_terrain == terrain_id:
 			tier_options_current_terrain = terrain_id
-			terrain_options_button.clear()
+			dropdown_update = true
 			
 			var dropdown_terrain: int = terrain_id
-			var droptown_tiers: Array = []
 			
 			# if terrain_id is road, then use plains T1
 			if terrain_id == 8:
 				dropdown_terrain = 7
-				droptown_tiers = ["T1"]
+				dropdown_tiers = ["T1"]
 			# if terrain_id is wastes, include lava
 			elif terrain_id == 13:
 				# take wastes tiers and lava tiers and combine them
 				if MonsterDetailsSingleton.encounters_by_terrain_tier.has(3):
-					droptown_tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[3].keys()
-					for t in droptown_tiers.size():
-						droptown_tiers[t] += " - Lava"
+					dropdown_tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[3].keys()
+					for t in dropdown_tiers.size():
+						dropdown_tiers[t] += " - Lava"
 				if MonsterDetailsSingleton.encounters_by_terrain_tier.has(dropdown_terrain):
-					droptown_tiers += MonsterDetailsSingleton.encounters_by_terrain_tier[dropdown_terrain].keys()
+					dropdown_tiers += MonsterDetailsSingleton.encounters_by_terrain_tier[dropdown_terrain].keys()
 			else:
 				# if terrain_id is mountain L2, set to mountain L1
 				if terrain_id == 5:
@@ -106,14 +104,12 @@ func _prepare_set_encounter_window() -> void:
 					dropdown_terrain = 9
 				
 				if MonsterDetailsSingleton.encounters_by_terrain_tier.has(dropdown_terrain):
-					droptown_tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[dropdown_terrain].keys()
+					dropdown_tiers = MonsterDetailsSingleton.encounters_by_terrain_tier[dropdown_terrain].keys()
 			
-
-			droptown_tiers.sort_custom(sort_tier_dropdown)
-			for t in droptown_tiers:
-				terrain_options_button.add_item(t)
+			dropdown_tiers.sort_custom(sort_tier_dropdown)
 		
-		$"Edit Button/SetEncounterWindow".show()
+		set_encounter_window.prepare_set_encounter_window(tile_details.terrain_details.terrain_name, dropdown_tiers, tile_details.location, dropdown_update)
+		set_encounter_window.show()
 
 
 func sort_tier_dropdown(a: String, b: String) -> bool:
