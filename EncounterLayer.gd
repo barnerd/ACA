@@ -65,8 +65,8 @@ func _generate_labels() -> void: #_center: Vector3i = Vector3i(200, 200, 0)
 			
 			# don't generate labels for water, snow L2, mountain L3, cap, arena
 			if not [1,6,11,12,14].has(tile_terrain) and not labels_by_coords.has(Vector3i(x, y, 0)):
-				# use black text if on snow, icy 1, else white
-				_create_label(Vector3i(x, y, 0), tier, Color.BLACK if [9, 10].has(tile_terrain) else Color.WHITE)
+				# use black text if on desert, snow, icy 1, else white
+				_create_label(Vector3i(x, y, 0), tier, Color.BLACK if [0,9,10].has(tile_terrain) else Color.WHITE)
 		
 		generate_encounter_labels_progress.emit(100.0 * y / 350+1)
 		# yeild control and wait for short time
