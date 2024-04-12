@@ -2,6 +2,7 @@ class_name MapDetails extends Node
 
 @export var terrain_details: Array[TerrainType] = [
 preload("res://Terrain Types/city.tres"),
+preload("res://Terrain Types/floor.tres"),
 preload("res://Terrain Types/desert.tres"),
 preload("res://Terrain Types/forest.tres"),
 preload("res://Terrain Types/ice1.tres"),
@@ -38,8 +39,11 @@ var have_changes_to_save: bool
 
 # displays
 # $"/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors
-@onready var terrain_colors_display: TerrainColors = $"/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors"
-@onready var tile_map_display: TileMap = $"/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/MapImages"
+@onready var terrain_colors_display: TerrainColors = $/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors
+@onready var tile_map_display: TileMap = $/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/MapImages
+
+var terrain_id_from_internal_to_apf: Array[int] = [5, 14, 4, 11, 7, 8, 9, 2, 1, 6, 12, 13, 0, 3, 10]
+var terrain_id_from_apf_to_internal: Array[int] = [12, 8, 7, 13, 2, 0, 9, 4, 5, 6, 14, 3, 10, 11, 1]
 
 
 func _init() -> void:
@@ -131,7 +135,6 @@ func load(_data):
 		var l: Vector3i = Vector3i(tile["x"], tile["y"], tile["z"])
 		update_location(l, tile["t"], tile["map"], tile["e"])
 	
-	# TODO: add loading mines and towns here
 	# load mine data
 	mines_locations_permanent = {} # Mine_type -> [Vector3i]
 	for mine in _data["mines_p"]:
@@ -153,17 +156,25 @@ func load(_data):
 		update_town(town["t_id"], town["n"], town["g_id"], l, town["w"], town["d"], town["b"])
 
 
-func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encounter_id: int = -1):
+func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encounter_id: String = ""):
 	if map_tiles.has(_loc):
-		map_tiles[_loc].terrain_id = _terrain_id
-		map_tiles[_loc].terrain_details = terrains_by_id[_terrain_id]
+		if not map_tiles[_loc].terrain_id == _terrain_id:
+			map_tiles[_loc].terrain_id = _terrain_id
+			map_tiles[_loc].encounter_table_id = ""
+		if not _terrain_id == -1:
+			map_tiles[_loc].terrain_details = terrains_by_id[_terrain_id]
 		map_tiles[_loc].tile_image_id = _map_id
 		map_tiles[_loc].encounter_table_id = _encounter_id
+		
+		# Update Encounter Labels
+		var vector_array: Array[Vector3i] = [_loc]
+		MonsterDetailsSingleton.encounter_layer.update_labels(vector_array)
 	else:
 		map_tiles[_loc] = MapTile.new(_loc, _map_id, _terrain_id, _encounter_id)
 	
 	# Update Flat Color Display
-	terrain_colors_display.paint_tile(Vector2i(_loc.x, _loc.y), terrains_by_id[_terrain_id].terrain_color_default)
+	if not _terrain_id == -1:
+		terrain_colors_display.paint_tile(Vector2i(_loc.x, _loc.y), terrains_by_id[_terrain_id].terrain_color_default)
 	
 	# Update TileMap Image Display
 	if _map_id == -1:
@@ -171,6 +182,7 @@ func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encou
 		tile_map_display.set_cell(TileMap_Layers.MAP_IMAGE, Vector2i(_loc.x, _loc.y), TileMap_Sources.NONE)
 	else:
 		tile_map_display.set_cell(TileMap_Layers.MAP_IMAGE, Vector2i(_loc.x, _loc.y), TileMap_Sources.SPRITE_SHEET, Vector2i(_map_id % 76, floor(_map_id/76.0)))
+	
 
 
 func add_mine_location(_type: MineLocation.Mine_Types, _loc: Vector3i, _perm: bool = false):
@@ -227,17 +239,17 @@ func update_town(_town_id: int, _name: String, _group_id: int, _loc: Vector3i, _
 class MapTile:
 	
 	var location: Vector3i
-
+	
 	var tile_image_id: int
 	var terrain_id: int
 	var terrain_details: TerrainType
-	var encounter_table_id: int
+	var encounter_table_id: String
 	
 	var mines: Array[MineLocation] = []
 	var town: TownDetails
 	
 	
-	func _init(_loc = Vector3i.ZERO, _tile_image_id = -1, _terrain_id = -1, _encounter_table_id = -1):
+	func _init(_loc: Vector3i = Vector3i.ZERO, _tile_image_id: int = -1, _terrain_id: int = -1, _encounter_table_id: String = ""):
 		location = _loc
 		
 		tile_image_id = _tile_image_id
@@ -290,7 +302,7 @@ class GroupDetails:
 class TownDetails:
 	
 	enum Dwelling_Sizes {UNKNOWN, NONE, HUNDRED, FIVE_HUNDRED}
-	enum Buildings {BLACKSMITH = 1, WORKSHOP = 2, ALCHEMICAL_LAB = 4, WONDERS = 8}
+	enum Buildings {BLACKSMITH = 0x0001, WORKSHOP = 0x0010, ALCHEMICAL_LAB = 0x0100, WONDERS = 0x1000}
 	
 	var town_id: int
 	var town_name: String

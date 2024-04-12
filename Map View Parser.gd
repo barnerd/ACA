@@ -11,9 +11,6 @@ var pending_changes: Array = []
 var pending_mines: Array = []
 var pending_towns: Array = []
 
-var terrain_from_internal_to_apf: Array[int] = [5, 14, 4, 11, 7, 8, 9, 2, 1, 6, 12, 13, 0, 3, 10]
-var terrain_from_apf_to_internal: Array[int] = [12, 8, 7, 13, 2, 0, 9, 4, 5, 6, 14, 3, 10, 11, 1]
-
 
 func _init() -> void:
 	regex = RegEx.new()
@@ -39,7 +36,7 @@ func _on_parse_button_pressed() -> void:
 		parse_map_table(map_table_data)
 	
 	status_textbox.text = "Done"
-	print("Pending Changes count: " + str(pending_changes.size()))
+	print("Tiles updated: %d" % pending_changes.size())
 
 
 func _on_cancel_button_pressed() -> void:
@@ -86,6 +83,8 @@ func parse_map_table(_data: String):
 
 				var tileset_coords = Vector2i(tile_details["map_id"] % 76, floor(tile_details["map_id"] / 76))
 				var tileset_details = MapDetailsSingleton.tile_map_display.tile_set.get_source(0).get_tile_data(Vector2i(tileset_coords.x, tileset_coords.y), 0).get_custom_data("terrain_id")
+				if tileset_details == -1:
+					print("tileset Terrain id not set at %v" % tileset_coords)
 				#print(tileset_details)
 				tile_details["terrain_id"] = int(tileset_details)
 				
@@ -108,6 +107,7 @@ func parse_map_table(_data: String):
 					#<u>Dr</u>
 					#</span></a></div>
 					
+					
 					# double check terrain
 					# <span class="map7-town">
 					regex.compile("<span class=\"map(\\d+)-?[a-z]*?\">")
@@ -120,7 +120,6 @@ func parse_map_table(_data: String):
 						_increment_counts("terrains")
 						update_results()
 						var td_terrain_id = int(result.get_string(1))
-						td_terrain_id = terrain_from_internal_to_apf[td_terrain_id]
 						if td_terrain_id != tile_details["terrain_id"]:
 							print("Terrains don't match!!!")
 							print("Map id: map-" + str(tile_details["map_id"]))

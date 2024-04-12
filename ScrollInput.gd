@@ -1,6 +1,6 @@
 class_name ScollInput extends ScrollContainer
 
-@onready var tile_map = $Control/HBoxContainer/PanelContainer/MapImages
+@onready var tile_map = MapDetailsSingleton.tile_map_display
 
 @export var drag_pressed_duration_threshold: int = 150
 
@@ -35,13 +35,13 @@ func _unhandled_input(_event):
 		if _event.button_index == MOUSE_BUTTON_LEFT and not _event.pressed:
 			if (Time.get_ticks_msec() - time_left_mouse_pressed) < drag_pressed_duration_threshold:
 				var clicked_cell = _calc_mouse_on_tilemap(_event.position)
-				#print("left: " + str(clicked_cell))
+				print("left: " + str(clicked_cell))
 				# coords were left clicked
 				tilemap_location_clicked.emit(clicked_cell, MOUSE_BUTTON_LEFT)
 			is_dragging = false
 		elif _event.button_index == MOUSE_BUTTON_RIGHT and not _event.pressed:
 			var clicked_cell = _calc_mouse_on_tilemap(_event.position)
-			#print("right: " + str(clicked_cell))
+			print("right: " + str(clicked_cell))
 			# coords were right clicked
 			tilemap_location_clicked.emit(clicked_cell, MOUSE_BUTTON_RIGHT)
 

@@ -8,6 +8,7 @@ signal savefile_loaded
 func _init() -> void:
 	SignalBus.register_signal("savefile_loaded", savefile_loaded)
 
+
 func _ready() -> void:
 	#var agoniaMap:String = load_file(apf_flat_filename)
 	#parse_map_file(agoniaMap)
@@ -25,6 +26,14 @@ func _ready() -> void:
 	#print("terrain color: " + str(map_tiles[print_coords].terrain_details.terrain_color_default))
 	#print("terrain kiith mvp: " + str(map_tiles[print_coords].terrain_details.kiith_mvp))
 	#print("encounter table: " + str(map_tiles[print_coords].encounter_table_id))
+
+
+func _input(event) -> void:
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_S:
+			if event.meta_pressed:
+				print("Cmd-S was pressed")
+				save_game()
 
 
 func load_file(_filename: String) -> String:
@@ -70,6 +79,21 @@ func save_game() -> void:
 # is path independent.
 func load_game():
 	print("loading game...")
+	# TODO: save this to tileset after runtime
+	print("Convert TileSet to Internal terrain_ids")
+	var tile_set_source = MapDetailsSingleton.tile_map_display.tile_set.get_source(0)
+	for index in tile_set_source.get_tiles_count():
+		var tileset_coords = tile_set_source.get_tile_id(index)
+		var tile_data = tile_set_source.get_tile_data(tileset_coords, 0)
+
+		var old_terrain_id = tile_data.get_custom_data("terrain_id")
+		if not old_terrain_id == -1:
+			var new_terrain_id = MapDetailsSingleton.terrain_id_from_apf_to_internal[old_terrain_id]
+			tile_data.set_custom_data("terrain_id", new_terrain_id)
+			
+			#print({"old_id": old_terrain_id, "new_id": new_terrain_id, "tile_data": tile_data.get_custom_data("terrain_id")})
+	
+	print("loading file...")
 	if not FileAccess.file_exists("res://savegame.txt"):
 		return # Error! We don't have a save to load.
 
@@ -142,7 +166,7 @@ func parse_map_file(_map: String) -> void:
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		print("quitting...")
-		if MapDetailsSingleton.have_changes_to_save:
+		if MapDetailsSingleton.have_changes_to_save || MonsterDetailsSingleton.have_changes_to_save:
 			print("changes pending")
 			save_game()
 		else:

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 MapDetailsSingleton="*res://map_details.tscn"
 SignalBus="*res://Signal Bus/SignalBus.gd"
+MonsterDetailsSingleton="*res://monster_details.tscn"
 
 [display]
 
