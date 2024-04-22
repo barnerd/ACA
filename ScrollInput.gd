@@ -1,6 +1,6 @@
 class_name ScollInput extends ScrollContainer
 
-@onready var tile_map = MapDetailsSingleton.tile_map_display
+@onready var tile_map = AgoniaData.MapData.tile_map_display
 
 @export var drag_pressed_duration_threshold: int = 150
 

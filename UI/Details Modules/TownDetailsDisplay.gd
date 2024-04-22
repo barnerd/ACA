@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 	if _button == MOUSE_BUTTON_LEFT:
-		var tile_details = MapDetailsSingleton.map_tiles[_coords]
+		var tile_details = AgoniaData.MapData.map_tiles[_coords]
 		selected_terrain = tile_details.terrain_details
 		
 		if tile_details.town:

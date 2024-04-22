@@ -1,6 +1,6 @@
 extends CheckButton
 
-@onready var map_layer = MapDetailsSingleton.tile_map_display
+@onready var map_layer = AgoniaData.MapData.tile_map_display
 
 signal tilemap_layer_toggled(_layer:int, _on: bool)
 

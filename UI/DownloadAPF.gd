@@ -38,8 +38,8 @@ func prepare_file() -> void:
 			file_to_download += "\t"
 			
 			# get terrain id and converter from internal to APF
-			var terrain_id: int = MapDetailsSingleton.map_tiles[Vector3i(x, y, 0)].terrain_id
-			terrain_id = MapDetailsSingleton.terrain_id_from_internal_to_apf[terrain_id]
+			var terrain_id: int = AgoniaData.MapData.map_tiles[Vector3i(x, y, 0)].terrain_id
+			terrain_id = TerrainType.TERRAIN_ID_INTERNAL_TO_APF[terrain_id]
 
 			file_to_download += str(terrain_id)
 		file_to_download += "\r\n"

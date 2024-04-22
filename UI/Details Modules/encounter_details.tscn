@@ -65,7 +65,6 @@ layout_mode = 2
 text = "Health:"
 
 [node name="Edit Button" type="Button" parent="."]
-visible = false
 layout_mode = 2
 text = "Edit Encounter"
 

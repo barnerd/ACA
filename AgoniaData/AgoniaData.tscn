@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4mm2yf6dhw67"]
+
+[ext_resource type="Script" path="res://AgoniaData/MapDataBase.gd" id="1_d2n01"]
+[ext_resource type="Script" path="res://AgoniaData/AgoniaData.gd" id="1_eps10"]
+[ext_resource type="Script" path="res://AgoniaData/MonsterDataBase.gd" id="2_to6po"]
+
+[node name="AgoniaData" type="Node"]
+script = ExtResource("1_eps10")
+
+[node name="MapDataBase" type="Node" parent="." groups=["Persist"]]
+script = ExtResource("1_d2n01")
+
+[node name="MonsterDataBase" type="Node" parent="." groups=["Persist"]]
+script = ExtResource("2_to6po")

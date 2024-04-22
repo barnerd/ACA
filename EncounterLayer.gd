@@ -53,13 +53,13 @@ func _generate_labels() -> void: #_center: Vector3i = Vector3i(200, 200, 0)
 #	for y in range(150, 200):
 #		print("generating labels for %s" % y)
 #		for x in range(250, 300):
-			var tile = MapDetailsSingleton.map_tiles[Vector3i(x, y, 0)]
+			var tile = AgoniaData.MapData.map_tiles[Vector3i(x, y, 0)]
 			
 			var tier: int = -1
 			var tile_terrain = tile.terrain_id
 			
 			if tile.encounter_table_id:
-				var encounter = MonsterDetailsSingleton.get_encounter_table_by_id(tile.encounter_table_id)
+				var encounter = AgoniaData.MonsterData.get_encounter_table_by_id(tile.encounter_table_id)
 				
 				tier = encounter.tier_number
 			
@@ -94,13 +94,13 @@ func _create_label(_loc: Vector3i, _tier: int, _color: Color = Color.WHITE) -> v
 func update_labels(_coords: Array[Vector3i]) -> void:
 	for c in _coords:
 		if labels_by_coords.has(c):
-			var tile = MapDetailsSingleton.map_tiles[c]
+			var tile = AgoniaData.MapData.map_tiles[c]
 			var terrain = tile.terrain_id
 			var color = Color.BLACK if [0,9,10].has(terrain) else Color.WHITE
 			var tier: int = -1
 			
 			if tile.encounter_table_id:
-				var encounter = MonsterDetailsSingleton.get_encounter_table_by_id(tile.encounter_table_id)
+				var encounter = AgoniaData.MonsterData.get_encounter_table_by_id(tile.encounter_table_id)
 				tier = encounter.tier_number
 			labels_by_coords[c].text = "[color=#%s]%s[/color]" % [color.to_html(), tier]
 			

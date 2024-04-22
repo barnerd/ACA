@@ -44,10 +44,10 @@ func prepare_image() -> void:
 	print("preparing map image file")
 	# start with Terrain_Colors image
 	#image_to_download.resize(8400, 8400, Image.INTERPOLATE_NEAREST)
-	image_to_download.copy_from(MapDetailsSingleton.terrain_colors_display.texture.get_image())
+	image_to_download.copy_from(AgoniaData.MapData.terrain_colors_display.texture.get_image())
 	image_to_download.convert(Image.Format.FORMAT_RGBA8)
 	
-	var tile_map = MapDetailsSingleton.tile_map_display
+	var tile_map = AgoniaData.MapData.tile_map_display
 	var tile_set = tile_map.tile_set
 	
 	# generate AtlasTexture form TileSet sources

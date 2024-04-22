@@ -81,14 +81,14 @@ func load_game():
 	print("loading game...")
 	# TODO: save this to tileset after runtime
 	print("Convert TileSet to Internal terrain_ids")
-	var tile_set_source = MapDetailsSingleton.tile_map_display.tile_set.get_source(0)
+	var tile_set_source = AgoniaData.MapData.tile_map_display.tile_set.get_source(0)
 	for index in tile_set_source.get_tiles_count():
 		var tileset_coords = tile_set_source.get_tile_id(index)
 		var tile_data = tile_set_source.get_tile_data(tileset_coords, 0)
 
 		var old_terrain_id = tile_data.get_custom_data("terrain_id")
 		if not old_terrain_id == -1:
-			var new_terrain_id = MapDetailsSingleton.terrain_id_from_apf_to_internal[old_terrain_id]
+			var new_terrain_id = TerrainType.TERRAIN_ID_APF_TO_INTERNAL[old_terrain_id]
 			tile_data.set_custom_data("terrain_id", new_terrain_id)
 			
 			#print({"old_id": old_terrain_id, "new_id": new_terrain_id, "tile_data": tile_data.get_custom_data("terrain_id")})
@@ -156,7 +156,7 @@ func parse_map_file(_map: String) -> void:
 					# print({"x": x, "y": y, "terrain": terrain_id})
 					var location: Vector3i = Vector3i(x, y, 0)
 					
-					MapDetailsSingleton.update_location(location, int(terrain_id), -1)
+					AgoniaData.MapData.update_location(location, int(terrain_id), -1)
 					
 				x += 1
 			
@@ -166,7 +166,7 @@ func parse_map_file(_map: String) -> void:
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		print("quitting...")
-		if MapDetailsSingleton.have_changes_to_save || MonsterDetailsSingleton.have_changes_to_save:
+		if AgoniaData.MapData.have_changes_to_save || AgoniaData.MonsterData.have_changes_to_save:
 			print("changes pending")
 			save_game()
 		else:

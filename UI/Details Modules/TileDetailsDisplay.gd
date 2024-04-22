@@ -19,7 +19,7 @@ func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 	if _button == MOUSE_BUTTON_LEFT:
 		section_header.text = "Location Details ["+str(_coords.x)+","+str(_coords.y)+"]"
 		
-		var tile_details = MapDetailsSingleton.map_tiles[_coords]
+		var tile_details = AgoniaData.MapData.map_tiles[_coords]
 		selected_terrain = tile_details.terrain_details
 		
 		_generate_terrain_type_label(selected_terrain.terrain_name, selected_terrain.terrain_color_custom)

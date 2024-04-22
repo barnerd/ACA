@@ -17,9 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MapDetailsSingleton="*res://map_details.tscn"
 SignalBus="*res://Signal Bus/SignalBus.gd"
-MonsterDetailsSingleton="*res://monster_details.tscn"
+AgoniaData="*res://AgoniaData/AgoniaData.tscn"
 
 [display]
 

@@ -47,17 +47,17 @@ func _on_cancel_button_pressed() -> void:
 
 func _on_accept_button_pressed() -> void:
 	for change in pending_changes:
-		MapDetailsSingleton.update_location(Vector3i(change["x"], change["y"], change["z"]), change["terrain_id"], change["map_id"])
-	MapDetailsSingleton.terrain_colors_display.apply_image()
+		AgoniaData.MapData.update_location(Vector3i(change["x"], change["y"], change["z"]), change["terrain_id"], change["map_id"])
+	AgoniaData.MapData.terrain_colors_display.apply_image()
 	
 	for mine in pending_mines:
-		MapDetailsSingleton.add_mine_location(mine["type"], Vector3i(mine["x"], mine["y"], mine["z"]))
+		AgoniaData.MapData.add_mine_location(mine["type"], Vector3i(mine["x"], mine["y"], mine["z"]))
 	
 	for town in pending_towns:
-		MapDetailsSingleton.update_town(-1, "", -1, Vector3i(town["x"], town["y"], town["z"]))
+		AgoniaData.MapData.update_town(-1, "", -1, Vector3i(town["x"], town["y"], town["z"]))
 	
 	if pending_changes.size() > 0 || pending_mines.size() > 0 || pending_towns.size() > 0:
-		MapDetailsSingleton.have_changes_to_save = true
+		AgoniaData.MapData.have_changes_to_save = true
 
 
 # <td class="map-84" data-x="222" data-y="130" style="width:24px; height:24px; display: inline-block"></td>
@@ -82,7 +82,7 @@ func parse_map_table(_data: String):
 				tile_details["map_id"] = int(td_result.get_string(1))
 
 				var tileset_coords = Vector2i(tile_details["map_id"] % 76, floor(tile_details["map_id"] / 76))
-				var tileset_details = MapDetailsSingleton.tile_map_display.tile_set.get_source(0).get_tile_data(Vector2i(tileset_coords.x, tileset_coords.y), 0).get_custom_data("terrain_id")
+				var tileset_details = AgoniaData.MapData.tile_map_display.tile_set.get_source(0).get_tile_data(Vector2i(tileset_coords.x, tileset_coords.y), 0).get_custom_data("terrain_id")
 				if tileset_details == -1:
 					print("tileset Terrain id not set at %v" % tileset_coords)
 				#print(tileset_details)
@@ -156,7 +156,7 @@ func parse_map_table(_data: String):
 					if result:
 						#print("found a " + result.get_string(1) + " mine")
 						found_identified = true
-						pending_mines.append({"type": MapDetailsSingleton.mine_string_to_mine_type.find(result.get_string(1)),
+						pending_mines.append({"type": AgoniaData.MapData.mine_string_to_mine_type.find(result.get_string(1)),
 						"x": tile_details["location"].x,
 						"y": tile_details["location"].y,
 						"z": tile_details["location"].z})
@@ -181,8 +181,8 @@ func parse_map_table(_data: String):
 						_increment_counts("warnings")
 						update_results()
 				
-				if MapDetailsSingleton.map_tiles.has(tile_details["location"]):
-					if MapDetailsSingleton.map_tiles[tile_details["location"]].tile_image_id != tile_details["map_id"] || MapDetailsSingleton.map_tiles[tile_details["location"]].terrain_id != tile_details["terrain_id"]:
+				if AgoniaData.MapData.map_tiles.has(tile_details["location"]):
+					if AgoniaData.MapData.map_tiles[tile_details["location"]].tile_image_id != tile_details["map_id"] || AgoniaData.MapData.map_tiles[tile_details["location"]].terrain_id != tile_details["terrain_id"]:
 						#print("New info!")
 						pending_changes.append({"x": tile_details["location"].x,
 						"y": tile_details["location"].y,
