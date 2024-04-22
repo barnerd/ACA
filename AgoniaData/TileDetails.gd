@@ -16,5 +16,6 @@ func _init(_loc: Vector3i = Vector3i.ZERO, _tile_image_id: int = -1, _terrain_id
 	
 	tile_image_id = _tile_image_id
 	terrain_id = _terrain_id
-	terrain_details = AgoniaData.MapData.terrains_by_id[_terrain_id]
+	if not terrain_id == -1:
+		terrain_details = AgoniaData.MapData.terrains_by_id[_terrain_id]
 	encounter_table_id = _encounter_table_id

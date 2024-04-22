@@ -47,9 +47,9 @@ func on_min_tier_selected(_tier: int) -> void:
 
 func _generate_labels() -> void: #_center: Vector3i = Vector3i(200, 200, 0)
 	print("generating encounter labels")
-	for y in range(1, 350+1):
+	for y in range(0, AgoniaData.MapData.MAP_SIZE.y):
 		print("generating labels for %s" % y)
-		for x in range(1, 350+1):
+		for x in range(0, AgoniaData.MapData.MAP_SIZE.x):
 #	for y in range(150, 200):
 #		print("generating labels for %s" % y)
 #		for x in range(250, 300):
@@ -68,7 +68,7 @@ func _generate_labels() -> void: #_center: Vector3i = Vector3i(200, 200, 0)
 				# use black text if on desert, snow, icy 1, else white
 				_create_label(Vector3i(x, y, 0), tier, Color.BLACK if [0,9,10].has(tile_terrain) else Color.WHITE)
 		
-		generate_encounter_labels_progress.emit(100.0 * y / 350+1)
+		generate_encounter_labels_progress.emit(100.0 * y / AgoniaData.MapData.MAP_SIZE.y)
 		
 		# yield control and wait for short time
 		_timer.start()
@@ -86,7 +86,7 @@ func _create_label(_loc: Vector3i, _tier: int, _color: Color = Color.WHITE) -> v
 	else:
 		instance.visible = true
 	instance.text = "[color=#%s]%d[/color]" % [_color.to_html(), _tier]
-	instance.position = Vector2i(_loc.x*24, _loc.y*24)
+	instance.position = Vector2i(_loc.x*AgoniaData.MapData.TILE_SIZE.x, _loc.y*AgoniaData.MapData.TILE_SIZE.y)
 	self.add_child(instance)
 	labels_by_coords[_loc] = instance
 

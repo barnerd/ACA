@@ -22,16 +22,21 @@ func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 		var tile_details = AgoniaData.MapData.map_tiles[_coords]
 		selected_terrain = tile_details.terrain_details
 		
-		_generate_terrain_type_label(selected_terrain.terrain_name, selected_terrain.terrain_color_custom)
-		_generate_movement_label()
-		
-		map_id_label.text = "map-" + str(tile_details.tile_image_id)
-		
-		var mine_names: Array[String] = []
-		
-		for m in tile_details.mines:
-			mine_names.append(m.type_name)
-		mine_label.text = ", ".join(mine_names)
+		if selected_terrain:
+			_generate_terrain_type_label(selected_terrain.terrain_name, selected_terrain.terrain_color_custom)
+			_generate_movement_label()
+			
+			map_id_label.text = "map-" + str(tile_details.tile_image_id)
+			
+			var mine_names: Array[String] = []
+			
+			for m in tile_details.mines:
+				mine_names.append(m.type_name)
+			mine_label.text = ", ".join(mine_names)
+		else:
+			terrain_type_label.clear()
+			movement_label.clear()
+			map_id_label.text = "map-" + str(tile_details.tile_image_id)
 
 
 func on_tribe_select(_tribe: String):

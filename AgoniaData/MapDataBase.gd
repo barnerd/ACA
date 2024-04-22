@@ -1,5 +1,8 @@
 class_name MapDataBase extends Node
 
+const MAP_SIZE: Vector3i = Vector3i(400, 400, 1)
+const TILE_SIZE: Vector2i = Vector2i(24, 24)
+
 @export var terrain_details: Array[TerrainType] = [
 preload("res://Terrain Types/city.tres"),
 preload("res://Terrain Types/floor.tres"),
@@ -48,6 +51,14 @@ func _init() -> void:
 	
 	for t in terrain_details:
 		terrains_by_id[t.terrain_id] = t
+
+
+func _input(event) -> void:
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_F:
+			if event.meta_pressed:
+				print("Cmd-F was pressed")
+				
 
 
 func save():

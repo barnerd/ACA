@@ -4284,7 +4284,7 @@ vertical_scroll_mode = 2
 script = ExtResource("1_1knja")
 
 [node name="Control" type="Control" parent="Control/PanelContainer/ScrollContainer"]
-custom_minimum_size = Vector2(8400, 8400)
+custom_minimum_size = Vector2(9600, 9600)
 layout_mode = 2
 mouse_filter = 2
 
@@ -4301,7 +4301,7 @@ offset_bottom = 40.0
 mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer"]
-custom_minimum_size = Vector2(8400, 8400)
+custom_minimum_size = Vector2(9600, 9600)
 layout_mode = 2
 mouse_filter = 1
 
@@ -4321,7 +4321,7 @@ layer_2/tile_data = PackedInt32Array()
 
 [node name="EncounterLayer" type="Container" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer"]
 visible = false
-custom_minimum_size = Vector2(8400, 8400)
+custom_minimum_size = Vector2(9600, 9600)
 layout_mode = 2
 script = ExtResource("12_b3yvo")
 

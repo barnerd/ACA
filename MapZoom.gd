@@ -33,7 +33,7 @@ func zoom_to(_zoom_desired: int = 15):
 	zoom_current = clamp(_zoom_desired, zoom_min, zoom_max)
 	zoom_text.text = str(zoom_current)
 
-	map_to_zoom.custom_minimum_size = 8400 * Vector2.ONE * zoom_current/10.0
+	map_to_zoom.custom_minimum_size = AgoniaData.MapData.MAP_SIZE.x * AgoniaData.MapData.TILE_SIZE.x * Vector2.ONE * zoom_current/10.0
 	map_to_scale.scale = Vector2.ONE * zoom_current/10.0
 	
 	on_map_zoom.emit(zoom_current/10.0)
