@@ -4373,6 +4373,7 @@ visible = false
 custom_minimum_size = Vector2(9600, 9600)
 layout_mode = 2
 script = ExtResource("12_b3yvo")
+load_labels = true
 
 [node name="Timer" type="Timer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/EncounterLayer"]
 wait_time = 0.06
