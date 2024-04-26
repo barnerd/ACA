@@ -1,8 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://cixyvm26uk3uc"]
+[gd_scene load_steps=31 format=3 uid="uid://cixyvm26uk3uc"]
 
 [ext_resource type="Script" path="res://ScrollInput.gd" id="1_1knja"]
 [ext_resource type="Script" path="res://File Loader.gd" id="1_70b50"]
 [ext_resource type="PackedScene" uid="uid://dma57v67lqap6" path="res://order_side_popup.tscn" id="2_0jwh1"]
+[ext_resource type="Script" path="res://HUD/CopyScroll.gd" id="3_auso8"]
+[ext_resource type="Script" path="res://HUD/CoordLabels.gd" id="3_r3c8x"]
 [ext_resource type="PackedScene" uid="uid://dididv7xdkapi" path="res://update_map_edit_popup.tscn" id="4_uilq3"]
 [ext_resource type="Script" path="res://UI/ImageToggle.gd" id="5_5sk12"]
 [ext_resource type="Texture2D" uid="uid://c6wk0vm4udsts" path="res://images/town0.png" id="6_0ma1q"]
@@ -4277,40 +4279,87 @@ offset_right = 1920.0
 offset_bottom = 1300.0
 mouse_filter = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 24
+
+[node name="x Coords Scroll" type="ScrollContainer" parent="Control/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("3_auso8")
+is_horizontal_scroll = true
+
+[node name="Control" type="Control" parent="Control/PanelContainer/VBoxContainer/MarginContainer/x Coords Scroll"]
+custom_minimum_size = Vector2(9600, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Labels" type="HBoxContainer" parent="Control/PanelContainer/VBoxContainer/MarginContainer/x Coords Scroll/Control"]
+custom_minimum_size = Vector2(9600, 24)
+layout_mode = 2
+offset_right = 9600.0
+offset_bottom = 24.0
+theme_override_constants/separation = 0
+script = ExtResource("3_r3c8x")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="y Coords Scroll" type="ScrollContainer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("3_auso8")
+
+[node name="Control" type="Control" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/y Coords Scroll"]
+custom_minimum_size = Vector2(24, 9600)
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/y Coords Scroll/Control"]
+custom_minimum_size = Vector2(24, 9600)
+layout_mode = 2
+offset_right = 24.0
+offset_bottom = 9600.0
+theme_override_constants/separation = 0
+script = ExtResource("3_r3c8x")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 2
 script = ExtResource("1_1knja")
 
-[node name="Control" type="Control" parent="Control/PanelContainer/ScrollContainer"]
+[node name="Control" type="Control" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
 custom_minimum_size = Vector2(9600, 9600)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/ScrollContainer/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/ScrollContainer/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control"]
 custom_minimum_size = Vector2(9600, 9600)
 layout_mode = 2
+offset_right = 9600.0
+offset_bottom = 9600.0
 mouse_filter = 1
 
-[node name="TerrainColors" type="Sprite2D" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer"]
+[node name="TerrainColors" type="Sprite2D" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"]
 texture = ExtResource("16_cmi7w")
 centered = false
 script = ExtResource("17_2gmiw")
 
-[node name="MapImages" type="TileMap" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer"]
+[node name="MapImages" type="TileMap" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"]
 tile_set = SubResource("TileSet_6qotd")
 format = 2
 layer_0/name = "Map"
@@ -4319,43 +4368,42 @@ layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Towns"
 layer_2/tile_data = PackedInt32Array()
 
-[node name="EncounterLayer" type="Container" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer"]
+[node name="EncounterLayer" type="Container" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"]
 visible = false
 custom_minimum_size = Vector2(9600, 9600)
 layout_mode = 2
 script = ExtResource("12_b3yvo")
 
-[node name="Timer" type="Timer" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/EncounterLayer"]
+[node name="Timer" type="Timer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/EncounterLayer"]
 wait_time = 0.06
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer"]
-visible = false
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+custom_minimum_size = Vector2(202, 340)
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="SubViewport" type="SubViewport" parent="Control/PanelContainer/ScrollContainer/Control/HBoxContainer/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(8400, 8400)
-render_target_update_mode = 0
-
-[node name="Controls PanelContainer" type="PanelContainer" parent="Control/PanelContainer"]
-custom_minimum_size = Vector2(0, 320)
+[node name="Controls PanelContainer" type="PanelContainer" parent="Control/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(182, 320)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 mouse_filter = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/Controls PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer"]
 layout_mode = 2
 
-[node name="Min Encounter Tier" type="HBoxContainer" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
+[node name="Min Encounter Tier" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier"]
 custom_minimum_size = Vector2(75, 30)
 layout_mode = 2
 text = "Min tier:"
 
-[node name="OptionButton" type="OptionButton" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier"]
+[node name="OptionButton" type="OptionButton" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 disabled = true
@@ -4385,7 +4433,7 @@ popup/item_10/text = "11"
 popup/item_10/id = 10
 script = ExtResource("13_8if67")
 
-[node name="Encounters Layer Toggle" type="CheckButton" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
+[node name="Encounters Layer Toggle" type="CheckButton" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 0
@@ -4393,7 +4441,7 @@ disabled = true
 text = "Show Encounters"
 script = ExtResource("13_kesto")
 
-[node name="Image toggle" type="CheckButton" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
+[node name="Image toggle" type="CheckButton" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 0
@@ -4401,7 +4449,7 @@ button_pressed = true
 text = "Show Towns"
 script = ExtResource("5_5sk12")
 
-[node name="Image toggle2" type="CheckButton" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
+[node name="Image toggle2" type="CheckButton" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 0
@@ -4409,7 +4457,7 @@ button_pressed = true
 text = "Show Mines"
 script = ExtResource("5_5sk12")
 
-[node name="Image toggle3" type="CheckButton" parent="Control/PanelContainer/Controls PanelContainer/VBoxContainer"]
+[node name="Image toggle3" type="CheckButton" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 0
@@ -4417,18 +4465,18 @@ button_pressed = true
 text = "Show Map"
 script = ExtResource("5_5sk12")
 
-[node name="Zoom Controls VBox" type="VBoxContainer" parent="Control/PanelContainer/Controls PanelContainer"]
+[node name="Zoom Controls VBox" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 script = ExtResource("6_r1k04")
 
-[node name="Zoom Plus" type="Button" parent="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox"]
+[node name="Zoom Plus" type="Button" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer/Zoom Controls VBox"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 text = "+"
 
-[node name="Zoom Number" type="LineEdit" parent="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox"]
+[node name="Zoom Number" type="LineEdit" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer/Zoom Controls VBox"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 text = "10"
@@ -4436,7 +4484,7 @@ placeholder_text = "10"
 alignment = 1
 max_length = 2
 
-[node name="Zoom Minus" type="Button" parent="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox"]
+[node name="Zoom Minus" type="Button" parent="Control/PanelContainer/MarginContainer/Controls PanelContainer/Zoom Controls VBox"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 text = "-"
@@ -4504,13 +4552,13 @@ text = "Update Map"
 [node name="File Loader" type="Node" parent="."]
 script = ExtResource("1_70b50")
 
-[connection signal="item_selected" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier/OptionButton" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier/OptionButton" method="_on_item_selected"]
-[connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Encounters Layer Toggle" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Encounters Layer Toggle" method="_on_toggled"]
-[connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle" method="_on_toggled" binds= [2]]
-[connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle2" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle2" method="_on_toggled" binds= [1]]
-[connection signal="toggled" from="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle3" to="Control/PanelContainer/Controls PanelContainer/VBoxContainer/Image toggle3" method="_on_toggled" binds= [0]]
-[connection signal="pressed" from="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Plus" to="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_plus_pressed"]
-[connection signal="text_submitted" from="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Number" to="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_number_text_submitted"]
-[connection signal="pressed" from="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Minus" to="Control/PanelContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_minus_pressed"]
+[connection signal="item_selected" from="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier/OptionButton" to="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Min Encounter Tier/OptionButton" method="_on_item_selected"]
+[connection signal="toggled" from="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Encounters Layer Toggle" to="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Encounters Layer Toggle" method="_on_toggled"]
+[connection signal="toggled" from="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Image toggle" to="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Image toggle" method="_on_toggled" binds= [2]]
+[connection signal="toggled" from="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Image toggle2" to="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Image toggle2" method="_on_toggled" binds= [1]]
+[connection signal="toggled" from="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Image toggle3" to="Control/PanelContainer/MarginContainer/Controls PanelContainer/VBoxContainer/Image toggle3" method="_on_toggled" binds= [0]]
+[connection signal="pressed" from="Control/PanelContainer/MarginContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Plus" to="Control/PanelContainer/MarginContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_plus_pressed"]
+[connection signal="text_submitted" from="Control/PanelContainer/MarginContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Number" to="Control/PanelContainer/MarginContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_number_text_submitted"]
+[connection signal="pressed" from="Control/PanelContainer/MarginContainer/Controls PanelContainer/Zoom Controls VBox/Zoom Minus" to="Control/PanelContainer/MarginContainer/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_minus_pressed"]
 [connection signal="pressed" from="Control/Order Side Button" to="Control/Update Map Text Input PopupPanel2" method="_on_order_side_button_pressed"]
 [connection signal="pressed" from="Control/Details Container/Town Details/Update Map Button" to="Control/Update Map Text Input PopupPanel" method="_on_update_map_button_pressed"]

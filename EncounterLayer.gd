@@ -1,5 +1,7 @@
 class_name EncounterLayer extends Container
 
+@export var load_labels: bool
+
 var encounter_label = preload("res://encounter_label.tscn")
 @onready var _timer = $Timer
 
@@ -17,7 +19,8 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	SignalBus.connect_to_signal("savefile_loaded", _generate_labels)
+	if load_labels:
+		SignalBus.connect_to_signal("savefile_loaded", _generate_labels)
 	SignalBus.connect_to_signal("show_encounter_layer_toggled", show_layer)
 	SignalBus.connect_to_signal("min_encounter_tier_selected", on_min_tier_selected)
 

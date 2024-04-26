@@ -1,8 +1,8 @@
 class_name TileDetailsDisplay extends VBoxContainer
 
 @onready var section_header = $CenterContainer/RichTextLabel
-@onready var terrain_type_label = $"HBoxContainer/Terrain Type"
-@onready var movement_label = $HBoxContainer/Movement
+@onready var terrain_type_label = $"Terrain Type"
+@onready var movement_label = $Movement
 @onready var map_id_label = $"Map id and Sprite/RichTextLabel"
 @onready var mine_label = $Mines/RichTextLabel
 
@@ -46,6 +46,7 @@ func on_tribe_select(_tribe: String):
 
 func _generate_terrain_type_label(_type: String, _color: Color) -> void:
 	terrain_type_label.clear()
+	terrain_type_label.append_text("Type of land: ")
 	terrain_type_label.push_color(_color)
 	terrain_type_label.append_text(_type)
 	terrain_type_label.pop()

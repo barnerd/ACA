@@ -42,8 +42,8 @@ var have_changes_to_save: bool
 
 # displays
 # $"/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors
-@onready var terrain_colors_display: TerrainColors = $/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors
-@onready var tile_map_display: TileMap = $/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/MapImages
+@onready var terrain_colors_display: TerrainColors = $/root/Node2D/Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/TerrainColors
+@onready var tile_map_display: TileMap = $/root/Node2D/Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/MapImages
 
 
 func _init() -> void:

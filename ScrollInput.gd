@@ -5,6 +5,8 @@ class_name ScollInput extends ScrollContainer
 @export var drag_pressed_duration_threshold: int = 150
 
 signal tilemap_location_clicked(coords: Vector3i, button: MouseButton)
+signal on_UI_map_h_scrolled(destination: int)
+signal on_UI_map_v_scrolled(destination: int)
 
 var time_left_mouse_pressed: int
 var is_dragging: bool
@@ -14,6 +16,11 @@ var current_map_zoom: float = 1.0
 func _init() -> void:
 	is_dragging = false
 	SignalBus.register_signal("tilemap_location_clicked", tilemap_location_clicked)
+	SignalBus.register_signal("on_UI_map_h_scrolled", on_UI_map_h_scrolled)
+	SignalBus.register_signal("on_UI_map_v_scrolled", on_UI_map_v_scrolled)
+	
+	get_h_scroll_bar().value_changed.connect(on_UI_map_h_scroll)
+	get_v_scroll_bar().value_changed.connect(on_UI_map_v_scroll)
 
 
 func _ready() -> void:
@@ -26,8 +33,8 @@ func _unhandled_input(_event):
 			#print("drag delta: " + str(_event.relative))
 			
 			# move scroll bars here
-			self.scroll_horizontal -= _event.relative.x
-			self.scroll_vertical -= _event.relative.y
+			scroll_horizontal -= _event.relative.x
+			scroll_vertical -= _event.relative.y
 	elif _event is InputEventMouseButton:
 		if _event.button_index == MOUSE_BUTTON_LEFT and _event.pressed:
 			is_dragging = true
@@ -47,7 +54,7 @@ func _unhandled_input(_event):
 
 
 func _calc_mouse_on_tilemap(_mouse: Vector2i) -> Vector3i:
-	var mouse_position_plus_scroll: Vector2i = _mouse + Vector2i(scroll_horizontal, scroll_vertical)
+	var mouse_position_plus_scroll: Vector2 = (_mouse as Vector2 - AgoniaData.MapData.TILE_SIZE * current_map_zoom) + Vector2(scroll_horizontal, scroll_vertical)
 	mouse_position_plus_scroll /= current_map_zoom
 	var clicked_cell_2d = tile_map.local_to_map(mouse_position_plus_scroll)
 	var clicked_cell = Vector3i(clicked_cell_2d.x, clicked_cell_2d.y, 0)
@@ -57,3 +64,11 @@ func _calc_mouse_on_tilemap(_mouse: Vector2i) -> Vector3i:
 
 func on_map_zoom(_factor: float):
 	current_map_zoom = _factor
+
+
+func on_UI_map_h_scroll(_value: float):
+	on_UI_map_h_scrolled.emit(scroll_horizontal)
+
+
+func on_UI_map_v_scroll(_value: float):
+	on_UI_map_v_scrolled.emit(scroll_vertical)

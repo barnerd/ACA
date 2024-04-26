@@ -8,14 +8,14 @@ func _ready() -> void:
 	
 	var image_size = Vector2i(AgoniaData.MapData.MAP_SIZE.x * AgoniaData.MapData.TILE_SIZE.x, AgoniaData.MapData.MAP_SIZE.y * AgoniaData.MapData.TILE_SIZE.y)
 	display_image.resize(image_size.x, image_size.y, Image.INTERPOLATE_NEAREST)
-	#display_image.fill_rect(Rect2i(0, 0, image_size.x, image_size.y), border_color)
+	display_image.fill_rect(Rect2i(0, 0, image_size.x, image_size.y), border_color)
 	
 	SignalBus.connect_to_signal("savefile_loaded", apply_image)
 	SignalBus.connect_to_signal("tilemap_location_clicked", print_log_image_details)
 
 
 func paint_tile(_position: Vector2i, _color: Color) -> void:
-	var tile: Rect2i = Rect2i(_position.x * AgoniaData.MapData.TILE_SIZE.x, _position.y * AgoniaData.MapData.TILE_SIZE.y, AgoniaData.MapData.TILE_SIZE.x, AgoniaData.MapData.TILE_SIZE.y)
+	var tile: Rect2i = Rect2i(_position.x * AgoniaData.MapData.TILE_SIZE.x, _position.y * AgoniaData.MapData.TILE_SIZE.y, AgoniaData.MapData.TILE_SIZE.x - 1, AgoniaData.MapData.TILE_SIZE.y - 1)
 	
 	display_image.fill_rect(tile, _color)
 
