@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6wy6xvn5lvl1"]
+[gd_scene load_steps=4 format=3 uid="uid://c6wy6xvn5lvl1"]
 
 [ext_resource type="Script" path="res://UI/Details Modules/EncounterDetailsDisplay.gd" id="1_ajyjh"]
 [ext_resource type="PackedScene" uid="uid://7rbtbqx0tkjc" path="res://Tools/set_encounter_window.tscn" id="2_vyogx"]
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_ytbyf"]
 
 [node name="Encounter Details" type="VBoxContainer"]
 script = ExtResource("1_ajyjh")
@@ -10,22 +11,28 @@ script = ExtResource("1_ajyjh")
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
+[node name="Section Header" type="Label" parent="CenterContainer"]
 custom_minimum_size = Vector2(130, 25)
 layout_mode = 2
+theme = ExtResource("2_ytbyf")
+theme_type_variation = &"HeaderLabel"
 text = "Monster Details"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Terrain Label" type="RichTextLabel" parent="HBoxContainer"]
+[node name="Terrain Label" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
+theme = ExtResource("2_ytbyf")
+theme_type_variation = &"HeaderLabel"
 text = "Terrain: "
 
-[node name="Tier Label" type="RichTextLabel" parent="HBoxContainer"]
+[node name="Tier Label" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(150, 25)
 layout_mode = 2
+theme = ExtResource("2_ytbyf")
+theme_type_variation = &"HeaderLabel"
 text = "Tier: "
 
 [node name="HSeparator" type="HSeparator" parent="."]
@@ -44,24 +51,32 @@ visible = false
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Id Label" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Id Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 25)
 layout_mode = 2
+theme = ExtResource("2_ytbyf")
+theme_type_variation = &"HeaderLabel"
 text = "ID:"
 
-[node name="Name Label" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Name Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
+theme = ExtResource("2_ytbyf")
+theme_type_variation = &"HeaderLabel"
 text = "Name:"
 
-[node name="Sorcery Label" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Sorcery Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
+theme = ExtResource("2_ytbyf")
+theme_type_variation = &"HeaderLabel"
 text = "Spirit:"
 
-[node name="Health Label" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Health Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
+theme = ExtResource("2_ytbyf")
+theme_type_variation = &"HeaderLabel"
 text = "Health:"
 
 [node name="Edit Button" type="Button" parent="."]

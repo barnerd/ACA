@@ -1,27 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://7rbtbqx0tkjc"]
+[gd_scene load_steps=3 format=3 uid="uid://7rbtbqx0tkjc"]
 
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_fsfc0"]
 [ext_resource type="Script" path="res://Tools/SetEncounterWindow.gd" id="1_sbtkw"]
 
 [node name="SetEncounterWindow" type="Window"]
 title = "Set Encounter"
 initial_position = 1
-size = Vector2i(325, 350)
+size = Vector2i(318, 318)
 visible = false
+theme = ExtResource("1_fsfc0")
 script = ExtResource("1_sbtkw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Terrain & Tier" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="Terrain Label" type="RichTextLabel" parent="VBoxContainer/Terrain & Tier"]
-custom_minimum_size = Vector2(140, 35)
+[node name="Terrain & Tier" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Terrain Label" type="Label" parent="PanelContainer/VBoxContainer/Terrain & Tier"]
 layout_mode = 2
 text = "Terrain:"
+vertical_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Terrain & Tier"]
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/Terrain & Tier"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 item_count = 2
@@ -31,117 +38,119 @@ popup/item_0/id = 0
 popup/item_1/text = "T6"
 popup/item_1/id = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="BothMountToggle" type="CheckButton" parent="VBoxContainer"]
+[node name="BothMountToggle" type="CheckButton" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 text = "Both Mountains"
 
-[node name="ResetToggle" type="CheckButton" parent="VBoxContainer"]
+[node name="ResetToggle" type="CheckButton" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 text = "Reset Encounter"
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Fill Label" type="RichTextLabel" parent="VBoxContainer"]
+[node name="Fill Label" type="Label" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_type_variation = &"HeaderLabel"
 text = "Fill Settings:"
 
-[node name="DiagonalsToggle" type="CheckButton" parent="VBoxContainer"]
+[node name="DiagonalsToggle" type="CheckButton" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 text = "Include Diagonals"
 
-[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Rect Label" type="RichTextLabel" parent="VBoxContainer"]
+[node name="Rect Label" type="Label" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_type_variation = &"HeaderLabel"
 text = "Rect Settings:"
 
-[node name="Start HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Start HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Point Label" type="RichTextLabel" parent="VBoxContainer/Start HBoxContainer"]
+[node name="Point Label" type="Label" parent="PanelContainer/VBoxContainer/Start HBoxContainer"]
 custom_minimum_size = Vector2(90, 25)
 layout_mode = 2
 text = "Start:"
 
-[node name="X Label" type="RichTextLabel" parent="VBoxContainer/Start HBoxContainer"]
+[node name="X Label" type="Label" parent="PanelContainer/VBoxContainer/Start HBoxContainer"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 text = "x:"
 
-[node name="X Edit" type="TextEdit" parent="VBoxContainer/Start HBoxContainer"]
+[node name="X Edit" type="TextEdit" parent="PanelContainer/VBoxContainer/Start HBoxContainer"]
 custom_minimum_size = Vector2(75, 35)
 layout_mode = 2
 
-[node name="Y Label" type="RichTextLabel" parent="VBoxContainer/Start HBoxContainer"]
+[node name="Y Label" type="Label" parent="PanelContainer/VBoxContainer/Start HBoxContainer"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 text = "y:"
 
-[node name="Y Edit" type="TextEdit" parent="VBoxContainer/Start HBoxContainer"]
+[node name="Y Edit" type="TextEdit" parent="PanelContainer/VBoxContainer/Start HBoxContainer"]
 custom_minimum_size = Vector2(75, 35)
 layout_mode = 2
 
-[node name="End HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="End HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Point Label" type="RichTextLabel" parent="VBoxContainer/End HBoxContainer"]
+[node name="Point Label" type="Label" parent="PanelContainer/VBoxContainer/End HBoxContainer"]
 custom_minimum_size = Vector2(90, 25)
 layout_mode = 2
 text = "End:"
 
-[node name="X Label" type="RichTextLabel" parent="VBoxContainer/End HBoxContainer"]
+[node name="X Label" type="Label" parent="PanelContainer/VBoxContainer/End HBoxContainer"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 text = "x:"
 
-[node name="X Edit" type="TextEdit" parent="VBoxContainer/End HBoxContainer"]
+[node name="X Edit" type="TextEdit" parent="PanelContainer/VBoxContainer/End HBoxContainer"]
 custom_minimum_size = Vector2(75, 35)
 layout_mode = 2
 
-[node name="Y Label" type="RichTextLabel" parent="VBoxContainer/End HBoxContainer"]
+[node name="Y Label" type="Label" parent="PanelContainer/VBoxContainer/End HBoxContainer"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 text = "y:"
 
-[node name="Y Edit" type="TextEdit" parent="VBoxContainer/End HBoxContainer"]
+[node name="Y Edit" type="TextEdit" parent="PanelContainer/VBoxContainer/End HBoxContainer"]
 custom_minimum_size = Vector2(75, 35)
 layout_mode = 2
 
-[node name="HSeparator4" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button Container" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Button Container" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Rect2i Button" type="Button" parent="VBoxContainer/Button Container"]
+[node name="Rect2i Button" type="Button" parent="PanelContainer/VBoxContainer/Button Container"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Rect"
 
-[node name="Fill Button" type="Button" parent="VBoxContainer/Button Container"]
+[node name="Fill Button" type="Button" parent="PanelContainer/VBoxContainer/Button Container"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Fill"
 
-[node name="Accept Button" type="Button" parent="VBoxContainer/Button Container"]
+[node name="Accept Button" type="Button" parent="PanelContainer/VBoxContainer/Button Container"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Accept"
 
 [connection signal="close_requested" from="." to="." method="hide"]
-[connection signal="pressed" from="VBoxContainer/Button Container/Rect2i Button" to="." method="hide"]
-[connection signal="pressed" from="VBoxContainer/Button Container/Rect2i Button" to="." method="_on_rect_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button Container/Fill Button" to="." method="hide"]
-[connection signal="pressed" from="VBoxContainer/Button Container/Fill Button" to="." method="_on_fill_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button Container/Accept Button" to="." method="hide"]
-[connection signal="pressed" from="VBoxContainer/Button Container/Accept Button" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button Container/Rect2i Button" to="." method="hide"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button Container/Rect2i Button" to="." method="_on_rect_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button Container/Fill Button" to="." method="hide"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button Container/Fill Button" to="." method="_on_fill_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button Container/Accept Button" to="." method="hide"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button Container/Accept Button" to="." method="_on_accept_button_pressed"]

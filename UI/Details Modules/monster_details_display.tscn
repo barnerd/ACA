@@ -6,22 +6,22 @@
 custom_minimum_size = Vector2(0, 25)
 script = ExtResource("1_wg4eq")
 
-[node name="Id Label" type="RichTextLabel" parent="."]
+[node name="Id Label" type="Label" parent="."]
 custom_minimum_size = Vector2(40, 25)
 layout_mode = 2
 text = "ID:"
 
-[node name="Name Label" type="RichTextLabel" parent="."]
+[node name="Name Label" type="Label" parent="."]
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 text = "Name:"
 
-[node name="Sorcery Label" type="RichTextLabel" parent="."]
+[node name="Sorcery Label" type="Label" parent="."]
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 text = "Spirit:"
 
-[node name="Health Label" type="RichTextLabel" parent="."]
+[node name="Health Label" type="Label" parent="."]
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 text = "Health:"

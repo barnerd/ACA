@@ -2,7 +2,7 @@ class_name EncounterDetailsDisplay extends VBoxContainer
 
 var monster_display = preload("res://UI/Details Modules/monster_details_display.tscn")
 
-@onready var section_header = $CenterContainer/RichTextLabel
+@onready var section_header = $"CenterContainer/Section Header"
 @onready var monster_header = $ScrollContainer/VBoxContainer/HBoxContainer
 @onready var monster_section = $ScrollContainer/VBoxContainer
 @onready var terrain_label = $"HBoxContainer/Terrain Label"

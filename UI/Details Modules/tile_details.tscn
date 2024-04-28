@@ -1,34 +1,56 @@
-[gd_scene load_steps=2 format=3 uid="uid://ybu3x4nqm24r"]
+[gd_scene load_steps=3 format=3 uid="uid://ybu3x4nqm24r"]
 
 [ext_resource type="Script" path="res://UI/Details Modules/TileDetailsDisplay.gd" id="1_mp40f"]
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_bdh3e"]
 
 [node name="Tile Details" type="VBoxContainer"]
+theme = ExtResource("2_bdh3e")
 script = ExtResource("1_mp40f")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
+[node name="Section Header" type="Label" parent="CenterContainer"]
 custom_minimum_size = Vector2(210, 25)
 layout_mode = 2
+theme = ExtResource("2_bdh3e")
+theme_type_variation = &"HeaderLabel"
 text = "Location Details [xxx, yyy]"
 
-[node name="Terrain Type" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(250, 25)
+[node name="Terrain Type" type="HBoxContainer" parent="."]
 layout_mode = 2
-bbcode_enabled = true
-text = "Type of land: "
 
-[node name="Movement" type="RichTextLabel" parent="."]
+[node name="Label" type="Label" parent="Terrain Type"]
+layout_mode = 2
+text = "Type of land:"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="Terrain Type"]
+layout_mode = 2
+theme_type_variation = &"DataLabel"
+vertical_alignment = 1
+
+[node name="Mvp" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Value" type="Label" parent="Mvp"]
+layout_mode = 2
+theme_type_variation = &"DataLabel"
+text = "0"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Mvp"]
 custom_minimum_size = Vector2(210, 25)
 layout_mode = 2
-text = "0 movement"
+text = "movement"
+vertical_alignment = 1
 
 [node name="Map id and Sprite" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Map id and Sprite"]
+[node name="Label" type="Label" parent="Map id and Sprite"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
 text = "map-id"
@@ -39,7 +61,7 @@ visible = false
 [node name="Mines" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Mines"]
+[node name="Label" type="Label" parent="Mines"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
-text = "type"
+theme_type_variation = &"DataLabel"

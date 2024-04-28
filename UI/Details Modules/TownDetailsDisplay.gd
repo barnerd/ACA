@@ -1,7 +1,7 @@
 class_name TownDetailsDisplay extends VBoxContainer
 
-@onready var section_header = $CenterContainer/RichTextLabel
-@onready var label_label = $RichTextLabel
+@onready var section_header = $"CenterContainer/Section Header"
+@onready var label_label = $"Town Name"
 
 var selected_terrain: TerrainType
 
@@ -23,7 +23,7 @@ func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 			else:
 				label_label.text += tile_details.town.town_name
 		else:
-			label_label.clear()
+			label_label.text = ""
 
 # Movement page:
 # 	You are in Trading post, owned by Agonia Trading Company

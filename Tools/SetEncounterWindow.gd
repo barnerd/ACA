@@ -1,16 +1,16 @@
 extends Window
 
-@onready var terrain_label = $"VBoxContainer/Terrain & Tier/Terrain Label"
-@onready var tier_options_button = $"VBoxContainer/Terrain & Tier/OptionButton"
-@onready var both_mounts_toggle = $VBoxContainer/BothMountToggle
-@onready var diagonals_toggle = $VBoxContainer/DiagonalsToggle
-@onready var reset_toggle = $VBoxContainer/ResetToggle
+@onready var terrain_label = $"PanelContainer/VBoxContainer/Terrain & Tier/Terrain Label"
+@onready var tier_options_button = $"PanelContainer/VBoxContainer/Terrain & Tier/OptionButton"
+@onready var both_mounts_toggle = $PanelContainer/VBoxContainer/BothMountToggle
+@onready var diagonals_toggle = $PanelContainer/VBoxContainer/DiagonalsToggle
+@onready var reset_toggle = $PanelContainer/VBoxContainer/ResetToggle
 
 # rect fields
-@onready var rect_start_x_edit = $"VBoxContainer/Start HBoxContainer/X Edit"
-@onready var rect_start_y_edit = $"VBoxContainer/Start HBoxContainer/Y Edit"
-@onready var rect_end_x_edit = $"VBoxContainer/End HBoxContainer/X Edit"
-@onready var rect_end_y_edit = $"VBoxContainer/End HBoxContainer/Y Edit"
+@onready var rect_start_x_edit = $"PanelContainer/VBoxContainer/Start HBoxContainer/X Edit"
+@onready var rect_start_y_edit = $"PanelContainer/VBoxContainer/Start HBoxContainer/Y Edit"
+@onready var rect_end_x_edit = $"PanelContainer/VBoxContainer/End HBoxContainer/X Edit"
+@onready var rect_end_y_edit = $"PanelContainer/VBoxContainer/End HBoxContainer/Y Edit"
 
 
 signal set_encounter_window_accepted(tier: String, use_fill: bool, use_rect: bool, mounts: bool, diagonals: bool, region: Rect2i)
