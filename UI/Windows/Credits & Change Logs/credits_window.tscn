@@ -1,0 +1,114 @@
+[gd_scene load_steps=3 format=3 uid="uid://csm2p545751c5"]
+
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_e8cnx"]
+[ext_resource type="Script" path="res://UI/Windows/Credits & Change Logs/credits_window.gd" id="1_qs4ml"]
+
+[node name="Credits Window" type="Window"]
+title = "Credits & Change Log"
+initial_position = 1
+size = Vector2i(325, 416)
+visible = false
+theme = ExtResource("1_e8cnx")
+script = ExtResource("1_qs4ml")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Credits Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Credits"
+
+[node name="Copyright" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "All game content Copyright @ Agonialands - 2019-2023"
+
+[node name="By-Line" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "App development done by Verage (discord: @verage314)"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Change Log Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Change Log"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="v0_3_1 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "v0.3.1 - Encounter Table & Downloads"
+
+[node name="v0_3_1 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(290, 0)
+layout_mode = 2
+text = " • Added scroll bars on monsters list
+ • Other small changes based on feedback"
+autowrap_mode = 2
+
+[node name="v0_3 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "v0.3.0 - Encounter Table & Downloads"
+
+[node name="v0_3 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(290, 0)
+layout_mode = 2
+text = " • Button to download APF File
+ • Button to download map image (use with caution: takes ~1 hour to prepare)
+ • Encounter Tiers now visible on the map!
+ • Filter the visible tiers via a dropdown
+ • Monster Details displayed by Encounter Table
+ • Monsters sorted by sorcery requirement, with xp piñata at top, boss at the bottom"
+autowrap_mode = 2
+
+[node name="v0_2 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "v0.2.0 - Finish HTML Parser and Tile Details"
+
+[node name="v0_2 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(290, 0)
+layout_mode = 2
+text = " • Display towns and mines
+ • Click for tile details
+ • Drag map around
+ • Updated map data, from recent html <table> views"
+autowrap_mode = 2
+
+[node name="v0_1 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "v0.1.0 - Initial Release"
+
+[node name="v0_1 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(290, 0)
+layout_mode = 2
+text = " • Display Terrain Type Image
+ • Display TileMap Map Image
+ • Scroll and Zoom Map
+ • HTML Parser for collecting data from Lookaround page HTML
+"
+autowrap_mode = 2
+
+[connection signal="close_requested" from="." to="." method="hide"]
