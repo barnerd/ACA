@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkn73ewiwrykx"]
+
+[ext_resource type="Script" path="res://UI/Menu/MenuPanel.gd" id="1_qn2pa"]
+[ext_resource type="PackedScene" uid="uid://csm2p545751c5" path="res://UI/Windows/Credits & Change Logs/credits_window.tscn" id="2_kgiyx"]
+
+[node name="Menu" type="MarginContainer"]
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 20
+script = ExtResource("1_qn2pa")
+
+[node name="Menu PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Groups" type="Button" parent="Menu PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Groups & Towns"
+alignment = 0
+
+[node name="Recipes" type="Button" parent="Menu PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Craftmanship"
+alignment = 0
+
+[node name="Sorcery" type="Button" parent="Menu PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Monsters & Spirits"
+alignment = 0
+
+[node name="Settings" type="Button" parent="Menu PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Options"
+alignment = 0
+
+[node name="Credits" type="Button" parent="Menu PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Credits & Change Log"
+alignment = 0
+
+[node name="Credits Window" parent="Menu PanelContainer/MarginContainer/VBoxContainer/Credits" instance=ExtResource("2_kgiyx")]
+
+[connection signal="pressed" from="Menu PanelContainer/MarginContainer/VBoxContainer/Groups" to="." method="_on_groups_menu_item_pressed"]
+[connection signal="pressed" from="Menu PanelContainer/MarginContainer/VBoxContainer/Recipes" to="." method="_on_recipes_menu_item_pressed"]
+[connection signal="pressed" from="Menu PanelContainer/MarginContainer/VBoxContainer/Sorcery" to="." method="_on_sorcery_menu_item_pressed"]
+[connection signal="pressed" from="Menu PanelContainer/MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_menu_item_pressed"]
+[connection signal="pressed" from="Menu PanelContainer/MarginContainer/VBoxContainer/Credits" to="." method="_on_credits_menu_item_pressed"]
