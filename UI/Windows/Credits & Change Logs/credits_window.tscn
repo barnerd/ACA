@@ -8,6 +8,7 @@ title = "Credits & Change Log"
 initial_position = 1
 size = Vector2i(325, 416)
 visible = false
+unresizable = true
 theme = ExtResource("1_e8cnx")
 script = ExtResource("1_qs4ml")
 
@@ -53,6 +54,20 @@ horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
+
+[node name="v0_4 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "v0.4 - Theming & Polish"
+
+[node name="v0_4 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(290, 0)
+layout_mode = 2
+text = " • Themed app to closely match Agonia
+ • Add coords around map
+ • Expanded map to full 400x400
+ • Some backend cleanup & optimization"
+autowrap_mode = 2
 
 [node name="v0_3_1 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2

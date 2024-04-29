@@ -5,6 +5,8 @@
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_ytbyf"]
 
 [node name="Encounter Details" type="VBoxContainer"]
+offset_right = 354.0
+offset_bottom = 326.0
 script = ExtResource("1_ajyjh")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -39,7 +41,7 @@ text = "Tier: "
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(0, 210)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 horizontal_scroll_mode = 0
 
@@ -50,6 +52,7 @@ layout_mode = 2
 visible = false
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Id Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 25)
@@ -73,6 +76,7 @@ theme_type_variation = &"HeaderLabel"
 text = "Spirit:"
 
 [node name="Health Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 theme = ExtResource("2_ytbyf")

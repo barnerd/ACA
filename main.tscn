@@ -4522,9 +4522,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -965.0
-offset_top = -336.0
-offset_right = 965.0
+offset_left = -960.0
+offset_top = -320.0
+offset_right = 970.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("14_m0auc")
@@ -4535,7 +4535,7 @@ texture = ExtResource("20_752pd")
 stretch_mode = 3
 
 [node name="Details Container" type="HBoxContainer" parent="Control/PanelContainer2"]
-custom_minimum_size = Vector2(1920, 320)
+custom_minimum_size = Vector2(1920, 200)
 layout_mode = 2
 
 [node name="Pathfinding Details" parent="Control/PanelContainer2/Details Container" instance=ExtResource("14_pfesv")]
