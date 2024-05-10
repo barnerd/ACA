@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func paint_tile(_position: Vector2i, _color: Color) -> void:
-	var tile: Rect2i = Rect2i(_position.x * AgoniaData.MapData.TILE_SIZE.x, _position.y * AgoniaData.MapData.TILE_SIZE.y, AgoniaData.MapData.TILE_SIZE.x - 1, AgoniaData.MapData.TILE_SIZE.y - 1)
+	var tile: Rect2i = Rect2i(_position.x * AgoniaData.MapData.TILE_SIZE.x, _position.y * AgoniaData.MapData.TILE_SIZE.y, AgoniaData.MapData.TILE_SIZE.x, AgoniaData.MapData.TILE_SIZE.y)
 	
 	display_image.fill_rect(tile, _color)
 

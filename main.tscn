@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cixyvm26uk3uc"]
+[gd_scene load_steps=36 format=3 uid="uid://cixyvm26uk3uc"]
 
 [ext_resource type="Script" path="res://ScrollInput.gd" id="1_1knja"]
 [ext_resource type="Script" path="res://File Loader.gd" id="1_70b50"]
@@ -19,12 +19,14 @@
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="14_m0auc"]
 [ext_resource type="PackedScene" uid="uid://lk86ulb3sqsb" path="res://UI/Details Modules/pathfinding.tscn" id="14_pfesv"]
 [ext_resource type="PackedScene" uid="uid://ybu3x4nqm24r" path="res://UI/Details Modules/tile_details.tscn" id="15_724hc"]
+[ext_resource type="Script" path="res://GridLines.gd" id="15_kgwfe"]
 [ext_resource type="Texture2D" uid="uid://coq8ywol3qmue" path="res://images/tilecolor.jpg" id="16_cmi7w"]
 [ext_resource type="PackedScene" uid="uid://c6wy6xvn5lvl1" path="res://UI/Details Modules/encounter_details.tscn" id="16_f8o5m"]
 [ext_resource type="Texture2D" uid="uid://dn4nuaarx2fb7" path="res://images/agonia-sprite.png" id="16_sl5wh"]
 [ext_resource type="Script" path="res://TerrainColors.gd" id="17_2gmiw"]
 [ext_resource type="PackedScene" uid="uid://dbyo0eb8tgybn" path="res://UI/Details Modules/town_details.tscn" id="17_rfvkl"]
 [ext_resource type="Texture2D" uid="uid://cdohi8uwlhwy8" path="res://images/dragon.png" id="20_752pd"]
+[ext_resource type="Script" path="res://UI/GridLayerToggle.gd" id="20_krvda"]
 [ext_resource type="PackedScene" uid="uid://bkn73ewiwrykx" path="res://UI/Menu/menu.tscn" id="20_v64sv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8pft2"]
@@ -4384,8 +4386,11 @@ load_labels = true
 [node name="Timer" type="Timer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/EncounterLayer"]
 wait_time = 0.06
 
+[node name="Node2D" type="Node2D" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"]
+script = ExtResource("15_kgwfe")
+color = Color(0, 0, 0, 1)
+
 [node name="Controls" type="MarginContainer" parent="Control/PanelContainer"]
-custom_minimum_size = Vector2(241, 340)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -4393,7 +4398,7 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="Controls PanelContainer" type="PanelContainer" parent="Control/PanelContainer/Controls"]
-custom_minimum_size = Vector2(182, 350)
+custom_minimum_size = Vector2(182, 400)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -4471,6 +4476,14 @@ size_flags_vertical = 0
 button_pressed = true
 text = "Show Map"
 script = ExtResource("5_5sk12")
+
+[node name="Grid Layer Toggle" type="CheckButton" parent="Control/PanelContainer/Controls/Controls PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+button_pressed = true
+text = "Show Grid"
+script = ExtResource("20_krvda")
 
 [node name="Zoom Controls VBox" type="VBoxContainer" parent="Control/PanelContainer/Controls/Controls PanelContainer"]
 layout_mode = 2
@@ -4576,6 +4589,7 @@ script = ExtResource("1_70b50")
 [connection signal="toggled" from="Control/PanelContainer/Controls/Controls PanelContainer/VBoxContainer/Image toggle" to="Control/PanelContainer/Controls/Controls PanelContainer/VBoxContainer/Image toggle" method="_on_toggled" binds= [2]]
 [connection signal="toggled" from="Control/PanelContainer/Controls/Controls PanelContainer/VBoxContainer/Image toggle2" to="Control/PanelContainer/Controls/Controls PanelContainer/VBoxContainer/Image toggle2" method="_on_toggled" binds= [1]]
 [connection signal="toggled" from="Control/PanelContainer/Controls/Controls PanelContainer/VBoxContainer/Image toggle3" to="Control/PanelContainer/Controls/Controls PanelContainer/VBoxContainer/Image toggle3" method="_on_toggled" binds= [0]]
+[connection signal="toggled" from="Control/PanelContainer/Controls/Controls PanelContainer/VBoxContainer/Grid Layer Toggle" to="Control/PanelContainer/Controls/Controls PanelContainer/VBoxContainer/Grid Layer Toggle" method="_on_toggled"]
 [connection signal="pressed" from="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox/Zoom Plus" to="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_plus_pressed"]
 [connection signal="text_submitted" from="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox/Zoom Number" to="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_number_text_submitted"]
 [connection signal="pressed" from="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox/Zoom Minus" to="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_minus_pressed"]
