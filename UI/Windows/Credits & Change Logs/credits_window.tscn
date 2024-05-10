@@ -6,7 +6,7 @@
 [node name="Credits Window" type="Window"]
 title = "Credits & Change Log"
 initial_position = 1
-size = Vector2i(325, 416)
+size = Vector2i(630, 480)
 visible = false
 unresizable = true
 theme = ExtResource("1_e8cnx")
@@ -61,7 +61,7 @@ theme_type_variation = &"HeaderLabel"
 text = "v0.4 - Theming & Polish"
 
 [node name="v0_4 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(290, 0)
+custom_minimum_size = Vector2(595, 0)
 layout_mode = 2
 text = " • Themed app to closely match Agonia
  • Add coords around map
@@ -75,7 +75,7 @@ theme_type_variation = &"HeaderLabel"
 text = "v0.3.1 - Encounter Table & Downloads"
 
 [node name="v0_3_1 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(290, 0)
+custom_minimum_size = Vector2(595, 0)
 layout_mode = 2
 text = " • Added scroll bars on monsters list
  • Other small changes based on feedback"
@@ -87,7 +87,7 @@ theme_type_variation = &"HeaderLabel"
 text = "v0.3.0 - Encounter Table & Downloads"
 
 [node name="v0_3 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(290, 0)
+custom_minimum_size = Vector2(595, 0)
 layout_mode = 2
 text = " • Button to download APF File
  • Button to download map image (use with caution: takes ~1 hour to prepare)
@@ -103,7 +103,7 @@ theme_type_variation = &"HeaderLabel"
 text = "v0.2.0 - Finish HTML Parser and Tile Details"
 
 [node name="v0_2 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(290, 0)
+custom_minimum_size = Vector2(595, 0)
 layout_mode = 2
 text = " • Display towns and mines
  • Click for tile details
@@ -117,7 +117,7 @@ theme_type_variation = &"HeaderLabel"
 text = "v0.1.0 - Initial Release"
 
 [node name="v0_1 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(290, 0)
+custom_minimum_size = Vector2(595, 0)
 layout_mode = 2
 text = " • Display Terrain Type Image
  • Display TileMap Map Image

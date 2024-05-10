@@ -85,7 +85,7 @@ script = ExtResource("2_kswkd")
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right Column"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 30
 
 [node name="Download APF txt" type="Button" parent="HBoxContainer/Right Column/MarginContainer"]
 custom_minimum_size = Vector2(0, 30)

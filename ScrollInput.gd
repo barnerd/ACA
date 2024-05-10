@@ -25,6 +25,24 @@ func _init() -> void:
 
 func _ready() -> void:
 	SignalBus.connect_to_signal("on_map_zoom", on_map_zoom)
+	
+	get_v_scroll_bar().custom_minimum_size.x = 14
+	get_h_scroll_bar().custom_minimum_size.y = 14
+
+
+# attempt to capture mouse scroll wheel
+#func _gui_input(event:InputEvent) -> void:
+	#if event.is_action_pressed("zoom_in"):
+		#return
+	#if event.is_action_pressed("zoom_out"):
+		#return
+#
+#
+#func _input(event):
+	#if event.is_action_pressed("zoom_in"):
+		#return
+	#if event.is_action_pressed("zoom_out"):
+		#return
 
 
 func _unhandled_input(_event):

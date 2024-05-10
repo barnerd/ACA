@@ -4379,12 +4379,13 @@ custom_minimum_size = Vector2(9600, 9600)
 layout_mode = 2
 theme = ExtResource("14_m0auc")
 script = ExtResource("12_b3yvo")
+load_labels = true
 
 [node name="Timer" type="Timer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/EncounterLayer"]
 wait_time = 0.06
 
 [node name="Controls" type="MarginContainer" parent="Control/PanelContainer"]
-custom_minimum_size = Vector2(202, 340)
+custom_minimum_size = Vector2(241, 340)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -4392,7 +4393,7 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="Controls PanelContainer" type="PanelContainer" parent="Control/PanelContainer/Controls"]
-custom_minimum_size = Vector2(182, 320)
+custom_minimum_size = Vector2(182, 350)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
