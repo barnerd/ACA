@@ -64,7 +64,10 @@ text = "v0.4 - Theming & Polish"
 custom_minimum_size = Vector2(595, 0)
 layout_mode = 2
 text = " • Themed app to closely match Agonia
- • Add coords around map
+ • Added coords around map
+ • Added grid lines and a toggle to turn them on/off
+ • Added Menu to upper right and added credits & change log window
+ • Changed default zoom to 24 and range from 1 to 96 (up to 4x size)
  • Expanded map to full 400x400
  • Some backend cleanup & optimization"
 autowrap_mode = 2
