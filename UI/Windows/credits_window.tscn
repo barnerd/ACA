@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://csm2p545751c5"]
+[gd_scene load_steps=2 format=3 uid="uid://csm2p545751c5"]
 
-[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_e8cnx"]
-[ext_resource type="Script" path="res://UI/Windows/Credits & Change Logs/credits_window.gd" id="1_qs4ml"]
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_3svge"]
 
 [node name="Credits Window" type="Window"]
 title = "Credits & Change Log"
@@ -9,12 +8,13 @@ initial_position = 1
 size = Vector2i(630, 480)
 visible = false
 unresizable = true
-theme = ExtResource("1_e8cnx")
-script = ExtResource("1_qs4ml")
+theme = ExtResource("1_3svge")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 10.0
+offset_bottom = 10.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -58,12 +58,13 @@ layout_mode = 2
 [node name="v0_4 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLabel"
-text = "v0.4 - Theming & Polish"
+text = "v0.4 - Theming"
 
 [node name="v0_4 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(595, 0)
 layout_mode = 2
 text = " • Themed app to closely match Agonia
+ • Made scrollbars wider
  • Added coords around map
  • Added grid lines and a toggle to turn them on/off
  • Added Menu to upper right and added credits & change log window

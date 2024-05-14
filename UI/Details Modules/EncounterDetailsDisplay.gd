@@ -7,11 +7,10 @@ var monster_display = preload("res://UI/Details Modules/monster_details_display.
 @onready var monster_section = $ScrollContainer/VBoxContainer
 @onready var terrain_label = $"HBoxContainer/Terrain Label"
 @onready var tier_label = $"HBoxContainer/Tier Label"
-@onready var set_encounter_window = $"Edit Button/SetEncounterWindow"
+#@onready var set_encounter_window = $"Edit Button/SetEncounterWindow"
 
 var encounter_details
 var tile_details
-var tier_options_current_terrain: int = -1
 
 
 func _ready() -> void:
@@ -36,7 +35,7 @@ func update_encounter_details() -> void:
 	if encounter_details:
 		terrain_label.text = "Terrain: %s" % AgoniaData.MapData.terrains_by_id[encounter_details.terrain_id].terrain_name
 		tier_label.text = "Tier: %s" % encounter_details.tier_name
-		$"Edit Button".text = "Edit Encounter"
+
 		# Display nickname
 		if encounter_details.nickname:
 			section_header.text = "Monster Details - %s" % encounter_details.nickname
@@ -57,7 +56,6 @@ func update_encounter_details() -> void:
 		print("No encounter details found")
 		terrain_label.text = "Terrain:"
 		tier_label.text = "Tier:"
-		$"Edit Button".text = "Add Encounter"
 
 
 func sort_monsters_in_table(a: int, b: int) -> bool:
@@ -68,57 +66,6 @@ func sort_monsters_in_table(a: int, b: int) -> bool:
 		return mon_a.sorcery_requirement < mon_b.sorcery_requirement
 	else:
 		return mon_a.monster_category < mon_b.monster_category
-
-
-func _prepare_set_encounter_window() -> void:
-	if tile_details:
-		var terrain_id = tile_details.terrain_id
-		var dropdown_tiers: Array = []
-		var dropdown_update: bool = false
-		
-		if not tier_options_current_terrain == terrain_id:
-			tier_options_current_terrain = terrain_id
-			dropdown_update = true
-			
-			var dropdown_terrain: int = terrain_id
-			
-			# if terrain_id is road, then use plains T1
-			if terrain_id == 8:
-				dropdown_terrain = 7
-				dropdown_tiers = ["T1"]
-			# if terrain_id is wastes, include lava
-			elif terrain_id == 13:
-				# take wastes tiers and lava tiers and combine them
-				if AgoniaData.MonsterData.encounters_by_terrain_tier.has(3):
-					dropdown_tiers = AgoniaData.MonsterData.encounters_by_terrain_tier[3].keys()
-					for t in dropdown_tiers.size():
-						dropdown_tiers[t] += " - Lava"
-				if AgoniaData.MonsterData.encounters_by_terrain_tier.has(dropdown_terrain):
-					dropdown_tiers += AgoniaData.MonsterData.encounters_by_terrain_tier[dropdown_terrain].keys()
-			else:
-				# if terrain_id is mountain L2, set to mountain L1
-				if terrain_id == 5:
-					dropdown_terrain = 4
-				# if terrain is icy L1, set to snow
-				if terrain_id == 10:
-					dropdown_terrain = 9
-				
-				if AgoniaData.MonsterData.encounters_by_terrain_tier.has(dropdown_terrain):
-					dropdown_tiers = AgoniaData.MonsterData.encounters_by_terrain_tier[dropdown_terrain].keys()
-			
-			dropdown_tiers.sort_custom(sort_tier_dropdown)
-		
-		set_encounter_window.prepare_set_encounter_window(tile_details.terrain_details.terrain_name, dropdown_tiers, tile_details.location, dropdown_update)
-		set_encounter_window.show()
-
-
-func sort_tier_dropdown(a: String, b: String) -> bool:
-	var a_number = int(a.split(" ")[0].right(-1))
-	var b_number = int(b.split(" ")[0].right(-1))
-	if a_number == b_number:
-		return a < b
-	else:
-		return a_number < b_number
 
 
 func _update_tile_encounter_id(_tile, _encounter) -> void:

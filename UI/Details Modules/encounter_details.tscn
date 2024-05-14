@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6wy6xvn5lvl1"]
+[gd_scene load_steps=3 format=3 uid="uid://c6wy6xvn5lvl1"]
 
 [ext_resource type="Script" path="res://UI/Details Modules/EncounterDetailsDisplay.gd" id="1_ajyjh"]
-[ext_resource type="PackedScene" uid="uid://7rbtbqx0tkjc" path="res://Tools/set_encounter_window.tscn" id="2_vyogx"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_ytbyf"]
 
 [node name="Encounter Details" type="VBoxContainer"]
@@ -82,11 +81,3 @@ layout_mode = 2
 theme = ExtResource("2_ytbyf")
 theme_type_variation = &"HeaderLabel"
 text = "Health:"
-
-[node name="Edit Button" type="Button" parent="."]
-layout_mode = 2
-text = "Edit Encounter"
-
-[node name="SetEncounterWindow" parent="Edit Button" instance=ExtResource("2_vyogx")]
-
-[connection signal="pressed" from="Edit Button" to="." method="_prepare_set_encounter_window"]

@@ -3,8 +3,8 @@ class_name MapParser extends Node
 var regex: RegEx
 var map_table_data: String
 
-@onready var results_textbox = $"../Update Map Results PopupPanel/VBoxContainer/Results"
-@onready var status_textbox = $"../Update Map Results PopupPanel/VBoxContainer/HBoxContainer/Status"
+@onready var results_textbox = $"../ResultsWindow/PanelContainer/MarginContainer/VBoxContainer/Results"
+@onready var status_textbox = $"../ResultsWindow/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Status"
 
 var counts: Dictionary = {}
 var pending_changes: Array = []
@@ -29,7 +29,7 @@ func _on_parse_button_pressed() -> void:
 	# /? to match /
 	regex.compile("<table>([./n/r\\s\\S]*)</?table>")
 
-	var result = regex.search($"../VBoxContainer/TextEdit".text)
+	var result = regex.search($"../PanelContainer/MarginContainer/VBoxContainer/TextEdit".text)
 	if result:
 		map_table_data = result.get_string(1)
 		update_results()

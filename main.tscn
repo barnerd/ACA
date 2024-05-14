@@ -1,11 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://cixyvm26uk3uc"]
+[gd_scene load_steps=34 format=3 uid="uid://cixyvm26uk3uc"]
 
 [ext_resource type="Script" path="res://ScrollInput.gd" id="1_1knja"]
 [ext_resource type="Script" path="res://File Loader.gd" id="1_70b50"]
-[ext_resource type="PackedScene" uid="uid://dma57v67lqap6" path="res://order_side_popup.tscn" id="2_0jwh1"]
 [ext_resource type="Script" path="res://HUD/CopyScroll.gd" id="3_auso8"]
 [ext_resource type="Script" path="res://HUD/CoordLabels.gd" id="3_r3c8x"]
-[ext_resource type="PackedScene" uid="uid://dididv7xdkapi" path="res://update_map_edit_popup.tscn" id="4_uilq3"]
 [ext_resource type="Script" path="res://UI/ImageToggle.gd" id="5_5sk12"]
 [ext_resource type="Texture2D" uid="uid://c6wk0vm4udsts" path="res://images/town0.png" id="6_0ma1q"]
 [ext_resource type="Script" path="res://MapZoom.gd" id="6_r1k04"]
@@ -4273,12 +4271,6 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("14_m0auc")
 
-[node name="Update Map Text Input PopupPanel" parent="Control" instance=ExtResource("4_uilq3")]
-visible = false
-
-[node name="Update Map Text Input PopupPanel2" parent="Control" instance=ExtResource("2_0jwh1")]
-visible = false
-
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
 layout_mode = 0
 offset_right = 1920.0
@@ -4577,10 +4569,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="Update Map Button" type="Button" parent="Control/PanelContainer2/Details Container/Town Details"]
-layout_mode = 2
-text = "Update Map"
-
 [node name="File Loader" type="Node" parent="."]
 script = ExtResource("1_70b50")
 
@@ -4593,5 +4581,3 @@ script = ExtResource("1_70b50")
 [connection signal="pressed" from="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox/Zoom Plus" to="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_plus_pressed"]
 [connection signal="text_submitted" from="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox/Zoom Number" to="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_number_text_submitted"]
 [connection signal="pressed" from="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox/Zoom Minus" to="Control/PanelContainer/Controls/Controls PanelContainer/Zoom Controls VBox" method="_on_zoom_minus_pressed"]
-[connection signal="pressed" from="Control/Order Side Button" to="Control/Update Map Text Input PopupPanel2" method="_on_order_side_button_pressed"]
-[connection signal="pressed" from="Control/PanelContainer2/Details Container/Town Details/Update Map Button" to="Control/Update Map Text Input PopupPanel" method="_on_update_map_button_pressed"]

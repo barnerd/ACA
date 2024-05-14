@@ -1,7 +1,7 @@
-extends PopupPanel
+extends Window
 
-@onready var text_box = $VBoxContainer/TextEdit
-@onready var status_label = $VBoxContainer/HBoxContainer/Status
+@onready var text_box = $PanelContainer/MarginContainer/VBoxContainer/TextEdit
+@onready var status_label = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Status
 
 var regex: RegEx
 var map_table_data: String

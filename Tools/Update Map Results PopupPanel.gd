@@ -1,7 +1,7 @@
-extends PopupPanel
+extends Window
 
-@onready var results_lebel = $VBoxContainer/Results
-@onready var status_label  = $VBoxContainer/HBoxContainer/Status
+@onready var results_lebel = $PanelContainer/MarginContainer/VBoxContainer/Results
+@onready var status_label  = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Status
 
 
 func _on_parse_button_pressed() -> void:

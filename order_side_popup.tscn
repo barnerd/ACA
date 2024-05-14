@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dma57v67lqap6"]
 
-[ext_resource type="Script" path="res://Update Map Text Input PopupPanel.gd" id="1_ogx1g"]
+[ext_resource type="Script" path="res://Tools/Update Map Text Input PopupPanel.gd" id="1_ogx1g"]
 [ext_resource type="Script" path="res://Order View Parser.gd" id="2_2cu0m"]
-[ext_resource type="Script" path="res://Update Map Results PopupPanel.gd" id="3_m04xx"]
+[ext_resource type="Script" path="res://Tools/Update Map Results PopupPanel.gd" id="3_m04xx"]
 
 [node name="Update Map Text Input PopupPanel" type="PopupPanel"]
 title = "Update Map"

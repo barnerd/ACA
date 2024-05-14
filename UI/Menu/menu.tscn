@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkn73ewiwrykx"]
+[gd_scene load_steps=4 format=3 uid="uid://bkn73ewiwrykx"]
 
 [ext_resource type="Script" path="res://UI/Menu/MenuPanel.gd" id="1_qn2pa"]
-[ext_resource type="PackedScene" uid="uid://csm2p545751c5" path="res://UI/Windows/Credits & Change Logs/credits_window.tscn" id="2_kgiyx"]
+[ext_resource type="PackedScene" uid="uid://csm2p545751c5" path="res://UI/Windows/credits_window.tscn" id="2_kgiyx"]
+[ext_resource type="PackedScene" uid="uid://ctiaxywx282qj" path="res://UI/Windows/edit_buttons.tscn" id="3_1wbbw"]
 
 [node name="Menu" type="MarginContainer"]
 size_flags_horizontal = 8
@@ -52,8 +53,14 @@ alignment = 0
 
 [node name="Credits Window" parent="Menu PanelContainer/VBoxContainer/Credits" instance=ExtResource("2_kgiyx")]
 
-[connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Groups" to="." method="_on_groups_menu_item_pressed"]
-[connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Recipes" to="." method="_on_recipes_menu_item_pressed"]
-[connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Sorcery" to="." method="_on_sorcery_menu_item_pressed"]
-[connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Settings" to="." method="_on_settings_menu_item_pressed"]
-[connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Credits" to="." method="_on_credits_menu_item_pressed"]
+[node name="Edits" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Update Data"
+alignment = 0
+
+[node name="Edit Buttons" parent="Menu PanelContainer/VBoxContainer/Edits" instance=ExtResource("3_1wbbw")]
+
+[connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Credits" to="Menu PanelContainer/VBoxContainer/Credits/Credits Window" method="show"]
+[connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Edits" to="Menu PanelContainer/VBoxContainer/Edits/Edit Buttons" method="show"]

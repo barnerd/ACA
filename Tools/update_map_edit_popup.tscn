@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3 uid="uid://dididv7xdkapi"]
+
+[ext_resource type="Script" path="res://Tools/Update Map Text Input PopupPanel.gd" id="1_61rjw"]
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_nd4bo"]
+[ext_resource type="Script" path="res://Map View Parser.gd" id="2_3fjra"]
+[ext_resource type="Script" path="res://Tools/Update Map Results PopupPanel.gd" id="2_do63u"]
+
+[node name="UpdateMapWindow" type="Window"]
+title = "Update Map"
+initial_position = 1
+size = Vector2i(500, 419)
+visible = false
+theme = ExtResource("1_nd4bo")
+script = ExtResource("1_61rjw")
+
+[node name="Map View Parser" type="Node" parent="."]
+script = ExtResource("2_3fjra")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 350)
+layout_mode = 2
+placeholder_text = "Enter HTML <table> tag for map here..."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Status" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Ready"
+
+[node name="Parse Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Parse Text"
+
+[node name="ResultsWindow" type="Window" parent="."]
+title = "Update Map"
+initial_position = 1
+size = Vector2i(554, 419)
+visible = false
+theme = ExtResource("1_nd4bo")
+script = ExtResource("2_do63u")
+
+[node name="PanelContainer" type="PanelContainer" parent="ResultsWindow"]
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ResultsWindow/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ResultsWindow/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Results" type="RichTextLabel" parent="ResultsWindow/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 350)
+layout_mode = 2
+text = "Nodes found..."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResultsWindow/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Status" type="RichTextLabel" parent="ResultsWindow/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+text = "Parsing..."
+
+[node name="Cancel Button" type="Button" parent="ResultsWindow/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="Accept Button" type="Button" parent="ResultsWindow/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Accept"
+
+[connection signal="close_requested" from="." to="." method="hide"]
+[connection signal="text_changed" from="PanelContainer/MarginContainer/VBoxContainer/TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Parse Button" to="." method="_on_parse_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Parse Button" to="Map View Parser" method="_on_parse_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Parse Button" to="ResultsWindow" method="_on_parse_button_pressed"]
+[connection signal="close_requested" from="ResultsWindow" to="ResultsWindow" method="hide"]
+[connection signal="pressed" from="ResultsWindow/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel Button" to="Map View Parser" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="ResultsWindow/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel Button" to="ResultsWindow" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="ResultsWindow/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Accept Button" to="Map View Parser" method="_on_accept_button_pressed"]
+[connection signal="pressed" from="ResultsWindow/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Accept Button" to="ResultsWindow" method="_on_accept_button_pressed"]
