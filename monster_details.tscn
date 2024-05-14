@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bc8ol0txyuhyt"]
-
-[ext_resource type="Script" path="res://MonsterDetails.gd" id="1_me1u4"]
-
-[node name="MonsterDetails" type="Node" groups=["Persist"]]
-script = ExtResource("1_me1u4")

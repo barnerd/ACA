@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbyo0eb8tgybn"]
+[gd_scene load_steps=3 format=3 uid="uid://dbyo0eb8tgybn"]
 
 [ext_resource type="Script" path="res://UI/Details Modules/TownDetailsDisplay.gd" id="1_1o82u"]
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_xhfov"]
 
 [node name="Town Details" type="VBoxContainer"]
 script = ExtResource("1_1o82u")
@@ -9,11 +10,13 @@ script = ExtResource("1_1o82u")
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
+[node name="Section Header" type="Label" parent="CenterContainer"]
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
+theme = ExtResource("2_xhfov")
+theme_type_variation = &"HeaderLabel"
 text = "Towns"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Town Name" type="Label" parent="."]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2

@@ -3,25 +3,29 @@
 [ext_resource type="Script" path="res://UI/Details Modules/MonsterDetailsDisplay.gd" id="1_wg4eq"]
 
 [node name="Monster Details" type="HBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
 script = ExtResource("1_wg4eq")
 
-[node name="Id Label" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(40, 25)
+[node name="Id Label" type="Label" parent="."]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+theme_type_variation = &"DataLabel"
 text = "ID:"
 
-[node name="Name Label" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(250, 25)
+[node name="Name Label" type="Label" parent="."]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+theme_type_variation = &"DataLabel"
 text = "Name:"
 
-[node name="Sorcery Label" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(60, 25)
+[node name="Sorcery Label" type="Label" parent="."]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+theme_type_variation = &"DataLabel"
 text = "Spirit:"
 
-[node name="Health Label" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(60, 25)
+[node name="Health Label" type="Label" parent="."]
+visible = false
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+theme_type_variation = &"DataLabel"
 text = "Health:"

@@ -1,23 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://lk86ulb3sqsb"]
+[gd_scene load_steps=6 format=3 uid="uid://lk86ulb3sqsb"]
 
 [ext_resource type="Script" path="res://UI/Details Modules/PathfindingDetails.gd" id="1_nwedy"]
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_1uuf1"]
 [ext_resource type="Script" path="res://UI/Details Modules/TribeDropdown.gd" id="2_kswkd"]
 [ext_resource type="Script" path="res://UI/DownloadAPF.gd" id="3_7n02g"]
 [ext_resource type="Script" path="res://UI/DownloadImage.gd" id="4_qt7k1"]
 
 [node name="Pathfinding Details" type="VBoxContainer"]
+offset_right = 391.0
+offset_bottom = 199.0
 script = ExtResource("1_nwedy")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
+[node name="Section Header" type="Label" parent="CenterContainer"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-bbcode_enabled = true
+theme = ExtResource("2_1uuf1")
+theme_type_variation = &"HeaderLabel"
 text = "Pathfinding"
-scroll_active = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -28,12 +31,10 @@ layout_mode = 2
 [node name="Start Point" type="HBoxContainer" parent="HBoxContainer/Left Column"]
 layout_mode = 2
 
-[node name="Label" type="RichTextLabel" parent="HBoxContainer/Left Column/Start Point"]
+[node name="Label" type="Label" parent="HBoxContainer/Left Column/Start Point"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "Start:"
-scroll_active = false
-autowrap_mode = 0
 
 [node name="X" type="LineEdit" parent="HBoxContainer/Left Column/Start Point"]
 layout_mode = 2
@@ -84,7 +85,7 @@ script = ExtResource("2_kswkd")
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right Column"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 30
 
 [node name="Download APF txt" type="Button" parent="HBoxContainer/Right Column/MarginContainer"]
 custom_minimum_size = Vector2(0, 30)

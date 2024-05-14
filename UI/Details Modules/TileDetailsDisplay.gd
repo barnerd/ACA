@@ -1,10 +1,11 @@
 class_name TileDetailsDisplay extends VBoxContainer
 
-@onready var section_header = $CenterContainer/RichTextLabel
-@onready var terrain_type_label = $"HBoxContainer/Terrain Type"
-@onready var movement_label = $HBoxContainer/Movement
-@onready var map_id_label = $"Map id and Sprite/RichTextLabel"
-@onready var mine_label = $Mines/RichTextLabel
+@onready var section_header = $"CenterContainer/Section Header"
+@onready var terrain_type_value = $"Terrain Type/Value"
+@onready var movement_value = $Mvp/Value
+@onready var movement_label = $Mvp/Label
+@onready var map_id_label = $"Map id and Sprite/Label"
+@onready var mine_label = $Mines/Label
 
 var selected_tribe: String = "Dwarr"
 var selected_terrain: TerrainType
@@ -19,19 +20,25 @@ func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 	if _button == MOUSE_BUTTON_LEFT:
 		section_header.text = "Location Details ["+str(_coords.x)+","+str(_coords.y)+"]"
 		
-		var tile_details = MapDetailsSingleton.map_tiles[_coords]
+		var tile_details = AgoniaData.MapData.map_tiles[_coords]
 		selected_terrain = tile_details.terrain_details
 		
-		_generate_terrain_type_label(selected_terrain.terrain_name, selected_terrain.terrain_color_custom)
-		_generate_movement_label()
-		
-		map_id_label.text = "map-" + str(tile_details.tile_image_id)
-		
-		var mine_names: Array[String] = []
-		
-		for m in tile_details.mines:
-			mine_names.append(m.type_name)
-		mine_label.text = ", ".join(mine_names)
+		if selected_terrain:
+			terrain_type_value.text = selected_terrain.terrain_name
+			_generate_movement_label()
+			
+			map_id_label.text = "map-" + str(tile_details.tile_image_id)
+			
+			var mine_names: Array[String] = []
+			
+			for m in tile_details.mines:
+				mine_names.append(m.type_name)
+			mine_label.text = ", ".join(mine_names)
+		else:
+			terrain_type_value.text = ""
+			movement_value.text = ""
+			movement_label.text = ""
+			map_id_label.text = "map-" + str(tile_details.tile_image_id)
 
 
 func on_tribe_select(_tribe: String):
@@ -39,16 +46,15 @@ func on_tribe_select(_tribe: String):
 	_generate_movement_label()
 
 
-func _generate_terrain_type_label(_type: String, _color: Color) -> void:
-	terrain_type_label.clear()
-	terrain_type_label.push_color(_color)
-	terrain_type_label.append_text(_type)
-	terrain_type_label.pop()
+#func _generate_terrain_type_label(_type: String, _color: Color) -> void:
+	#terrain_type_label.clear()
+	#terrain_type_label.append_text("Type of land: ")
+	#terrain_type_label.push_color(_color)
+	#terrain_type_label.append_text(_type)
+	#terrain_type_label.pop()
 
 
 func _generate_movement_label() -> void:
-	movement_label.clear()
-	
 	var mvp: int = -1
 	if selected_terrain:
 		match selected_tribe:
@@ -70,8 +76,9 @@ func _generate_movement_label() -> void:
 				mvp = selected_terrain.nuruk_mvp
 	
 	if mvp == -1:
-		movement_label.append_text("you cannot move this way")
+		movement_value.text = ""
+		movement_label.text = "you cannot move this way"
 	else:
-		movement_label.append_text(str(mvp))
-		movement_label.append_text(" movement")
+		movement_value.text = str(mvp)
+		movement_label.text = "movement"
 

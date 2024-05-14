@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkn73ewiwrykx"]
+
+[ext_resource type="Script" path="res://UI/Menu/MenuPanel.gd" id="1_qn2pa"]
+[ext_resource type="PackedScene" uid="uid://csm2p545751c5" path="res://UI/Windows/credits_window.tscn" id="2_kgiyx"]
+[ext_resource type="PackedScene" uid="uid://ctiaxywx282qj" path="res://UI/Windows/edit_buttons.tscn" id="3_1wbbw"]
+
+[node name="Menu" type="MarginContainer"]
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 20
+script = ExtResource("1_qn2pa")
+
+[node name="Menu PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Groups" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Groups & Towns"
+alignment = 0
+
+[node name="Recipes" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Craftmanship"
+alignment = 0
+
+[node name="Sorcery" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Monsters & Spirits"
+alignment = 0
+
+[node name="Settings" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Options"
+alignment = 0
+
+[node name="Credits" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Credits & Change Log"
+alignment = 0
+
+[node name="Credits Window" parent="Menu PanelContainer/VBoxContainer/Credits" instance=ExtResource("2_kgiyx")]
+
+[node name="Edits" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Update Data"
+alignment = 0
+
+[node name="Edit Buttons" parent="Menu PanelContainer/VBoxContainer/Edits" instance=ExtResource("3_1wbbw")]
+
+[connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Credits" to="Menu PanelContainer/VBoxContainer/Credits/Credits Window" method="show"]
+[connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Edits" to="Menu PanelContainer/VBoxContainer/Edits/Edit Buttons" method="show"]
