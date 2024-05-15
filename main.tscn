@@ -4373,7 +4373,6 @@ custom_minimum_size = Vector2(9600, 9600)
 layout_mode = 2
 theme = ExtResource("14_m0auc")
 script = ExtResource("12_b3yvo")
-load_labels = true
 
 [node name="Timer" type="Timer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/EncounterLayer"]
 wait_time = 0.06
@@ -4545,28 +4544,24 @@ custom_minimum_size = Vector2(1920, 200)
 layout_mode = 2
 
 [node name="Pathfinding Details" parent="Control/PanelContainer2/Details Container" instance=ExtResource("14_pfesv")]
-custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
 [node name="VSeparator1" type="VSeparator" parent="Control/PanelContainer2/Details Container"]
 layout_mode = 2
 
 [node name="Tile Details" parent="Control/PanelContainer2/Details Container" instance=ExtResource("15_724hc")]
-custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
 [node name="VSeparator2" type="VSeparator" parent="Control/PanelContainer2/Details Container"]
 layout_mode = 2
 
 [node name="Encounter Details" parent="Control/PanelContainer2/Details Container" instance=ExtResource("16_f8o5m")]
-custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 
 [node name="VSeparator3" type="VSeparator" parent="Control/PanelContainer2/Details Container"]
 layout_mode = 2
 
 [node name="Town Details" parent="Control/PanelContainer2/Details Container" instance=ExtResource("17_rfvkl")]
-custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
 [node name="File Loader" type="Node" parent="."]

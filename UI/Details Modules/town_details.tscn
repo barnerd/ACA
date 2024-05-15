@@ -4,6 +4,9 @@
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_xhfov"]
 
 [node name="Town Details" type="VBoxContainer"]
+offset_right = 400.0
+offset_bottom = 215.0
+theme = ExtResource("2_xhfov")
 script = ExtResource("1_1o82u")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -15,8 +18,64 @@ custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 theme = ExtResource("2_xhfov")
 theme_type_variation = &"HeaderLabel"
-text = "Towns"
+text = "Town Details"
 
-[node name="Town Name" type="Label" parent="."]
-custom_minimum_size = Vector2(200, 25)
+[node name="Town" type="HBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="Town"]
+layout_mode = 2
+
+[node name="Value" type="Label" parent="Town"]
+layout_mode = 2
+theme_type_variation = &"DataLabel"
+
+[node name="Group" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Group"]
+visible = false
+layout_mode = 2
+text = "owned by "
+
+[node name="Value" type="Label" parent="Group"]
+layout_mode = 2
+theme_type_variation = &"DataLabel"
+
+[node name="Watchtower" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Watchtower"]
+visible = false
+layout_mode = 2
+text = "Watchtower view: "
+
+[node name="Value" type="Label" parent="Watchtower"]
+layout_mode = 2
+theme_type_variation = &"DataLabel"
+
+[node name="Dwelling" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Dwelling"]
+visible = false
+layout_mode = 2
+text = "Dwelling size: "
+
+[node name="Value" type="Label" parent="Dwelling"]
+layout_mode = 2
+theme_type_variation = &"DataLabel"
+
+[node name="Buildings" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Buildings"]
+visible = false
+layout_mode = 2
+text = "Buildings: "
+
+[node name="Value" type="Label" parent="Buildings"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_type_variation = &"DataLabel"
+autowrap_mode = 2

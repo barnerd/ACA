@@ -6,6 +6,7 @@
 [node name="Encounter Details" type="VBoxContainer"]
 offset_right = 354.0
 offset_bottom = 326.0
+size_flags_horizontal = 3
 script = ExtResource("1_ajyjh")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
