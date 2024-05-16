@@ -67,7 +67,8 @@ text = " • Ability to edit groups & town information
  • Town Information displayed when clicking on tile
  • Add groups window from menu
  • Left click now scrolls the map
- • Clicking on Towns in Groups Window now take you to map location"
+ • Clicking on Towns in Groups Window now take you to map location
+ • Map stays centered when zooming"
 autowrap_mode = 2
 
 [node name="v0_4 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
