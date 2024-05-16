@@ -12,12 +12,12 @@ func _on_visibility_changed() -> void:
 	
 	# add headers
 	new_label = Label.new()
-	new_label.text = "Group"
+	new_label.text = "Faction"
 	new_label.theme_type_variation = &"HeaderLabel"
 	grid_parent.add_child(new_label)
 	
 	new_label = Label.new()
-	new_label.text = "Faction"
+	new_label.text = "Group"
 	new_label.theme_type_variation = &"HeaderLabel"
 	grid_parent.add_child(new_label)
 	
@@ -33,16 +33,17 @@ func _on_visibility_changed() -> void:
 	
 	# add list of groups/towns
 	for group in AgoniaData.MapData.groups_by_id.values():
-		# group name
-		new_label = Label.new()
-		new_label.text = group.group_name
-		grid_parent.add_child(new_label)
-		
 		# group faction
 		new_label = Label.new()
 		new_label.text = GroupDetails.Faction_Names[group.group_faction]
 		grid_parent.add_child(new_label)
 		
+		# group name
+		new_label = Label.new()
+		new_label.text = group.group_name
+		grid_parent.add_child(new_label)
+		
+
 		if group.towns.size() == 1:
 			# town name
 			new_label = Label.new()
