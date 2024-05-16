@@ -79,10 +79,6 @@ func _on_update_button_pressed() -> void:
 		town_details.town_name = town_name.text
 		town_details.town_id = int(town_id.text)
 		
-		print("Group Selected: %d" % group_name.selected)
-		print("Watchtower Selected: %d" % watchtower_view.selected)
-		print("Dwelling Selected: %d" % dwelling_size.selected)
-		print("Selected: Group: %s, id: %d" % [AgoniaData.MapData.groups_by_id[group_name.get_item_id(group_name.selected)].group_name, group_name.get_item_id(group_name.selected)])
 		town_details.group_id = group_name.get_item_id(group_name.selected)
 		
 		town_details.watchtower_view = watchtower_view.selected - 1 # +1 because unknown is -1
@@ -98,7 +94,7 @@ func _on_update_button_pressed() -> void:
 			bitmask = bitmask ^ TownDetails.Buildings.ALCHEMICAL_LAB
 		if hall_toggle.button_pressed:
 			bitmask = bitmask ^ TownDetails.Buildings.WONDERS
-		print("Bitmask: %d" % bitmask)
+		
 		town_details.buildings_bitmask = bitmask
 	else:
 		# create new town
