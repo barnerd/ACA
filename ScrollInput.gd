@@ -25,6 +25,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	SignalBus.connect_to_signal("on_map_zoom", on_map_zoom)
+	SignalBus.connect_to_signal("tilemap_location_clicked", on_tilemap_location_clicked)
 	
 	get_v_scroll_bar().custom_minimum_size.x = 14
 	get_h_scroll_bar().custom_minimum_size.y = 14
@@ -60,13 +61,13 @@ func _unhandled_input(_event):
 		if _event.button_index == MOUSE_BUTTON_LEFT and not _event.pressed:
 			if (Time.get_ticks_msec() - time_left_mouse_pressed) < drag_pressed_duration_threshold:
 				var clicked_cell = _calc_mouse_on_tilemap(_event.position)
-				print("left: " + str(clicked_cell))
+				print("left click: %v" % clicked_cell)
 				# coords were left clicked
 				tilemap_location_clicked.emit(clicked_cell, MOUSE_BUTTON_LEFT)
 			is_dragging = false
 		elif _event.button_index == MOUSE_BUTTON_RIGHT and not _event.pressed:
 			var clicked_cell = _calc_mouse_on_tilemap(_event.position)
-			print("right: " + str(clicked_cell))
+			print("right click: %v" % clicked_cell)
 			# coords were right clicked
 			tilemap_location_clicked.emit(clicked_cell, MOUSE_BUTTON_RIGHT)
 
@@ -90,3 +91,12 @@ func on_UI_map_h_scroll(_value: float):
 
 func on_UI_map_v_scroll(_value: float):
 	on_UI_map_v_scrolled.emit(scroll_vertical)
+
+
+func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
+	if _button == MOUSE_BUTTON_LEFT:
+		var percent: Vector2 = Vector2(_coords.x / float(AgoniaData.MapData.MAP_SIZE.x), _coords.y / float(AgoniaData.MapData.MAP_SIZE.y))
+		var viewport: Vector2 = size
+		# TODO: Get the viewport size and add that in
+		scroll_horizontal = round(get_h_scroll_bar().max_value * percent.x - viewport.x / 2)
+		scroll_vertical = round(get_v_scroll_bar().max_value * percent.y - viewport.y / 2)

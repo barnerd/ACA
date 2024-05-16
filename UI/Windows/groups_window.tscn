@@ -6,7 +6,7 @@
 [node name="Groups Window" type="Window"]
 title = "Groups & Towns"
 initial_position = 1
-size = Vector2i(940, 850)
+size = Vector2i(950, 850)
 theme = ExtResource("1_odxn5")
 script = ExtResource("1_0a8s7")
 
@@ -20,7 +20,7 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer"]
-custom_minimum_size = Vector2(930, 840)
+custom_minimum_size = Vector2(940, 840)
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/ScrollContainer"]
