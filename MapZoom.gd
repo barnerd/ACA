@@ -8,7 +8,7 @@ var zoom_current: int = 24
 @onready var map_to_scale = $"/root/Node2D/Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"
 @onready var zoom_text = $"Zoom Number"
 
-signal on_map_zoom(zoom_factor: float)
+signal on_map_zoom(zoom_factor: float, old_factor: float)
 
 
 func _init() -> void:
@@ -45,6 +45,8 @@ func _on_zoom_number_text_submitted(new_text: String) -> void:
 
 
 func zoom_to(_zoom_desired: int = 24):
+	var old_zoom = zoom_current
+	
 	zoom_current = clamp(_zoom_desired, zoom_min, zoom_max)
 	zoom_text.text = str(zoom_current)
 	
@@ -52,4 +54,4 @@ func zoom_to(_zoom_desired: int = 24):
 	map_to_zoom.custom_minimum_size = AgoniaData.MapData.MAP_SIZE.x * AgoniaData.MapData.TILE_SIZE.x * Vector2.ONE * zoom_current/24.0
 	map_to_scale.scale = Vector2.ONE * zoom_current/24.0
 	
-	on_map_zoom.emit(zoom_current/24.0)
+	on_map_zoom.emit(zoom_current/24.0, old_zoom/24.0)
