@@ -68,7 +68,9 @@ text = " • Ability to edit groups & town information
  • Add groups window from menu
  • Left click now scrolls the map
  • Clicking on Towns in Groups Window now take you to map location
- • Map stays centered when zooming"
+ • Map stays centered when zooming
+ • Map filters for towns (watchtower, dwelling, buildings)
+ • Map filters and menu now expand/collapse by clicking on the header"
 autowrap_mode = 2
 
 [node name="v0_4 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]

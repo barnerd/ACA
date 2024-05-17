@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends HBoxContainer
 
 @export var zoom_max: int = 96
 @export var zoom_min: int = 1

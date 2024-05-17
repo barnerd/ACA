@@ -16,7 +16,7 @@ custom_minimum_size = Vector2(210, 25)
 layout_mode = 2
 theme = ExtResource("2_bdh3e")
 theme_type_variation = &"HeaderLabel"
-text = "Location Details [xxx, yyy]"
+text = "Location Details"
 
 [node name="Terrain Type" type="HBoxContainer" parent="."]
 layout_mode = 2

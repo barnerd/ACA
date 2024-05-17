@@ -1,4 +1,7 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cdc4f0k64k8bs"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cdc4f0k64k8bs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cw4ot"]
+bg_color = Color(0.101961, 0.0980392, 0.0941176, 0.886275)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtvia"]
 content_margin_left = 5.0
@@ -25,12 +28,19 @@ EncounterLabel/colors/font_color = Color(1, 1, 1, 1)
 EncounterLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 EncounterLabel/constants/outline_size = 3
 EncounterLabel/font_sizes/font_size = 16
+HeaderButton/base_type = &"Button"
+HeaderButton/colors/font_color = Color(0.768627, 0.52549, 0.0392157, 1)
+HeaderButton/colors/font_focus_color = Color(0.768627, 0.52549, 0.0392157, 1)
+HeaderButton/colors/font_hover_color = Color(0.768627, 0.52549, 0.0392157, 1)
+HeaderButton/colors/font_pressed_color = Color(0.768627, 0.52549, 0.0392157, 1)
 HeaderLabel/base_type = &"Label"
 HeaderLabel/colors/font_color = Color(0.768627, 0.52549, 0.0392157, 1)
 HeaderLabel/font_sizes/font_size = 24
 Label/colors/font_color = Color(0.388235, 0.352941, 0.282353, 1)
 Label/font_sizes/font_size = 22
 LineEdit/colors/font_color = Color(0.815686, 0.788235, 0.717647, 1)
+MapControls/base_type = &"PanelContainer"
+MapControls/styles/panel = SubResource("StyleBoxFlat_cw4ot")
 MenuItem/base_type = &"Button"
 MenuItem/colors/font_color = Color(0.815686, 0.788235, 0.717647, 1)
 MenuItem/font_sizes/font_size = 22

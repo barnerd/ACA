@@ -1,0 +1,163 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4xtubh0hppls"]
+
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_geia0"]
+[ext_resource type="Script" path="res://UI/ShowEncounterLayerToggle.gd" id="1_k0ye7"]
+[ext_resource type="Script" path="res://UI/MinEncounterTierDropdown.gd" id="2_17tqc"]
+[ext_resource type="Script" path="res://UI/map_controls_panel_container.gd" id="2_wfoxk"]
+[ext_resource type="Script" path="res://UI/ImageToggle.gd" id="3_2msy2"]
+[ext_resource type="Script" path="res://UI/GridLayerToggle.gd" id="4_2o7mm"]
+[ext_resource type="Script" path="res://MapZoom.gd" id="5_n470b"]
+
+[node name="Map Controls PanelContainer" type="PanelContainer"]
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 1
+theme = ExtResource("1_geia0")
+theme_type_variation = &"MapControls"
+script = ExtResource("2_wfoxk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Header" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderButton"
+toggle_mode = true
+text = "Map"
+flat = true
+alignment = 0
+
+[node name="Encounters Layer Toggle" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+disabled = true
+text = "Show Encounters"
+script = ExtResource("1_k0ye7")
+
+[node name="Min Encounter Tier" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Min Encounter Tier"]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 2
+text = "Min tier:"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Min Encounter Tier"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+disabled = true
+item_count = 11
+selected = 4
+popup/item_0/text = "All"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+popup/item_3/text = "4"
+popup/item_3/id = 3
+popup/item_4/text = "5"
+popup/item_4/id = 4
+popup/item_5/text = "6"
+popup/item_5/id = 5
+popup/item_6/text = "7"
+popup/item_6/id = 6
+popup/item_7/text = "8"
+popup/item_7/id = 7
+popup/item_8/text = "9"
+popup/item_8/id = 8
+popup/item_9/text = "10"
+popup/item_9/id = 9
+popup/item_10/text = "11"
+popup/item_10/id = 10
+script = ExtResource("2_17tqc")
+
+[node name="Image toggle" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+button_pressed = true
+text = "Show Towns"
+script = ExtResource("3_2msy2")
+
+[node name="Image toggle2" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+button_pressed = true
+text = "Show Mines"
+script = ExtResource("3_2msy2")
+
+[node name="Image toggle3" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+button_pressed = true
+text = "Show Map"
+script = ExtResource("3_2msy2")
+
+[node name="Grid Layer Toggle" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+button_pressed = true
+text = "Show Grid"
+script = ExtResource("4_2o7mm")
+
+[node name="Zoom Controls VBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("5_n470b")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Zoom Controls VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Zoom: "
+
+[node name="Zoom Minus" type="Button" parent="MarginContainer/VBoxContainer/Zoom Controls VBox"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "-"
+
+[node name="Zoom Number" type="LineEdit" parent="MarginContainer/VBoxContainer/Zoom Controls VBox"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "24"
+placeholder_text = "24"
+alignment = 1
+max_length = 2
+
+[node name="Zoom Plus" type="Button" parent="MarginContainer/VBoxContainer/Zoom Controls VBox"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "+"
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Header" to="." method="_on_header_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Encounters Layer Toggle" to="MarginContainer/VBoxContainer/Encounters Layer Toggle" method="_on_toggled"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Min Encounter Tier/OptionButton" to="MarginContainer/VBoxContainer/Min Encounter Tier/OptionButton" method="_on_item_selected"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Image toggle" to="MarginContainer/VBoxContainer/Image toggle" method="_on_toggled" binds= [2]]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Image toggle2" to="MarginContainer/VBoxContainer/Image toggle2" method="_on_toggled" binds= [1]]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Image toggle3" to="MarginContainer/VBoxContainer/Image toggle3" method="_on_toggled" binds= [0]]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Grid Layer Toggle" to="MarginContainer/VBoxContainer/Grid Layer Toggle" method="_on_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Zoom Controls VBox/Zoom Minus" to="MarginContainer/VBoxContainer/Zoom Controls VBox" method="_on_zoom_minus_pressed"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/Zoom Controls VBox/Zoom Number" to="MarginContainer/VBoxContainer/Zoom Controls VBox" method="_on_zoom_number_text_submitted"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Zoom Controls VBox/Zoom Plus" to="MarginContainer/VBoxContainer/Zoom Controls VBox" method="_on_zoom_plus_pressed"]

@@ -47,7 +47,7 @@ func _on_cancel_button_pressed() -> void:
 
 func _on_accept_button_pressed() -> void:
 	for change in pending_changes:
-		print("tile updated at %v to terrain id %d, map-%d" % [Vector3i(change["x"], change["y"], change["z"]), AgoniaData.MapData.terrains_by_id[change["terrain_id"]].terrain_name, change["map_id"]])
+		print("tile updated at %v to terrain id %s, map-%d" % [Vector3i(change["x"], change["y"], change["z"]), AgoniaData.MapData.terrains_by_id[change["terrain_id"]].terrain_name, change["map_id"]])
 		AgoniaData.MapData.update_location(Vector3i(change["x"], change["y"], change["z"]), change["terrain_id"], change["map_id"])
 	AgoniaData.MapData.terrain_colors_display.apply_image()
 	

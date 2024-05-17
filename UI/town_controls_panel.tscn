@@ -1,0 +1,112 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhifaa7v66qk5"]
+
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_1b5j2"]
+[ext_resource type="Script" path="res://UI/town_controls_panel.gd" id="1_g44vu"]
+
+[node name="Town Controls PanelContainer" type="PanelContainer"]
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 1
+theme = ExtResource("1_1b5j2")
+script = ExtResource("1_g44vu")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Header" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderButton"
+toggle_mode = true
+text = "Towns"
+flat = true
+alignment = 0
+
+[node name="Watchtower view" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Watchtower view"]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 2
+text = "Watchtowers: "
+
+[node name="Watchtower OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Watchtower view"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+item_count = 5
+selected = 0
+popup/item_0/text = "All"
+popup/item_0/id = 0
+popup/item_1/text = "1+"
+popup/item_1/id = 1
+popup/item_2/text = "2+"
+popup/item_2/id = 2
+popup/item_3/text = "3+"
+popup/item_3/id = 3
+popup/item_4/text = "4"
+popup/item_4/id = 4
+
+[node name="Dwellings" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Dwellings"]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 2
+text = "Dwelling Size: "
+
+[node name="Dwellings OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Dwellings"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "All"
+popup/item_0/id = 0
+popup/item_1/text = "100+"
+popup/item_1/id = 2
+popup/item_2/text = "500"
+popup/item_2/id = 3
+
+[node name="Buildings Label" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Buildings:"
+
+[node name="Blacksmith" type="CheckBox" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Blacksmith"
+
+[node name="Workshop" type="CheckBox" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Workshop"
+
+[node name="Lab" type="CheckBox" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Alchemical Lab"
+
+[node name="Hall" type="CheckBox" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Hall of Wonders"
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Header" to="." method="_on_header_toggled"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Watchtower view/Watchtower OptionButton" to="." method="_on_watchtower_option_button_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Dwellings/Dwellings OptionButton" to="." method="_on_dwellings_option_button_item_selected"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Blacksmith" to="." method="_on_blacksmith_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Workshop" to="." method="_on_workshop_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Lab" to="." method="_on_lab_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Hall" to="." method="_on_hall_toggled"]
