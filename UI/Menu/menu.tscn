@@ -73,6 +73,7 @@ alignment = 0
 [node name="Credits Window" parent="Menu PanelContainer/VBoxContainer/Credits" instance=ExtResource("2_kgiyx")]
 
 [node name="Edits" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_type_variation = &"MenuItem"
 text = "Update Data"
