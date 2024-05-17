@@ -55,6 +55,24 @@ horizontal_scroll_mode = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 
+[node name="v0_4_1 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "v0.4.1 - Town Display"
+
+[node name="v0_4_1 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(595, 0)
+layout_mode = 2
+text = " • Ability to edit groups & town information
+ • Town Information displayed when clicking on tile
+ • Add groups window from menu
+ • Left click now scrolls the map
+ • Clicking on Towns in Groups Window now take you to map location
+ • Map stays centered when zooming
+ • Map filters for towns (watchtower, dwelling, buildings)
+ • Map filters and menu now expand/collapse by clicking on the header"
+autowrap_mode = 2
+
 [node name="v0_4 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLabel"

@@ -25,7 +25,7 @@ func on_UI_map_v_scrolled(_value: int) -> void:
 		scroll_vertical = _value
 
 
-func on_map_zoom(_factor: float) -> void:
+func on_map_zoom(_factor: float, _old_factor: float) -> void:
 	if _factor < 1.0:
 		self.visible = false
 		empty_square.visible = false

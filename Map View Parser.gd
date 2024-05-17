@@ -47,13 +47,16 @@ func _on_cancel_button_pressed() -> void:
 
 func _on_accept_button_pressed() -> void:
 	for change in pending_changes:
+		print("tile updated at %v to terrain id %s, map-%d" % [Vector3i(change["x"], change["y"], change["z"]), AgoniaData.MapData.terrains_by_id[change["terrain_id"]].terrain_name, change["map_id"]])
 		AgoniaData.MapData.update_location(Vector3i(change["x"], change["y"], change["z"]), change["terrain_id"], change["map_id"])
 	AgoniaData.MapData.terrain_colors_display.apply_image()
 	
 	for mine in pending_mines:
+		print("%s mine found at %v" % [MineDetails.mine_names[mine["type"]], Vector3i(mine["x"], mine["y"], mine["z"])])
 		AgoniaData.MapData.add_mine_location(mine["type"], Vector3i(mine["x"], mine["y"], mine["z"]))
 	
 	for town in pending_towns:
+		print("town found at %v" % Vector3i(town["x"], town["y"], town["z"]))
 		AgoniaData.MapData.update_town(-1, "", -1, Vector3i(town["x"], town["y"], town["z"]))
 	
 	if pending_changes.size() > 0 || pending_mines.size() > 0 || pending_towns.size() > 0:

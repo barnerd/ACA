@@ -1,0 +1,143 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgjrp2rkxmcxt"]
+
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_dwoc0"]
+[ext_resource type="Script" path="res://Tools/set_town_window.gd" id="2_lmr7a"]
+
+[node name="Set Town Window" type="Window"]
+title = "Set Town Details"
+initial_position = 1
+size = Vector2i(605, 443)
+theme = ExtResource("1_dwoc0")
+script = ExtResource("2_lmr7a")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 10.0
+offset_bottom = 10.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Name & Location HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Coords Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Name & Location HBoxContainer"]
+layout_mode = 2
+text = "xxx, yyy - "
+
+[node name="TextEdit" type="TextEdit" parent="PanelContainer/MarginContainer/VBoxContainer/Name & Location HBoxContainer"]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+text = "Name"
+placeholder_text = "Name"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Name & Location HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Name & Location HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "id - "
+
+[node name="TextEdit" type="TextEdit" parent="PanelContainer/MarginContainer/VBoxContainer/Name & Location HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 35)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Id"
+placeholder_text = "Id"
+
+[node name="Group HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Cords Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Group HBoxContainer"]
+layout_mode = 2
+text = "owned by "
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/Group HBoxContainer"]
+custom_minimum_size = Vector2(468, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Watchtower HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Watchtower HBoxContainer"]
+layout_mode = 2
+text = "Watchtower View: "
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/Watchtower HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+item_count = 6
+popup/item_0/text = "Unknown"
+popup/item_0/id = 0
+popup/item_1/text = "0"
+popup/item_1/id = 1
+popup/item_2/text = "1"
+popup/item_2/id = 2
+popup/item_3/text = "2"
+popup/item_3/id = 3
+popup/item_4/text = "3"
+popup/item_4/id = 4
+popup/item_5/text = "4"
+popup/item_5/id = 5
+
+[node name="Dwelling HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Dwelling HBoxContainer"]
+layout_mode = 2
+text = "Dwelling Size: "
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/Dwelling HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+item_count = 4
+popup/item_0/text = "Unknown"
+popup/item_0/id = 0
+popup/item_1/text = "None"
+popup/item_1/id = 1
+popup/item_2/text = "100"
+popup/item_2/id = 2
+popup/item_3/text = "500"
+popup/item_3/id = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Buildings Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Buildings: "
+
+[node name="Blacksmith CheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Blacksmith"
+
+[node name="Workshop CheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Workshop"
+
+[node name="Lab CheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Alchemical Laboratory"
+
+[node name="Hall CheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Hall of Wonders"
+
+[node name="Update Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Update"
+
+[connection signal="close_requested" from="." to="." method="hide"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Update Button" to="." method="_on_update_button_pressed"]

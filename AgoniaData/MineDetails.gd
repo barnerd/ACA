@@ -1,7 +1,7 @@
 class_name MineDetails extends Node
 
 enum Mine_Types {TIN = 0, COPPER = 1, IRON = 2, TITANIUM = 3}
-var mine_names: Array[String] = ["Tin", "Copper", "Iron", "Titanium"]
+const mine_names: Array[String] = ["Tin", "Copper", "Iron", "Titanium"]
 
 var location: Vector3i
 var type: Mine_Types
