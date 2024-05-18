@@ -172,12 +172,13 @@ func parse_map_table(_data: String):
 					result = regex.search(td_contents)
 					if result:
 						#print("found a town")
-						found_identified = true
-						pending_towns.append({"x": tile_details["location"].x,
-						"y": tile_details["location"].y,
-						"z": tile_details["location"].z})
-						_increment_counts("towns")
-						update_results()
+						if not AgoniaData.MapData.towns_by_location.has(tile_details["location"]):
+							found_identified = true
+							pending_towns.append({"x": tile_details["location"].x,
+							"y": tile_details["location"].y,
+							"z": tile_details["location"].z})
+							_increment_counts("towns")
+							update_results()
 					
 					if not found_identified:
 						print("td contents not identified: " + td_contents)
