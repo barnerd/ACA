@@ -14,6 +14,21 @@ func _ready() -> void:
 	#parse_map_file(agoniaMap)
 	load_game()
 	
+	# temporary data commands go here
+	#print("running temp commands")
+	#var t_id_a: Array[int] = [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 13, 13, 13, 13, 13, 13, 13, 13, 13, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0]
+	#var tier_a: Array[String] = ["T1", "T2", "T3a", "T3b", "T4", "T5", "T6", "T7", "T8", "T9", "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T1", "T2", "T3", "T4", "T5", "T6a", "T7", "T8", "T9", "T1", "T2", "T3", "T4", "T5", "T6", "T8", "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T9"]
+	#var internal_id_a: Array[int] = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23, 28, 29, 30, 31, 32, 33, 34, 35, 36, 40, 41, 42, 43, 44, 45, 46, 52, 53, 54, 55, 56, 57, 58, 59]
+	#var internal_id_confirmed_a: Array[bool] = [true, false, true, false, false, false, false, false, false, true, false, true, false, false, false, false, true, false, false, false, false, true, false, false, false, true, false, false, true, true, false, false, false, false, false, true, false, false, false, false, true, false, false]
+	#
+	#for i in tier_a.size():
+		#var t_id: int = t_id_a[i]
+		#var tier: String = tier_a[i]
+		#var e = AgoniaData.MonsterData.encounters_by_terrain_tier[t_id][tier]
+		#e.internal_id = internal_id_a[i]
+		#e.internal_id_confirmed = internal_id_confirmed_a[i]
+	#print("done running temp commands")
+	
 	#$"../Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors".apply_image()
 	#tile_map_display.visible = false
 	

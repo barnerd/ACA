@@ -33,7 +33,9 @@ func save():
 				"t_id": terrain_id,
 				"t": tier,
 				"n": encounters_by_terrain_tier[terrain_id][tier].nickname,
-				"m": encounters_by_terrain_tier[terrain_id][tier].monsters
+				"m": encounters_by_terrain_tier[terrain_id][tier].monsters,
+				"id": encounters_by_terrain_tier[terrain_id][tier].internal_id,
+				"c": encounters_by_terrain_tier[terrain_id][tier].internal_id_confirmed
 			})
 	
 	var save_dict = {
@@ -61,7 +63,7 @@ func load(_data):
 	encounters_by_terrain_tier = {} # int -> String -> EncounterTable
 	for e in _data["encounters"]:
 		var mon_int_array: Array[int] = _convert_array_float_to_int(e["m"])
-		update_encounter(e["t_id"], e["t"], e["n"], mon_int_array)
+		update_encounter(e["t_id"], e["t"], e["n"], mon_int_array, e["id"], e["c"])
 
 
 # Need this because Json.parse returns all numbers as floats
@@ -85,16 +87,16 @@ func update_monster(_id: int, _name: String, _sorcery_req: int = -1, _monster_ca
 		monsters_by_id[_id] = MonsterDetails.new(_id, _name, _sorcery_req, _monster_category, _health, _expph)
 
 
-func update_encounter(_terrain_id: int, _tier: String, _name: String = "", _mons: Array[int] = []):
+func update_encounter(_terrain_id: int, _tier: String, _name: String = "", _mons: Array[int] = [], _internal: int = -1, _confirmed: bool = false):
 	if encounters_by_terrain_tier.has(_terrain_id):
 		if encounters_by_terrain_tier[_terrain_id].has(_tier):
 			encounters_by_terrain_tier[_terrain_id][_tier].nickname = _name
 			encounters_by_terrain_tier[_terrain_id][_tier].monsters = _mons
 		else:
-			encounters_by_terrain_tier[_terrain_id][_tier] = EncounterTableDetails.new(_terrain_id, _tier, _name, _mons)
+			encounters_by_terrain_tier[_terrain_id][_tier] = EncounterTableDetails.new(_terrain_id, _tier, _name, _mons, _internal, _confirmed)
 	else:
 		encounters_by_terrain_tier[_terrain_id] = {}
-		encounters_by_terrain_tier[_terrain_id][_tier] = EncounterTableDetails.new(_terrain_id, _tier, _name, _mons)
+		encounters_by_terrain_tier[_terrain_id][_tier] = EncounterTableDetails.new(_terrain_id, _tier, _name, _mons, _internal, _confirmed)
 
 
 func get_encounter_table_by_id(_id: String) -> EncounterTableDetails:
