@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwl3exv6n4mc7"]
+
+[ext_resource type="Script" path="res://UI/DownloadAPF.gd" id="1_jm8nd"]
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_qea2q"]
+[ext_resource type="Script" path="res://UI/DownloadImage.gd" id="2_aq7rr"]
+
+[node name="DownloadsWindow" type="Window"]
+title = "Downloads"
+initial_position = 1
+size = Vector2i(266, 227)
+theme = ExtResource("1_qea2q")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="APF Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "APF"
+
+[node name="CheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Discord Bot Format"
+
+[node name="Download APF txt" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Download APF file"
+script = ExtResource("1_jm8nd")
+
+[node name="Map" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Map"
+
+[node name="Download Image" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Download Map Image"
+script = ExtResource("2_aq7rr")
+
+[connection signal="downloadable_file_progress" from="PanelContainer/MarginContainer/VBoxContainer/Download APF txt" to="PanelContainer/MarginContainer/VBoxContainer/Download APF txt" method="_on_downloadable_file_progress"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Download APF txt" to="PanelContainer/MarginContainer/VBoxContainer/Download APF txt" method="_on_pressed"]
+[connection signal="downloadable_file_progress" from="PanelContainer/MarginContainer/VBoxContainer/Download Image" to="PanelContainer/MarginContainer/VBoxContainer/Download Image" method="_on_downloadable_file_progress"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Download Image" to="PanelContainer/MarginContainer/VBoxContainer/Download Image" method="_on_pressed"]

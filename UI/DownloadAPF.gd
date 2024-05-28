@@ -3,6 +3,7 @@ extends Button
 var thread: Thread = Thread.new()
 var file_to_download: String = ""
 
+@onready var discord_bot_format_checkbox = $"../CheckBox"
 signal downloadable_file_progress(progress: float)
 
 

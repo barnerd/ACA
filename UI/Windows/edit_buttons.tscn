@@ -10,7 +10,6 @@
 title = "Edit Buttons"
 initial_position = 1
 size = Vector2i(190, 194)
-visible = false
 unresizable = true
 theme = ExtResource("1_2t00d")
 
