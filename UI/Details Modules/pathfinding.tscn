@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://lk86ulb3sqsb"]
+[gd_scene load_steps=9 format=3 uid="uid://lk86ulb3sqsb"]
 
 [ext_resource type="Script" path="res://UI/Details Modules/PathfindingDetails.gd" id="1_nwedy"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_1uuf1"]
 [ext_resource type="Script" path="res://UI/Details Modules/TribeDropdown.gd" id="2_kswkd"]
-[ext_resource type="Script" path="res://UI/DownloadAPF.gd" id="3_7n02g"]
-[ext_resource type="Script" path="res://UI/DownloadImage.gd" id="4_qt7k1"]
+[ext_resource type="Script" path="res://UI/Details Modules/PathfiningMaxEncounterTier.gd" id="3_nwwnl"]
+[ext_resource type="PackedScene" uid="uid://cs4i5lf1fptgd" path="res://UI/equipment_window.tscn" id="4_iad3r"]
+[ext_resource type="Script" path="res://UI/Details Modules/EquipmentLabel.gd" id="5_c1dk0"]
+[ext_resource type="Script" path="res://Pathfinder.gd" id="6_7m3f8"]
+[ext_resource type="Script" path="res://UI/Details Modules/ClearPathButton.gd" id="7_2r3sw"]
 
 [node name="Pathfinding Details" type="VBoxContainer"]
 offset_right = 391.0
@@ -27,6 +30,7 @@ layout_mode = 2
 
 [node name="Left Column" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Start Point" type="HBoxContainer" parent="HBoxContainer/Left Column"]
 layout_mode = 2
@@ -45,6 +49,69 @@ alignment = 2
 layout_mode = 2
 placeholder_text = "y"
 alignment = 2
+
+[node name="End Point" type="HBoxContainer" parent="HBoxContainer/Left Column"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Left Column/End Point"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "End:"
+
+[node name="X" type="LineEdit" parent="HBoxContainer/Left Column/End Point"]
+layout_mode = 2
+placeholder_text = "x"
+alignment = 2
+
+[node name="Y" type="LineEdit" parent="HBoxContainer/Left Column/End Point"]
+layout_mode = 2
+placeholder_text = "y"
+alignment = 2
+
+[node name="MaxEncounter" type="HBoxContainer" parent="HBoxContainer/Left Column"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Left Column/MaxEncounter"]
+layout_mode = 2
+text = "Max Tier:"
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/Left Column/MaxEncounter"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 10
+selected = 0
+popup/item_0/text = "Any"
+popup/item_0/id = 99
+popup/item_1/text = "10"
+popup/item_1/id = 10
+popup/item_2/text = "9"
+popup/item_2/id = 9
+popup/item_3/text = "8"
+popup/item_3/id = 8
+popup/item_4/text = "7"
+popup/item_4/id = 7
+popup/item_5/text = "6"
+popup/item_5/id = 6
+popup/item_6/text = "5"
+popup/item_6/id = 5
+popup/item_7/text = "4"
+popup/item_7/id = 4
+popup/item_8/text = "3"
+popup/item_8/id = 3
+popup/item_9/text = "2"
+popup/item_9/id = 2
+script = ExtResource("3_nwwnl")
+
+[node name="Path Cost" type="HBoxContainer" parent="HBoxContainer/Left Column"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Left Column/Path Cost"]
+layout_mode = 2
+text = "path cost: "
+
+[node name="Value" type="Label" parent="HBoxContainer/Left Column/Path Cost"]
+layout_mode = 2
+theme_type_variation = &"DataLabel"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
@@ -82,27 +149,39 @@ popup/item_9/text = "Nuruk"
 popup/item_9/id = 7
 script = ExtResource("2_kswkd")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right Column"]
-custom_minimum_size = Vector2(0, 120)
+[node name="Equipment Button" type="Button" parent="HBoxContainer/Right Column"]
 layout_mode = 2
-theme_override_constants/margin_top = 30
+text = "Equipment"
+alignment = 0
 
-[node name="Download APF txt" type="Button" parent="HBoxContainer/Right Column/MarginContainer"]
-custom_minimum_size = Vector2(0, 30)
+[node name="Equipment Window" parent="HBoxContainer/Right Column/Equipment Button" instance=ExtResource("4_iad3r")]
+visible = false
+
+[node name="Equipment Label" type="Label" parent="HBoxContainer/Right Column"]
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
-size_flags_vertical = 0
-text = "Download APF file"
-script = ExtResource("3_7n02g")
+text = "No equipment"
+autowrap_mode = 2
+script = ExtResource("5_c1dk0")
 
-[node name="Download Image" type="Button" parent="HBoxContainer/Right Column/MarginContainer"]
-custom_minimum_size = Vector2(0, 30)
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-size_flags_vertical = 8
-text = "Download Map Image"
-script = ExtResource("4_qt7k1")
 
+[node name="Calculate Button" type="Button" parent="."]
+layout_mode = 2
+text = "Calculate Path"
+
+[node name="Pathfinder" type="Node" parent="Calculate Button"]
+script = ExtResource("6_7m3f8")
+
+[node name="Clear Path Button" type="Button" parent="."]
+layout_mode = 2
+text = "Clear Path"
+script = ExtResource("7_2r3sw")
+
+[connection signal="item_selected" from="HBoxContainer/Left Column/MaxEncounter/OptionButton" to="HBoxContainer/Left Column/MaxEncounter/OptionButton" method="_on_item_selected"]
 [connection signal="item_selected" from="HBoxContainer/Right Column/Tribe Dropdown" to="HBoxContainer/Right Column/Tribe Dropdown" method="_on_item_selected"]
-[connection signal="downloadable_file_progress" from="HBoxContainer/Right Column/MarginContainer/Download APF txt" to="HBoxContainer/Right Column/MarginContainer/Download APF txt" method="_on_downloadable_file_progress"]
-[connection signal="pressed" from="HBoxContainer/Right Column/MarginContainer/Download APF txt" to="HBoxContainer/Right Column/MarginContainer/Download APF txt" method="_on_pressed"]
-[connection signal="downloadable_file_progress" from="HBoxContainer/Right Column/MarginContainer/Download Image" to="HBoxContainer/Right Column/MarginContainer/Download Image" method="_on_downloadable_file_progress"]
-[connection signal="pressed" from="HBoxContainer/Right Column/MarginContainer/Download Image" to="HBoxContainer/Right Column/MarginContainer/Download Image" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/Right Column/Equipment Button" to="HBoxContainer/Right Column/Equipment Button/Equipment Window" method="show"]
+[connection signal="pressed" from="Calculate Button" to="Calculate Button/Pathfinder" method="_on_calculate_button_pressed"]
+[connection signal="pressed" from="Clear Path Button" to="Clear Path Button" method="_on_pressed"]

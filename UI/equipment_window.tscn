@@ -1,0 +1,419 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs4i5lf1fptgd"]
+
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_xewlj"]
+[ext_resource type="Texture2D" uid="uid://88abay153m6s" path="res://images/backinventm.jpg" id="2_mewui"]
+[ext_resource type="Script" path="res://UI/EquipmentWindow.gd" id="2_pn7g2"]
+
+[node name="Equipment Window" type="Window"]
+title = "Equipment"
+initial_position = 1
+size = Vector2i(892, 850)
+theme = ExtResource("1_xewlj")
+script = ExtResource("2_pn7g2")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(300, 415)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -452.0
+offset_top = -431.0
+offset_right = -1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_mewui")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -215.5
+offset_right = 215.5
+offset_bottom = 35.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="PanelContainer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Total weight: "
+
+[node name="TotalWeight" type="LineEdit" parent="PanelContainer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+placeholder_text = "0.0"
+max_length = 6
+
+[node name="Label2" type="Label" parent="PanelContainer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = " - Max weight: "
+
+[node name="MaxWeight" type="LineEdit" parent="PanelContainer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+placeholder_text = "10.0"
+max_length = 6
+
+[node name="ArmorPanel" type="PanelContainer" parent="PanelContainer/Control"]
+custom_minimum_size = Vector2(80, 107)
+layout_mode = 0
+offset_left = 164.0
+offset_top = 86.0
+offset_right = 244.0
+offset_bottom = 193.0
+theme_type_variation = &"BoldEquipmentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/ArmorPanel"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/Control/ArmorPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control/ArmorPanel/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"EquipmentLabel"
+text = "Body"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/Control/ArmorPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"EquipmentDropdown"
+
+[node name="TalismanPanel" type="PanelContainer" parent="PanelContainer/Control"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -326.0
+offset_top = 45.0
+offset_right = -247.0
+offset_bottom = 100.0
+grow_horizontal = 0
+theme_type_variation = &"EquipmentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/TalismanPanel"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/Control/TalismanPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control/TalismanPanel/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"EquipmentLabel"
+text = "Talisman
+"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/Control/TalismanPanel/VBoxContainer"]
+custom_minimum_size = Vector2(95, 0)
+layout_mode = 2
+theme_type_variation = &"EquipmentDropdown"
+text_overrun_behavior = 2
+item_count = 3
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Sapphire Stamina"
+popup/item_1/id = 1
+popup/item_2/text = "Diamond Stamina"
+popup/item_2/id = 2
+
+[node name="HeadPanel" type="PanelContainer" parent="PanelContainer/Control"]
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 0
+offset_left = 173.0
+offset_top = 33.0
+offset_right = 233.0
+offset_bottom = 83.0
+theme_type_variation = &"EquipmentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/HeadPanel"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/Control/HeadPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control/HeadPanel/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"EquipmentLabel"
+text = "Head"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/Control/HeadPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"EquipmentDropdown"
+
+[node name="CapePanel" type="PanelContainer" parent="PanelContainer/Control"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 0
+offset_left = 238.0
+offset_top = 45.0
+offset_right = 298.0
+offset_bottom = 102.0
+theme_type_variation = &"EquipmentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/CapePanel"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/Control/CapePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control/CapePanel/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"EquipmentLabel"
+text = "Cape
+"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/Control/CapePanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_type_variation = &"EquipmentDropdown"
+item_count = 3
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Wheelcart"
+popup/item_1/id = 1
+popup/item_2/text = "Wagon"
+popup/item_2/id = 2
+
+[node name="HandLeftPanel" type="PanelContainer" parent="PanelContainer/Control"]
+custom_minimum_size = Vector2(60, 109)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 160.0
+offset_bottom = 209.0
+theme_type_variation = &"BoldEquipmentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/HandLeftPanel"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/Control/HandLeftPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control/HandLeftPanel/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"EquipmentLabel"
+text = "Left Hand"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/Control/HandLeftPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"EquipmentDropdown"
+
+[node name="HandRightPanel" type="PanelContainer" parent="PanelContainer/Control"]
+custom_minimum_size = Vector2(60, 109)
+layout_mode = 0
+offset_left = 247.0
+offset_top = 100.0
+offset_right = 314.0
+offset_bottom = 209.0
+theme_type_variation = &"BoldEquipmentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/HandRightPanel"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/Control/HandRightPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control/HandRightPanel/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"EquipmentLabel"
+text = "Right Hand
+"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/Control/HandRightPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"EquipmentDropdown"
+
+[node name="FingerLPanel" type="PanelContainer" parent="PanelContainer/Control"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 212.0
+offset_right = 160.0
+offset_bottom = 265.0
+theme_type_variation = &"EquipmentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/FingerLPanel"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/Control/FingerLPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control/FingerLPanel/VBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_type_variation = &"EquipmentLabel"
+text = "Left Fingers"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/Control/FingerLPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"EquipmentDropdown"
+
+[node name="FingerRPanel" type="PanelContainer" parent="PanelContainer/Control"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 0
+offset_left = 247.0
+offset_top = 212.0
+offset_right = 307.0
+offset_bottom = 265.0
+theme_type_variation = &"EquipmentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/FingerRPanel"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/Control/FingerRPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control/FingerRPanel/VBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_type_variation = &"EquipmentLabel"
+text = "Right Fingers"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/Control/FingerRPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"EquipmentDropdown"
+
+[node name="BeltPanel" type="PanelContainer" parent="PanelContainer/Control"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 0
+offset_left = 164.0
+offset_top = 197.0
+offset_right = 244.0
+offset_bottom = 247.0
+theme_type_variation = &"EquipmentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/BeltPanel"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/Control/BeltPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control/BeltPanel/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"EquipmentLabel"
+text = "Belt"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/Control/BeltPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"EquipmentDropdown"
+
+[node name="LeggingsPanel" type="PanelContainer" parent="PanelContainer/Control"]
+custom_minimum_size = Vector2(80, 105)
+layout_mode = 0
+offset_left = 164.0
+offset_top = 250.0
+offset_right = 244.0
+offset_bottom = 355.0
+theme_type_variation = &"EquipmentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/LeggingsPanel"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/Control/LeggingsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control/LeggingsPanel/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"EquipmentLabel"
+text = "Leggings"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/Control/LeggingsPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"EquipmentDropdown"
+
+[node name="BootPanel" type="PanelContainer" parent="PanelContainer/Control"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.5
+offset_top = 358.0
+offset_right = 36.5
+offset_bottom = 413.0
+grow_horizontal = 2
+theme_type_variation = &"EquipmentPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Control/BootPanel"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/Control/BootPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control/BootPanel/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"EquipmentLabel"
+text = "Boots"
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/Control/BootPanel/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"EquipmentDropdown"
+item_count = 2
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "Crampons"
+popup/item_1/id = 1
+
+[connection signal="close_requested" from="." to="." method="hide"]
+[connection signal="text_changed" from="PanelContainer/Control/HBoxContainer/TotalWeight" to="." method="_on_total_weight_text_changed"]
+[connection signal="text_changed" from="PanelContainer/Control/HBoxContainer/MaxWeight" to="." method="_on_max_weight_text_changed"]
+[connection signal="item_selected" from="PanelContainer/Control/TalismanPanel/VBoxContainer/OptionButton" to="." method="_on_talisman_item_selected"]
+[connection signal="item_selected" from="PanelContainer/Control/CapePanel/VBoxContainer/OptionButton" to="." method="_on_cape_item_selected"]
+[connection signal="item_selected" from="PanelContainer/Control/BootPanel/VBoxContainer/OptionButton" to="." method="_on_boots_item_selected"]

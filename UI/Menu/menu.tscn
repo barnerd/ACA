@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkn73ewiwrykx"]
+[gd_scene load_steps=7 format=3 uid="uid://bkn73ewiwrykx"]
 
 [ext_resource type="Script" path="res://UI/Menu/MenuPanel.gd" id="1_qn2pa"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_s7eol"]
 [ext_resource type="PackedScene" uid="uid://csm2p545751c5" path="res://UI/Windows/credits_window.tscn" id="2_kgiyx"]
 [ext_resource type="PackedScene" uid="uid://dpngatsw74q6x" path="res://UI/Windows/groups_window.tscn" id="2_y6qfu"]
 [ext_resource type="PackedScene" uid="uid://ctiaxywx282qj" path="res://UI/Windows/edit_buttons.tscn" id="3_1wbbw"]
+[ext_resource type="PackedScene" uid="uid://cwl3exv6n4mc7" path="res://UI/Windows/downloads_window.tscn" id="4_nwe0o"]
 
 [node name="Menu" type="MarginContainer"]
 size_flags_horizontal = 8
@@ -63,6 +64,16 @@ theme_type_variation = &"MenuItem"
 text = "Options"
 alignment = 0
 
+[node name="Downloads" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"MenuItem"
+text = "Downloads"
+alignment = 0
+
+[node name="DownloadsWindow" parent="Menu PanelContainer/VBoxContainer/Downloads" instance=ExtResource("4_nwe0o")]
+visible = false
+
 [node name="Credits" type="Button" parent="Menu PanelContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -80,8 +91,11 @@ text = "Update Data"
 alignment = 0
 
 [node name="Edit Buttons" parent="Menu PanelContainer/VBoxContainer/Edits" instance=ExtResource("3_1wbbw")]
+visible = false
 
 [connection signal="toggled" from="Menu PanelContainer/VBoxContainer/Header" to="." method="_on_header_toggled"]
 [connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Groups" to="Menu PanelContainer/VBoxContainer/Groups/Groups Window" method="show"]
+[connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Downloads" to="Menu PanelContainer/VBoxContainer/Downloads/DownloadsWindow" method="show"]
+[connection signal="close_requested" from="Menu PanelContainer/VBoxContainer/Downloads/DownloadsWindow" to="Menu PanelContainer/VBoxContainer/Downloads/DownloadsWindow" method="hide"]
 [connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Credits" to="Menu PanelContainer/VBoxContainer/Credits/Credits Window" method="show"]
 [connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Edits" to="Menu PanelContainer/VBoxContainer/Edits/Edit Buttons" method="show"]
