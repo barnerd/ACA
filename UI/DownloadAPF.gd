@@ -12,31 +12,44 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	SignalBus.connect_to_signal("savefile_loaded", prepare_file_on_thread)
+	# TODO: run this on changes, and not on savefile_loaded
+	#SignalBus.connect_to_signal("savefile_loaded", Callable(self, "prepare_file").bind(false))
+	#SignalBus.connect_to_signal("savefile_loaded", Callable(self, "prepare_file").bind(true))
+	pass
 
 
 func _on_pressed() -> void:
-	download_file(file_to_download, "agoniaMap2")
+	if discord_bot_format_checkbox.button_pressed:
+		download_file("res://Flat Files/agoniaMap2discord.txt", "agoniaMap2")
+	else:
+		download_file("res://Flat Files/agoniaMap2.txt", "agoniaMap2")
 
 
 func on_processing_done() -> void:
 	self.text = "Download APF File"
 	self.disabled = false
+	
+	# save file to disk
+	var save_game_file = FileAccess.open("res://Flat Files/agoniaMap2discord.txt", FileAccess.WRITE)
+	save_game_file.store_string(file_to_download)
+	save_game_file.close()
 
 
-func prepare_file_on_thread() -> void:
-	thread.start(prepare_file, Thread.PRIORITY_LOW)
+func prepare_file_on_thread(_is_for_discord: bool) -> void:
+	thread.start(Callable(self, "prepare_file").bind(_is_for_discord), Thread.PRIORITY_LOW)
 
 
-func prepare_file() -> void:
+func prepare_file(_is_for_discord: bool = false) -> void:
 	print("preparing apf file")
 	# apf file is:
 	# 1	aa	aa	aa	aa	... "\r\n"
 	file_to_download = ""
 	for y in range(1, 350+1):
-		file_to_download += str(y)
+		if not _is_for_discord:
+			file_to_download += str(y)
 		for x in range(1, 350+1):
-			file_to_download += "\t"
+			if not _is_for_discord or x != 1:
+				file_to_download += "\t"
 			
 			# get terrain id and converter from internal to APF
 			var terrain_id: int = AgoniaData.MapData.map_tiles[Vector3i(x, y, 0)].terrain_id
@@ -52,8 +65,13 @@ func prepare_file() -> void:
 
 
 func download_file(_file: String, _filename: String):
-	print("Downloading image " + _filename + ".txt")
-	var buffer = _file.to_ascii_buffer()
+	# load file
+	var content: String = ""
+	var file = FileAccess.open(_file, FileAccess.READ)
+	if file:
+		content = file.get_as_text()
+	
+	var buffer = content.to_ascii_buffer()
 	JavaScriptBridge.download_buffer(buffer, "%s.txt" % _filename, "text/plain")
 
 
