@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://HUD/CoordLabels.gd" id="3_r3c8x"]
 [ext_resource type="Texture2D" uid="uid://d1x5wjvq5co15" path="res://Flat Files/terrain_colors.png" id="5_pgavb"]
 [ext_resource type="PackedScene" uid="uid://dqc4y45w8xe3e" path="res://map_images.tscn" id="7_0scc2"]
-[ext_resource type="Script" path="res://EncounterLayer.gd" id="12_b3yvo"]
+[ext_resource type="PackedScene" uid="uid://bbmtaehsejwde" path="res://encounter_layer.tscn" id="8_00dli"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="14_m0auc"]
 [ext_resource type="PackedScene" uid="uid://lk86ulb3sqsb" path="res://UI/Details Modules/pathfinding.tscn" id="14_pfesv"]
 [ext_resource type="PackedScene" uid="uid://ybu3x4nqm24r" path="res://UI/Details Modules/tile_details.tscn" id="15_724hc"]
@@ -129,15 +129,8 @@ script = ExtResource("17_2gmiw")
 
 [node name="MapImages" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer" instance=ExtResource("7_0scc2")]
 
-[node name="EncounterLayer" type="Container" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"]
-visible = false
-custom_minimum_size = Vector2(9600, 9600)
+[node name="EncounterLayer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer" instance=ExtResource("8_00dli")]
 layout_mode = 2
-theme = ExtResource("14_m0auc")
-script = ExtResource("12_b3yvo")
-
-[node name="Timer" type="Timer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/EncounterLayer"]
-wait_time = 0.06
 
 [node name="GridLines" type="Node2D" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"]
 script = ExtResource("15_kgwfe")
