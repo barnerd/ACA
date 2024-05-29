@@ -2,11 +2,13 @@ extends Node
 
 var apf_flat_filename: String = "res://Flat Files/agoniaMap2.txt"
 
+signal save_game_requested
 signal savefile_loaded
 
 
 func _init() -> void:
 	SignalBus.register_signal("savefile_loaded", savefile_loaded)
+	SignalBus.register_signal("save_game_requested", save_game_requested)
 
 
 func _ready() -> void:
@@ -31,16 +33,6 @@ func _ready() -> void:
 	
 	#$"../Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors".apply_image()
 	#tile_map_display.visible = false
-	
-	#var print_coords = Vector3i(275, 170, 0)
-	#print("location: " + str(map_tiles[print_coords].location))
-	#print("image : map-" + str(map_tiles[print_coords].tile_image_id))
-	#print("terrain: " + str(map_tiles[print_coords].terrain_id))
-	#print("terrain name: " + str(map_tiles[print_coords].terrain_details.terrain_name))
-	#print("terrain details id: " + str(map_tiles[print_coords].terrain_details.terrain_id))
-	#print("terrain color: " + str(map_tiles[print_coords].terrain_details.terrain_color_default))
-	#print("terrain kiith mvp: " + str(map_tiles[print_coords].terrain_details.kiith_mvp))
-	#print("encounter table: " + str(map_tiles[print_coords].encounter_table_id))
 
 
 func _input(event) -> void:
@@ -48,6 +40,7 @@ func _input(event) -> void:
 		if event.keycode == KEY_S:
 			if event.meta_pressed:
 				print("Cmd-S was pressed")
+				save_game_requested.emit()
 				save_game()
 
 
@@ -178,12 +171,12 @@ func parse_map_file(_map: String) -> void:
 			y += 1
 
 
-func _notification(what):
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		print("quitting...")
-		if AgoniaData.MapData.have_changes_to_save || AgoniaData.MonsterData.have_changes_to_save:
-			print("changes pending")
-			save_game()
-		else:
-			print("no unsaved changes")
-		get_tree().quit() # default behavior
+#func _notification(what):
+	#if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		#print("quitting...")
+		#if AgoniaData.MapData.have_changes_to_save || AgoniaData.MonsterData.have_changes_to_save:
+			#print("changes pending")
+			#save_game()
+		#else:
+			#print("no unsaved changes")
+		#get_tree().quit() # default behavior

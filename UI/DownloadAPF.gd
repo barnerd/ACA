@@ -1,21 +1,17 @@
 extends Button
 
-var thread: Thread = Thread.new()
 var file_to_download: String = ""
 
 @onready var discord_bot_format_checkbox = $"../CheckBox"
-signal downloadable_file_progress(progress: float)
-
-
-func _init() -> void:
-	self.disabled = true
 
 
 func _ready() -> void:
-	# TODO: run this on changes, and not on savefile_loaded
-	#SignalBus.connect_to_signal("savefile_loaded", Callable(self, "prepare_file").bind(false))
-	#SignalBus.connect_to_signal("savefile_loaded", Callable(self, "prepare_file").bind(true))
-	pass
+	SignalBus.connect_to_signal("save_game_requested", on_save_game_requested)
+
+
+func on_save_game_requested() -> void:
+	prepare_file(false)
+	prepare_file(true)
 
 
 func _on_pressed() -> void:
@@ -25,22 +21,21 @@ func _on_pressed() -> void:
 		download_file("res://Flat Files/agoniaMap2.txt", "agoniaMap2")
 
 
-func on_processing_done() -> void:
-	self.text = "Download APF File"
-	self.disabled = false
-	
+func on_processing_done(_is_for_discord: bool) -> void:
 	# save file to disk
-	var save_game_file = FileAccess.open("res://Flat Files/agoniaMap2discord.txt", FileAccess.WRITE)
+	var filename: String
+	if _is_for_discord:
+		filename = "agoniaMap2discord"
+	else:
+		filename = "agoniaMap2"
+	var save_game_file = FileAccess.open("res://Flat Files/%s.txt" % filename, FileAccess.WRITE)
 	save_game_file.store_string(file_to_download)
 	save_game_file.close()
-
-
-func prepare_file_on_thread(_is_for_discord: bool) -> void:
-	thread.start(Callable(self, "prepare_file").bind(_is_for_discord), Thread.PRIORITY_LOW)
+	print("%s.txt saved" % filename)
 
 
 func prepare_file(_is_for_discord: bool = false) -> void:
-	print("preparing apf file")
+	print("preparing apf file: " + str(_is_for_discord))
 	# apf file is:
 	# 1	aa	aa	aa	aa	... "\r\n"
 	file_to_download = ""
@@ -57,11 +52,11 @@ func prepare_file(_is_for_discord: bool = false) -> void:
 
 			file_to_download += str(terrain_id)
 		file_to_download += "\r\n"
-		#print("progress: " + str(100.0 * y / 350) + "%")
-		call_deferred("_on_downloadable_file_progress", 100.0 * y / 350)
+		print("progress: " + str(100.0 * y / 350) + "%")
 	
-	print("finished preparing apf file")
-	call_deferred("on_processing_done")
+	print("finished preparing apf file: " + str(_is_for_discord))
+	
+	on_processing_done(_is_for_discord)
 
 
 func download_file(_file: String, _filename: String):
@@ -73,13 +68,3 @@ func download_file(_file: String, _filename: String):
 	
 	var buffer = content.to_ascii_buffer()
 	JavaScriptBridge.download_buffer(buffer, "%s.txt" % _filename, "text/plain")
-
-
-func _exit_tree():
-	if thread.is_started():
-		thread.wait_to_finish()
-
-
-func _on_downloadable_file_progress(_progress: float) -> void:
-	#print("Preparing - %0.2f%%" % _progress)
-	self.text = "Preparing - %0.2f%%" % _progress
