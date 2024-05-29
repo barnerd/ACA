@@ -11,9 +11,15 @@ var pending_changes: Array = []
 var pending_mines: Array = []
 var pending_towns: Array = []
 
+signal tile_updated(location: Vector3i)
+signal update_completed()
+
 
 func _init() -> void:
 	regex = RegEx.new()
+	
+	SignalBus.register_signal("tile_updated", tile_updated)
+	SignalBus.register_signal("update_completed", update_completed)
 
 
 func _on_parse_button_pressed() -> void:
@@ -47,9 +53,11 @@ func _on_cancel_button_pressed() -> void:
 
 func _on_accept_button_pressed() -> void:
 	for change in pending_changes:
-		print("tile updated at %v to terrain id %s, map-%d" % [Vector3i(change["x"], change["y"], change["z"]), AgoniaData.MapData.terrains_by_id[change["terrain_id"]].terrain_name, change["map_id"]])
-		AgoniaData.MapData.update_location(Vector3i(change["x"], change["y"], change["z"]), change["terrain_id"], change["map_id"])
-	AgoniaData.MapData.terrain_colors_display.apply_image()
+		var loc = Vector3i(change["x"], change["y"], change["z"])
+		print("tile updated at %v to terrain id %s, map-%d" % [loc, AgoniaData.MapData.terrains_by_id[change["terrain_id"]].terrain_name, change["map_id"]])
+		AgoniaData.MapData.update_location(loc, change["terrain_id"], change["map_id"])
+		tile_updated.emit(loc)
+	#AgoniaData.MapData.terrain_colors_display.apply_image()
 	
 	for mine in pending_mines:
 		print("%s mine found at %v" % [MineDetails.mine_names[mine["type"]], Vector3i(mine["x"], mine["y"], mine["z"])])
@@ -61,6 +69,8 @@ func _on_accept_button_pressed() -> void:
 	
 	if pending_changes.size() > 0 || pending_mines.size() > 0 || pending_towns.size() > 0:
 		AgoniaData.MapData.have_changes_to_save = true
+	
+	update_completed.emit()
 
 
 # <td class="map-84" data-x="222" data-y="130" style="width:24px; height:24px; display: inline-block"></td>
