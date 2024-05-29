@@ -49,6 +49,7 @@ text = "Map"
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 8
+disabled = true
 text = "Download Map Image"
 script = ExtResource("2_aq7rr")
 
