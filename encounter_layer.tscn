@@ -8,6 +8,7 @@ visible = false
 custom_minimum_size = Vector2(9600, 9600)
 theme = ExtResource("1_3tc7h")
 script = ExtResource("2_2shxb")
+load_labels = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.06

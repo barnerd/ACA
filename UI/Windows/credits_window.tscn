@@ -58,7 +58,7 @@ layout_mode = 2
 [node name="v0_6_0 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLabel"
-text = "v0.5.0 - Offline Generation"
+text = "v0.6.0 - Offline Generation"
 
 [node name="v0_6_0 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(595, 0)

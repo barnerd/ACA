@@ -47,6 +47,7 @@ visible = false
 visible = false
 layout_mode = 2
 theme_type_variation = &"MenuItem"
+disabled = true
 text = "Craftmanship"
 alignment = 0
 
@@ -54,6 +55,7 @@ alignment = 0
 visible = false
 layout_mode = 2
 theme_type_variation = &"MenuItem"
+disabled = true
 text = "Monsters & Spirits"
 alignment = 0
 
@@ -61,6 +63,7 @@ alignment = 0
 visible = false
 layout_mode = 2
 theme_type_variation = &"MenuItem"
+disabled = true
 text = "Options"
 alignment = 0
 
@@ -84,6 +87,7 @@ alignment = 0
 [node name="Credits Window" parent="Menu PanelContainer/VBoxContainer/Credits" instance=ExtResource("2_kgiyx")]
 
 [node name="Edits" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_type_variation = &"MenuItem"
 text = "Update Data"
