@@ -1,9 +1,9 @@
-extends TileMap
+class_name MapImages extends TileMap
 
 enum TileMap_Layers {MAP_IMAGE = 0, MINES = 1, TOWNS = 2}
 enum TileMap_Sources {NONE = -1, SPRITE_SHEET = 0, TOWN = 2, COPPER = 3, IRON = 4, TIN = 5, TITANIUM = 6}
-var mine_type_to_tilemap_source: Array[int] = [TileMap_Sources.TIN, TileMap_Sources.COPPER, TileMap_Sources.IRON, TileMap_Sources.TITANIUM]
-var mine_string_to_mine_type: Array[String] = ["tin", "copper", "iron", "titanium"]
+const mine_type_to_tilemap_source: Array[int] = [TileMap_Sources.TIN, TileMap_Sources.COPPER, TileMap_Sources.IRON, TileMap_Sources.TITANIUM]
+const mine_string_to_mine_type: Array[String] = ["tin", "copper", "iron", "titanium"]
 
 
 func _ready() -> void:
@@ -52,9 +52,9 @@ func on_town_view_settings_changed(_settings) -> void:
 
 func on_tile_updated(_location: Vector3i) -> void:
 	var tile = AgoniaData.MapData.map_tiles[_location]
-	var loc: Vector2i = Vector2i(tile["x"], tile["y"])
+	var loc: Vector2i = Vector2i(tile.location.x, tile.location.y)
 	
-	var _map_id: int = int(tile["map"])
+	var _map_id: int = int(tile.tile_image_id)
 	self.set_cell(TileMap_Layers.MAP_IMAGE, loc, TileMap_Sources.SPRITE_SHEET, Vector2i(_map_id % 76, floori(_map_id/76.0)))
 	
 	for mine in tile.mines:

@@ -3,6 +3,13 @@ extends Node
 var signal_list: Dictionary = {} # String -> Signal
 
 
+func get_signal(_name: String) -> Signal:
+	if signal_list.has(_name):
+		return signal_list[_name]
+	else:
+		return Signal()
+
+
 func register_signal(_name: String, _signal: Signal):
 	if not signal_list.has(_name):
 		signal_list[_name] = _signal

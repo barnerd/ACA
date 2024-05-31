@@ -22,12 +22,12 @@ func _run() -> void:
 	for mine in map_data["mines_p"]:
 		var loc: Vector2i = Vector2i(mine["x"], mine["y"])
 		var type: int = int(mine["t"])
-		tile_map.set_cell(tile_map.TileMap_Layers.MINES, loc, tile_map.mine_type_to_tilemap_source[type], Vector2i.ZERO)
+		tile_map.set_cell(tile_map.TileMap_Layers.MINES, loc, MapImages.mine_type_to_tilemap_source[type], Vector2i.ZERO)
 	
 	for mine in map_data["mines_t"]:
 		var loc: Vector2i = Vector2i(mine["x"], mine["y"])
 		var type: int = int(mine["t"])
-		tile_map.set_cell(tile_map.TileMap_Layers.MINES, loc, tile_map.mine_type_to_tilemap_source[type], Vector2i.ZERO)
+		tile_map.set_cell(tile_map.TileMap_Layers.MINES, loc, MapImages.mine_type_to_tilemap_source[type], Vector2i.ZERO)
 	
 	for town in map_data["towns"]:
 		var loc: Vector2i = Vector2i(town["x"], town["y"])
