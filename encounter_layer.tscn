@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbmtaehsejwde"]
+
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_3tc7h"]
+[ext_resource type="Script" path="res://EncounterLayer.gd" id="2_2shxb"]
+
+[node name="EncounterLayer" type="Container"]
+visible = false
+custom_minimum_size = Vector2(9600, 9600)
+theme = ExtResource("1_3tc7h")
+script = ExtResource("2_2shxb")
+load_labels = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.06

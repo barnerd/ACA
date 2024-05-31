@@ -109,6 +109,15 @@ button_pressed = true
 text = "Show Map"
 script = ExtResource("3_2msy2")
 
+[node name="Image toggle4" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+button_pressed = true
+text = "Show Boats"
+script = ExtResource("3_2msy2")
+
 [node name="Grid Layer Toggle" type="CheckButton" parent="MarginContainer/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 31)
@@ -157,6 +166,7 @@ text = "+"
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Image toggle" to="MarginContainer/VBoxContainer/Image toggle" method="_on_toggled" binds= [2]]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Image toggle2" to="MarginContainer/VBoxContainer/Image toggle2" method="_on_toggled" binds= [1]]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Image toggle3" to="MarginContainer/VBoxContainer/Image toggle3" method="_on_toggled" binds= [0]]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Image toggle4" to="MarginContainer/VBoxContainer/Image toggle4" method="_on_toggled" binds= [3]]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Grid Layer Toggle" to="MarginContainer/VBoxContainer/Grid Layer Toggle" method="_on_toggled"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Zoom Controls VBox/Zoom Minus" to="MarginContainer/VBoxContainer/Zoom Controls VBox" method="_on_zoom_minus_pressed"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/Zoom Controls VBox/Zoom Number" to="MarginContainer/VBoxContainer/Zoom Controls VBox" method="_on_zoom_number_text_submitted"]

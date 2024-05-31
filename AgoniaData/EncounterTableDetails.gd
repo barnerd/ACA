@@ -1,5 +1,7 @@
 class_name EncounterTableDetails extends Node
 
+var internal_id: int
+var internal_id_confirmed: bool
 var encounter_id: String # str(terrain_id) + "|" + tier
 var terrain_id: int
 var tier_name: String
@@ -9,7 +11,10 @@ var nickname: String
 var monsters: Array[int]
 
 
-func _init(_id: int, _tier: String, _name: String = "", _mons: Array[int] = []):
+func _init(_id: int, _tier: String, _name: String = "", _mons: Array[int] = [], _internal: int = -1, _confirmed: bool = false):
+	internal_id = _internal
+	internal_id_confirmed = _confirmed
+
 	terrain_id = _id
 	tier_name = _tier
 	nickname = _name

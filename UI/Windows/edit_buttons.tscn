@@ -1,15 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctiaxywx282qj"]
+[gd_scene load_steps=7 format=3 uid="uid://ctiaxywx282qj"]
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_2t00d"]
 [ext_resource type="PackedScene" uid="uid://dididv7xdkapi" path="res://Tools/update_map_edit_popup.tscn" id="1_7rhjb"]
 [ext_resource type="PackedScene" uid="uid://7rbtbqx0tkjc" path="res://Tools/set_encounter_window.tscn" id="1_gqfy1"]
+[ext_resource type="PackedScene" uid="uid://sj6encq31pwa" path="res://UI/Windows/edit_tile_window.tscn" id="3_tj7hs"]
 [ext_resource type="PackedScene" uid="uid://bgjrp2rkxmcxt" path="res://Tools/set_town_window.tscn" id="4_h5aol"]
 [ext_resource type="PackedScene" uid="uid://vw5cgpsjpr4y" path="res://Tools/edit_groups.tscn" id="5_o0oqw"]
 
 [node name="Edit Buttons" type="Window"]
 title = "Edit Buttons"
 initial_position = 1
-size = Vector2i(190, 194)
+size = Vector2i(190, 237)
 unresizable = true
 theme = ExtResource("1_2t00d")
 
@@ -31,9 +32,16 @@ layout_mode = 2
 
 [node name="Update Map Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Update Map"
+text = "Parse HTML"
 
 [node name="Update Map Text Input PopupPanel" parent="PanelContainer/MarginContainer/VBoxContainer/Update Map Button" instance=ExtResource("1_7rhjb")]
+
+[node name="Update Tile Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Edit Tile"
+
+[node name="EditTileWindow" parent="PanelContainer/MarginContainer/VBoxContainer/Update Tile Button" instance=ExtResource("3_tj7hs")]
+visible = false
 
 [node name="Encounter Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -57,6 +65,7 @@ visible = false
 
 [connection signal="close_requested" from="." to="." method="hide"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Update Map Button" to="PanelContainer/MarginContainer/VBoxContainer/Update Map Button/Update Map Text Input PopupPanel" method="show"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Update Tile Button" to="PanelContainer/MarginContainer/VBoxContainer/Update Tile Button/EditTileWindow" method="show"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Encounter Button" to="PanelContainer/MarginContainer/VBoxContainer/Encounter Button/SetEncounterWindow" method="prepare_set_encounter_window"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Town Button" to="PanelContainer/MarginContainer/VBoxContainer/Town Button/Set Town Window" method="show"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Group Button" to="PanelContainer/MarginContainer/VBoxContainer/Group Button/Groups Window" method="show"]

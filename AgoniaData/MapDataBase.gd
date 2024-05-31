@@ -29,20 +29,9 @@ var mines_locations_temporary: Dictionary = {} # Mine_type -> Vector3i -> MineLo
 var groups_by_id: Dictionary = {} # group_id: int -> GroupDetails
 var towns_by_location: Dictionary = {} # Vector3i -> TownDetails
 
-# TileMap Layers
-# these values are hard coded in the layer_trigger UI
-enum TileMap_Layers {MAP_IMAGE = 0, MINES = 1, TOWNS = 2}
-
-# TileMap Sources
-enum TileMap_Sources {NONE = -1, SPRITE_SHEET = 0, TOWN = 2, COPPER = 3, IRON = 4, TIN = 5, TITANIUM = 6}
-var mine_type_to_tilemap_source: Array[int] = [TileMap_Sources.TIN, TileMap_Sources.COPPER, TileMap_Sources.IRON, TileMap_Sources.TITANIUM]
-var mine_string_to_mine_type: Array[String] = ["tin", "copper", "iron", "titanium"]
-
 var have_changes_to_save: bool
 
 # displays
-# $"/root/Node2D/Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors
-@onready var terrain_colors_display: TerrainColors = $/root/Node2D/Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/TerrainColors
 @onready var tile_map_display: TileMap = $/root/Node2D/Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/MapImages
 
 
@@ -179,18 +168,6 @@ func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encou
 		AgoniaData.MonsterData.encounter_layer.update_labels(vector_array)
 	else:
 		map_tiles[_loc] = TileDetails.new(_loc, _map_id, _terrain_id, _encounter_id)
-	
-	# Update Flat Color Display
-	if not _terrain_id == -1:
-		terrain_colors_display.paint_tile(Vector2i(_loc.x, _loc.y), terrains_by_id[_terrain_id].terrain_color_default)
-	
-	# Update TileMap Image Display
-	if _map_id == -1:
-		# turn off tile in TileMap
-		tile_map_display.set_cell(TileMap_Layers.MAP_IMAGE, Vector2i(_loc.x, _loc.y), TileMap_Sources.NONE)
-	else:
-		tile_map_display.set_cell(TileMap_Layers.MAP_IMAGE, Vector2i(_loc.x, _loc.y), TileMap_Sources.SPRITE_SHEET, Vector2i(_map_id % 76, floor(_map_id/76.0)))
-	
 
 
 func add_mine_location(_type: MineDetails.Mine_Types, _loc: Vector3i, _perm: bool = false):
@@ -210,9 +187,6 @@ func add_mine_location(_type: MineDetails.Mine_Types, _loc: Vector3i, _perm: boo
 		if not mines_locations_temporary[_type].has(_loc):
 			mines_locations_temporary[_type][_loc] = new_mine
 			map_tiles[_loc].mines.append(new_mine)
-	
-	# update display
-	tile_map_display.set_cell(TileMap_Layers.MINES, Vector2i(_loc.x, _loc.y), mine_type_to_tilemap_source[_type], Vector2i.ZERO)
 
 
 func update_group(_id: int, _name: String, _faction: GroupDetails.Factions):
@@ -239,6 +213,3 @@ func update_town(_town_id: int, _name: String, _group_id: int, _loc: Vector3i, _
 		
 		if _group_id != -1:
 			groups_by_id[_group_id].towns.append(new_town)
-	
-	# update display
-	tile_map_display.set_cell(TileMap_Layers.TOWNS, Vector2i(_loc.x, _loc.y), TileMap_Sources.TOWN, Vector2i.ZERO)

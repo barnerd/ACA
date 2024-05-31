@@ -55,6 +55,22 @@ horizontal_scroll_mode = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 
+[node name="v0_6_0 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "v0.6.0 - Offline Generation"
+
+[node name="v0_6_0 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(595, 0)
+layout_mode = 2
+text = " • Added boats as their own map layer
+ • Moved Terrain Colors and Map Images layers to offline generation so the app will load faster
+ • Moved APF flat files to offline generation
+ • Added Discord version of the APF format
+ • Added internal tool to update single tiles
+ • Cleaned up APF errors and surrounding tile images"
+autowrap_mode = 2
+
 [node name="v0_5_0 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLabel"

@@ -95,6 +95,7 @@ func _create_label(_loc: Vector3i, _tier: int, _terrain: int) -> void:
 	var text_offset: Vector2i = Vector2i(-5, -5)
 	instance.position = Vector2i(_loc.x*AgoniaData.MapData.TILE_SIZE.x+text_offset.x, _loc.y*AgoniaData.MapData.TILE_SIZE.y+text_offset.y)
 	self.add_child(instance)
+	instance.owner = self
 	labels_by_coords[_loc] = instance
 
 

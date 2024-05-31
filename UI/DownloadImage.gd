@@ -13,7 +13,7 @@ signal downloadable_file_progress(progress: float)
 
 func _init() -> void:
 	self.text = "Prepare Map Image"
-	self.disabled = false
+	#self.disabled = false
 
 
 func _ready() -> void:

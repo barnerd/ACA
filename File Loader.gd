@@ -2,11 +2,13 @@ extends Node
 
 var apf_flat_filename: String = "res://Flat Files/agoniaMap2.txt"
 
+signal save_game_requested
 signal savefile_loaded
 
 
 func _init() -> void:
 	SignalBus.register_signal("savefile_loaded", savefile_loaded)
+	SignalBus.register_signal("save_game_requested", save_game_requested)
 
 
 func _ready() -> void:
@@ -14,18 +16,23 @@ func _ready() -> void:
 	#parse_map_file(agoniaMap)
 	load_game()
 	
+	# temporary data commands go here
+	#print("running temp commands")
+	#var t_id_a: Array[int] = [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 13, 13, 13, 13, 13, 13, 13, 13, 13, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0]
+	#var tier_a: Array[String] = ["T1", "T2", "T3a", "T3b", "T4", "T5", "T6", "T7", "T8", "T9", "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T1", "T2", "T3", "T4", "T5", "T6a", "T7", "T8", "T9", "T1", "T2", "T3", "T4", "T5", "T6", "T8", "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T9"]
+	#var internal_id_a: Array[int] = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23, 28, 29, 30, 31, 32, 33, 34, 35, 36, 40, 41, 42, 43, 44, 45, 46, 52, 53, 54, 55, 56, 57, 58, 59]
+	#var internal_id_confirmed_a: Array[bool] = [true, false, true, false, false, false, false, false, false, true, false, true, false, false, false, false, true, false, false, false, false, true, false, false, false, true, false, false, true, true, false, false, false, false, false, true, false, false, false, false, true, false, false]
+	#
+	#for i in tier_a.size():
+		#var t_id: int = t_id_a[i]
+		#var tier: String = tier_a[i]
+		#var e = AgoniaData.MonsterData.encounters_by_terrain_tier[t_id][tier]
+		#e.internal_id = internal_id_a[i]
+		#e.internal_id_confirmed = internal_id_confirmed_a[i]
+	#print("done running temp commands")
+	
 	#$"../Control/PanelContainer/ScrollContainer/Control/HBoxContainer/PanelContainer/TerrainColors".apply_image()
 	#tile_map_display.visible = false
-	
-	#var print_coords = Vector3i(275, 170, 0)
-	#print("location: " + str(map_tiles[print_coords].location))
-	#print("image : map-" + str(map_tiles[print_coords].tile_image_id))
-	#print("terrain: " + str(map_tiles[print_coords].terrain_id))
-	#print("terrain name: " + str(map_tiles[print_coords].terrain_details.terrain_name))
-	#print("terrain details id: " + str(map_tiles[print_coords].terrain_details.terrain_id))
-	#print("terrain color: " + str(map_tiles[print_coords].terrain_details.terrain_color_default))
-	#print("terrain kiith mvp: " + str(map_tiles[print_coords].terrain_details.kiith_mvp))
-	#print("encounter table: " + str(map_tiles[print_coords].encounter_table_id))
 
 
 func _input(event) -> void:
@@ -33,6 +40,7 @@ func _input(event) -> void:
 		if event.keycode == KEY_S:
 			if event.meta_pressed:
 				print("Cmd-S was pressed")
+				save_game_requested.emit()
 				save_game()
 
 
@@ -163,12 +171,12 @@ func parse_map_file(_map: String) -> void:
 			y += 1
 
 
-func _notification(what):
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		print("quitting...")
-		if AgoniaData.MapData.have_changes_to_save || AgoniaData.MonsterData.have_changes_to_save:
-			print("changes pending")
-			save_game()
-		else:
-			print("no unsaved changes")
-		get_tree().quit() # default behavior
+#func _notification(what):
+	#if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		#print("quitting...")
+		#if AgoniaData.MapData.have_changes_to_save || AgoniaData.MonsterData.have_changes_to_save:
+			#print("changes pending")
+			#save_game()
+		#else:
+			#print("no unsaved changes")
+		#get_tree().quit() # default behavior
