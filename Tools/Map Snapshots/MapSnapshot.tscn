@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1w7q4a44tmd3"]
+
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_cfgs7"]
+[ext_resource type="Script" path="res://Tools/Map Snapshots/snapshot.gd" id="1_chg1q"]
+[ext_resource type="PackedScene" uid="uid://d312sujtk8aw8" path="res://terrain_colors.tscn" id="1_cjo7f"]
+[ext_resource type="Script" path="res://HUD/CopyScroll.gd" id="2_cywlu"]
+[ext_resource type="Script" path="res://HUD/CoordLabels.gd" id="3_8tanc"]
+[ext_resource type="PackedScene" uid="uid://dqc4y45w8xe3e" path="res://map_images.tscn" id="6_5n3x0"]
+[ext_resource type="Script" path="res://GridLines.gd" id="7_r08kb"]
+
+[node name="MapSnapshot" type="Node2D"]
+script = ExtResource("1_chg1q")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 9634.0
+offset_bottom = 9634.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Subviewport" type="SubViewport" parent="SubViewportContainer"]
+size = Vector2i(9634, 9634)
+
+[node name="Control" type="Control" parent="SubViewportContainer/Subviewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4817.0
+offset_top = -4817.0
+offset_right = 4817.0
+offset_bottom = 4817.0
+mouse_filter = 2
+theme = ExtResource("1_cfgs7")
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/Subviewport/Control"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1300.0
+mouse_filter = 2
+theme = ExtResource("1_cfgs7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/Subviewport/Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 24
+
+[node name="x Coords Scroll" type="ScrollContainer" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("2_cywlu")
+is_horizontal_scroll = true
+
+[node name="Control" type="Control" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer/MarginContainer/x Coords Scroll"]
+custom_minimum_size = Vector2(9600, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Labels" type="HBoxContainer" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer/MarginContainer/x Coords Scroll/Control"]
+custom_minimum_size = Vector2(9600, 24)
+layout_mode = 2
+offset_right = 9600.0
+offset_bottom = 24.0
+theme_override_constants/separation = 0
+script = ExtResource("3_8tanc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="y Coords Scroll" type="ScrollContainer" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("2_cywlu")
+
+[node name="Control" type="Control" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer/HBoxContainer/y Coords Scroll"]
+custom_minimum_size = Vector2(24, 9600)
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer/HBoxContainer/y Coords Scroll/Control"]
+custom_minimum_size = Vector2(24, 9600)
+layout_mode = 2
+offset_right = 24.0
+offset_bottom = 9600.0
+theme_override_constants/separation = 0
+script = ExtResource("3_8tanc")
+
+[node name="Control" type="Control" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(9600, 9600)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer/HBoxContainer/Control"]
+custom_minimum_size = Vector2(9600, 9600)
+layout_mode = 2
+offset_right = 9600.0
+offset_bottom = 9600.0
+mouse_filter = 1
+
+[node name="TerrainColors" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer/HBoxContainer/Control/PanelContainer" instance=ExtResource("1_cjo7f")]
+
+[node name="MapImages" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer/HBoxContainer/Control/PanelContainer" instance=ExtResource("6_5n3x0")]
+layer_1/enabled = false
+layer_2/enabled = false
+
+[node name="GridLines" type="Node2D" parent="SubViewportContainer/Subviewport/Control/PanelContainer/VBoxContainer/HBoxContainer/Control/PanelContainer"]
+script = ExtResource("7_r08kb")
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/Subviewport"]

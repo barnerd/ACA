@@ -16,8 +16,13 @@ func register_signal(_name: String, _signal: Signal):
 
 
 func connect_to_signal(_name: String, _callable: Callable):
-	if not signal_list[_name].is_connected(_callable):
-		signal_list[_name].connect(_callable)
+	if signal_list.has(_name):
+		if not signal_list[_name].is_connected(_callable):
+			signal_list[_name].connect(_callable)
+		else:
+			print("%s is already connected to %s" % [_callable, _name])
+	else:
+		print("%s not found" % _name)
 
 
 # TODO: write unregister func
