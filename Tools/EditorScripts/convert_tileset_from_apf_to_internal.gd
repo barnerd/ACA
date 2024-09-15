@@ -1,5 +1,6 @@
 @tool
 extends EditorScript
+# Make sure to have MapImages open when running
 
 var tile_map: TileMap
 

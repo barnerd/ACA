@@ -1,5 +1,7 @@
 class_name EncounterDetailsDisplay extends VBoxContainer
 
+signal encounters_updated(_coords: Array[Vector3i])
+
 var monster_display = preload("res://UI/Details Modules/monster_details_display.tscn")
 
 @onready var section_header = $"CenterContainer/Section Header"
@@ -11,6 +13,10 @@ var monster_display = preload("res://UI/Details Modules/monster_details_display.
 
 var encounter_details
 var tile_details
+
+
+func _init() -> void:
+	SignalBus.register_signal("encounters_updated", encounters_updated)
 
 
 func _ready() -> void:
@@ -110,7 +116,8 @@ func on_set_encounter_window_accepted(_tier: String, _use_fill: bool, _use_rect:
 	print("region size: %d" % update_encounter_labels.size())
 	
 	# update encounter layer labels
-	AgoniaData.MonsterData.encounter_layer.update_labels(update_encounter_labels)
+	#AgoniaData.MonsterData.encounter_layer.update_labels(update_encounter_labels)
+	encounters_updated.emit(update_encounter_labels)
 	update_encounter_details()
 
 
