@@ -16,4 +16,3 @@ func _input(event) -> void:
 				print("Cmd-S for snapshot was pressed")
 				var image_to_save = viewport.get_texture().get_image()
 				image_to_save.save_png("res://Flat Files/agonia_map.png")
-

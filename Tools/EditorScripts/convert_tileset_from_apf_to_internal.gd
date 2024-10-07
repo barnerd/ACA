@@ -20,6 +20,7 @@ func _run() -> void:
 		var old_terrain_id = tile_data.get_custom_data("terrain_id")
 		if not old_terrain_id == -1:
 			var new_terrain_id = TerrainType.TERRAIN_ID_APF_TO_INTERNAL[old_terrain_id]
+			#var new_terrain_id = TerrainType.TERRAIN_ID_INTERNAL_TO_APF[old_terrain_id]
 			tile_data.set_custom_data("terrain_id", new_terrain_id)
 			
 			#print({"old_id": old_terrain_id, "new_id": new_terrain_id, "tile_data": tile_data.get_custom_data("terrain_id")})
