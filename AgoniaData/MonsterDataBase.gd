@@ -1,7 +1,5 @@
 class_name MonsterDataBase extends Node
 
-@onready var encounter_layer: EncounterLayer = $/root/Node2D/Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/EncounterLayer
-
 var monsters_by_id: Dictionary = {} # int -> MonsterDetails
 var encounters_by_terrain_tier: Dictionary = {} # int -> String -> EncounterTable
 

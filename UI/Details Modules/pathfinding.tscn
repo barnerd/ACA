@@ -78,8 +78,8 @@ text = "Max Tier:"
 [node name="OptionButton" type="OptionButton" parent="HBoxContainer/Left Column/MaxEncounter"]
 layout_mode = 2
 size_flags_horizontal = 3
-item_count = 10
 selected = 0
+item_count = 10
 popup/item_0/text = "Any"
 popup/item_0/id = 99
 popup/item_1/text = "10"
@@ -121,14 +121,13 @@ layout_mode = 2
 
 [node name="Tribe Dropdown" type="OptionButton" parent="HBoxContainer/Right Column"]
 layout_mode = 2
-item_count = 10
 selected = 1
+item_count = 10
 popup/item_0/text = "The Order"
 popup/item_0/id = 8
 popup/item_0/disabled = true
 popup/item_0/separator = true
 popup/item_1/text = "Dwarr"
-popup/item_1/id = 0
 popup/item_2/text = "Leafborn"
 popup/item_2/id = 1
 popup/item_3/text = "Lightfoot"

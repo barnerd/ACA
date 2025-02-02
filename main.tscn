@@ -1,10 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://cixyvm26uk3uc"]
+[gd_scene load_steps=19 format=3 uid="uid://cixyvm26uk3uc"]
 
 [ext_resource type="Script" path="res://ScrollInput.gd" id="1_1knja"]
 [ext_resource type="Script" path="res://File Loader.gd" id="1_70b50"]
 [ext_resource type="Script" path="res://HUD/CopyScroll.gd" id="3_auso8"]
 [ext_resource type="Script" path="res://HUD/CoordLabels.gd" id="3_r3c8x"]
-[ext_resource type="Texture2D" uid="uid://d1x5wjvq5co15" path="res://Flat Files/terrain_colors.png" id="5_pgavb"]
+[ext_resource type="PackedScene" uid="uid://d312sujtk8aw8" path="res://terrain_colors.tscn" id="5_itw6m"]
 [ext_resource type="PackedScene" uid="uid://dqc4y45w8xe3e" path="res://map_images.tscn" id="7_0scc2"]
 [ext_resource type="PackedScene" uid="uid://bbmtaehsejwde" path="res://encounter_layer.tscn" id="8_00dli"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="14_m0auc"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://dhifaa7v66qk5" path="res://UI/town_controls_panel.tscn" id="15_l83vk"]
 [ext_resource type="PackedScene" uid="uid://c6wy6xvn5lvl1" path="res://UI/Details Modules/encounter_details.tscn" id="16_f8o5m"]
 [ext_resource type="Script" path="res://UI/PathDisplay.gd" id="16_qjqlr"]
-[ext_resource type="Script" path="res://TerrainColors.gd" id="17_2gmiw"]
 [ext_resource type="PackedScene" uid="uid://c4xtubh0hppls" path="res://UI/map_controls_panel_container.tscn" id="17_4ypmc"]
 [ext_resource type="PackedScene" uid="uid://dbyo0eb8tgybn" path="res://UI/Details Modules/town_details.tscn" id="17_rfvkl"]
 [ext_resource type="Texture2D" uid="uid://cdohi8uwlhwy8" path="res://images/dragon.png" id="20_752pd"]
@@ -122,10 +121,7 @@ offset_right = 9600.0
 offset_bottom = 9600.0
 mouse_filter = 1
 
-[node name="TerrainColors" type="Sprite2D" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"]
-texture = ExtResource("5_pgavb")
-centered = false
-script = ExtResource("17_2gmiw")
+[node name="TerrainColors" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer" instance=ExtResource("5_itw6m")]
 
 [node name="MapImages" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer" instance=ExtResource("7_0scc2")]
 

@@ -167,9 +167,9 @@ func parse_map_table(_data: String):
 					regex.compile("<div class=\"([a-zA-Z]*?)mine-map\">")
 					result = regex.search(td_contents)
 					if result:
-						#print("found a " + result.get_string(1) + " mine")
+						print("found a " + result.get_string(1) + " mine")
 						found_identified = true
-						pending_mines.append({"type": AgoniaData.MapData.mine_string_to_mine_type.find(result.get_string(1)),
+						pending_mines.append({"type": MapImages.mine_string_to_mine_type.find(result.get_string(1)),
 						"x": tile_details["location"].x,
 						"y": tile_details["location"].y,
 						"z": tile_details["location"].z})
