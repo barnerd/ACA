@@ -7,6 +7,11 @@ var max_tier: int = 99
 
 @onready var path_cost_value = $"../../HBoxContainer/Left Column/Path Cost/Value"
 
+@onready var start_point_field_x = $"../../HBoxContainer/Left Column/Start Point/X"
+@onready var start_point_field_y = $"../../HBoxContainer/Left Column/Start Point/Y"
+@onready var end_point_field_x = $"../../HBoxContainer/Left Column/End Point/X"
+@onready var end_point_field_y = $"../../HBoxContainer/Left Column/End Point/Y"
+
 signal new_path_found(path: Array[Vector2i], cost: int)
 
 
@@ -66,6 +71,8 @@ func on_pathfinding_max_encounter_tier_selected(_max_tier: int) -> void:
 
 func _on_calculate_button_pressed() -> void:
 	print("calculate button")
+	
+	_get_points()
 	print(start_point)
 	print(end_point)
 	
@@ -80,3 +87,13 @@ func _on_calculate_button_pressed() -> void:
 		print("cost: %f" % path_cost) # 564
 		
 		new_path_found.emit(astar_path, path_cost)
+
+
+func _get_points() -> void:
+	if (start_point_field_x.text and start_point_field_x.text.is_valid_int() and 
+	start_point_field_y.text and start_point_field_y.text.is_valid_int()):
+		start_point = Vector2i(int(start_point_field_x.text), int(start_point_field_y.text))
+	
+	if (end_point_field_x.text and end_point_field_x.text.is_valid_int() and 
+	end_point_field_y.text and end_point_field_y.text.is_valid_int()):
+		end_point = Vector2i(int(end_point_field_x.text), int(end_point_field_y.text))
