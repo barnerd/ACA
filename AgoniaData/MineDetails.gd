@@ -1,4 +1,4 @@
-class_name MineDetails extends Node
+class_name MineDetails
 
 enum Mine_Types {TIN = 0, COPPER = 1, IRON = 2, TITANIUM = 3}
 const mine_names: Array[String] = ["Tin", "Copper", "Iron", "Titanium"]

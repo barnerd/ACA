@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpta7jppqflns"]
+
+[ext_resource type="Script" path="res://HUD/CopyScroll.gd" id="1_akfo8"]
+[ext_resource type="Script" path="res://HUD/CoordLabels.gd" id="2_prhw1"]
+
+[node name="Coords Scroll" type="ScrollContainer"]
+custom_minimum_size = Vector2(24, 24)
+size_flags_horizontal = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("1_akfo8")
+is_horizontal_scroll = true
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(9600, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="hLabels" type="HBoxContainer" parent="Control"]
+visible = false
+custom_minimum_size = Vector2(9600, 24)
+layout_mode = 2
+offset_right = 9600.0
+offset_bottom = 24.0
+theme_override_constants/separation = 0
+script = ExtResource("2_prhw1")
+
+[node name="vLabels" type="VBoxContainer" parent="Control"]
+visible = false
+custom_minimum_size = Vector2(24, 9600)
+layout_mode = 2
+offset_right = 24.0
+offset_bottom = 9600.0
+theme_override_constants/separation = 0
+script = ExtResource("2_prhw1")

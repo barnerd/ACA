@@ -9,73 +9,86 @@
 [ext_resource type="Script" path="res://Pathfinder.gd" id="6_7m3f8"]
 [ext_resource type="Script" path="res://UI/Details Modules/ClearPathButton.gd" id="7_2r3sw"]
 
-[node name="Pathfinding Details" type="VBoxContainer"]
-offset_right = 391.0
-offset_bottom = 199.0
+[node name="Pathfinding Details" type="PanelContainer"]
+offset_right = 131.0
+offset_bottom = 39.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("2_1uuf1")
+theme_type_variation = &"MapControls"
 script = ExtResource("1_nwedy")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(0, 40)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Section Header" type="Label" parent="CenterContainer"]
+[node name="Section Header" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
 theme = ExtResource("2_1uuf1")
-theme_type_variation = &"HeaderLabel"
+theme_type_variation = &"HeaderButton"
+toggle_mode = true
 text = "Pathfinding"
+flat = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
-[node name="Left Column" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Left Column" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Start Point" type="HBoxContainer" parent="HBoxContainer/Left Column"]
+[node name="Start Point" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/Left Column/Start Point"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column/Start Point"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "Start:"
 
-[node name="X" type="LineEdit" parent="HBoxContainer/Left Column/Start Point"]
+[node name="X" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column/Start Point"]
 layout_mode = 2
 placeholder_text = "x"
 alignment = 2
 
-[node name="Y" type="LineEdit" parent="HBoxContainer/Left Column/Start Point"]
+[node name="Y" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column/Start Point"]
 layout_mode = 2
 placeholder_text = "y"
 alignment = 2
 
-[node name="End Point" type="HBoxContainer" parent="HBoxContainer/Left Column"]
+[node name="End Point" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/Left Column/End Point"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column/End Point"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "End:"
 
-[node name="X" type="LineEdit" parent="HBoxContainer/Left Column/End Point"]
+[node name="X" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column/End Point"]
 layout_mode = 2
 placeholder_text = "x"
 alignment = 2
 
-[node name="Y" type="LineEdit" parent="HBoxContainer/Left Column/End Point"]
+[node name="Y" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column/End Point"]
 layout_mode = 2
 placeholder_text = "y"
 alignment = 2
 
-[node name="MaxEncounter" type="HBoxContainer" parent="HBoxContainer/Left Column"]
+[node name="MaxEncounter" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/Left Column/MaxEncounter"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column/MaxEncounter"]
 layout_mode = 2
 text = "Max Tier:"
 
-[node name="OptionButton" type="OptionButton" parent="HBoxContainer/Left Column/MaxEncounter"]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column/MaxEncounter"]
 layout_mode = 2
 size_flags_horizontal = 3
 selected = 0
@@ -102,24 +115,24 @@ popup/item_9/text = "2"
 popup/item_9/id = 2
 script = ExtResource("3_nwwnl")
 
-[node name="Path Cost" type="HBoxContainer" parent="HBoxContainer/Left Column"]
+[node name="Path Cost" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/Left Column/Path Cost"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column/Path Cost"]
 layout_mode = 2
 text = "path cost: "
 
-[node name="Value" type="Label" parent="HBoxContainer/Left Column/Path Cost"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Left Column/Path Cost"]
 layout_mode = 2
 theme_type_variation = &"DataLabel"
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Right Column" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Right Column" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Tribe Dropdown" type="OptionButton" parent="HBoxContainer/Right Column"]
+[node name="Tribe Dropdown" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/Right Column"]
 layout_mode = 2
 selected = 1
 item_count = 10
@@ -128,6 +141,7 @@ popup/item_0/id = 8
 popup/item_0/disabled = true
 popup/item_0/separator = true
 popup/item_1/text = "Dwarr"
+popup/item_1/id = 1
 popup/item_2/text = "Leafborn"
 popup/item_2/id = 1
 popup/item_3/text = "Lightfoot"
@@ -148,39 +162,43 @@ popup/item_9/text = "Nuruk"
 popup/item_9/id = 7
 script = ExtResource("2_kswkd")
 
-[node name="Equipment Button" type="Button" parent="HBoxContainer/Right Column"]
+[node name="Equipment Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Right Column"]
 layout_mode = 2
 text = "Equipment"
 alignment = 0
 
-[node name="Equipment Window" parent="HBoxContainer/Right Column/Equipment Button" instance=ExtResource("4_iad3r")]
+[node name="Equipment Window" parent="MarginContainer/VBoxContainer/HBoxContainer/Right Column/Equipment Button" instance=ExtResource("4_iad3r")]
 visible = false
 
-[node name="Equipment Label" type="Label" parent="HBoxContainer/Right Column"]
+[node name="Equipment Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Right Column"]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 text = "No equipment"
 autowrap_mode = 2
 script = ExtResource("5_c1dk0")
 
-[node name="Spacer" type="Control" parent="."]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Calculate Button" type="Button" parent="."]
+[node name="Calculate Button" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Calculate Path"
 
-[node name="Pathfinder" type="Node" parent="Calculate Button"]
+[node name="Pathfinder" type="Node" parent="MarginContainer/VBoxContainer/Calculate Button"]
 script = ExtResource("6_7m3f8")
 
-[node name="Clear Path Button" type="Button" parent="."]
+[node name="Clear Path Button" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Clear Path"
 script = ExtResource("7_2r3sw")
 
-[connection signal="item_selected" from="HBoxContainer/Left Column/MaxEncounter/OptionButton" to="HBoxContainer/Left Column/MaxEncounter/OptionButton" method="_on_item_selected"]
-[connection signal="item_selected" from="HBoxContainer/Right Column/Tribe Dropdown" to="HBoxContainer/Right Column/Tribe Dropdown" method="_on_item_selected"]
-[connection signal="pressed" from="HBoxContainer/Right Column/Equipment Button" to="HBoxContainer/Right Column/Equipment Button/Equipment Window" method="show"]
-[connection signal="pressed" from="Calculate Button" to="Calculate Button/Pathfinder" method="_on_calculate_button_pressed"]
-[connection signal="pressed" from="Clear Path Button" to="Clear Path Button" method="_on_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Section Header" to="." method="_on_section_header_toggled"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/Left Column/MaxEncounter/OptionButton" to="MarginContainer/VBoxContainer/HBoxContainer/Left Column/MaxEncounter/OptionButton" method="_on_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/Right Column/Tribe Dropdown" to="MarginContainer/VBoxContainer/HBoxContainer/Right Column/Tribe Dropdown" method="_on_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Right Column/Equipment Button" to="MarginContainer/VBoxContainer/HBoxContainer/Right Column/Equipment Button/Equipment Window" method="show"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Calculate Button" to="MarginContainer/VBoxContainer/Calculate Button/Pathfinder" method="_on_calculate_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Clear Path Button" to="MarginContainer/VBoxContainer/Clear Path Button" method="_on_pressed"]

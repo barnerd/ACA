@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Agonia Companion App"
-run/main_scene="res://main.tscn"
+run/main_scene="res://HUD/map_viewer.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,8 +24,8 @@ AgoniaData="*res://AgoniaData/AgoniaData.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1620
-window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
+window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
 
 [editor]
 
@@ -48,3 +48,4 @@ zoom_out={
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+limits/global_shader_variables/buffer_size=4096

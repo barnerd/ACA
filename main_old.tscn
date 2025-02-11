@@ -1,0 +1,181 @@
+[gd_scene load_steps=17 format=3 uid="uid://cixyvm26uk3uc"]
+
+[ext_resource type="Script" path="res://ScrollInput.gd" id="1_1knja"]
+[ext_resource type="PackedScene" uid="uid://cpta7jppqflns" path="res://HUD/coords_scroll.tscn" id="2_mo8ry"]
+[ext_resource type="PackedScene" uid="uid://d312sujtk8aw8" path="res://terrain_colors.tscn" id="5_itw6m"]
+[ext_resource type="PackedScene" uid="uid://dqc4y45w8xe3e" path="res://map_images.tscn" id="7_0scc2"]
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="14_m0auc"]
+[ext_resource type="PackedScene" uid="uid://lk86ulb3sqsb" path="res://UI/Details Modules/pathfinding.tscn" id="14_pfesv"]
+[ext_resource type="PackedScene" uid="uid://ybu3x4nqm24r" path="res://UI/Details Modules/tile_details.tscn" id="15_724hc"]
+[ext_resource type="Script" path="res://GridLines.gd" id="15_kgwfe"]
+[ext_resource type="PackedScene" uid="uid://dhifaa7v66qk5" path="res://UI/town_controls_panel.tscn" id="15_l83vk"]
+[ext_resource type="PackedScene" uid="uid://c6wy6xvn5lvl1" path="res://UI/Details Modules/encounter_details.tscn" id="16_f8o5m"]
+[ext_resource type="PackedScene" uid="uid://xse5rv2e3ivw" path="res://file_loader.tscn" id="16_k5wbi"]
+[ext_resource type="Script" path="res://UI/PathDisplay.gd" id="16_qjqlr"]
+[ext_resource type="PackedScene" uid="uid://c4xtubh0hppls" path="res://UI/map_controls_panel_container.tscn" id="17_4ypmc"]
+[ext_resource type="PackedScene" uid="uid://dbyo0eb8tgybn" path="res://UI/Details Modules/town_details.tscn" id="17_rfvkl"]
+[ext_resource type="Texture2D" uid="uid://cdohi8uwlhwy8" path="res://images/dragon.png" id="20_752pd"]
+[ext_resource type="PackedScene" uid="uid://bkn73ewiwrykx" path="res://UI/Menu/menu.tscn" id="20_v64sv"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -810.0
+offset_right = 960.0
+offset_bottom = 810.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("14_m0auc")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1300.0
+mouse_filter = 2
+theme = ExtResource("14_m0auc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 24
+
+[node name="x Coords Scroll" parent="Control/PanelContainer/VBoxContainer/MarginContainer" instance=ExtResource("2_mo8ry")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="y Coords Scroll2" parent="Control/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_mo8ry")]
+layout_mode = 2
+size_flags_horizontal = 0
+is_horizontal_scroll = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
+script = ExtResource("1_1knja")
+
+[node name="Control" type="Control" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(9600, 9600)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control"]
+custom_minimum_size = Vector2(9600, 9600)
+layout_mode = 2
+offset_right = 9600.0
+offset_bottom = 9600.0
+mouse_filter = 1
+
+[node name="TerrainColors" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer" instance=ExtResource("5_itw6m")]
+
+[node name="MapImages" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer" instance=ExtResource("7_0scc2")]
+
+[node name="GridLines" type="Node2D" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"]
+script = ExtResource("15_kgwfe")
+color = Color(0, 0, 0, 1)
+
+[node name="Path Circles" type="Node2D" parent="Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"]
+script = ExtResource("16_qjqlr")
+
+[node name="Controls" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Town Controls PanelContainer" parent="Control/PanelContainer/Controls/HBoxContainer" instance=ExtResource("15_l83vk")]
+layout_mode = 2
+
+[node name="Map Controls PanelContainer" parent="Control/PanelContainer/Controls/HBoxContainer" instance=ExtResource("17_4ypmc")]
+layout_mode = 2
+
+[node name="Menu" parent="Control/PanelContainer" instance=ExtResource("20_v64sv")]
+layout_mode = 2
+
+[node name="Order Side Button" type="Button" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -161.0
+offset_top = -60.0
+offset_right = -46.0
+offset_bottom = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Update Order
+"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -320.0
+offset_right = 970.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("14_m0auc")
+
+[node name="Dragon Bg" type="TextureRect" parent="Control/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("20_752pd")
+stretch_mode = 3
+
+[node name="Details Container" type="HBoxContainer" parent="Control/PanelContainer2"]
+custom_minimum_size = Vector2(1920, 200)
+layout_mode = 2
+
+[node name="Pathfinding Details" parent="Control/PanelContainer2/Details Container" instance=ExtResource("14_pfesv")]
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="Control/PanelContainer2/Details Container"]
+layout_mode = 2
+
+[node name="Encounter Details" parent="Control/PanelContainer2/Details Container" instance=ExtResource("16_f8o5m")]
+layout_mode = 2
+
+[node name="VSeparator1" type="VSeparator" parent="Control/PanelContainer2/Details Container"]
+layout_mode = 2
+
+[node name="Tile Details" parent="Control/PanelContainer2/Details Container" instance=ExtResource("15_724hc")]
+layout_mode = 2
+
+[node name="VSeparator3" type="VSeparator" parent="Control/PanelContainer2/Details Container"]
+layout_mode = 2
+
+[node name="Town Details" parent="Control/PanelContainer2/Details Container" instance=ExtResource("17_rfvkl")]
+layout_mode = 2
+
+[node name="File Loader" parent="." instance=ExtResource("16_k5wbi")]

@@ -1,4 +1,4 @@
-class_name TownDetails extends Node
+class_name TownDetails
 
 enum Dwelling_Sizes {UNKNOWN, NONE, HUNDRED, FIVE_HUNDRED}
 enum Buildings {BLACKSMITH = 0x0001, WORKSHOP = 0x0010, ALCHEMICAL_LAB = 0x0100, WONDERS = 0x1000}

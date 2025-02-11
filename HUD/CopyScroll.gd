@@ -1,9 +1,13 @@
 extends ScrollContainer
 
 @export var is_horizontal_scroll: bool = false
-var container
+
 var labels
-@onready var empty_square = get_node("/root/Node2D/Control/PanelContainer/VBoxContainer/MarginContainer")
+
+@onready var container = $Control
+@onready var hlabels = $Control/hLabels
+@onready var vlabels = $Control/vLabels
+@onready var empty_square = get_node("/root/MapViewer/PanelContainer/VBoxContainer/MarginContainer")
 
 
 func _ready() -> void:
@@ -11,8 +15,23 @@ func _ready() -> void:
 	SignalBus.connect_to_signal("on_UI_map_v_scrolled", on_UI_map_v_scrolled)
 	SignalBus.connect_to_signal("on_map_zoom", on_map_zoom)
 	
-	container = get_node("Control")
-	labels = get_node("Control/Labels")
+	if is_horizontal_scroll:
+		container.custom_minimum_size = Vector2(9600, 24)
+		self.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_NEVER
+		self.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		self.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		labels = hlabels
+		hlabels.visible = true
+		vlabels.visible = false
+	else:
+		container.custom_minimum_size = Vector2(24, 9600)
+		self.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		self.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_NEVER
+		self.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+		container.size_flags_horizontal = Control.SIZE_FILL
+		labels = vlabels
+		hlabels.visible = false
+		vlabels.visible = true
 
 
 func on_UI_map_h_scrolled(_value: int) -> void:

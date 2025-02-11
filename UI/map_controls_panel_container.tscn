@@ -32,14 +32,15 @@ theme_type_variation = &"HeaderButton"
 toggle_mode = true
 text = "Map"
 flat = true
-alignment = 0
 
 [node name="Encounters Layer Toggle" type="CheckButton" parent="MarginContainer/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 31)
 layout_mode = 2
 size_flags_vertical = 0
-disabled = true
+theme = ExtResource("1_geia0")
+theme_type_variation = &"MapControls"
+button_pressed = true
 text = "Show Encounters"
 script = ExtResource("1_k0ye7")
 
@@ -55,11 +56,9 @@ text = "Min tier:"
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/Min Encounter Tier"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
-disabled = true
-item_count = 11
 selected = 4
+item_count = 11
 popup/item_0/text = "All"
-popup/item_0/id = 0
 popup/item_1/text = "2"
 popup/item_1/id = 1
 popup/item_2/text = "3"

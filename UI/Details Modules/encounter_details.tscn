@@ -3,82 +3,95 @@
 [ext_resource type="Script" path="res://UI/Details Modules/EncounterDetailsDisplay.gd" id="1_ajyjh"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_ytbyf"]
 
-[node name="Encounter Details" type="VBoxContainer"]
-offset_right = 354.0
-offset_bottom = 326.0
-size_flags_horizontal = 3
+[node name="Encounter Details" type="PanelContainer"]
+offset_right = 176.0
+offset_bottom = 39.0
+size_flags_horizontal = 2
+size_flags_vertical = 8
+theme = ExtResource("2_ytbyf")
+theme_type_variation = &"MapControls"
 script = ExtResource("1_ajyjh")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(0, 40)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Section Header" type="Label" parent="CenterContainer"]
+[node name="Section Header" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(130, 25)
 layout_mode = 2
 theme = ExtResource("2_ytbyf")
-theme_type_variation = &"HeaderLabel"
+theme_type_variation = &"HeaderButton"
+toggle_mode = true
 text = "Monster Details"
+flat = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
-[node name="Terrain Label" type="Label" parent="HBoxContainer"]
+[node name="Terrain Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 theme = ExtResource("2_ytbyf")
 theme_type_variation = &"HeaderLabel"
 text = "Terrain: "
 
-[node name="Tier Label" type="Label" parent="HBoxContainer"]
+[node name="Tier Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 25)
 layout_mode = 2
 theme = ExtResource("2_ytbyf")
 theme_type_variation = &"HeaderLabel"
 text = "Tier: "
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 12
 
-[node name="Id Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Id Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 25)
 layout_mode = 2
 theme = ExtResource("2_ytbyf")
 theme_type_variation = &"HeaderLabel"
 text = "ID:"
+horizontal_alignment = 2
 
-[node name="Name Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Name Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 theme = ExtResource("2_ytbyf")
 theme_type_variation = &"HeaderLabel"
 text = "Name:"
 
-[node name="Sorcery Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Sorcery Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 theme = ExtResource("2_ytbyf")
 theme_type_variation = &"HeaderLabel"
 text = "Spirit:"
+horizontal_alignment = 2
 
-[node name="Health Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Health Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(60, 25)
 layout_mode = 2
 theme = ExtResource("2_ytbyf")
 theme_type_variation = &"HeaderLabel"
 text = "Health:"
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Section Header" to="." method="_on_section_header_toggled"]

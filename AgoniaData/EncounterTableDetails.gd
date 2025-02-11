@@ -1,4 +1,4 @@
-class_name EncounterTableDetails extends Node
+class_name EncounterTableDetails
 
 var internal_id: int
 var internal_id_confirmed: bool

@@ -1,11 +1,11 @@
-class_name TileDetailsDisplay extends VBoxContainer
+class_name TileDetailsDisplay extends PanelContainer
 
-@onready var section_header = $"CenterContainer/Section Header"
-@onready var terrain_type_value = $"Terrain Type/Value"
-@onready var movement_value = $Mvp/Value
-@onready var movement_label = $Mvp/Label
-@onready var map_id_label = $"Map id and Sprite/Label"
-@onready var mine_label = $Mines/Label
+@onready var section_header = $"MarginContainer/VBoxContainer/Section Header"
+@onready var terrain_type_value = $"MarginContainer/VBoxContainer/VBoxContainer/Terrain Type/Value"
+@onready var movement_value = $MarginContainer/VBoxContainer/VBoxContainer/Mvp/Value
+@onready var movement_label = $MarginContainer/VBoxContainer/VBoxContainer/Mvp/Label
+@onready var map_id_label = $"MarginContainer/VBoxContainer/VBoxContainer/Map id and Sprite/Label"
+@onready var mine_label = $MarginContainer/VBoxContainer/VBoxContainer/Mines/Label
 
 var selected_tribe: String = "Dwarr"
 var selected_terrain: TerrainType
@@ -21,24 +21,34 @@ func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 		section_header.text = "Location Details ["+str(_coords.x)+","+str(_coords.y)+"]"
 		
 		var tile_details = AgoniaData.MapData.map_tiles[_coords]
-		selected_terrain = tile_details.terrain_details
 		
-		if selected_terrain:
+		if tile_details.terrain_id != -1:
+			selected_terrain = AgoniaData.MapData.terrains_by_id[tile_details.terrain_id]
 			terrain_type_value.text = selected_terrain.terrain_name
 			_generate_movement_label()
 			
 			map_id_label.text = "map-" + str(tile_details.tile_image_id)
 			
-			var mine_names: Array[String] = []
-			
-			for m in tile_details.mines:
-				mine_names.append(m.type_name)
-			mine_label.text = ", ".join(mine_names)
+			if tile_details.mines:
+				var mine_names: Array[String] = []
+				
+				for m in tile_details.mines:
+					mine_names.append(m.type_name)
+				mine_label.text = ", ".join(mine_names)
+				$MarginContainer/VBoxContainer/VBoxContainer/Mines.visible = true
+			else:
+				$MarginContainer/VBoxContainer/VBoxContainer/Mines.visible = false
 		else:
 			terrain_type_value.text = ""
 			movement_value.text = ""
 			movement_label.text = ""
 			map_id_label.text = "map-" + str(tile_details.tile_image_id)
+		
+		
+		if tile_details.town:
+			$"MarginContainer/VBoxContainer/VBoxContainer/Town Details".visible = true
+		else:
+			$"MarginContainer/VBoxContainer/VBoxContainer/Town Details".visible = false
 
 
 func on_tribe_select(_tribe: String):
@@ -82,3 +92,6 @@ func _generate_movement_label() -> void:
 		movement_value.text = str(mvp)
 		movement_label.text = "movement"
 
+
+func _on_section_header_toggled(toggled_on: bool) -> void:
+	$MarginContainer/VBoxContainer/VBoxContainer.visible = toggled_on

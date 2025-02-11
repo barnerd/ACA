@@ -2,8 +2,14 @@ extends Window
 
 @onready var grid_parent = $PanelContainer/MarginContainer/ScrollContainer/GridContainer
 
+var standard_size: Vector2 = Vector2(1041, 850)
+
 
 func _on_visibility_changed() -> void:
+	var view_size = DisplayServer.window_get_size()
+	size = Vector2(min(view_size.x - 50, standard_size.x), min(view_size.y - 50, standard_size.y))
+	position = Vector2(max(25, position.x), max(25, position.y))
+	
 	var new_label
 	
 	# clear out previous list of groups

@@ -1,14 +1,14 @@
-class_name EncounterDetailsDisplay extends VBoxContainer
+class_name EncounterDetailsDisplay extends PanelContainer
 
 signal encounters_updated(_coords: Array[Vector3i])
 
 var monster_display = preload("res://UI/Details Modules/monster_details_display.tscn")
 
-@onready var section_header = $"CenterContainer/Section Header"
-@onready var monster_header = $ScrollContainer/VBoxContainer/HBoxContainer
-@onready var monster_section = $ScrollContainer/VBoxContainer
-@onready var terrain_label = $"HBoxContainer/Terrain Label"
-@onready var tier_label = $"HBoxContainer/Tier Label"
+@onready var section_header = $"MarginContainer/VBoxContainer/Section Header"
+@onready var monster_header = $MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer
+@onready var monster_section = $MarginContainer/VBoxContainer/VBoxContainer
+@onready var terrain_label = $"MarginContainer/VBoxContainer/HBoxContainer/Terrain Label"
+@onready var tier_label = $"MarginContainer/VBoxContainer/HBoxContainer/Tier Label"
 #@onready var set_encounter_window = $"Edit Button/SetEncounterWindow"
 
 var encounter_details
@@ -250,3 +250,9 @@ func _get_fill_locations(_start: Vector3i, _target_terrain: int, _start_tier: in
 		tiles_checked.append(current_tile_coords)
 	
 	return tiles_in_region
+
+
+func _on_section_header_toggled(toggled_on: bool) -> void:
+	$MarginContainer/VBoxContainer/HBoxContainer.visible = toggled_on
+	$MarginContainer/VBoxContainer/HSeparator.visible = toggled_on
+	$MarginContainer/VBoxContainer/VBoxContainer.visible = toggled_on

@@ -4,8 +4,8 @@ extends HBoxContainer
 @export var zoom_min: int = 1
 var zoom_current: int = 24
 
-@onready var map_to_zoom = $"/root/Node2D/Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control"
-@onready var map_to_scale = $"/root/Node2D/Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"
+@onready var map_to_zoom = $"/root/MapViewer/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control"
+@onready var map_to_scale = $"/root/MapViewer/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer"
 @onready var zoom_text = $"Zoom Number"
 
 signal on_map_zoom(zoom_factor: float, old_factor: float)

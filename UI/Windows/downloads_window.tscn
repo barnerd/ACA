@@ -54,5 +54,4 @@ text = "Download Map Image"
 script = ExtResource("2_aq7rr")
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Download APF txt" to="PanelContainer/MarginContainer/VBoxContainer/Download APF txt" method="_on_pressed"]
-[connection signal="downloadable_file_progress" from="PanelContainer/MarginContainer/VBoxContainer/Download Image" to="PanelContainer/MarginContainer/VBoxContainer/Download Image" method="_on_downloadable_file_progress"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Download Image" to="PanelContainer/MarginContainer/VBoxContainer/Download Image" method="_on_pressed"]

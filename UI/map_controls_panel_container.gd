@@ -10,4 +10,3 @@ func _on_header_toggled(toggled_on: bool) -> void:
 	$"MarginContainer/VBoxContainer/Image toggle4".visible = toggled_on
 	$"MarginContainer/VBoxContainer/Grid Layer Toggle".visible = toggled_on
 	$"MarginContainer/VBoxContainer/Zoom Controls VBox".visible = toggled_on
-	

@@ -32,7 +32,7 @@ var towns_by_location: Dictionary = {} # Vector3i -> TownDetails
 var have_changes_to_save: bool
 
 # displays
-@onready var tile_map_display: TileMap = $/root/Node2D/Control/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/MapImages
+@onready var tile_map_display: TileMap = $/root/MapViewer/PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer/MapImages
 
 
 func _init() -> void:

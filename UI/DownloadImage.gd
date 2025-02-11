@@ -8,7 +8,7 @@ var need_to_stop: bool = false
 var image_to_download = preload("res://Flat Files/agonia_map.png")
 var is_preparing: bool = false
 
-signal downloadable_file_progress(progress: float)
+#signal downloadable_file_progress(progress: float)
 
 
 #func _init() -> void:

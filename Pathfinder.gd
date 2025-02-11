@@ -41,8 +41,9 @@ func on_tribe_selected(_tribe: String) -> void:
 func set_obstacles() -> void:
 	for loc in AgoniaData.MapData.map_tiles:
 		var is_solid: bool = false
-		if AgoniaData.MapData.map_tiles[loc].terrain_details:
-			if AgoniaData.MapData.map_tiles[loc].terrain_details.dwarr_mvp == -1:
+		if AgoniaData.MapData.map_tiles[loc].terrain_id != -1:
+			var terrain_details = AgoniaData.MapData.terrains_by_id[AgoniaData.MapData.map_tiles[loc].terrain_id]
+			if terrain_details.dwarr_mvp == -1:
 				is_solid = true
 			
 		if AgoniaData.MapData.map_tiles[loc].encounter_table_id:

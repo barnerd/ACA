@@ -1,67 +1,92 @@
-[gd_scene load_steps=3 format=3 uid="uid://ybu3x4nqm24r"]
+[gd_scene load_steps=4 format=3 uid="uid://ybu3x4nqm24r"]
 
 [ext_resource type="Script" path="res://UI/Details Modules/TileDetailsDisplay.gd" id="1_mp40f"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_bdh3e"]
+[ext_resource type="PackedScene" uid="uid://dbyo0eb8tgybn" path="res://UI/Details Modules/town_details.tscn" id="3_48qds"]
 
-[node name="Tile Details" type="VBoxContainer"]
+[node name="Tile Details" type="PanelContainer"]
+offset_right = 226.0
+offset_bottom = 55.0
+size_flags_horizontal = 2
+size_flags_vertical = 8
 theme = ExtResource("2_bdh3e")
+theme_type_variation = &"MapControls"
 script = ExtResource("1_mp40f")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(0, 40)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Section Header" type="Label" parent="CenterContainer"]
+[node name="Section Header" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(210, 25)
 layout_mode = 2
 theme = ExtResource("2_bdh3e")
-theme_type_variation = &"HeaderLabel"
+theme_type_variation = &"HeaderButton"
+toggle_mode = true
 text = "Location Details"
+flat = true
 
-[node name="Terrain Type" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Terrain Type"]
+[node name="Terrain Type" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Terrain Type"]
 layout_mode = 2
 text = "Type of land:"
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="Terrain Type"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Terrain Type"]
 layout_mode = 2
 theme_type_variation = &"DataLabel"
 vertical_alignment = 1
 
-[node name="Mvp" type="HBoxContainer" parent="."]
+[node name="Mvp" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Value" type="Label" parent="Mvp"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Mvp"]
 layout_mode = 2
 theme_type_variation = &"DataLabel"
 text = "0"
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="Mvp"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Mvp"]
 custom_minimum_size = Vector2(210, 25)
 layout_mode = 2
 text = "movement"
 vertical_alignment = 1
 
-[node name="Map id and Sprite" type="HBoxContainer" parent="."]
+[node name="Map id and Sprite" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Map id and Sprite"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Map id and Sprite"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
 text = "map-id"
 
-[node name="Sprite2D" type="Sprite2D" parent="Map id and Sprite"]
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/VBoxContainer/Map id and Sprite"]
 visible = false
 
-[node name="Mines" type="VBoxContainer" parent="."]
+[node name="Mines" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Mines"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Mines"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_type_variation = &"DataLabel"
+
+[node name="Town Details" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_48qds")]
+visible = false
+layout_mode = 2
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Section Header" to="." method="_on_section_header_toggled"]

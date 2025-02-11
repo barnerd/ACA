@@ -1,4 +1,4 @@
-class_name GroupDetails extends Node
+class_name GroupDetails
 
 enum Factions {ORDER, FORSAKEN, FREE_FOLK}
 const Faction_Names: Array[String] = ["Order", "Forsaken", "Free Folk"]

@@ -8,7 +8,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	SignalBus.connect_to_signal("generate_encounter_labels_completed", _on_generation_completed)
+	pass #SignalBus.connect_to_signal("generate_encounter_labels_completed", _on_generation_completed)
 
 
 func _on_generation_completed() -> void:

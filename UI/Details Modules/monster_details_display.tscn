@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://UI/Details Modules/MonsterDetailsDisplay.gd" id="1_wg4eq"]
 
 [node name="Monster Details" type="HBoxContainer"]
+theme_override_constants/separation = 12
 script = ExtResource("1_wg4eq")
 
 [node name="Id Label" type="Label" parent="."]
@@ -10,6 +11,7 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_type_variation = &"DataLabel"
 text = "ID:"
+horizontal_alignment = 2
 
 [node name="Name Label" type="Label" parent="."]
 custom_minimum_size = Vector2(250, 0)
@@ -22,6 +24,7 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_type_variation = &"DataLabel"
 text = "Spirit:"
+horizontal_alignment = 2
 
 [node name="Health Label" type="Label" parent="."]
 visible = false

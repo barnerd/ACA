@@ -1,4 +1,4 @@
-class_name MonsterDetails extends Node
+class_name MonsterDetails
 
 enum MonsterCategory {EXP = 0, OTHER = 1, BOSS = 2}
 

@@ -8,7 +8,9 @@ var tribe: String = "Dwarr"
 func _compute_cost(from_id: Vector2i, to_id: Vector2i) -> float:
 	#print("compute cost")
 	#print("From: %v to %v" % [from_id, to_id])
-	var terrain: TerrainType = AgoniaData.MapData.map_tiles[Vector3i(to_id.x, to_id.y, 0)].terrain_details
+	var target_tile: TileDetails = AgoniaData.MapData.map_tiles[Vector3i(to_id.x, to_id.y, 0)]
+	var terrain: TerrainType = AgoniaData.MapData.terrains_by_id[target_tile.terrain_id]
+	
 	var cost: float = _get_tribe_cost(terrain, tribe)
 	
 	assert(cost != -1)
