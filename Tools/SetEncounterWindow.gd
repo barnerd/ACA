@@ -73,7 +73,7 @@ func prepare_set_encounter_window() -> void:
 			
 			dropdown_tiers.sort_custom(sort_tier_dropdown)
 		
-		terrain_label.text = "%s:" % tile_details.terrain_details.terrain_name
+		terrain_label.text = "%s:" % AgoniaData.MapData.terrains_by_id[tile_details.terrain_id].terrain_name
 		
 		rect_start_x_edit.text = str(tile_details.location.x)
 		rect_start_y_edit.text = str(tile_details.location.y)

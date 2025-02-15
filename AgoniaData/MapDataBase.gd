@@ -158,8 +158,6 @@ func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encou
 		if not map_tiles[_loc].terrain_id == _terrain_id:
 			map_tiles[_loc].terrain_id = _terrain_id
 			map_tiles[_loc].encounter_table_id = ""
-		if not _terrain_id == -1:
-			map_tiles[_loc].terrain_details = terrains_by_id[_terrain_id]
 		map_tiles[_loc].tile_image_id = _map_id
 		map_tiles[_loc].encounter_table_id = _encounter_id
 		
