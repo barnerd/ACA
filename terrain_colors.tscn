@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d312sujtk8aw8"]
 
 [ext_resource type="Texture2D" uid="uid://d1x5wjvq5co15" path="res://Flat Files/terrain_colors.png" id="1_hf02u"]
-[ext_resource type="Script" path="res://TerrainColors.gd" id="2_ur6hb"]
+[ext_resource type="Script" uid="uid://bt3cn7nxjdrsc" path="res://TerrainColors.gd" id="2_ur6hb"]
 
 [node name="TerrainColors" type="Sprite2D"]
 texture = ExtResource("1_hf02u")

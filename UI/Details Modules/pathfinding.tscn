@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://lk86ulb3sqsb"]
 
-[ext_resource type="Script" path="res://UI/Details Modules/PathfindingDetails.gd" id="1_nwedy"]
+[ext_resource type="Script" uid="uid://eq4xxey22tar" path="res://UI/Details Modules/PathfindingDetails.gd" id="1_nwedy"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_1uuf1"]
-[ext_resource type="Script" path="res://UI/Details Modules/TribeDropdown.gd" id="2_kswkd"]
-[ext_resource type="Script" path="res://UI/Details Modules/PathfiningMaxEncounterTier.gd" id="3_nwwnl"]
+[ext_resource type="Script" uid="uid://w88b386udory" path="res://UI/Details Modules/TribeDropdown.gd" id="2_kswkd"]
+[ext_resource type="Script" uid="uid://b4mvbptrfnrfv" path="res://UI/Details Modules/PathfiningMaxEncounterTier.gd" id="3_nwwnl"]
 [ext_resource type="PackedScene" uid="uid://cs4i5lf1fptgd" path="res://UI/equipment_window.tscn" id="4_iad3r"]
-[ext_resource type="Script" path="res://UI/Details Modules/EquipmentLabel.gd" id="5_c1dk0"]
-[ext_resource type="Script" path="res://Pathfinder.gd" id="6_7m3f8"]
-[ext_resource type="Script" path="res://UI/Details Modules/ClearPathButton.gd" id="7_2r3sw"]
+[ext_resource type="Script" uid="uid://b8p6mw3cig5f3" path="res://UI/Details Modules/EquipmentLabel.gd" id="5_c1dk0"]
+[ext_resource type="Script" uid="uid://caky0bvw8pulr" path="res://Pathfinder.gd" id="6_7m3f8"]
+[ext_resource type="Script" uid="uid://b3nf7fxdtnh1e" path="res://UI/Details Modules/ClearPathButton.gd" id="7_2r3sw"]
 
 [node name="Pathfinding Details" type="PanelContainer"]
 offset_right = 131.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbyo0eb8tgybn"]
 
-[ext_resource type="Script" path="res://UI/Details Modules/TownDetailsDisplay.gd" id="1_1o82u"]
+[ext_resource type="Script" uid="uid://c68qdrfea4s0s" path="res://UI/Details Modules/TownDetailsDisplay.gd" id="1_1o82u"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_xhfov"]
 
 [node name="Town Details" type="VBoxContainer"]

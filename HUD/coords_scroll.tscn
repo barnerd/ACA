@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpta7jppqflns"]
 
-[ext_resource type="Script" path="res://HUD/CopyScroll.gd" id="1_akfo8"]
-[ext_resource type="Script" path="res://HUD/CoordLabels.gd" id="2_prhw1"]
+[ext_resource type="Script" uid="uid://bbrbbs0g3fgua" path="res://HUD/CopyScroll.gd" id="1_akfo8"]
+[ext_resource type="Script" uid="uid://uyqv0o3p76bu" path="res://HUD/CoordLabels.gd" id="2_prhw1"]
 
 [node name="Coords Scroll" type="ScrollContainer"]
 custom_minimum_size = Vector2(24, 24)

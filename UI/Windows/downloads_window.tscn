@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cwl3exv6n4mc7"]
 
-[ext_resource type="Script" path="res://UI/DownloadAPF.gd" id="1_jm8nd"]
+[ext_resource type="Script" uid="uid://dviuhllnmgkwk" path="res://UI/DownloadAPF.gd" id="1_jm8nd"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_qea2q"]
-[ext_resource type="Script" path="res://UI/DownloadImage.gd" id="2_aq7rr"]
+[ext_resource type="Script" uid="uid://dtgjjslikkgjo" path="res://UI/DownloadImage.gd" id="2_aq7rr"]
 
 [node name="DownloadsWindow" type="Window"]
 title = "Downloads"

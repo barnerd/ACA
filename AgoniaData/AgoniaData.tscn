@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4mm2yf6dhw67"]
 
-[ext_resource type="Script" path="res://AgoniaData/MapDataBase.gd" id="1_d2n01"]
-[ext_resource type="Script" path="res://AgoniaData/AgoniaData.gd" id="1_eps10"]
-[ext_resource type="Script" path="res://AgoniaData/MonsterDataBase.gd" id="2_to6po"]
+[ext_resource type="Script" uid="uid://spa3nqea0134" path="res://AgoniaData/MapDataBase.gd" id="1_d2n01"]
+[ext_resource type="Script" uid="uid://dr0lelbaclyuv" path="res://AgoniaData/AgoniaData.gd" id="1_eps10"]
+[ext_resource type="Script" uid="uid://cdaa5cg17apwr" path="res://AgoniaData/MonsterDataBase.gd" id="2_to6po"]
 
 [node name="AgoniaData" type="Node"]
 script = ExtResource("1_eps10")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhifaa7v66qk5"]
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_1b5j2"]
-[ext_resource type="Script" path="res://UI/town_controls_panel.gd" id="1_g44vu"]
+[ext_resource type="Script" uid="uid://b0w1tdqq48ln3" path="res://UI/town_controls_panel.gd" id="1_g44vu"]
 
 [node name="Town Controls PanelContainer" type="PanelContainer"]
 size_flags_horizontal = 8

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6wy6xvn5lvl1"]
 
-[ext_resource type="Script" path="res://UI/Details Modules/EncounterDetailsDisplay.gd" id="1_ajyjh"]
+[ext_resource type="Script" uid="uid://dtn60vuba76f6" path="res://UI/Details Modules/EncounterDetailsDisplay.gd" id="1_ajyjh"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_ytbyf"]
 
 [node name="Encounter Details" type="PanelContainer"]

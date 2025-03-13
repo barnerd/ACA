@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://k0cq77by3kh4"]
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_2380u"]
-[ext_resource type="Script" path="res://Tools/NumbersSpriteMap/number_sprite_map_generator.gd" id="1_e6dr8"]
+[ext_resource type="Script" uid="uid://dh1uwkhn2kt5q" path="res://Tools/NumbersSpriteMap/number_sprite_map_generator.gd" id="1_e6dr8"]
 
 [node name="NumberSpriteMapGenerator" type="Node2D"]
 script = ExtResource("1_e6dr8")

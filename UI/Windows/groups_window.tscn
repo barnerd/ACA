@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpngatsw74q6x"]
 
-[ext_resource type="Script" path="res://UI/Windows/groups_window.gd" id="1_0a8s7"]
+[ext_resource type="Script" uid="uid://bi7nkcjup4djb" path="res://UI/Windows/groups_window.gd" id="1_0a8s7"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_odxn5"]
 
 [node name="Groups Window" type="Window"]

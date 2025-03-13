@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_xewlj"]
 [ext_resource type="Texture2D" uid="uid://88abay153m6s" path="res://images/backinventm.jpg" id="2_mewui"]
-[ext_resource type="Script" path="res://UI/EquipmentWindow.gd" id="2_pn7g2"]
+[ext_resource type="Script" uid="uid://uuo1c0vyoulm" path="res://UI/EquipmentWindow.gd" id="2_pn7g2"]
 
 [node name="Equipment Window" type="Window"]
 title = "Equipment"

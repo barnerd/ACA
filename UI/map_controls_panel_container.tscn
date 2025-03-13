@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://c4xtubh0hppls"]
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_geia0"]
-[ext_resource type="Script" path="res://UI/ShowEncounterLayerToggle.gd" id="1_k0ye7"]
-[ext_resource type="Script" path="res://UI/MinEncounterTierDropdown.gd" id="2_17tqc"]
-[ext_resource type="Script" path="res://UI/map_controls_panel_container.gd" id="2_wfoxk"]
-[ext_resource type="Script" path="res://UI/ImageToggle.gd" id="3_2msy2"]
-[ext_resource type="Script" path="res://UI/GridLayerToggle.gd" id="4_2o7mm"]
-[ext_resource type="Script" path="res://MapZoom.gd" id="5_n470b"]
+[ext_resource type="Script" uid="uid://bv4r5i346g2of" path="res://UI/ShowEncounterLayerToggle.gd" id="1_k0ye7"]
+[ext_resource type="Script" uid="uid://b2647s0d4axfv" path="res://UI/MinEncounterTierDropdown.gd" id="2_17tqc"]
+[ext_resource type="Script" uid="uid://c72vvf8o1hufh" path="res://UI/map_controls_panel_container.gd" id="2_wfoxk"]
+[ext_resource type="Script" uid="uid://c2mktb1jpwahb" path="res://UI/ImageToggle.gd" id="3_2msy2"]
+[ext_resource type="Script" uid="uid://c7ywh3dx7n66q" path="res://UI/GridLayerToggle.gd" id="4_2o7mm"]
+[ext_resource type="Script" uid="uid://c70dn6g7ldyhp" path="res://MapZoom.gd" id="5_n470b"]
 
 [node name="Map Controls PanelContainer" type="PanelContainer"]
 size_flags_horizontal = 8

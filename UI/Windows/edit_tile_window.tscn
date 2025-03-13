@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://sj6encq31pwa"]
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_dei4x"]
-[ext_resource type="Script" path="res://UI/Windows/edit_tile_window.gd" id="2_yobom"]
+[ext_resource type="Script" uid="uid://c840pj0am3dqd" path="res://UI/Windows/edit_tile_window.gd" id="2_yobom"]
 
 [node name="EditTileWindow" type="Window"]
 title = "Edit Tile"

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ybu3x4nqm24r"]
 
-[ext_resource type="Script" path="res://UI/Details Modules/TileDetailsDisplay.gd" id="1_mp40f"]
+[ext_resource type="Script" uid="uid://dw6nd2b2yvgao" path="res://UI/Details Modules/TileDetailsDisplay.gd" id="1_mp40f"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="2_bdh3e"]
 [ext_resource type="PackedScene" uid="uid://dbyo0eb8tgybn" path="res://UI/Details Modules/town_details.tscn" id="3_48qds"]
 

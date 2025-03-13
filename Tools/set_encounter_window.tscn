@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://7rbtbqx0tkjc"]
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_fsfc0"]
-[ext_resource type="Script" path="res://Tools/SetEncounterWindow.gd" id="1_sbtkw"]
+[ext_resource type="Script" uid="uid://dvokbd5o6w45" path="res://Tools/SetEncounterWindow.gd" id="1_sbtkw"]
 
 [node name="SetEncounterWindow" type="Window"]
 title = "Set Encounter"

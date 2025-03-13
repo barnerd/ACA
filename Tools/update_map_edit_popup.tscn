@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dididv7xdkapi"]
 
-[ext_resource type="Script" path="res://Tools/Update Map Text Input PopupPanel.gd" id="1_61rjw"]
+[ext_resource type="Script" uid="uid://br0rnn7kohfth" path="res://Tools/Update Map Text Input PopupPanel.gd" id="1_61rjw"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_nd4bo"]
-[ext_resource type="Script" path="res://Map View Parser.gd" id="2_3fjra"]
-[ext_resource type="Script" path="res://Tools/Update Map Results PopupPanel.gd" id="2_do63u"]
+[ext_resource type="Script" uid="uid://4n3jfgrvo4ck" path="res://Map View Parser.gd" id="2_3fjra"]
+[ext_resource type="Script" uid="uid://c54lax56ar2f8" path="res://Tools/Update Map Results PopupPanel.gd" id="2_do63u"]
 
 [node name="UpdateMapWindow" type="Window"]
 title = "Update Map"

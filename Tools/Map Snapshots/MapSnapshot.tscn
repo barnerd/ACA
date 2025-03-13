@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1w7q4a44tmd3"]
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_cfgs7"]
-[ext_resource type="Script" path="res://Tools/Map Snapshots/snapshot.gd" id="1_chg1q"]
+[ext_resource type="Script" uid="uid://dkhvwt3qm57d" path="res://Tools/Map Snapshots/snapshot.gd" id="1_chg1q"]
 [ext_resource type="PackedScene" uid="uid://d312sujtk8aw8" path="res://terrain_colors.tscn" id="1_cjo7f"]
-[ext_resource type="Script" path="res://HUD/CopyScroll.gd" id="2_cywlu"]
-[ext_resource type="Script" path="res://HUD/CoordLabels.gd" id="3_8tanc"]
+[ext_resource type="Script" uid="uid://bbrbbs0g3fgua" path="res://HUD/CopyScroll.gd" id="2_cywlu"]
+[ext_resource type="Script" uid="uid://uyqv0o3p76bu" path="res://HUD/CoordLabels.gd" id="3_8tanc"]
 [ext_resource type="PackedScene" uid="uid://dqc4y45w8xe3e" path="res://map_images.tscn" id="6_5n3x0"]
-[ext_resource type="Script" path="res://GridLines.gd" id="7_r08kb"]
+[ext_resource type="Script" uid="uid://nyjlp68ewy1h" path="res://GridLines.gd" id="7_r08kb"]
 
 [node name="MapSnapshot" type="Node2D"]
 script = ExtResource("1_chg1q")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://vw5cgpsjpr4y"]
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_h2qna"]
-[ext_resource type="Script" path="res://Tools/edit_groups.gd" id="2_m41xm"]
+[ext_resource type="Script" uid="uid://bt4ptrk17hiuj" path="res://Tools/edit_groups.gd" id="2_m41xm"]
 
 [node name="Groups Window" type="Window"]
 title = "Edit Groups"
