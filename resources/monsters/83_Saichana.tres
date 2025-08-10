@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_pj0bi"]
+
+[resource]
+script = ExtResource("1_pj0bi")
+category = 1
+id = 83
+monster_name = "Saichana"
+health = -1
+sorcery_req = 315
+combat_exp = -1
+sorcery_exp = 0

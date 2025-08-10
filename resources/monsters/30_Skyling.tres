@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_6v3yf"]
+
+[resource]
+script = ExtResource("1_6v3yf")
+category = 1
+id = 30
+monster_name = "Skyling"
+health = -1
+sorcery_req = 105
+combat_exp = -1
+sorcery_exp = 0

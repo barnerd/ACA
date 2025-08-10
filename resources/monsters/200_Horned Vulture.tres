@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_7phbk"]
+
+[resource]
+script = ExtResource("1_7phbk")
+category = 1
+id = 200
+monster_name = "Horned Vulture"
+health = -1
+sorcery_req = 155
+combat_exp = -1
+sorcery_exp = 0

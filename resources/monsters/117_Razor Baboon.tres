@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_pyofg"]
+
+[resource]
+script = ExtResource("1_pyofg")
+category = 2
+id = 117
+monster_name = "Razor Baboon"
+health = -1
+sorcery_req = 260
+combat_exp = -1
+sorcery_exp = 0

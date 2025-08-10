@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_6p3tw"]
+
+[resource]
+script = ExtResource("1_6p3tw")
+category = 1
+id = 241
+monster_name = "Black Skeever"
+health = -1
+sorcery_req = 65
+combat_exp = -1
+sorcery_exp = 0

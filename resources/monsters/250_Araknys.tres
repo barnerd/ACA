@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_qpmt2"]
+
+[resource]
+script = ExtResource("1_qpmt2")
+category = 1
+id = 250
+monster_name = "Araknys"
+health = -1
+sorcery_req = 200
+combat_exp = -1
+sorcery_exp = 0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_r3cyv"]
+
+[resource]
+script = ExtResource("1_r3cyv")
+category = 2
+id = 164
+monster_name = "Yeti"
+health = -1
+sorcery_req = 600
+combat_exp = -1
+sorcery_exp = 0

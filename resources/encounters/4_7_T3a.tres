@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EncounterResource" load_steps=2 format=3 uid="uid://dotpnd1xo6cbl"]
+
+[ext_resource type="Script" uid="uid://bp5u44a36gir4" path="res://AgoniaData/encounter_resource.gd" id="1_wdx4u"]
+
+[resource]
+script = ExtResource("1_wdx4u")
+id = 4
+internal_id_confirmed = true
+encounter_id = "7|T3a"
+terrain_id = 7
+tier_name = "T3a"
+tier_number = 3
+nickname = ""
+monsters = Array[int]([10, 17, 238, 19, 13, 14])

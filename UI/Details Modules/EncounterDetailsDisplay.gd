@@ -27,7 +27,10 @@ func _ready() -> void:
 func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 	if _button == MOUSE_BUTTON_LEFT:
 		tile_details = AgoniaData.MapData.map_tiles[_coords]
-		encounter_details = AgoniaData.MonsterData.get_encounter_table_by_id(tile_details.encounter_table_id)
+		if tile_details.encounter_table_id != -1:
+			encounter_details = AgoniaData.MonsterData.encounters_by_id[tile_details.encounter_table_id]
+		else:
+			encounter_details = null
 		
 		update_encounter_details()
 
@@ -68,16 +71,16 @@ func sort_monsters_in_table(a: int, b: int) -> bool:
 	var mon_a = AgoniaData.MonsterData.monsters_by_id[a]
 	var mon_b = AgoniaData.MonsterData.monsters_by_id[b]
 	
-	if mon_a.monster_category == mon_b.monster_category:
-		return mon_a.sorcery_requirement < mon_b.sorcery_requirement
+	if mon_a.category == mon_b.category:
+		return mon_a.sorcery_req < mon_b.sorcery_req
 	else:
-		return mon_a.monster_category < mon_b.monster_category
+		return mon_a.category < mon_b.category
 
 
 func _update_tile_encounter_id(_tile, _encounter) -> void:
 	if _encounter:
-		if _tile.encounter_table_id != _encounter.encounter_id:
-			_tile.encounter_table_id = _encounter.encounter_id
+		if _tile.encounter_table_id != _encounter.id:
+			_tile.encounter_table_id = _encounter.id
 	else:
 		_tile.encounter_table_id = ""
 	AgoniaData.MapData.have_changes_to_save = true
@@ -89,20 +92,20 @@ func on_set_encounter_window_accepted(_tier: String, _use_fill: bool, _use_rect:
 	if _tier:
 		# use different terrain_id's tables
 		if tile_details.terrain_id == 5:
-			encounter_details = AgoniaData.MonsterData.encounters_by_terrain_tier[4][_tier]
+			encounter_details = AgoniaData.MonsterData.get_encounter_by_terrain_tier(4, _tier)
 		elif tile_details.terrain_id == 10:
-			encounter_details = AgoniaData.MonsterData.encounters_by_terrain_tier[9][_tier]
+			encounter_details = AgoniaData.MonsterData.get_encounter_by_terrain_tier(9, _tier)
 		elif tile_details.terrain_id == 8:
-			encounter_details = AgoniaData.MonsterData.encounters_by_terrain_tier[7][_tier]
+			encounter_details = AgoniaData.MonsterData.get_encounter_by_terrain_tier(7, _tier)
 		elif tile_details.terrain_id == 13:
 			# if tier is lava, strip lava and use that
 			if _tier.right(4) == "Lava":
 				_tier = _tier.left(-7)
-				encounter_details = AgoniaData.MonsterData.encounters_by_terrain_tier[3][_tier]
+				encounter_details = AgoniaData.MonsterData.get_encounter_by_terrain_tier(3, _tier)
 			else:
-				encounter_details = AgoniaData.MonsterData.encounters_by_terrain_tier[tile_details.terrain_id][_tier]
+				encounter_details = AgoniaData.MonsterData.get_encounter_by_terrain_tier(tile_details.terrain_id, _tier)
 		else:
-			encounter_details = AgoniaData.MonsterData.encounters_by_terrain_tier[tile_details.terrain_id][_tier]
+			encounter_details = AgoniaData.MonsterData.get_encounter_by_terrain_tier(tile_details.terrain_id, _tier)
 	else:
 		encounter_details = null
 	
@@ -128,7 +131,9 @@ func _set_encounter_for_current_tile(_terrain_id: int) -> Array[Vector3i]:
 
 
 func _set_encounter_for_current_fill(_terrain_id: int, _check_diagonals: bool = false, _mountains_as_same: bool = false) -> Array[Vector3i]:
-	var starting_encounter = AgoniaData.MonsterData.get_encounter_table_by_id(tile_details.encounter_table_id)
+	var starting_encounter = null
+	if AgoniaData.MonsterData.encounters_by_id.has(tile_details.encounter_table_id):
+		starting_encounter = AgoniaData.MonsterData.encounters_by_id[tile_details.encounter_table_id]
 	var starting_tier = -1
 	if starting_encounter:
 		starting_tier = starting_encounter.tier_number
@@ -193,7 +198,9 @@ func _get_fill_locations(_start: Vector3i, _target_terrain: int, _start_tier: in
 		var current_tile_coords = tiles_to_check.pop_back()
 		var current_terrain = AgoniaData.MapData.map_tiles[current_tile_coords].terrain_id
 		var current_encounter_id = AgoniaData.MapData.map_tiles[current_tile_coords].encounter_table_id
-		var current_table = AgoniaData.MonsterData.get_encounter_table_by_id(current_encounter_id)
+		var current_table = null
+		if AgoniaData.MonsterData.encounters_by_id.has(current_encounter_id):
+			current_table = AgoniaData.MonsterData.encounters_by_id[current_encounter_id]
 		var current_tier
 		if current_table:
 			current_tier = current_table.tier_number

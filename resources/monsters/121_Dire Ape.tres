@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_xrtkc"]
+
+[resource]
+script = ExtResource("1_xrtkc")
+category = 1
+id = 121
+monster_name = "Dire Ape"
+health = -1
+sorcery_req = 225
+combat_exp = -1
+sorcery_exp = 0

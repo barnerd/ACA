@@ -32,7 +32,10 @@ func _ready() -> void:
 func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 	if _button == MOUSE_BUTTON_LEFT:
 		tile_details = AgoniaData.MapData.map_tiles[_coords]
-		encounter_details = AgoniaData.MonsterData.get_encounter_table_by_id(tile_details.encounter_table_id)
+		if tile_details.encounter_table_id != -1:
+			encounter_details = AgoniaData.MonsterData.encounters_by_id[tile_details.encounter_table_id]
+		else:
+			encounter_details = null
 
 
 func prepare_set_encounter_window() -> void:
@@ -50,26 +53,25 @@ func prepare_set_encounter_window() -> void:
 			# if terrain_id is road, then use plains T1
 			if terrain_id == 8:
 				dropdown_terrain = 7
+			# if terrain_id is mountain L2, set to mountain L1
+			if terrain_id == 5:
+				dropdown_terrain = 4
+			# if terrain is icy L1, set to snow
+			if terrain_id == 10:
+				dropdown_terrain = 9
+			
+			
+			if terrain_id == 8:
 				dropdown_tiers = ["T1"]
 			# if terrain_id is wastes, include lava
-			elif terrain_id == 13:
-				# take wastes tiers and lava tiers and combine them
-				if AgoniaData.MonsterData.encounters_by_terrain_tier.has(3):
-					dropdown_tiers = AgoniaData.MonsterData.encounters_by_terrain_tier[3].keys()
-					for t in dropdown_tiers.size():
-						dropdown_tiers[t] += " - Lava"
-				if AgoniaData.MonsterData.encounters_by_terrain_tier.has(dropdown_terrain):
-					dropdown_tiers += AgoniaData.MonsterData.encounters_by_terrain_tier[dropdown_terrain].keys()
 			else:
-				# if terrain_id is mountain L2, set to mountain L1
-				if terrain_id == 5:
-					dropdown_terrain = 4
-				# if terrain is icy L1, set to snow
-				if terrain_id == 10:
-					dropdown_terrain = 9
-				
-				if AgoniaData.MonsterData.encounters_by_terrain_tier.has(dropdown_terrain):
-					dropdown_tiers = AgoniaData.MonsterData.encounters_by_terrain_tier[dropdown_terrain].keys()
+				for encounter in AgoniaData.MonsterData.encounters_by_id.values():
+					if terrain_id == 13:
+						# if wastes, then include lava tables too
+						if encounter.terrain_id == 3:
+							dropdown_tiers.append(encounter.tier_name + " - Lava")
+					if encounter.terrain_id == dropdown_terrain:
+						dropdown_tiers.append(encounter.tier_name)
 			
 			dropdown_tiers.sort_custom(sort_tier_dropdown)
 		

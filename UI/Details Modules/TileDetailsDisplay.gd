@@ -29,21 +29,11 @@ func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 			
 			map_id_label.text = "map-" + str(tile_details.tile_image_id)
 			
-			if tile_details.mines:
-				var mine_names: Array[String] = []
-				
-				for m in tile_details.mines:
-					mine_names.append(m.type_name)
-				mine_label.text = ", ".join(mine_names)
-				$MarginContainer/VBoxContainer/VBoxContainer/Mines.visible = true
-			else:
-				$MarginContainer/VBoxContainer/VBoxContainer/Mines.visible = false
 		else:
 			terrain_type_value.text = ""
 			movement_value.text = ""
 			movement_label.text = ""
 			map_id_label.text = "map-" + str(tile_details.tile_image_id)
-		
 		
 		if tile_details.town:
 			$"MarginContainer/VBoxContainer/VBoxContainer/Town Details".visible = true

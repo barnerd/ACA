@@ -59,9 +59,9 @@ func _on_accept_button_pressed() -> void:
 		tile_updated.emit(loc)
 	#AgoniaData.MapData.terrain_colors_display.apply_image()
 	
-	for mine in pending_mines:
-		print("%s mine found at %v" % [MineDetails.mine_names[mine["type"]], Vector3i(mine["x"], mine["y"], mine["z"])])
-		AgoniaData.MapData.add_mine_location(mine["type"], Vector3i(mine["x"], mine["y"], mine["z"]))
+	#for mine in pending_mines:
+		#print("%s mine found at %v" % [MineDetails.mine_names[mine["type"]], Vector3i(mine["x"], mine["y"], mine["z"])])
+		#AgoniaData.MapData.add_mine_location(mine["type"], Vector3i(mine["x"], mine["y"], mine["z"]))
 	
 	for town in pending_towns:
 		print("town found at %v" % Vector3i(town["x"], town["y"], town["z"]))
@@ -169,11 +169,11 @@ func parse_map_table(_data: String):
 					if result:
 						print("found a " + result.get_string(1) + " mine")
 						found_identified = true
-						pending_mines.append({"type": MapImages.mine_string_to_mine_type.find(result.get_string(1)),
-						"x": tile_details["location"].x,
-						"y": tile_details["location"].y,
-						"z": tile_details["location"].z})
-						_increment_counts("mines")
+						#pending_mines.append({"type": MapImages.mine_string_to_mine_type.find(result.get_string(1)),
+						#"x": tile_details["location"].x,
+						#"y": tile_details["location"].y,
+						#"z": tile_details["location"].z})
+						#_increment_counts("mines")
 						update_results()
 					
 					# check for town
@@ -238,8 +238,8 @@ func update_results():
 		results_textbox.text = results_textbox.text + str(counts["characters"]) + " characters found\n"
 	if counts.has("towns"):
 		results_textbox.text = results_textbox.text + str(counts["towns"]) + " towns to store\n"
-	if counts.has("mines"):
-		results_textbox.text = results_textbox.text + str(counts["mines"]) + " mines to store\n"
+	#if counts.has("mines"):
+		#results_textbox.text = results_textbox.text + str(counts["mines"]) + " mines to store\n"
 	if counts.has("warnings"):
 		results_textbox.text = results_textbox.text + str(counts["warnings"]) + " warnings to check\n"
 

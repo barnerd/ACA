@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_u1gtg"]
+
+[resource]
+script = ExtResource("1_u1gtg")
+category = 1
+id = 130
+monster_name = "Reticulated Python"
+health = -1
+sorcery_req = 325
+combat_exp = -1
+sorcery_exp = 0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_jw8my"]
+
+[resource]
+script = ExtResource("1_jw8my")
+category = 1
+id = 377
+monster_name = "Overgrowth"
+health = -1
+sorcery_req = 1000
+combat_exp = -1
+sorcery_exp = 0

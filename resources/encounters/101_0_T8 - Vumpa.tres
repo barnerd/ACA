@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EncounterResource" load_steps=2 format=3 uid="uid://cjv7pra1drdk8"]
+
+[ext_resource type="Script" uid="uid://bp5u44a36gir4" path="res://AgoniaData/encounter_resource.gd" id="1_x112f"]
+
+[resource]
+script = ExtResource("1_x112f")
+id = 101
+internal_id_confirmed = false
+encounter_id = "0|T8 - Vumpa"
+terrain_id = 0
+tier_name = "T8 - Vumpa"
+tier_number = 8
+nickname = ""
+monsters = Array[int]([142, 272, 273, 274])

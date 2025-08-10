@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_pr5df"]
+
+[resource]
+script = ExtResource("1_pr5df")
+category = 1
+id = 357
+monster_name = "Largognile"
+health = -1
+sorcery_req = 360
+combat_exp = -1
+sorcery_exp = 0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_shlyv"]
+
+[resource]
+script = ExtResource("1_shlyv")
+category = 1
+id = 362
+monster_name = "Rataki"
+health = -1
+sorcery_req = 185
+combat_exp = -1
+sorcery_exp = 0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_8eidi"]
+
+[resource]
+script = ExtResource("1_8eidi")
+category = 1
+id = 126
+monster_name = "Wild Boar"
+health = -1
+sorcery_req = 210
+combat_exp = -1
+sorcery_exp = 0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_u2114"]
+
+[resource]
+script = ExtResource("1_u2114")
+category = 1
+id = 337
+monster_name = "Strider"
+health = -1
+sorcery_req = 330
+combat_exp = -1
+sorcery_exp = 0

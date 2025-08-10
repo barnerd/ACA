@@ -4,27 +4,24 @@ const MAP_SIZE: Vector3i = Vector3i(400, 400, 1)
 const TILE_SIZE: Vector2i = Vector2i(24, 24)
 
 @export var terrain_details: Array[TerrainType] = [
-preload("res://Terrain Types/city.tres"),
-preload("res://Terrain Types/floor.tres"),
-preload("res://Terrain Types/desert.tres"),
-preload("res://Terrain Types/forest.tres"),
-preload("res://Terrain Types/ice1.tres"),
-preload("res://Terrain Types/ice2.tres"),
-preload("res://Terrain Types/lava.tres"),
-preload("res://Terrain Types/mountain1.tres"),
-preload("res://Terrain Types/mountain2.tres"),
-preload("res://Terrain Types/mountain3.tres"),
-preload("res://Terrain Types/plains.tres"),
-preload("res://Terrain Types/road.tres"),
-preload("res://Terrain Types/snow.tres"),
-preload("res://Terrain Types/wastes.tres"),
-preload("res://Terrain Types/water.tres")]
+preload("res://resources/terrain_types/city.tres"),
+preload("res://resources/terrain_types/floor.tres"),
+preload("res://resources/terrain_types/desert.tres"),
+preload("res://resources/terrain_types/forest.tres"),
+preload("res://resources/terrain_types/ice1.tres"),
+preload("res://resources/terrain_types/ice2.tres"),
+preload("res://resources/terrain_types/lava.tres"),
+preload("res://resources/terrain_types/mountain1.tres"),
+preload("res://resources/terrain_types/mountain2.tres"),
+preload("res://resources/terrain_types/mountain3.tres"),
+preload("res://resources/terrain_types/plains.tres"),
+preload("res://resources/terrain_types/road.tres"),
+preload("res://resources/terrain_types/snow.tres"),
+preload("res://resources/terrain_types/wastes.tres"),
+preload("res://resources/terrain_types/water.tres")]
 var terrains_by_id: Dictionary = {} # terrain_id -> TerrainType
 
 var map_tiles: Dictionary = {} # Vector3i -> MapTiles
-
-var mines_locations_permanent: Dictionary = {} # Mine_type -> Vector3i -> MineLocation
-var mines_locations_temporary: Dictionary = {} # Mine_type -> Vector3i -> MineLocation
 
 var groups_by_id: Dictionary = {} # group_id: int -> GroupDetails
 var towns_by_location: Dictionary = {} # Vector3i -> TownDetails
@@ -54,35 +51,16 @@ func save():
 	# save tile data
 	var save_tile_details: Array = []
 	for tile in map_tiles.values():
+		#var enc = AgoniaData.MonsterData.get_encounter_table_by_id(tile.encounter_table_id)
+		#var e_id = enc.internal_id if enc else -1
 		save_tile_details.append({
 			"x": tile.location.x,
 			"y": tile.location.y,
 			"z": tile.location.z,
 			"map": tile.tile_image_id,
 			"t": tile.terrain_id,
-			"e": tile.encounter_table_id
+			"e": tile.encounter_table_id,
 		})
-	
-	# save mines data
-	var save_mines_permanent: Array = []
-	for type in mines_locations_permanent:
-		for mine_loc in mines_locations_permanent[type]:
-			save_mines_permanent.append({
-				"x": mine_loc.x,
-				"y": mine_loc.y,
-				"z": mine_loc.z,
-				"t": type
-			})
-	
-	var save_mines_temporary: Array = []
-	for type in mines_locations_temporary:
-		for mine_loc in mines_locations_temporary[type]:
-			save_mines_temporary.append({
-				"x": mine_loc.x,
-				"y": mine_loc.y,
-				"z": mine_loc.z,
-				"t": type
-			})
 	
 	# save group details
 	var save_group_details: Array = []
@@ -112,8 +90,6 @@ func save():
 		"filename" : get_scene_file_path(),
 		"parent" : get_parent().get_path(),
 		"tiles" : save_tile_details,
-		"mines_p" : save_mines_permanent, 
-		"mines_t": save_mines_temporary,
 		"groups" : save_group_details,
 		"towns" : save_town_details
 	}
@@ -130,18 +106,13 @@ func load(_data):
 	# load map tile data
 	for tile in _data["tiles"]:
 		var l: Vector3i = Vector3i(tile["x"], tile["y"], tile["z"])
-		update_location(l, tile["t"], tile["map"], tile["e"])
-	
-	# load mine data
-	mines_locations_permanent = {} # Mine_type -> [Vector3i]
-	for mine in _data["mines_p"]:
-		var l: Vector3i = Vector3i(mine["x"], mine["y"], mine["z"])
-		add_mine_location(mine["t"], l,  true)
-	
-	mines_locations_temporary = {} # Mine_type -> [Vector3i]
-	for mine in _data["mines_t"]:
-		var l: Vector3i = Vector3i(mine["x"], mine["y"], mine["z"])
-		add_mine_location(mine["t"], l)
+		# convert tile["e"]
+		var e_id: int = tile["e"] # -1
+		#for enc in AgoniaData.MonsterData.encounters_by_id.values():
+			#if enc.encounter_id == tile["e"]:
+				#e_id = enc.id
+				#break
+		update_location(l, tile["t"], tile["map"], e_id)
 	
 	groups_by_id = {} # group_id: int -> GroupDetails
 	for group in _data["groups"]:
@@ -153,7 +124,7 @@ func load(_data):
 		update_town(town["t_id"], town["n"], town["g_id"], l, town["w"], town["d"], town["b"])
 
 
-func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encounter_id: String = ""):
+func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encounter_id: int = -1):
 	if map_tiles.has(_loc):
 		if not map_tiles[_loc].terrain_id == _terrain_id:
 			map_tiles[_loc].terrain_id = _terrain_id
@@ -168,25 +139,6 @@ func update_location(_loc: Vector3i, _terrain_id: int, _map_id: int = -1, _encou
 		#AgoniaData.MonsterData.encounter_layer.update_labels(vector_array)
 	else:
 		map_tiles[_loc] = TileDetails.new(_loc, _map_id, _terrain_id, _encounter_id)
-
-
-func add_mine_location(_type: MineDetails.Mine_Types, _loc: Vector3i, _perm: bool = false):
-	var new_mine = MineDetails.new(_type, _loc, _perm)
-	
-	if _perm:
-		if not mines_locations_permanent.has(_type):
-			mines_locations_permanent[_type] = {}
-		
-		if not mines_locations_permanent[_type].has(_loc):
-			mines_locations_permanent[_type][_loc] = new_mine
-			map_tiles[_loc].mines.append(new_mine)
-	else:
-		if not mines_locations_temporary.has(_type):
-			mines_locations_temporary[_type] = {}
-		
-		if not mines_locations_temporary[_type].has(_loc):
-			mines_locations_temporary[_type][_loc] = new_mine
-			map_tiles[_loc].mines.append(new_mine)
 
 
 func update_group(_id: int, _name: String, _faction: GroupDetails.Factions):

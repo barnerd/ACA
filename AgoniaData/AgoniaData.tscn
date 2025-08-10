@@ -10,5 +10,5 @@ script = ExtResource("1_eps10")
 [node name="MapDataBase" type="Node" parent="." groups=["Persist"]]
 script = ExtResource("1_d2n01")
 
-[node name="MonsterDataBase" type="Node" parent="." groups=["Persist"]]
+[node name="MonsterDataBase" type="Node" parent="."]
 script = ExtResource("2_to6po")

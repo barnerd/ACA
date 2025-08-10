@@ -48,7 +48,7 @@ func on_tilemap_location_clicked(_coords: Vector3i, _button: MouseButton):
 			
 			terrain_options.select(terrain_options.get_item_index(tile_details.terrain_id))
 			
-			_update_mines_display()
+			#_update_mines_display()
 			
 			_update_town_display()
 
@@ -104,7 +104,7 @@ func _on_update_button_pressed() -> void:
 			AgoniaData.MapData.map_tiles[tile_details.location].terrain_details = null
 		else:
 			AgoniaData.MapData.map_tiles[tile_details.location].terrain_id = new_terrain_id
-			AgoniaData.MapData.map_tiles[tile_details.location].terrain_details = AgoniaData.MapData.terrains_by_id[new_terrain_id]
+			#AgoniaData.MapData.map_tiles[tile_details.location].terrain_details = AgoniaData.MapData.terrains_by_id[new_terrain_id]
 		
 		if not tile_updated_signal.is_null():
 			tile_updated_signal.emit(tile_details.location)

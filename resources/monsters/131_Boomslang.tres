@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_oe1cy"]
+
+[resource]
+script = ExtResource("1_oe1cy")
+category = 1
+id = 131
+monster_name = "Boomslang"
+health = -1
+sorcery_req = 235
+combat_exp = -1
+sorcery_exp = 0

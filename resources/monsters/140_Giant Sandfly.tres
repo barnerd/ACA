@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_s68b1"]
+
+[resource]
+script = ExtResource("1_s68b1")
+category = 1
+id = 140
+monster_name = "Giant Sandfly"
+health = -1
+sorcery_req = 10
+combat_exp = -1
+sorcery_exp = 0

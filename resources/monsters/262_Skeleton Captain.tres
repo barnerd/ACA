@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_rj3hq"]
+
+[resource]
+script = ExtResource("1_rj3hq")
+category = 1
+id = 262
+monster_name = "Skeleton Captain"
+health = -1
+sorcery_req = 400
+combat_exp = -1
+sorcery_exp = 0

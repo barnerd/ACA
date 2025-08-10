@@ -12,6 +12,8 @@ func _ready() -> void:
 	SignalBus.connect_to_signal("tile_updated", on_tile_updated)
 	SignalBus.connect_to_signal("update_completed", on_update_completed)
 	SignalBus.connect_to_signal("save_game_requested", on_save_game_requested)
+	
+	#reset_image()
 
 
 func reset_image() -> void:
@@ -19,8 +21,9 @@ func reset_image() -> void:
 	
 	var image_size = Vector2i(AgoniaData.MapData.MAP_SIZE.x * AgoniaData.MapData.TILE_SIZE.x, AgoniaData.MapData.MAP_SIZE.y * AgoniaData.MapData.TILE_SIZE.y)
 	display_image.resize(image_size.x, image_size.y, Image.INTERPOLATE_NEAREST)
-	display_image.fill_rect(Rect2i(0, 0, image_size.x, image_size.y), Color.BLACK)
+	display_image.fill_rect(Rect2i(0, 0, image_size.x, image_size.y), Color.BLACK) #AgoniaData.MapData.terrains_by_id[14].terrain_color_custom)
 	
+	print ("resetting image")
 	for loc in AgoniaData.MapData.map_tiles:
 		on_tile_updated(loc)
 	
@@ -29,9 +32,9 @@ func reset_image() -> void:
 
 func on_tile_updated(_location: Vector3i) -> void:
 	var terrain_id: int = AgoniaData.MapData.map_tiles[_location].terrain_id
-	var color: Color = Color.BLACK
-	if terrain_id != -1:
-		color = AgoniaData.MapData.terrains_by_id[terrain_id].terrain_color_default
+	if terrain_id == -1 || terrain_id == 14:
+		return
+	var color: Color = AgoniaData.MapData.terrains_by_id[terrain_id].terrain_color_custom
 	paint_tile(Vector2i(_location.x, _location.y), color)
 
 

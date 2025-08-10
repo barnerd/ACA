@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_fmnlb"]
+
+[resource]
+script = ExtResource("1_fmnlb")
+category = 2
+id = 225
+monster_name = "Blood Horker"
+health = -1
+sorcery_req = 330
+combat_exp = -1
+sorcery_exp = 0

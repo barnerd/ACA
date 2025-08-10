@@ -71,10 +71,6 @@ func on_tile_updated(_location: Vector3i) -> void:
 	var _map_id: int = int(tile.tile_image_id)
 	self.set_cell(TileMap_Layers.MAP_IMAGE, loc, TileMap_Sources.SPRITE_SHEET, Vector2i(_map_id % 76, floori(_map_id/76.0)))
 	
-	for mine in tile.mines:
-		var type: int = mine.type
-		self.set_cell(TileMap_Layers.MINES, loc, mine_type_to_tilemap_source[type], Vector2i.ZERO)
-	
 	if AgoniaData.MapData.towns_by_location.has(_location):
 		self.set_cell(TileMap_Layers.TOWNS, loc, TileMap_Sources.TOWN, Vector2i.ZERO)
 	else:
@@ -94,8 +90,8 @@ func update_encounter_layer() -> void:
 			var tier: int = -1
 			var tile_terrain = tile.terrain_id
 			
-			if tile.encounter_table_id:
-				var encounter = AgoniaData.MonsterData.get_encounter_table_by_id(tile.encounter_table_id)
+			if tile.encounter_table_id != -1:
+				var encounter = AgoniaData.MonsterData.encounters_by_id[tile.encounter_table_id]
 				
 				tier = encounter.tier_number
 			
@@ -109,3 +105,13 @@ func update_encounter_layer() -> void:
 				self.set_cell(TileMap_Layers.ENCOUNTERS, loc, TileMap_Sources.NUMBERS, Vector2i(variation, tier - 1))
 			else:
 				self.set_cell(TileMap_Layers.ENCOUNTERS, loc, TileMap_Sources.NONE)
+
+
+func get_terrain_id(_location: Vector3i) -> int:
+	var tile_data: TileData = get_cell_tile_data(TileMap_Layers.MAP_IMAGE, Vector2i(_location.x, _location.y))
+	var terrain_id: int = tile_data.get_custom_data("terrain_id") if tile_data else -1
+	
+	return terrain_id
+
+# TODO add functions for converting Map-id
+#  Vector2i(_map_id % 76, floori(_map_id/76.0))

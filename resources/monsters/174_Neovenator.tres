@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_0kbqf"]
+
+[resource]
+script = ExtResource("1_0kbqf")
+category = 2
+id = 174
+monster_name = "Neovenator"
+health = -1
+sorcery_req = 595
+combat_exp = -1
+sorcery_exp = 0

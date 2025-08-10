@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_0qt40"]
+
+[resource]
+script = ExtResource("1_0qt40")
+category = 2
+id = 333
+monster_name = "Ironfleece"
+health = -1
+sorcery_req = 440
+combat_exp = -1
+sorcery_exp = 0

@@ -2,16 +2,14 @@ class_name TileDetails
 
 var location: Vector3i
 
-var tile_image_id: int
-var terrain_id: int
-#var terrain_details: TerrainType
-var encounter_table_id: String
+var tile_image_id: int # get from TileMap
+var terrain_id: int # get from TileMap
+var encounter_table_id: int
 
-var mines: Array[MineDetails] = []
-var town: TownDetails
+var town: TownDetails # move to Resource List
 
 
-func _init(_loc: Vector3i = Vector3i.ZERO, _tile_image_id: int = -1, _terrain_id: int = -1, _encounter_table_id: String = ""):
+func _init(_loc: Vector3i = Vector3i.ZERO, _tile_image_id: int = -1, _terrain_id: int = -1, _encounter_table_id: int = -1):
 	location = _loc
 	
 	tile_image_id = _tile_image_id

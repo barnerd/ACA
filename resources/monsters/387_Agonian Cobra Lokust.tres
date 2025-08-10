@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://i4vghn7thklq"]
+
+[ext_resource type="Script" uid="uid://dv5sbb7y8ln65" path="res://AgoniaData/monster_resource.gd" id="1_lc2dg"]
+
+[resource]
+script = ExtResource("1_lc2dg")
+category = 1
+id = 387
+monster_name = "Agonian Cobra Lokust"
+health = -1.0
+sorcery_req = 30
+combat_exp = -1
+sorcery_exp = 0

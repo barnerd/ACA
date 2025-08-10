@@ -17,17 +17,8 @@ func _run() -> void:
 	for tile in map_data["tiles"]:
 		var loc: Vector2i = Vector2i(tile["x"], tile["y"])
 		var _map_id: int = int(tile["map"])
+		var _encounter_id: int = int(tile["e"])
 		tile_map.set_cell(tile_map.TileMap_Layers.MAP_IMAGE, loc, tile_map.TileMap_Sources.SPRITE_SHEET, Vector2i(_map_id % 76, floori(_map_id/76.0)))
-	
-	for mine in map_data["mines_p"]:
-		var loc: Vector2i = Vector2i(mine["x"], mine["y"])
-		var type: int = int(mine["t"])
-		tile_map.set_cell(tile_map.TileMap_Layers.MINES, loc, MapImages.mine_type_to_tilemap_source[type], Vector2i.ZERO)
-	
-	for mine in map_data["mines_t"]:
-		var loc: Vector2i = Vector2i(mine["x"], mine["y"])
-		var type: int = int(mine["t"])
-		tile_map.set_cell(tile_map.TileMap_Layers.MINES, loc, MapImages.mine_type_to_tilemap_source[type], Vector2i.ZERO)
 	
 	for town in map_data["towns"]:
 		var loc: Vector2i = Vector2i(town["x"], town["y"])

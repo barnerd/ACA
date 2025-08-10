@@ -49,8 +49,10 @@ func set_obstacles() -> void:
 		if AgoniaData.MapData.map_tiles[loc].encounter_table_id:
 			var encounter_table_id = AgoniaData.MapData.map_tiles[loc].encounter_table_id
 			
-			var encounter = AgoniaData.MonsterData.get_encounter_table_by_id(encounter_table_id)
-			var tier = encounter.tier_number
+			var tier = -1
+			if AgoniaData.MonsterData.encounters_by_id.has(encounter_table_id):
+				var encounter = AgoniaData.MonsterData.encounters_by_id[encounter_table_id]
+				tier = encounter.tier_number
 			
 			if tier > max_tier:
 				is_solid = true

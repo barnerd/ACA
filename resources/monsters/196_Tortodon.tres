@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_4pn0u"]
+
+[resource]
+script = ExtResource("1_4pn0u")
+category = 1
+id = 196
+monster_name = "Tortodon"
+health = -1
+sorcery_req = 55
+combat_exp = -1
+sorcery_exp = 0

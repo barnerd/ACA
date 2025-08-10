@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_rtmg6"]
+
+[resource]
+script = ExtResource("1_rtmg6")
+category = 2
+id = 66
+monster_name = "Black Python"
+health = -1
+sorcery_req = 70
+combat_exp = -1
+sorcery_exp = 0

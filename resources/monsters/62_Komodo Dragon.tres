@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_lni3d"]
+
+[resource]
+script = ExtResource("1_lni3d")
+category = 1
+id = 62
+monster_name = "Komodo Dragon"
+health = -1
+sorcery_req = 125
+combat_exp = -1
+sorcery_exp = 0

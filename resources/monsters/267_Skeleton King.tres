@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_05t1q"]
+
+[resource]
+script = ExtResource("1_05t1q")
+category = 1
+id = 267
+monster_name = "Skeleton King"
+health = -1
+sorcery_req = 1200
+combat_exp = -1
+sorcery_exp = 0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_anyno"]
+
+[resource]
+script = ExtResource("1_anyno")
+category = 1
+id = 147
+monster_name = "Tarantula"
+health = -1
+sorcery_req = 25
+combat_exp = -1
+sorcery_exp = 0

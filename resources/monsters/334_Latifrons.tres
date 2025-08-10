@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_r03yx"]
+
+[resource]
+script = ExtResource("1_r03yx")
+category = 0
+id = 334
+monster_name = "Latifrons"
+health = -1
+sorcery_req = 440
+combat_exp = -1
+sorcery_exp = 0

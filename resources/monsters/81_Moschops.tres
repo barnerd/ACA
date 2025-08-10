@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_7lv5a"]
+
+[resource]
+script = ExtResource("1_7lv5a")
+category = 1
+id = 81
+monster_name = "Moschops"
+health = -1
+sorcery_req = 270
+combat_exp = -1
+sorcery_exp = 0
