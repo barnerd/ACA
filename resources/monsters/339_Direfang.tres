@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://cxcgs4vrl2fxi"]
 
-[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_tcvyu"]
+[ext_resource type="Script" uid="uid://dv5sbb7y8ln65" path="res://AgoniaData/monster_resource.gd" id="1_tcvyu"]
 
 [resource]
 script = ExtResource("1_tcvyu")
@@ -8,6 +8,6 @@ category = 1
 id = 339
 monster_name = "Direfang"
 health = -1
-sorcery_req = 320
+sorcery_req = 420
 combat_exp = -1
 sorcery_exp = 0
