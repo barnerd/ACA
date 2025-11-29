@@ -2,7 +2,6 @@ class_name MonsterDataBase extends Node
 
 var monsters_by_id: Dictionary[int, MonsterResource]
 var encounters_by_id: Dictionary[int, EncounterResource]
-#var encounters_by_terrain_tier: Dictionary = {} # int -> String -> EncounterTable
 
 
 func _init() -> void:
