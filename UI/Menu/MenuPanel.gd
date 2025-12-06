@@ -4,6 +4,7 @@ extends MarginContainer
 @onready var edit_button: Button = $"Menu PanelContainer/VBoxContainer/Edits"
 
 func _ready() -> void:
+	# TODO: this doesn't work for some reason
 	if Engine.is_editor_hint():
 		edit_button.visible = true
 	else:

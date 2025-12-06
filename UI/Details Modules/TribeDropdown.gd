@@ -10,9 +10,9 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	# TODO: use last selected or default?
 	if SettingsManager.get_value("use_default_tribe", "agonia"):
 		select(_find_tribe_index(SettingsManager.get_value("default_tribe", "agonia")))
+		_select_tribe(SettingsManager.get_value("default_tribe", "agonia"))
 	else:
 		select(_find_tribe_index(SettingsManager.get_value("selected_tribe", "agonia")))
 
