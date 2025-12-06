@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl36j7ur110lw"]
+
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_r2sa0"]
+[ext_resource type="Script" uid="uid://drcb2ujqlhhjb" path="res://UI/Windows/settings_window.gd" id="2_r2sa0"]
+[ext_resource type="Script" uid="uid://dc5chsfbvueqk" path="res://UI/Windows/settings/skip_bootsplash_dropdown.gd" id="3_acdmk"]
+[ext_resource type="Script" uid="uid://1q48o78xi7cd" path="res://UI/Windows/settings/use_default_tribe_dropdown.gd" id="4_61urr"]
+[ext_resource type="Script" uid="uid://13xuy02bitoo" path="res://UI/Windows/settings/default_trible_dropdown.gd" id="4_njjg1"]
+
+[node name="Settings Window" type="Window"]
+title = "Settings"
+initial_position = 1
+size = Vector2i(450, 400)
+theme = ExtResource("1_r2sa0")
+script = ExtResource("2_r2sa0")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="GeneralHeader" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "General"
+
+[node name="CheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Skip Boot Splash"
+script = ExtResource("3_acdmk")
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CharacterHeader" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Character"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Tribe select on start up"
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+selected = 1
+item_count = 2
+popup/item_0/text = "Default"
+popup/item_0/id = 0
+popup/item_1/text = "Last Selected"
+popup/item_1/id = 1
+script = ExtResource("4_61urr")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Default Tribe"
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+item_count = 8
+popup/item_0/text = "Dwarr"
+popup/item_0/id = 0
+popup/item_1/text = "Leafborn"
+popup/item_1/id = 1
+popup/item_2/text = "Lightfoot"
+popup/item_2/id = 2
+popup/item_3/text = "Mythos"
+popup/item_3/id = 3
+popup/item_4/text = "Norsk"
+popup/item_4/id = 4
+popup/item_5/text = "Giant"
+popup/item_5/id = 5
+popup/item_6/text = "Kiith"
+popup/item_6/id = 6
+popup/item_7/text = "Nuruk"
+popup/item_7/id = 7
+script = ExtResource("4_njjg1")
+
+[connection signal="close_requested" from="." to="." method="hide"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/CheckBox" to="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/CheckBox" method="_on_pressed"]
+[connection signal="item_selected" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/OptionButton" to="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/OptionButton" method="_on_item_selected"]
+[connection signal="item_selected" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2/OptionButton" to="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2/OptionButton" method="_on_item_selected"]

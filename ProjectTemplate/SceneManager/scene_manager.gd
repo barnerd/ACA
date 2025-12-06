@@ -38,6 +38,9 @@ func _init() -> void:
 		var new_transition = load(file).new()
 		if new_transition is Transition and not transitions.has(new_transition.transition_name):
 			transitions[new_transition.transition_name] = new_transition
+	
+	# TODO: Make sure SettingsManager is loaded first
+	SettingsManager.register_setting("skip_bootsplash", false, "SceneManager")
 
 
 func load_bootsplashes(_bootsplash_paths: Array[String]) -> void:
@@ -54,7 +57,8 @@ func load_next_bootsplash() -> void:
 	bootsplash_index += 1
 	print("Loading BootSplash #%d" % bootsplash_index)
 	
-	if bootsplash_index >= bootsplash_paths.size():
+	if (bootsplash_index >= bootsplash_paths.size() or 
+	SettingsManager.get_value("skip_bootsplash", "SceneManager")):
 		# bootsplashes are done, load main menu
 		# TODO: switch loading_screen to boot_screen and preload main & assets
 		load_scene(main_menu_scene_path)

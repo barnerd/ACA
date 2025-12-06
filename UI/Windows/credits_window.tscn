@@ -63,7 +63,7 @@ layout_mode = 2
 minor_version = 7
 entry_header = "Branding & Settings"
 entry_log = " • Added Branding, which comes with boot splashes and various underlying systems
- • Added Settings system, including the following:
+ • Added Settings system, with the following settings:
      • Last version seen, allowing for change log popup when logging in
      • Tribe & equipment settings, remembering last used for both
      • Skip Bootsplash, which jumps right into loading

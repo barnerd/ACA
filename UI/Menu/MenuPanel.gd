@@ -1,8 +1,13 @@
+@tool
 extends MarginContainer
 
+@onready var edit_button: Button = $"Menu PanelContainer/VBoxContainer/Edits"
 
 func _ready() -> void:
-	SignalBus.connect_to_signal("on_map_zoom", _on_map_zoom)
+	if Engine.is_editor_hint():
+		edit_button.visible = true
+	else:
+		SignalBus.connect_to_signal("on_map_zoom", _on_map_zoom)
 
 
 func _on_map_zoom(_factor: float, _old_factor: float) -> void:
@@ -16,4 +21,3 @@ func _on_header_toggled(toggled_on: bool) -> void:
 	$"Menu PanelContainer/VBoxContainer/Settings".visible = toggled_on
 	$"Menu PanelContainer/VBoxContainer/Downloads".visible = toggled_on
 	$"Menu PanelContainer/VBoxContainer/Credits".visible = toggled_on
-	
