@@ -10,6 +10,8 @@ var min_encounter_tier_to_display: int = 5
 
 
 func _ready() -> void:
+	AgoniaData.MapData.tile_map_display = self
+	
 	SignalBus.connect_to_signal("town_view_settings_changed", on_town_view_settings_changed)
 	SignalBus.connect_to_signal("tile_updated", on_tile_updated)
 	

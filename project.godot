@@ -11,13 +11,22 @@ config_version=5
 [application]
 
 config/name="Agonia Companion App"
-run/main_scene="res://HUD/map_viewer.tscn"
+run/main_scene="uid://cji7gw7emxlki"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://cto2k5gr0j8x6"
 
 [autoload]
 
-SignalBus="*res://Signal Bus/SignalBus.gd"
+SignalBus="*res://ProjectTemplate/SignalBus/signal_bus.gd"
+SettingsManager="*res://ProjectTemplate/SettingsManager/settings_manager.gd"
+SceneManager="*res://ProjectTemplate/SceneManager/scene_manager.gd"
+SoundManager="*res://ProjectTemplate/SoundManager/sound_manager.gd"
 AgoniaData="*res://AgoniaData/AgoniaData.tscn"
 
 [display]
@@ -49,3 +58,4 @@ zoom_out={
 
 renderer/rendering_method="gl_compatibility"
 limits/global_shader_variables/buffer_size=4096
+environment/defaults/default_clear_color=Color(0.141176, 0.141176, 0.141176, 1)

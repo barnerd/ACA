@@ -1,7 +1,5 @@
 class_name ScollInput extends ScrollContainer
 
-@onready var tile_map = AgoniaData.MapData.tile_map_display
-
 @export var drag_pressed_duration_threshold: int = 150
 
 signal tilemap_location_clicked(coords: Vector3i, button: MouseButton)
@@ -75,7 +73,7 @@ func _unhandled_input(_event):
 func _calc_mouse_on_tilemap(_mouse: Vector2i) -> Vector3i:
 	var mouse_position_plus_scroll: Vector2 = (_mouse as Vector2 - AgoniaData.MapData.TILE_SIZE * current_map_zoom) + Vector2(scroll_horizontal, scroll_vertical)
 	mouse_position_plus_scroll /= current_map_zoom
-	var clicked_cell_2d = tile_map.local_to_map(mouse_position_plus_scroll)
+	var clicked_cell_2d = AgoniaData.MapData.tile_map_display.local_to_map(mouse_position_plus_scroll)
 	var clicked_cell = Vector3i(clicked_cell_2d.x, clicked_cell_2d.y, 0)
 	
 	return clicked_cell

@@ -1,18 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://csm2p545751c5"]
+[gd_scene load_steps=4 format=3 uid="uid://csm2p545751c5"]
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_3svge"]
+[ext_resource type="PackedScene" uid="uid://bjielq05f7rhs" path="res://UI/Windows/change_log/change_log_entry.tscn" id="2_7j7xc"]
+[ext_resource type="Script" uid="uid://dcg60lb0alepu" path="res://UI/Windows/credits_window.gd" id="2_cmvl6"]
 
 [node name="Credits Window" type="Window"]
 title = "Credits & Change Log"
 initial_position = 1
-size = Vector2i(630, 480)
-visible = false
+size = Vector2i(630, 650)
 unresizable = true
 theme = ExtResource("1_3svge")
+script = ExtResource("2_cmvl6")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-offset_right = 10.0
-offset_bottom = 10.0
+offset_right = 629.0
+offset_bottom = 650.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -33,7 +35,7 @@ text = "Credits"
 
 [node name="Copyright" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "All game content Copyright @ Agonialands - 2019-2023"
+text = "All game content Copyright @ Agonialands - 2019-2024"
 
 [node name="By-Line" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -48,7 +50,7 @@ theme_type_variation = &"HeaderLabel"
 text = "Change Log"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 375)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
@@ -56,45 +58,43 @@ horizontal_scroll_mode = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 
-[node name="v0_6_0 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="v0_7_0" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_7j7xc")]
 layout_mode = 2
-theme_type_variation = &"HeaderLabel"
-text = "v0.6.0 - Offline Generation"
+minor_version = 7
+entry_header = "Branding & Settings"
+entry_log = " • Added Branding, which comes with boot splashes and various underlying systems
+ • Added Settings system, including the following:
+     • Last version seen, allowing for change log popup when logging in
+     • Tribe & equipment settings, remembering last used for both
+     • Skip Bootsplash, which jumps right into loading
+ • Removed Mines from the map"
 
-[node name="v0_6_0 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(595, 0)
+[node name="v0_6_0" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_7j7xc")]
 layout_mode = 2
-text = " • Added boats as their own map layer
+minor_version = 6
+entry_header = "Offline Generation"
+entry_log = " • Added boats as their own map layer
  • Moved Terrain Colors and Map Images layers to offline generation so the app will load faster
  • Moved APF flat files to offline generation
  • Added Discord version of the APF format
  • Added internal tool to update single tiles
  • Cleaned up APF errors and surrounding tile images"
-autowrap_mode = 2
 
-[node name="v0_5_0 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="v0_5_0" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_7j7xc")]
 layout_mode = 2
-theme_type_variation = &"HeaderLabel"
-text = "v0.5.0 - Pathfinding"
-
-[node name="v0_5_0 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(595, 0)
-layout_mode = 2
-text = " • Pathfinding! Left-click to add start point; right-click to add end point and calculate your path.
+minor_version = 5
+entry_header = "Pathfinding"
+entry_log = " • Pathfinding! Left-click to add start point; right-click to add end point and calculate your path.
  • Set your equipment, as it pertains to pathfinding. Path cost is adjusted based on equipment.
  • Set a max tier. Need to avoid Tier 10? Don't want to travel through Tier 9? Set the max tier and pathfinding will go around it.
  • Moved downloads to downloads window under menu"
-autowrap_mode = 2
 
-[node name="v0_4_1 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="v0_4_1" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_7j7xc")]
 layout_mode = 2
-theme_type_variation = &"HeaderLabel"
-text = "v0.4.1 - Town Display"
-
-[node name="v0_4_1 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(595, 0)
-layout_mode = 2
-text = " • Ability to edit groups & town information
+minor_version = 4
+release_version = 1
+entry_header = " Town Display"
+entry_log = " • Ability to edit groups & town information
  • Town Information displayed when clicking on tile
  • Add groups window from menu
  • Left click now scrolls the map
@@ -102,17 +102,12 @@ text = " • Ability to edit groups & town information
  • Map stays centered when zooming
  • Map filters for towns (watchtower, dwelling, buildings)
  • Map filters and menu now expand/collapse by clicking on the header"
-autowrap_mode = 2
 
-[node name="v0_4 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="v0_4_0" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_7j7xc")]
 layout_mode = 2
-theme_type_variation = &"HeaderLabel"
-text = "v0.4 - Theming"
-
-[node name="v0_4 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(595, 0)
-layout_mode = 2
-text = " • Themed app to closely match Agonia
+minor_version = 4
+entry_header = "Theming"
+entry_log = " • Themed app to closely match Agonia
  • Made scrollbars wider
  • Added coords around map
  • Added grid lines and a toggle to turn them on/off
@@ -120,63 +115,53 @@ text = " • Themed app to closely match Agonia
  • Changed default zoom to 24 and range from 1 to 96 (up to 4x size)
  • Expanded map to full 400x400
  • Some backend cleanup & optimization"
-autowrap_mode = 2
 
-[node name="v0_3_1 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="v0_3_1" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_7j7xc")]
 layout_mode = 2
-theme_type_variation = &"HeaderLabel"
-text = "v0.3.1 - Encounter Table & Downloads"
-
-[node name="v0_3_1 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(595, 0)
-layout_mode = 2
-text = " • Added scroll bars on monsters list
+minor_version = 3
+release_version = 1
+entry_header = "Encounter Table & Downloads"
+entry_log = " • Added scroll bars on monsters list
  • Other small changes based on feedback"
-autowrap_mode = 2
 
-[node name="v0_3 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="v0_3_0" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_7j7xc")]
 layout_mode = 2
-theme_type_variation = &"HeaderLabel"
-text = "v0.3.0 - Encounter Table & Downloads"
-
-[node name="v0_3 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(595, 0)
-layout_mode = 2
-text = " • Button to download APF File
+minor_version = 3
+entry_header = "Encounter Table & Downloads"
+entry_log = " • Button to download APF File
  • Button to download map image (use with caution: takes ~1 hour to prepare)
  • Encounter Tiers now visible on the map!
  • Filter the visible tiers via a dropdown
  • Monster Details displayed by Encounter Table
  • Monsters sorted by sorcery requirement, with xp piñata at top, boss at the bottom"
-autowrap_mode = 2
 
-[node name="v0_2 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="v0_2_0" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_7j7xc")]
 layout_mode = 2
-theme_type_variation = &"HeaderLabel"
-text = "v0.2.0 - Finish HTML Parser and Tile Details"
-
-[node name="v0_2 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(595, 0)
-layout_mode = 2
-text = " • Display towns and mines
+minor_version = 2
+entry_header = "Finish HTML Parser and Tile Details"
+entry_log = " • Display towns and mines
  • Click for tile details
  • Drag map around
  • Updated map data, from recent html <table> views"
-autowrap_mode = 2
 
-[node name="v0_1 Header" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="v0_1_0" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_7j7xc")]
 layout_mode = 2
-theme_type_variation = &"HeaderLabel"
-text = "v0.1.0 - Initial Release"
-
-[node name="v0_1 Log" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(595, 0)
-layout_mode = 2
-text = " • Display Terrain Type Image
+minor_version = 1
+entry_header = "Initial Release"
+entry_log = " • Display Terrain Type Image
  • Display TileMap Map Image
  • Scroll and Zoom Map
- • HTML Parser for collecting data from Lookaround page HTML
-"
-autowrap_mode = 2
+ • HTML Parser for collecting data from Lookaround page HTML"
 
-[connection signal="close_requested" from="." to="." method="hide"]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Don't show this again"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

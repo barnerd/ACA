@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://br1ufbn5r8sq1"]
+[gd_scene load_steps=33 format=3 uid="uid://br1ufbn5r8sq1"]
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_i5di3"]
 [ext_resource type="PackedScene" uid="uid://c4xtubh0hppls" path="res://UI/map_controls_panel_container.tscn" id="1_jpomv"]
+[ext_resource type="Script" uid="uid://bqlc6q4c8fsrn" path="res://HUD/empty_square.gd" id="2_j8max"]
 [ext_resource type="PackedScene" uid="uid://dhifaa7v66qk5" path="res://UI/town_controls_panel.tscn" id="2_nawpu"]
 [ext_resource type="PackedScene" uid="uid://cpta7jppqflns" path="res://HUD/coords_scroll.tscn" id="2_q40ji"]
 [ext_resource type="Script" uid="uid://citw4r2au4hix" path="res://ScrollInput.gd" id="3_e6hyr"]
@@ -9,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bkn73ewiwrykx" path="res://UI/Menu/menu.tscn" id="4_r0478"]
 [ext_resource type="PackedScene" uid="uid://d312sujtk8aw8" path="res://terrain_colors.tscn" id="4_ujlp6"]
 [ext_resource type="PackedScene" uid="uid://dqc4y45w8xe3e" path="res://map_images.tscn" id="5_1pgho"]
+[ext_resource type="Script" uid="uid://bmeq6sak4y7k4" path="res://HUD/map_to_zoom.gd" id="5_nn1xi"]
+[ext_resource type="Script" uid="uid://dv0buvsb3cr0n" path="res://HUD/map_to_scale.gd" id="6_013c3"]
 [ext_resource type="Texture2D" uid="uid://dht3sm2heukr5" path="res://images/agonia-sprite.png" id="6_j55l1"]
 [ext_resource type="Texture2D" uid="uid://dvj8lm153ljim" path="res://images/town0.png" id="7_gnusy"]
 [ext_resource type="Texture2D" uid="uid://1vpilldqh10r" path="res://images/mines/coppermine.png" id="8_k6fvs"]
@@ -4251,6 +4254,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_left = 24
+script = ExtResource("2_j8max")
 
 [node name="x Coords Scroll" parent="PanelContainer/VBoxContainer/MarginContainer" instance=ExtResource("2_q40ji")]
 layout_mode = 2
@@ -4276,6 +4280,7 @@ script = ExtResource("3_e6hyr")
 custom_minimum_size = Vector2(9600, 9600)
 layout_mode = 2
 mouse_filter = 2
+script = ExtResource("5_nn1xi")
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control"]
 custom_minimum_size = Vector2(9600, 9600)
@@ -4283,6 +4288,7 @@ layout_mode = 2
 offset_right = 9600.0
 offset_bottom = 9600.0
 mouse_filter = 1
+script = ExtResource("6_013c3")
 
 [node name="TerrainColors" parent="PanelContainer/VBoxContainer/HBoxContainer/ScrollContainer/Control/PanelContainer" instance=ExtResource("4_ujlp6")]
 

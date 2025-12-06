@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://c72vvf8o1hufh" path="res://UI/map_controls_panel_container.gd" id="2_wfoxk"]
 [ext_resource type="Script" uid="uid://c2mktb1jpwahb" path="res://UI/ImageToggle.gd" id="3_2msy2"]
 [ext_resource type="Script" uid="uid://c7ywh3dx7n66q" path="res://UI/GridLayerToggle.gd" id="4_2o7mm"]
-[ext_resource type="Script" uid="uid://c70dn6g7ldyhp" path="res://MapZoom.gd" id="5_n470b"]
+[ext_resource type="Script" uid="uid://c70dn6g7ldyhp" path="res://HUD/MapZoom.gd" id="5_n470b"]
 
 [node name="Map Controls PanelContainer" type="PanelContainer"]
 size_flags_horizontal = 8

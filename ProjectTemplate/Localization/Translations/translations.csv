@@ -1,0 +1,17 @@
+keys,en_US,es,fr,de
+TITLE_SCREEN_NEW_GAME_BUTTON,New Game,Nuevo juego,Nouveau jeu,Neues Spiel
+TITLE_SCREEN_CONTINUE_GAME_BUTTON,Continue,Continuar,Continuer,Weitermachen
+TITLE_SCREEN_SETTINGS_BUTTON,Settings,Ajustes,Paramètres,Einstellungen
+TITLE_SCREEN_CREDITS_BUTTON,Credits,Créditos,Crédits,Credits
+TITLE_SCREEN_QUIT_GAME_BUTTON,Quit,Salir,Quitter,Aufhören
+SETTINGS_SCREEN_AUDIO_HEADER,Game Audio,Audio del juego,Audio du jeu,Spiel-Audio
+SETTINGS_SCREEN_AUDIO_MASTER_VOLUME,Master Volume,Volumen principal,Volume principal,Master-Volume
+SETTINGS_SCREEN_AUDIO_MUSIC_VOLUME,Music Volume,Volumen de la música,Volume de la musique,Musiklautstärke
+SETTINGS_SCREEN_AUDIO_AMBIENT_VOLUME,Ambient Volume,Volumen ambiental,Volume ambiant,Umgebungslautstärke
+SETTINGS_SCREEN_AUDIO_UI_VOLUME,UI Volume,Volumen de la interfaz de usuario,Volume de l'interface utilisateur,UI-Lautstärke
+SETTINGS_SCREEN_AUDIO_SFX_VOLUME,SFX Volume,Volumen de efectos especiales,Volume des effets sonores,SFX-Lautstärke
+SETTINGS_SCREEN_AUDIO_TAB_NAME,Audio,Audio,l'audio,Audio
+SETTINGS_SCREEN_LANGUAGE_TAB_NAME,Language,Idioma,Langue,Sprache
+SETTINGS_SCREEN_LANGUAGE_HEADER,Language,Idioma,Langue,Sprache
+SETTINGS_SCREEN_LANGUAGE_LOCALE_LABEL,Locale,Lugar,Lieu,Gebietsschema
+,,#VALUE!,#VALUE!,#VALUE!

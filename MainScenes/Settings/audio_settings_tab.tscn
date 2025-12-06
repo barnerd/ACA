@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://4j6lr7uyp5aw"]
+
+[ext_resource type="PackedScene" uid="uid://drql3pqlnn6xc" path="res://MainScenes/Settings/volume_slider.tscn" id="1_yrkuj"]
+
+[node name="AudioSettings" type="VBoxContainer"]
+offset_right = 300.0
+offset_bottom = 158.0
+size_flags_horizontal = 3
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 2
+text = "SETTINGS_SCREEN_AUDIO_HEADER"
+
+[node name="MasterVolume" parent="." instance=ExtResource("1_yrkuj")]
+layout_mode = 2
+label_text = "SETTINGS_SCREEN_AUDIO_MASTER_VOLUME"
+
+[node name="MusicVolume" parent="." instance=ExtResource("1_yrkuj")]
+layout_mode = 2
+bus = 1
+label_text = "SETTINGS_SCREEN_AUDIO_MUSIC_VOLUME"
+
+[node name="AmbientVolume2" parent="." instance=ExtResource("1_yrkuj")]
+layout_mode = 2
+bus = 2
+label_text = "SETTINGS_SCREEN_AUDIO_AMBIENT_VOLUME"
+
+[node name="UIVolume" parent="." instance=ExtResource("1_yrkuj")]
+layout_mode = 2
+bus = 4
+label_text = "SETTINGS_SCREEN_AUDIO_UI_VOLUME"
+
+[node name="SFXVolume" parent="." instance=ExtResource("1_yrkuj")]
+layout_mode = 2
+bus = 3
+label_text = "SETTINGS_SCREEN_AUDIO_SFX_VOLUME"

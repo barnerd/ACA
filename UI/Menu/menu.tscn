@@ -85,6 +85,7 @@ text = "Credits & Change Log"
 alignment = 0
 
 [node name="Credits Window" parent="Menu PanelContainer/VBoxContainer/Credits" instance=ExtResource("2_kgiyx")]
+visible = false
 
 [node name="Edits" type="Button" parent="Menu PanelContainer/VBoxContainer"]
 visible = false

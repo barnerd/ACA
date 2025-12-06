@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw2tb34sylvq3"]
+
+[ext_resource type="Script" uid="uid://i88w0wbsymci" path="res://MainScenes/Credits/credits_section.gd" id="1_yvrna"]
+
+[node name="CreditsSection" type="VBoxContainer"]
+theme_type_variation = &"CreditsSection"
+script = ExtResource("1_yvrna")
+
+[node name="Header" type="Label" parent="."]
+custom_minimum_size = Vector2(370, 0)
+layout_mode = 2
+theme_type_variation = &"CreditsSectionHeader"
+autowrap_mode = 2
+
+[node name="Section" type="Label" parent="."]
+custom_minimum_size = Vector2(370, 0)
+layout_mode = 2
+theme_type_variation = &"CreditsSectionText"
+autowrap_mode = 2

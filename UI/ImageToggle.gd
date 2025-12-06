@@ -6,7 +6,7 @@ signal tilemap_layer_toggled(_layer:int, _on: bool)
 
 
 func _init() -> void:
-	SignalBus.register_signal("tilemap_layer_toggled", tilemap_layer_toggled)
+	SignalBus.register_signal("tilemap_layer_toggled", tilemap_layer_toggled, true)
 
 
 func _on_toggled(toggled_on: bool, _layer: int) -> void:

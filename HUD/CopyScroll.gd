@@ -7,7 +7,6 @@ var labels
 @onready var container = $Control
 @onready var hlabels = $Control/hLabels
 @onready var vlabels = $Control/vLabels
-@onready var empty_square = get_node("/root/MapViewer/PanelContainer/VBoxContainer/MarginContainer")
 
 
 func _ready() -> void:
@@ -47,10 +46,8 @@ func on_UI_map_v_scrolled(_value: int) -> void:
 func on_map_zoom(_factor: float, _old_factor: float) -> void:
 	if _factor < 1.0:
 		self.visible = false
-		empty_square.visible = false
 	else:
 		self.visible = true
-		empty_square.visible = true
 		
 		if is_horizontal_scroll:
 			container.custom_minimum_size.x = AgoniaData.MapData.MAP_SIZE.x * AgoniaData.MapData.TILE_SIZE.x * _factor
@@ -59,5 +56,4 @@ func on_map_zoom(_factor: float, _old_factor: float) -> void:
 		else:
 			container.custom_minimum_size.x = AgoniaData.MapData.TILE_SIZE.x * _factor
 			container.custom_minimum_size.y = AgoniaData.MapData.MAP_SIZE.y * AgoniaData.MapData.TILE_SIZE.y * _factor
-			empty_square.add_theme_constant_override("margin_left", AgoniaData.MapData.TILE_SIZE.x * _factor)
 			labels.scale = Vector2.ONE * _factor

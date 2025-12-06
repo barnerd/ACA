@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://drql3pqlnn6xc"]
+
+[ext_resource type="Script" uid="uid://cyvf1ut8ptive" path="res://MainScenes/Settings/volume_setting.gd" id="1_h6er6"]
+
+[node name="Volume" type="HBoxContainer"]
+script = ExtResource("1_h6er6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="."]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

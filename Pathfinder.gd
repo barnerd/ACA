@@ -29,6 +29,9 @@ func _ready() -> void:
 	SignalBus.connect_to_signal("tribe_selected", on_tribe_selected)
 	SignalBus.connect_to_signal("equipment_changed", on_equipment_changed)
 	SignalBus.connect_to_signal("pathfinding_max_encounter_tier_selected", on_pathfinding_max_encounter_tier_selected)
+	
+	on_tribe_selected(SettingsManager.get_value("selected_tribe", "agonia"))
+	on_equipment_changed()
 
 
 func on_tribe_selected(_tribe: String) -> void:
@@ -60,9 +63,10 @@ func set_obstacles() -> void:
 		astar_grid.set_point_solid(Vector2i(loc.x, loc.y), is_solid)
 
 
-func on_equipment_changed(_equipment) -> void:
-	#print(_equipment)
-	astar_grid.equipment = _equipment
+func on_equipment_changed() -> void:
+	astar_grid.equipment.talisman = SettingsManager.get_value("selected_talisman", "equipment")
+	astar_grid.equipment.cape = SettingsManager.get_value("selected_cape", "equipment")
+	astar_grid.equipment.boots = SettingsManager.get_value("selected_boots", "equipment")
 
 
 func on_pathfinding_max_encounter_tier_selected(_max_tier: int) -> void:

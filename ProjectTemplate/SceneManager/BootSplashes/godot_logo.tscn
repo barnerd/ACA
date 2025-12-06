@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuia60erqq5b8"]
+
+[ext_resource type="Script" uid="uid://bwx0hyhejyj4k" path="res://ProjectTemplate/LoadingScreen/LogoScenes/boot_splash_image_wait.gd" id="1_h8l0u"]
+[ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_scuep"]
+[ext_resource type="Texture2D" uid="uid://bq5kykojlnbqb" path="res://ProjectTemplate/LoadingScreen/GodotSplashScreens/cog-dark.png" id="2_w6lw3"]
+
+[node name="GodotLogo" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 568.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_scuep")
+theme_type_variation = &"boot_splash"
+script = ExtResource("1_h8l0u")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -572.0
+offset_top = -319.5
+offset_right = 4628.0
+offset_bottom = 2585.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("2_w6lw3")

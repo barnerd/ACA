@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccpogfu7goaa2"]
+
+[ext_resource type="Script" uid="uid://b40brufxe1bys" path="res://ProjectTemplate/SceneManager/demo/transition_demo.gd" id="1_i18t2"]
+
+[node name="TransitionDemo" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_i18t2")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 92.0
+offset_right = 253.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 25
+text = "Transition!"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

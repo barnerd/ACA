@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://beeo6wb5btqkj"]
+
+[node name="NewGame" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 102.0
+offset_top = 72.0
+offset_right = 280.0
+offset_bottom = 171.0
+theme_override_font_sizes/font_size = 20
+text = "New Game!"

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjielq05f7rhs"]
+
+[ext_resource type="Script" uid="uid://hxnxrx58ndno" path="res://UI/Windows/change_log/change_log_entry.gd" id="1_ih6uq"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+script = ExtResource("1_ih6uq")
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+
+[node name="Log" type="Label" parent="."]
+custom_minimum_size = Vector2(595, 0)
+layout_mode = 2
+autowrap_mode = 2

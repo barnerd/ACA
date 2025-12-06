@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://br6nr26nvujs8"]
+
+[ext_resource type="Script" uid="uid://c6qmngtws10tl" path="res://MainScenes/Settings/LocaleOptionButton.gd" id="1_0n5sg"]
+
+[node name="LanguageSettings" type="VBoxContainer"]
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 2
+text = "SETTINGS_SCREEN_LANGUAGE_HEADER"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "SETTINGS_SCREEN_LANGUAGE_LOCALE_LABEL"
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_0n5sg")
+
+[connection signal="item_selected" from="HBoxContainer/OptionButton" to="HBoxContainer/OptionButton" method="_on_item_selected"]

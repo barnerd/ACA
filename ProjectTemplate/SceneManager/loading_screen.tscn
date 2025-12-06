@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bymr4udk4regt"]
+
+[ext_resource type="Script" uid="uid://csc30m6fac08a" path="res://ProjectTemplate/SceneManager/loading_screen.gd" id="1_tbk0v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_la78r"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="LoadingScreen" type="PanelContainer"]
+top_level = true
+z_index = 99
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_la78r")
+script = ExtResource("1_tbk0v")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.333
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
