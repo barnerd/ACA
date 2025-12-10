@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://cn52nkly5mhsk"]
 
-[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_0qt40"]
+[ext_resource type="Script" uid="uid://dv5sbb7y8ln65" path="res://AgoniaData/monster_resource.gd" id="1_0qt40"]
 
 [resource]
 script = ExtResource("1_0qt40")
-category = 2
+category = 0
 id = 333
 monster_name = "Ironfleece"
 health = -1

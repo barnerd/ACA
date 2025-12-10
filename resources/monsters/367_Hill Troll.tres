@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://bjby2gq6ker7p"]
 
-[ext_resource type="Script" path="res://AgoniaData/monster_resource.gd" id="1_ei3sx"]
+[ext_resource type="Script" uid="uid://dv5sbb7y8ln65" path="res://AgoniaData/monster_resource.gd" id="1_ei3sx"]
 
 [resource]
 script = ExtResource("1_ei3sx")
-category = 1
+category = 2
 id = 367
 monster_name = "Hill Troll"
 health = -1
