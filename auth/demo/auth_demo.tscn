@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://q21odbyts3tl"]
+
+[ext_resource type="Script" uid="uid://d4aqmxasldjx8" path="res://auth/demo/auth_demo.gd" id="1_u32vt"]
+[ext_resource type="Script" uid="uid://depl3r46menwu" path="res://auth/auth.gd" id="2_tttnf"]
+
+[node name="AuthDemo" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_u32vt")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 92.0
+offset_right = 253.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 25
+text = "Authenticate"
+
+[node name="AuthNode" type="Node" parent="."]
+script = ExtResource("2_tttnf")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
