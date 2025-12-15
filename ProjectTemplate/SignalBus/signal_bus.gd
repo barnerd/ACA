@@ -13,7 +13,7 @@ func get_signal(signal_name: String) -> Signal:
 		return Signal()
 
 
-func register_signal(signal_name: String, _signal: Signal, _surpress_warning: bool = false) -> Signal:
+func register_signal(signal_name: String, _signal: Signal, _surpress_warning: bool = true) -> Signal:
 	if not signal_list.has(signal_name):
 		signal_list[signal_name] = _signal
 	else:

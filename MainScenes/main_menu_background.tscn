@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://drw6h82er6gk"]
+
+[ext_resource type="Script" uid="uid://cavcch7fm05kq" path="res://MainScenes/main_menu_background/background.gd" id="1_ifuwh"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m5nfk"]
+load_path = "res://.godot/imported/forsaken_bridge.png-3173124d9d3004e07876836c0a35a745.ctex"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifuwh"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Background" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ifuwh")
+fade_time = 0.75
+num_characters = 10
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1407.0
+offset_top = -1017.0
+offset_right = 437.0
+offset_bottom = 341.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+texture = SubResource("CompressedTexture2D_m5nfk")
+stretch_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Characters" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ifuwh")

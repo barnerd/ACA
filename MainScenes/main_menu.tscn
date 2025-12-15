@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://s7no0auxep3y"]
+[gd_scene load_steps=9 format=3 uid="uid://s7no0auxep3y"]
 
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_4xubp"]
-[ext_resource type="Script" uid="uid://c5pdslw6ljcmc" path="res://MainScenes/MainMenu/settings_button.gd" id="1_motlp"]
-[ext_resource type="Script" uid="uid://1i35bbtwugv8" path="res://MainScenes/MainMenu/new_game_button.gd" id="1_rkvwr"]
-[ext_resource type="Script" uid="uid://jah33l2hn30k" path="res://MainScenes/MainMenu/continue_button.gd" id="2_0n7q5"]
-[ext_resource type="Script" uid="uid://ck3sdg2xwmvut" path="res://MainScenes/MainMenu/quit_button.gd" id="3_xaonx"]
-[ext_resource type="Script" uid="uid://d2xvmr7ekcm53" path="res://MainScenes/MainMenu/credits_button.gd" id="4_at2yc"]
+[ext_resource type="Script" uid="uid://1i35bbtwugv8" path="res://MainScenes/MainMenu/load_scene_button.gd" id="1_rkvwr"]
+[ext_resource type="FontFile" uid="uid://cmjog33rmu813" path="res://fonts/Fondamento/Fondamento-Regular.ttf" id="3_gnxq4"]
+[ext_resource type="PackedScene" uid="uid://drw6h82er6gk" path="res://MainScenes/main_menu_background.tscn" id="3_qnbo1"]
+[ext_resource type="Script" uid="uid://b7dhs2tq0empb" path="res://MainScenes/MainMenu/login_button.gd" id="4_xqaau"]
+[ext_resource type="Script" uid="uid://b1f8eg418gfmo" path="res://MainScenes/MainMenu/logout_button.gd" id="5_5it2y"]
+[ext_resource type="Script" uid="uid://depl3r46menwu" path="res://auth/auth.gd" id="7_7u5wi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnbo1"]
+bg_color = Color(0.156863, 0.137255, 0.156863, 0.847059)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -17,22 +21,57 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1_4xubp")
 
+[node name="Background" parent="." instance=ExtResource("3_qnbo1")]
+layout_mode = 1
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -91.0
-offset_top = 136.0
-offset_right = 91.0
-offset_bottom = 296.0
-grow_horizontal = 2
+offset_left = 350.0
+offset_top = 191.0
+offset_right = 739.0
+offset_bottom = 493.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnbo1")
 
-[node name="Label" type="Label" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
-text = "Game
-Title"
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 40
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(405, 250)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.970635, 0.460513, 0.0376375, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gnxq4")
+theme_override_font_sizes/font_size = 60
+text = "Verage's Agonia "
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.970635, 0.460513, 0.0376375, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gnxq4")
+theme_override_font_sizes/font_size = 60
+text = "Cartography"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.970635, 0.460513, 0.0376375, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gnxq4")
+theme_override_font_sizes/font_size = 60
+text = "Library"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -49,96 +88,51 @@ offset_bottom = -181.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_type_variation = &"MainMenuButtonContainer"
+theme_override_constants/separation = 30
 
-[node name="NewGameLabel" type="Label" parent="VBoxContainer"]
+[node name="Login" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 1
 theme_type_variation = &"MainMenuLabel"
-text = "TITLE_SCREEN_NEW_GAME_BUTTON"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("1_rkvwr")
-new_game_scene_path = "res://MainScenes/new_game.tscn"
+text = "Login"
+script = ExtResource("4_xqaau")
 
-[node name="Button" type="Button" parent="VBoxContainer/NewGameLabel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ContinueLabel" type="Label" parent="VBoxContainer"]
+[node name="LoadAgonia" type="Button" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
-size_flags_vertical = 1
 theme_type_variation = &"MainMenuLabel"
-text = "TITLE_SCREEN_CONTINUE_GAME_BUTTON"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("2_0n7q5")
+text = "Load Agonia
+"
+script = ExtResource("1_rkvwr")
+scene_path = "res://HUD/map_viewer.tscn"
 
-[node name="Button" type="Button" parent="VBoxContainer/ContinueLabel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SettingsLabel" type="Label" parent="VBoxContainer"]
+[node name="LoadNyx" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
-size_flags_vertical = 1
 theme_type_variation = &"MainMenuLabel"
-text = "TITLE_SCREEN_SETTINGS_BUTTON"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("1_motlp")
+text = "Load Nyx"
+script = ExtResource("1_rkvwr")
 
-[node name="Button" type="Button" parent="VBoxContainer/SettingsLabel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CreditsLabel" type="Label" parent="VBoxContainer"]
+[node name="Logout" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
-size_flags_vertical = 1
 theme_type_variation = &"MainMenuLabel"
-text = "TITLE_SCREEN_CREDITS_BUTTON"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("4_at2yc")
+text = "Logout"
+script = ExtResource("5_5it2y")
 
-[node name="Button" type="Button" parent="VBoxContainer/CreditsLabel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="QuitLabel" type="Label" parent="VBoxContainer"]
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-size_flags_vertical = 1
+
+[node name="StatusLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 theme_type_variation = &"MainMenuLabel"
-text = "TITLE_SCREEN_QUIT_GAME_BUTTON"
+text = "Please log in"
 horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("3_xaonx")
 
-[node name="Button" type="Button" parent="VBoxContainer/QuitLabel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="AuthNode" type="Node" parent="VBoxContainer"]
+script = ExtResource("7_7u5wi")
 
-[connection signal="pressed" from="VBoxContainer/NewGameLabel/Button" to="VBoxContainer/NewGameLabel" method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ContinueLabel/Button" to="VBoxContainer/ContinueLabel" method="_on_continue_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/SettingsLabel/Button" to="VBoxContainer/SettingsLabel" method="_on_settings_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/CreditsLabel/Button" to="VBoxContainer/CreditsLabel" method="_on_settings_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitLabel/Button" to="VBoxContainer/QuitLabel" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Login" to="VBoxContainer/Login" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadAgonia" to="VBoxContainer/LoadAgonia" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadNyx" to="VBoxContainer/LoadNyx" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Logout" to="VBoxContainer/Logout" method="_on_pressed"]

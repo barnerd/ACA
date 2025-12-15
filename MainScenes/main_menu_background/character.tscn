@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://kbctxq7sq723"]
+
+[ext_resource type="Script" uid="uid://b854525p21b77" path="res://MainScenes/main_menu_background/character.gd" id="1_xt8ga"]
+
+[node name="Label" type="Label"]
+offset_left = 633.0
+offset_top = 466.0
+offset_right = 657.0
+offset_bottom = 490.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "ww"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_xt8ga")
+move_time = 1.0
+
+[node name="Timer" type="Timer" parent="."]

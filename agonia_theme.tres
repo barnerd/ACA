@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cdc4f0k64k8bs"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cdc4f0k64k8bs"]
+
+[ext_resource type="FontFile" uid="uid://cmjog33rmu813" path="res://fonts/Fondamento/Fondamento-Regular.ttf" id="1_5qp5m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytqm8"]
 bg_color = Color(0, 0, 0, 0)
@@ -15,6 +17,9 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.392157, 0.372549, 0.466667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5qp5m"]
+bg_color = Color(0.156863, 0.137255, 0.156863, 0.847059)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cw4ot"]
 bg_color = Color(0.101961, 0.0980392, 0.0941176, 0.886275)
@@ -72,6 +77,12 @@ HeaderLabel/font_sizes/font_size = 24
 Label/colors/font_color = Color(0.388235, 0.352941, 0.282353, 1)
 Label/font_sizes/font_size = 22
 LineEdit/colors/font_color = Color(0.815686, 0.788235, 0.717647, 1)
+MainMenuLabel/base_type = &"Button"
+MainMenuLabel/colors/font_color = Color(1, 1, 1, 1)
+MainMenuLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+MainMenuLabel/font_sizes/font_size = 44
+MainMenuLabel/fonts/font = ExtResource("1_5qp5m")
+MainMenuLabel/styles/normal = SubResource("StyleBoxFlat_5qp5m")
 MapControls/base_type = &"PanelContainer"
 MapControls/styles/panel = SubResource("StyleBoxFlat_cw4ot")
 MenuItem/base_type = &"Button"

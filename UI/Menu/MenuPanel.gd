@@ -22,3 +22,4 @@ func _on_header_toggled(toggled_on: bool) -> void:
 	$"Menu PanelContainer/VBoxContainer/Settings".visible = toggled_on
 	$"Menu PanelContainer/VBoxContainer/Downloads".visible = toggled_on
 	$"Menu PanelContainer/VBoxContainer/Credits".visible = toggled_on
+	$"Menu PanelContainer/VBoxContainer/MainMenu".visible = toggled_on

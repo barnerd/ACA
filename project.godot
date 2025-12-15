@@ -36,11 +36,6 @@ window/size/viewport_height=1620
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 
-[editor]
-
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dotenv/plugin.cfg")

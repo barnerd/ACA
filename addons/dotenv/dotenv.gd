@@ -35,7 +35,7 @@ static func load_(path: String, recursive := false, continue_in_release := false
 # This loads a file directly, its better to use load_() because it has checks
 static func load_env_file(path: String, continue_in_release: bool) -> void:
 	# It isnt recommended to use env files in a production build, use github secrets
-	if OS.has_feature('realesed') and not continue_in_release:
+	if OS.has_feature('released') and not continue_in_release:
 		return
 
 	if not FileAccess.file_exists(path):
@@ -47,9 +47,7 @@ static func load_env_file(path: String, continue_in_release: bool) -> void:
 	if open_error != OK:
 		print('Error opening ', path, ', ', error_string(open_error))
 		return
-
-	print('loaded ',path)
-
+	
 	var ln_idx := 0
 	while file.get_position() < file.get_length():
 		ln_idx += 1

@@ -7,7 +7,7 @@ const DEFAULT_SECTION: String = "user"
 
 var config: ConfigFile
 var settings: Dictionary[String, Variant] = {} # String -> setting
-var password = OS.get_unique_id()
+var password = "abcd" # OS.get_unique_id() doesn't work on the web
 
 
 func _init() -> void:
@@ -27,8 +27,17 @@ func register_setting(key: String, default, section: String = DEFAULT_SECTION) -
 	
 	if not settings[section].has(key):
 		settings[section][key] = { "default": default }
+		if not config.has_section_key(section, key):
+			set_value(key, default, section)
 	else:
 		push_warning("%s is a duplicated setting" % key)
+
+
+func _remove_setting(key: String, section: String = DEFAULT_SECTION) -> void:
+	if settings.has(section):
+		if settings[section].has(key):
+			settings[section].erase(key)
+			config.erase_section_key(section, key)
 
 
 func get_value(key: String, section: String = DEFAULT_SECTION):
@@ -44,7 +53,7 @@ func set_value(key: String, value, section: String = DEFAULT_SECTION) -> void:
 
 
 func reset_value_to_default(key: String, section: String = DEFAULT_SECTION) -> void:
-	set_value(key, _get_default(key, section))
+	set_value(key, _get_default(key, section), section)
 
 
 func reset_all_values_to_default(section: String = "") -> void:

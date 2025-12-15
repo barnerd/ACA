@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Verage's Agonia Cartography Library</title>
+</head>
+
+<body>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; text-align: center; font: 24.0px 'Helvetica Neue'; -webkit-text-stroke: #000000"><span class="s1"><b>Authorization successful!</b></span></h1>
+<p class="p2"><span class="s1">You can now close this window and return to the map.</span></p>
+
+<script>
+    // This script runs on the opened page
+window.onload = function() {
+    // window.close(); // this doesn't run in this context
+
+    // Get the current URL
+    const url = new URL(window.location.href);
+
+    // Use URLSearchParams to manage parameters
+    url.searchParams.delete("code");
+
+    // Update the browser history to reflect the new URL without reloading the page
+    // replaceState is generally better than pushState for this, as it doesn't create a new browser history entry
+    window.history.replaceState({}, document.title, url.toString())
+};
+</script>
+</body>
+</html>

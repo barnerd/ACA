@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkn73ewiwrykx"]
+[gd_scene load_steps=9 format=3 uid="uid://bkn73ewiwrykx"]
 
 [ext_resource type="Script" uid="uid://rqj8ulrqqiy8" path="res://UI/Menu/MenuPanel.gd" id="1_qn2pa"]
 [ext_resource type="Theme" uid="uid://cdc4f0k64k8bs" path="res://agonia_theme.tres" id="1_s7eol"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ctiaxywx282qj" path="res://UI/Windows/edit_buttons.tscn" id="3_1wbbw"]
 [ext_resource type="PackedScene" uid="uid://cwl3exv6n4mc7" path="res://UI/Windows/downloads_window.tscn" id="4_nwe0o"]
 [ext_resource type="PackedScene" uid="uid://cl36j7ur110lw" path="res://UI/Windows/settings_window.tscn" id="4_svt7w"]
+[ext_resource type="Script" uid="uid://1i35bbtwugv8" path="res://MainScenes/MainMenu/load_scene_button.gd" id="7_23b81"]
 
 [node name="Menu" type="MarginContainer"]
 size_flags_horizontal = 8
@@ -90,8 +91,14 @@ alignment = 0
 [node name="Credits Window" parent="Menu PanelContainer/VBoxContainer/Credits" instance=ExtResource("2_kgiyx")]
 visible = false
 
-[node name="Edits" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+[node name="MainMenu" type="Button" parent="Menu PanelContainer/VBoxContainer"]
 visible = false
+layout_mode = 2
+text = "Return to Main Menu"
+script = ExtResource("7_23b81")
+scene_path = "res://MainScenes/main_menu.tscn"
+
+[node name="Edits" type="Button" parent="Menu PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"MenuItem"
 text = "Update Data"
@@ -106,4 +113,5 @@ visible = false
 [connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Downloads" to="Menu PanelContainer/VBoxContainer/Downloads/DownloadsWindow" method="show"]
 [connection signal="close_requested" from="Menu PanelContainer/VBoxContainer/Downloads/DownloadsWindow" to="Menu PanelContainer/VBoxContainer/Downloads/DownloadsWindow" method="hide"]
 [connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Credits" to="Menu PanelContainer/VBoxContainer/Credits/Credits Window" method="show"]
+[connection signal="pressed" from="Menu PanelContainer/VBoxContainer/MainMenu" to="Menu PanelContainer/VBoxContainer/MainMenu" method="_on_pressed"]
 [connection signal="pressed" from="Menu PanelContainer/VBoxContainer/Edits" to="Menu PanelContainer/VBoxContainer/Edits/Edit Buttons" method="show"]

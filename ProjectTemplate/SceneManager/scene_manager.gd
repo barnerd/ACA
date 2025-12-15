@@ -1,6 +1,6 @@
 extends Node
 
-var main_menu_scene_path: String = "res://HUD/map_viewer.tscn"
+var main_menu_scene_path: String = "res://MainScenes/main_menu.tscn"
 
 var loading_screen: PackedScene = preload("res://ProjectTemplate/SceneManager/loading_screen.tscn")
 var main_menu_scene: PackedScene
