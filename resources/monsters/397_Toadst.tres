@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://dq2s0y46rum5e"]
+
+[ext_resource type="Script" uid="uid://dv5sbb7y8ln65" path="res://AgoniaData/monster_resource.gd" id="1_ykmrd"]
+
+[resource]
+script = ExtResource("1_ykmrd")
+category = 1
+id = 397
+monster_name = "Toadst"
+health = -1.0
+sorcery_req = 110
+combat_exp = -1
+sorcery_exp = 0

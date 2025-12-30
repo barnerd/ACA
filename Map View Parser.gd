@@ -93,9 +93,14 @@ func parse_map_table(_data: String):
 				var tile_details = {}
 				tile_details["location"] = Vector3i(int(td_result.get_string(2)), int(td_result.get_string(3)), 0)
 				tile_details["map_id"] = int(td_result.get_string(1))
-
-				var tileset_coords = Vector2i(tile_details["map_id"] % 76, floor(tile_details["map_id"] / 76))
-				var tileset_details = AgoniaData.MapData.tile_map_display.tile_set.get_source(0).get_tile_data(Vector2i(tileset_coords.x, tileset_coords.y), 0).get_custom_data("terrain_id")
+				
+				var tileset_coords = Vector2i(tile_details["map_id"] % 76, tile_details["map_id"] / 76)
+				var tileset_source: TileSetAtlasSource = AgoniaData.MapData.tile_map_display.tile_set.get_source(MapImages.TileMap_Sources.SPRITE_SHEET)
+				var tileset_data: TileData = tileset_source.get_tile_data(Vector2i(tileset_coords.x, tileset_coords.y), 0)
+				var tileset_details = tileset_data.get_custom_data("terrain_id")
+				
+				
+				
 				if tileset_details == -1:
 					printerr("tileset Terrain id not set at %v" % tileset_coords)
 				#print(tileset_details)

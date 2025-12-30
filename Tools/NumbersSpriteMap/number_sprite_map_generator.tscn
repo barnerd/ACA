@@ -13,7 +13,7 @@ offset_bottom = 40.0
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(48, 240)
+size = Vector2i(48, 360)
 render_target_update_mode = 4
 
 [node name="GridContainer" type="GridContainer" parent="SubViewportContainer/SubViewport"]
@@ -181,5 +181,85 @@ custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 theme_type_variation = &"DarkEncounterLabel"
 text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label21" type="Label" parent="SubViewportContainer/SubViewport/GridContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"EncounterLabel"
+text = "11"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label22" type="Label" parent="SubViewportContainer/SubViewport/GridContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"DarkEncounterLabel"
+text = "11"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label23" type="Label" parent="SubViewportContainer/SubViewport/GridContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"EncounterLabel"
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label24" type="Label" parent="SubViewportContainer/SubViewport/GridContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"DarkEncounterLabel"
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label25" type="Label" parent="SubViewportContainer/SubViewport/GridContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"EncounterLabel"
+text = "13"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label26" type="Label" parent="SubViewportContainer/SubViewport/GridContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"DarkEncounterLabel"
+text = "13"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label27" type="Label" parent="SubViewportContainer/SubViewport/GridContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"EncounterLabel"
+text = "14"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label28" type="Label" parent="SubViewportContainer/SubViewport/GridContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"DarkEncounterLabel"
+text = "14"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label29" type="Label" parent="SubViewportContainer/SubViewport/GridContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"EncounterLabel"
+text = "15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label30" type="Label" parent="SubViewportContainer/SubViewport/GridContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_type_variation = &"DarkEncounterLabel"
+text = "15"
 horizontal_alignment = 1
 vertical_alignment = 1

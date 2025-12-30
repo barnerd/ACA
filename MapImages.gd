@@ -1,10 +1,10 @@
 class_name MapImages extends TileMap
 
 enum TileMap_Layers {MAP_IMAGE = 0, MINES = 1, TOWNS = 2, BOATS = 3, ENCOUNTERS = 4}
-enum TileMap_Sources {NONE = -1, SPRITE_SHEET = 0, TOWN = 2, COPPER = 3, IRON = 4, TIN = 5, TITANIUM = 6, NUMBERS = 7}
+enum TileMap_Sources {NONE = -1, SPRITE_SHEET = 0, TOWN = 2, NUMBERS = 6}
 enum Numbers_Map {LIGHT = 0, DARK = 1}
-const mine_type_to_tilemap_source: Array[int] = [TileMap_Sources.TIN, TileMap_Sources.COPPER, TileMap_Sources.IRON, TileMap_Sources.TITANIUM]
-const mine_string_to_mine_type: Array[String] = ["tin", "copper", "iron", "titanium"]
+#const mine_type_to_tilemap_source: Array[int] = [TileMap_Sources.TIN, TileMap_Sources.COPPER, TileMap_Sources.IRON, TileMap_Sources.TITANIUM]
+#const mine_string_to_mine_type: Array[String] = ["tin", "copper", "iron", "titanium"]
 
 var min_encounter_tier_to_display: int = 5
 

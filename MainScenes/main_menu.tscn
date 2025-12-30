@@ -91,17 +91,16 @@ theme_type_variation = &"MainMenuButtonContainer"
 theme_override_constants/separation = 30
 
 [node name="Login" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_type_variation = &"MainMenuLabel"
 text = "Login"
 script = ExtResource("4_xqaau")
 
 [node name="LoadAgonia" type="Button" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_type_variation = &"MainMenuLabel"
-text = "Load Agonia
-"
+text = "View Agonia Map"
 script = ExtResource("1_rkvwr")
 scene_path = "res://HUD/map_viewer.tscn"
 
@@ -124,6 +123,7 @@ custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 
 [node name="StatusLabel" type="Label" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_type_variation = &"MainMenuLabel"
 text = "Please log in"

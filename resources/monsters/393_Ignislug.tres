@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://cck5mem7ra114"]
+
+[ext_resource type="Script" uid="uid://dv5sbb7y8ln65" path="res://AgoniaData/monster_resource.gd" id="1_0wwh1"]
+
+[resource]
+script = ExtResource("1_0wwh1")
+category = 1
+id = 393
+monster_name = "Ignislug"
+health = -1.0
+sorcery_req = 365
+combat_exp = -1
+sorcery_exp = 0

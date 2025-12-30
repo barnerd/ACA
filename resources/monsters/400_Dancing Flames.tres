@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://b8iyqq2fnjnmb"]
+
+[ext_resource type="Script" uid="uid://dv5sbb7y8ln65" path="res://AgoniaData/monster_resource.gd" id="1_knwmo"]
+
+[resource]
+script = ExtResource("1_knwmo")
+category = 1
+id = 400
+monster_name = "Dancing Flames"
+health = -1.0
+sorcery_req = 125
+combat_exp = -1
+sorcery_exp = 0

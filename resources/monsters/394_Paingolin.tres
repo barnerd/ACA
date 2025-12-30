@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://cq2wf3nftkl02"]
+
+[ext_resource type="Script" uid="uid://dv5sbb7y8ln65" path="res://AgoniaData/monster_resource.gd" id="1_2qut2"]
+
+[resource]
+script = ExtResource("1_2qut2")
+category = 1
+id = 394
+monster_name = "Paingolin"
+health = -1.0
+sorcery_req = 590
+combat_exp = -1
+sorcery_exp = 0

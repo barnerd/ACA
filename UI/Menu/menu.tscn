@@ -99,6 +99,7 @@ script = ExtResource("7_23b81")
 scene_path = "res://MainScenes/main_menu.tscn"
 
 [node name="Edits" type="Button" parent="Menu PanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_type_variation = &"MenuItem"
 text = "Update Data"

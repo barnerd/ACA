@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://b7eqj640f4coq"]
+
+[ext_resource type="Script" uid="uid://dv5sbb7y8ln65" path="res://AgoniaData/monster_resource.gd" id="1_7lpax"]
+
+[resource]
+script = ExtResource("1_7lpax")
+category = 1
+id = 403
+monster_name = "Draian Hatchling"
+health = -1.0
+sorcery_req = 450
+combat_exp = -1
+sorcery_exp = 0

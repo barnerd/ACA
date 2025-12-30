@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://bsjuc5xvxq306"]
+
+[ext_resource type="Script" uid="uid://dv5sbb7y8ln65" path="res://AgoniaData/monster_resource.gd" id="1_d6wxo"]
+
+[resource]
+script = ExtResource("1_d6wxo")
+category = 1
+id = 398
+monster_name = "Cindershell"
+health = -1.0
+sorcery_req = 275
+combat_exp = -1
+sorcery_exp = 0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterResource" load_steps=2 format=3 uid="uid://bukctibunnahw"]
+
+[ext_resource type="Script" uid="uid://dv5sbb7y8ln65" path="res://AgoniaData/monster_resource.gd" id="1_g5j47"]
+
+[resource]
+script = ExtResource("1_g5j47")
+category = 1
+id = 396
+monster_name = "Astreferrux"
+health = -1.0
+sorcery_req = 660
+combat_exp = -1
+sorcery_exp = 0
